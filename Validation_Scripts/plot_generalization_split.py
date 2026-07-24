@@ -20,8 +20,11 @@ Output: generalization_split.pdf
 """
 import glob
 import os
+os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")  # torch+mpl OpenMP guard
 import h5py
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse, Rectangle
 from matplotlib.lines import Line2D
@@ -32,15 +35,19 @@ from matplotlib.lines import Line2D
 DATASET_ROOT = os.environ.get(
     "DATASET_ROOT",
     r"D:\Data\Data_and_Code_Availability\Dataset")
+# Raw_Experimental_Data holds each case's authoritative train_test_split.pth
+RAW_ROOT = os.environ.get(
+    "RAW_ROOT",
+    r"D:\Data\Data_and_Code_Availability\Raw_Experimental_Data\4.7_Generalization")
 OUT_PDF = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                        "generalization_split.pdf")
 
-# case -> (No., subdir, is_wedge)
+# case -> (No., dataset subdir, raw-case dir, is_wedge)
 CASES = [
-    ("R9",  39, "R9",  False),
-    ("R10", 40, "R10", False),
-    ("W9",  41, "W9",  True),
-    ("W10", 42, "W10", True),
+    ("R9",  39, "R9",  "No39_R9",  False),
+    ("R10", 40, "R10", "No40_R10", False),
+    ("W9",  41, "W9",  "No41_W9",  True),
+    ("W10", 42, "W10", "No42_W10", True),
 ]
 FREQS = [25, 50, 75, 100]
 # frequency -> position within the case's 2x2 quadrant (row, col)
@@ -49,8 +56,16 @@ def _deref(h, ref):
     return np.array(h[ref]).ravel()
 
 
-def load_case(subdir):
-    """Return dict with source coords (per frequency) and train/test labels."""
+def load_case(subdir, raw_case):
+    """Return source coords, geometry, and the *actual* train/test labels.
+
+    Source coordinates come from the dataset manifest; the authoritative
+    train/test membership comes from the experiment's ``train_test_split.pth``
+    (split_mode ``source_region_coord_outmix``: all in-region sources plus a
+    seeded ``out_train_ratio`` fraction of out-region sources are training).
+    The manifest source order is aligned with the split indices.
+    """
+    import torch
     pat = os.path.join(DATASET_ROOT, subdir, "**",
                        "comsol_batch_manifest_*.mat")
     files = glob.glob(pat, recursive=True)
@@ -58,9 +73,8 @@ def load_case(subdir):
         raise FileNotFoundError(
             f"manifest not found under {os.path.join(DATASET_ROOT, subdir)}; "
             "set DATASET_ROOT to the downloaded Dataset folder.")
-    f = files[0]
-    with h5py.File(f, "r") as h:
-        src = np.array(h["all_src_depth"])            # (2, 8000): x, y
+    with h5py.File(files[0], "r") as h:
+        src = np.array(h["all_src_depth"])            # (2, N): x, y
         fidx = np.array(h["all_freq_indices"]).ravel()  # 0..3 per source
         Lx = float(np.array(h["Lx_m"]).ravel()[0])
         Ly = float(np.array(h["Ly_m"]).ravel()[0])
@@ -68,18 +82,19 @@ def load_case(subdir):
         tmy = float(np.array(h["train_max_y_m"]).ravel()[0])
         ell = [float(np.array(h[k]).ravel()[0]) for k in
                ("ellipse_cx_m", "ellipse_cy_m", "ellipse_a_m", "ellipse_b_m")]
-        si = h["split_info"]
-        # per-frequency train/test membership over the case's global indexing
-        is_train = np.zeros(src.shape[1], dtype=bool)
-        for k in range(4):
-            n_tr = int(_deref(h, si["n_train"][k, 0])[0])
-            tr_s = int(_deref(h, si["train_start"][k, 0])[0])
-            te_s = int(_deref(h, si["test_start"][k, 0])[0])
-            n_te = int(_deref(h, si["n_test"][k, 0])[0])
-            is_train[tr_s:tr_s + n_tr] = True
-            is_train[te_s:te_s + n_te] = False
+
+    split_pth = os.path.join(RAW_ROOT, raw_case, "training_run",
+                             "train_test_split.pth")
+    if not os.path.isfile(split_pth):
+        raise FileNotFoundError(
+            f"train_test_split.pth not found at {split_pth}; "
+            "set RAW_ROOT to the downloaded Raw_Experimental_Data/4.7 folder.")
+    d = torch.load(split_pth, map_location="cpu", weights_only=False)
+    is_train = np.zeros(src.shape[1], dtype=bool)
+    is_train[np.asarray(d["train_indices"], dtype=int)] = True
     return dict(x=src[0], y=src[1], fidx=fidx, is_train=is_train,
-                Lx=Lx, Ly=Ly, train_max_x=tmx, train_max_y=tmy, ell=ell)
+                Lx=Lx, Ly=Ly, train_max_x=tmx, train_max_y=tmy, ell=ell,
+                out_train_ratio=float(d.get("out_train_ratio", 0.10)))
 
 
 def draw_panel(ax, d, fi, is_wedge):
@@ -122,8 +137,8 @@ def main():
     # outer grid: 2 rows x 8 cols; each case = a 2x2 block of columns [2c,2c+2)
     gs = fig.add_gridspec(2, 8, wspace=0.12, hspace=0.32,
                           left=0.03, right=0.995, top=0.80, bottom=0.08)
-    for ci, (name, no, subdir, is_wedge) in enumerate(CASES):
-        d = load_case(subdir)
+    for ci, (name, no, subdir, raw_case, is_wedge) in enumerate(CASES):
+        d = load_case(subdir, raw_case)
         for fi in range(4):
             r, c = QUAD[FREQS[fi]]
             ax = fig.add_subplot(gs[r, 2 * ci + c])
