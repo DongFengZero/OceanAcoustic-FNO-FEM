@@ -1,0 +1,25 @@
+# Large binary data — hosted on Google Drive, NOT in this repository.
+# (GitHub rejects files > 100 MB; these folders are tens of GB.)
+Dataset/
+Raw_Experimental_Data/
+
+# Common large binary artifacts, in case any are copied in by mistake
+*.mat
+*.pth
+*.h5
+*.npz
+
+# LaTeX / build leftovers
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.synctex.gz
+*.bak
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
