@@ -16,7 +16,7 @@ The large binary data (simulation `.mat`, model weights `.pth`) are hosted on
 |---|---|---|
 | Experiment code + validation scripts | < 1 MB | this repository |
 | Simulation datasets (22 configs, R0--R10 / W0--W10) | ~74 GB | [Baidu Netdisk — Dataset](https://pan.baidu.com/s/1-G0axu7IRo3KiqnLv4bI-Q?pwd=9u97) (code: `9u97`) |
-| Raw experimental data (per-case results + training logs) | ~19 GB | [Baidu Netdisk — Raw Data](https://pan.baidu.com/s/14nrzOamy2SqJxcyQ5gz2Jw?pwd=eimh) (code: `eimh`) |
+| Raw experimental data (per-case results + training logs) | ~21 GB | [Baidu Netdisk — Raw Data](https://pan.baidu.com/s/14nrzOamy2SqJxcyQ5gz2Jw?pwd=eimh) (code: `eimh`) |
 
 ## Repository layout
 
