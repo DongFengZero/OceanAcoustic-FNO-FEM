@@ -1,6 +1,6 @@
 # Ocean Acoustic Field Prediction with an FNO--FEM Hybrid Solver
 
-Code and reproducibility resources for the paper *"[title]"* (Ocean Engineering, under review).
+Code and reproducibility resources for the paper *"Coupling Fourier Neural Operators with Finite-Element Guided Graph Refinement for Ocean Acoustic Field Prediction"* (Ocean Engineering, under review).
 
 The solver couples a Fourier Neural Operator (FNO) physics prior with a
 finite-element-guided graph correction to predict two-dimensional ocean
