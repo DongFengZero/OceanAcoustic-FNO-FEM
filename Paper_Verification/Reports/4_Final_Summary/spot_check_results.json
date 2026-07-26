@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-07-26 21:04:13",
+  "total_checks": 4,
+  "passed": 4,
+  "failed": 0,
+  "checks": [
+    {
+      "check": "Case 1 R0",
+      "line": 694,
+      "sol": "2.09",
+      "tl": "0.51",
+      "expected_sol": "2.09",
+      "expected_tl": "0.51",
+      "match": true
+    },
+    {
+      "check": "Case 3 R1",
+      "line": 751,
+      "sol": "1.69",
+      "tl": "0.95",
+      "expected_sol": "1.69",
+      "expected_tl": "0.95",
+      "match": true
+    },
+    {
+      "check": "Case 6 R4",
+      "line": 810,
+      "sol": "0.058",
+      "tl": "0.44",
+      "expected_sol": "0.058",
+      "expected_tl": "0.44",
+      "match": true
+    },
+    {
+      "check": "W parameter",
+      "line": 582,
+      "value": "48",
+      "expected": "48",
+      "match": true
+    }
+  ]
+}
