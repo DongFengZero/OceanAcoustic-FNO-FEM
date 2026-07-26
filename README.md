@@ -26,8 +26,9 @@ The large binary data (simulation `.mat`, model weights `.pth`) are hosted on
 │   ├── Data_Generate/       MATLAB + COMSOL dataset generation
 │   └── Main_Code/           .mat -> HDF5 conversion, training, inference
 ├── Validation_Scripts/      scripts that regenerate the paper tables/figures
+├── Verification/            systematic reproducibility verification suite
 ├── MANIFEST.md              case <-> figure/table <-> data mapping
-├── VERIFICATION_REPORT.md   table values verified against archived data
+├── VERIFICATION_REPORT.md   automated verification results (350 checks)
 └── README.md
 ```
 
@@ -37,6 +38,22 @@ is grouped by paper section (`4.2_Validation` ... `4.8_Performance`), one
 subfolder per case.
 
 ## Reproducing the results
+
+### Verification suite (automated, no GPU)
+
+The `Verification/` package systematically recomputes every Chapter-4 table and figure from the archived raw data and verifies correctness:
+
+```bash
+# 1. Download Raw_Experimental_Data from Baidu (link above)
+# 2. Run the suite
+cd Verification
+export RAW_ROOT=/path/to/Raw_Experimental_Data
+python run_all.py
+```
+
+Expected output: **350 checks, 350 passed, 0 failed** (all accuracy tables, depth-line tables, runtime tables, and figure provenance). See `Verification/README.md` for details.
+
+### Manual reproduction
 
 1. **Clone this repository** for all code and scripts.
 2. **Download data from Baidu Netdisk** as needed (see the table above); the
