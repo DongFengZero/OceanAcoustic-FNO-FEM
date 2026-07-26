@@ -2,7 +2,7 @@
   "total": 350,
   "passed": 350,
   "failed": 0,
-  "elapsed": 57.073105335235596,
+  "elapsed": 57.045292139053345,
   "checks": [
     {
       "kind": "table",
