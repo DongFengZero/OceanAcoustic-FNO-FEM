@@ -1,0 +1,55 @@
+{
+  "paper": {
+    "G": 64,
+    "W": 32,
+    "L": 4,
+    "m1": 16,
+    "m2": 16,
+    "lambda_m": 100,
+    "lambda_p": 1.0,
+    "lr": 0.001,
+    "batch_size": 1,
+    "epochs": 200,
+    "gamma": 0.995
+  },
+  "code": {
+    "G": 64,
+    "W": 32,
+    "L": 4,
+    "m1": 16,
+    "m2": 16,
+    "lambda_m": 100,
+    "lambda_p": 1.0,
+    "lr": 0.001,
+    "batch_size": 1,
+    "epochs": 200,
+    "gamma": 0.995
+  },
+  "matches": [
+    "G",
+    "W",
+    "L",
+    "m1",
+    "m2",
+    "lambda_m",
+    "lambda_p",
+    "lr",
+    "batch_size",
+    "epochs",
+    "gamma"
+  ],
+  "mismatches": [],
+  "locations": {
+    "G": "deq_modules/models.py Line 103",
+    "W": "deq_modules/models.py Line 103",
+    "L": "deq_modules/models.py Line 104",
+    "m1": "deq_modules/models.py Line 103",
+    "m2": "deq_modules/models.py Line 103",
+    "lambda_m": "ocean_trainer_forward_b.py Line 3543 (--loss_w_rel_mse)",
+    "lambda_p": "ocean_trainer_forward_b.py Line 3557 (--loss_w_prior)",
+    "lr": "ocean_trainer_forward_b.py Line 1088 (AdamW optimizer)",
+    "batch_size": "ocean_trainer_forward_b.py Line 3516 (--batch_size)",
+    "epochs": "ocean_trainer_forward_b.py Line 3514 (--epochs)",
+    "gamma": "ocean_trainer_forward_b.py Line 1096 (ExponentialLR)"
+  }
+}
