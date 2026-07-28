@@ -3,7 +3,7 @@
 - 对象：`tab:gen-overall`（Table 19）
 - 结论：**PASS** — 118 通过 / 0 失败 / 0 警告，共 118 项
 - 脚本：`ch4_validation/scripts/T19_gen_overall.py`
-- 生成：2026-07-29 00:55:37
+- 生成：2026-07-29 01:07:02
 
 ## 1. 源清单
 
@@ -25,7 +25,7 @@
 | Case 40 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.7_Generalization/No40_R10/training_run/logs/full_run_20260720_103428.log | PASS |
 | Case 41 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.7_Generalization/No41_W9/training_run/logs/full_run_20260720_204724.log | PASS |
 | Case 42 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.7_Generalization/No42_W10/training_run/logs/full_run_20260721_011504.log | PASS |
-| tex 表格环境可定位且确实包住 label | `tab:gen-overall`，长度 1725 | PASS |
+| tex 表格环境可定位且确实包住 label | `tab:gen-overall`，长度 1733 | PASS |
 | tex 数据行数 = 4 | 实得 4 | PASS |
 | tex 行 No. 覆盖 39-42 | [39, 40, 41, 42] | PASS |
 

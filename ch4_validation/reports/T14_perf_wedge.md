@@ -3,7 +3,7 @@
 - 对象：`tab:perf-wedge`（Table 14）
 - 结论：**PASS** — 198 通过 / 0 失败 / 0 警告，共 198 项
 - 脚本：`ch4_validation/scripts/T14_perf_wedge.py`
-- 生成：2026-07-29 00:55:34
+- 生成：2026-07-29 01:06:59
 
 ## 1. 源清单
 

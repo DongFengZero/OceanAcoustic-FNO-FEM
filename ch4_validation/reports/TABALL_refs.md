@@ -3,7 +3,7 @@
 - 对象：`tab:* (all)`（Table 1-21）
 - 结论：**PASS** — 65 通过 / 0 失败 / 0 警告，共 65 项
 - 脚本：`ch4_validation/scripts/TABALL_refs.py`
-- 生成：2026-07-29 00:55:40
+- 生成：2026-07-29 01:07:04
 
 ## 1. 源清单
 
@@ -37,7 +37,7 @@
 | Table 17 (`tab:mesh-rect`) 已被引用 | 正文 1 处 | PASS |
 | Table 18 (`tab:mesh-wedge`) 已被引用 | 正文 1 处 | PASS |
 | Table 19 (`tab:gen-overall`) 已被引用 | 正文 1 处 | PASS |
-| Table 20 (`tab:runtime`) 已被引用 | 正文 1 处；环境内 1 处 | PASS |
+| Table 20 (`tab:runtime`) 已被引用 | 正文 1 处 | PASS |
 | Table 21 (`tab:runtime-scale`) 已被引用 | 正文 1 处 | PASS |
 
 ## 2. 无悬空引用：每个 \ref 都指向真实 label
