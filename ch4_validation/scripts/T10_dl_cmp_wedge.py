@@ -152,7 +152,11 @@ def run():
     hdr = T.header_row(env) or ""
     # 坐标为 1 位小数（全章统一口径），正则须容纳小数点
     got = [tuple(float(v) for v in mm)
-           for mm in re.findall(r"\$\(([\d.]+),([\d.]+)\)\$", hdr)]
+           # 坐标现以 \srcxy{x}{y} 排版（见 tex 前言：\tiny + 细空格，
+           # 为让四列在 0.48\linewidth 的 minipage 内不换行不重叠）；
+           # 同时保留旧的 $(x,y)$ 形式，避免回溯历史版本时解析不到。
+           for mm in (re.findall(r"\\srcxy\{([\d.]+)\}\{([\d.]+)\}", hdr)
+                      or re.findall(r"\$\(([\d.]+),\s*\\?,?\s*([\d.]+)\)\$", hdr))]
     c.check(len(got) == 4, "表头解析到 4 组源坐标", str(got))
     for j, f in enumerate(FREQS):
         sx, sy = R["src"][f]
@@ -205,9 +209,15 @@ def run():
     a, b = T.tabular_preamble(env), T.tabular_preamble(sib)
     c.check(a is not None and a == b, "列定义与 Table 10 相同",
             f"Table 9 `{a}` / Table 10 `{b}`")
-    c.check(a == "@{}QM EEEE@{}", "列定义为深度线族专用 `@{}QM EEEE@{}`", f"`{a}`")
-    c.check("\\TABstyle" in (env or "") and "\\TABstyle" in sib,
-            "两表同用 \\TABstyle", "")
+    # 这一族改用 tabular* 固定总宽（四表等宽），故前导是 \extracolsep{\fill}
+    # 而非 @{}；断言列类型序列本身，不锁整串字面。
+    c.check(a is not None and a.endswith("QM EEEE@{}"),
+            "列类型序列为深度线族专用 `QM EEEE`", f"`{a}`")
+    c.check(a is not None and "extracolsep" in a,
+            "用 \\extracolsep{\\fill} 均分列间余量（tabular* 等宽所需）", f"`{a}`")
+    # 断言 \TABstyleDL 而非 \TABstyle：后者是前者的子串，用 in 判断会假通过
+    c.check("\\TABstyleDL" in (env or "") and "\\TABstyleDL" in sib,
+            "两表同用 \\TABstyleDL（整表 \\scriptsize + 紧凑列距）", "")
 
     # ── K ────────────────────────────────────────────────────────
     c.section("13. 正文引用精确性（4.4 节）")

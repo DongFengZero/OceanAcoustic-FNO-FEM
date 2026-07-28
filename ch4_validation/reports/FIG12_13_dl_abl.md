@@ -3,7 +3,7 @@
 - 对象：`fig:dl-abl-rect / fig:dl-abl-wedge`（Fig. 12/13）
 - 结论：**PASS** — 44 通过 / 0 失败 / 0 警告，共 44 项
 - 脚本：`ch4_validation/scripts/FIG12_13_dl_abl.py`
-- 生成：2026-07-28 21:53:11
+- 生成：2026-07-29 00:28:29
 
 ## 1. 源清单
 
@@ -77,8 +77,8 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| fig:dl-abl-rect 与兄弟表 tab:dl-abl-rect 同处一个 minipage | 表在图之前 成立（间距 1098 字符） | PASS |
-| fig:dl-abl-wedge 与兄弟表 tab:dl-abl-wedge 同处一个 minipage | 表在图之前 成立（间距 1094 字符） | PASS |
+| fig:dl-abl-rect 与兄弟表 tab:dl-abl-rect 同处一个 minipage | 表在图之前 成立（间距 1069 字符） | PASS |
+| fig:dl-abl-wedge 与兄弟表 tab:dl-abl-wedge 同处一个 minipage | 表在图之前 成立（间距 1065 字符） | PASS |
 
 ## 6. 正文引用与派生差值
 

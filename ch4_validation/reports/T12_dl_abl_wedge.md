@@ -1,9 +1,9 @@
 # Table 12 — 消融深度线 TL @W1 y=33.4m
 
 - 对象：`tab:dl-abl-wedge`（Table 12）
-- 结论：**PASS** — 85 通过 / 0 失败 / 0 警告，共 85 项
+- 结论：**PASS** — 86 通过 / 0 失败 / 0 警告，共 86 项
 - 脚本：`ch4_validation/scripts/T12_dl_abl_wedge.py`
-- 生成：2026-07-28 21:50:58
+- 生成：2026-07-29 00:26:16
 
 ## 1. 源清单
 
@@ -81,7 +81,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| tex 表格环境可定位 | 长度 1382 | PASS |
+| tex 表格环境可定位 | 长度 1410 | PASS |
 | tex 数据行数 = 4 | 实得 4 | PASS |
 | 行 No. 覆盖 Case 29-32 | [29, 30, 31, 32] | PASS |
 | Case 29 Method 名 | tex `Full model` | PASS |
@@ -158,9 +158,10 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 列定义与 Table 11 相同 | Table 12 `@{}QA EEEE@{}` / Table 11 `@{}QA EEEE@{}` | PASS |
-| 列定义为消融深度线族专用 `@{}QA EEEE@{}` | `@{}QA EEEE@{}` | PASS |
-| 两表同用 \TABstyle |  | PASS |
+| 列定义与 Table 11 相同 | Table 12 `@{\extracolsep{\fill}}QA EEEE@{}` / Table 11 `@{\extracolsep{\fill}}QA EEEE@{}` | PASS |
+| 列类型序列为消融深度线族专用 `QA EEEE` | `@{\extracolsep{\fill}}QA EEEE@{}` | PASS |
+| 用 \extracolsep{\fill} 均分列间余量（tabular* 等宽所需） | `@{\extracolsep{\fill}}QA EEEE@{}` | PASS |
+| 两表同用 \TABstyleDL（整表 \scriptsize + 紧凑列距） |  | PASS |
 
 ## 13. 正文引用精确性（4.5 节）
 
@@ -169,7 +170,7 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 正文未以 2 位小数复述本表数值 | 无低位数复述 | PASS |
-| 深度线深度 y=33.4 m 在 caption 中声明且与脚本 force_y 一致 | tex 行 942 | PASS |
+| 深度线深度 y=33.4 m 在 caption 中声明且与脚本 force_y 一致 | tex 行 975 | PASS |
 
 ## 14. 消融结论方向性（去掉模块应变差）
 

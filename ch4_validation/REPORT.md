@@ -1,9 +1,9 @@
 # 第 4 章表格与图件核验主报告
 
-- 结论：**PASS** — 3063 项通过 / 0 项失败 / 2 项豁免
+- 结论：**PASS** — 3068 项通过 / 0 项失败 / 2 项豁免
 - 覆盖：40/40 个对象（全覆盖）
 - 核验脚本：34 个，全部通过
-- 生成：2026-07-28 21:54:22
+- 生成：2026-07-29 00:29:42
 - 复现：`python verify.py`
 
 每个对象的逐项明细在 `reports/<脚本名>.md`，本报告只汇总。
@@ -61,10 +61,10 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | `T06_res_rect_mf` | tab:res-rect-mf | table | 4.3 | 277 | PASS | [T06_res_rect_mf](reports/T06_res_rect_mf.md) |
 | `T07_res_rect_100` | tab:res-rect-100 | table | 4.3 | 80 | PASS | [T07_res_rect_100](reports/T07_res_rect_100.md) |
 | `T08_res_wedge_100` | tab:res-wedge-100 | table | 4.3 | 90 | PASS | [T08_res_wedge_100](reports/T08_res_wedge_100.md) |
-| `T09_dl_cmp_rect` | tab:dl-cmp-rect | table | 4.4 | 98 | PASS | [T09_dl_cmp_rect](reports/T09_dl_cmp_rect.md) |
-| `T10_dl_cmp_wedge` | tab:dl-cmp-wedge | table | 4.4 | 96 | PASS | [T10_dl_cmp_wedge](reports/T10_dl_cmp_wedge.md) |
-| `T11_dl_abl_rect` | tab:dl-abl-rect | table | 4.5 | 84 | PASS | [T11_dl_abl_rect](reports/T11_dl_abl_rect.md) |
-| `T12_dl_abl_wedge` | tab:dl-abl-wedge | table | 4.5 | 85 | PASS | [T12_dl_abl_wedge](reports/T12_dl_abl_wedge.md) |
+| `T09_dl_cmp_rect` | tab:dl-cmp-rect | table | 4.4 | 100 | PASS | [T09_dl_cmp_rect](reports/T09_dl_cmp_rect.md) |
+| `T10_dl_cmp_wedge` | tab:dl-cmp-wedge | table | 4.4 | 97 | PASS | [T10_dl_cmp_wedge](reports/T10_dl_cmp_wedge.md) |
+| `T11_dl_abl_rect` | tab:dl-abl-rect | table | 4.5 | 85 | PASS | [T11_dl_abl_rect](reports/T11_dl_abl_rect.md) |
+| `T12_dl_abl_wedge` | tab:dl-abl-wedge | table | 4.5 | 86 | PASS | [T12_dl_abl_wedge](reports/T12_dl_abl_wedge.md) |
 | `T13_perf_rect` | tab:perf-rect | table | 4.4 | 194 | PASS | [T13_perf_rect](reports/T13_perf_rect.md) |
 | `T14_perf_wedge` | tab:perf-wedge | table | 4.4 | 198 | PASS | [T14_perf_wedge](reports/T14_perf_wedge.md) |
 | `T15_abl_rect` | tab:abl-rect | table | 4.5 | 118 | PASS | [T15_abl_rect](reports/T15_abl_rect.md) |

@@ -3,7 +3,7 @@
 - 对象：`fig:abl-rect / fig:abl-wedge`（Fig. 16/17）
 - 结论：**PASS** — 62 通过 / 0 失败 / 0 警告，共 62 项
 - 脚本：`ch4_validation/scripts/FIG16_17_abl_grid.py`
-- 生成：2026-07-28 21:53:39
+- 生成：2026-07-29 00:28:58
 
 ## 1. 源清单
 
@@ -108,5 +108,5 @@
 | fig:abl-rect 编号为 16 | aux `16` | PASS |
 | fig:abl-wedge 编号为 17 | aux `17` | PASS |
 | Fig 16 被引用（含 Fig 17 caption 的 Layout 交叉引用） | `\ref{fig:abl-rect}` 出现 3 处 | PASS |
-| 兄弟表 Table 15 在正文被引 | tex 行 1019 | PASS |
+| 兄弟表 Table 15 在正文被引 | tex 行 1052 | PASS |
 

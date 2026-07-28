@@ -1,9 +1,9 @@
 # Table 10 — 五方法深度线 TL @W1 y=30.4m
 
 - 对象：`tab:dl-cmp-wedge`（Table 10）
-- 结论：**PASS** — 95 通过 / 0 失败 / 0 警告 / 1 豁免，共 96 项
+- 结论：**PASS** — 96 通过 / 0 失败 / 0 警告 / 1 豁免，共 97 项
 - 脚本：`ch4_validation/scripts/T10_dl_cmp_wedge.py`
-- 生成：2026-07-28 21:50:44
+- 生成：2026-07-29 00:26:01
 
 ## 1. 源清单
 
@@ -86,7 +86,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| tex 表格环境可定位 | 长度 1348 | PASS |
+| tex 表格环境可定位 | 长度 1405 | PASS |
 | tex 数据行数 = 5 | 实得 5 | PASS |
 | 行 No. 覆盖 Case 20-19 | [20, 21, 22, 23, 24] | PASS |
 | Case 20 Method 名 | tex `Proposed` | PASS |
@@ -167,9 +167,10 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 列定义与 Table 10 相同 | Table 9 `@{}QM EEEE@{}` / Table 10 `@{}QM EEEE@{}` | PASS |
-| 列定义为深度线族专用 `@{}QM EEEE@{}` | `@{}QM EEEE@{}` | PASS |
-| 两表同用 \TABstyle |  | PASS |
+| 列定义与 Table 10 相同 | Table 9 `@{\extracolsep{\fill}}QM EEEE@{}` / Table 10 `@{\extracolsep{\fill}}QM EEEE@{}` | PASS |
+| 列类型序列为深度线族专用 `QM EEEE` | `@{\extracolsep{\fill}}QM EEEE@{}` | PASS |
+| 用 \extracolsep{\fill} 均分列间余量（tabular* 等宽所需） | `@{\extracolsep{\fill}}QM EEEE@{}` | PASS |
+| 两表同用 \TABstyleDL（整表 \scriptsize + 紧凑列距） |  | PASS |
 
 ## 13. 正文引用精确性（4.4 节）
 
@@ -177,7 +178,7 @@
 |---|---|---|
 | 正文『at or below 0.666 dB』= 本文法最大值 | 四频 ['0.195', '0.144', '0.576', '0.666'] → 最大 `0.666` | PASS |
 | 正文 0.666 ← 全精度源 | 源 0.6658386092081794 → `0.666` / 印刷 `0.666` | PASS |
-| 正文声明的深度线 y=30.4 m 与脚本 force_y 一致 | tex 行 873 | PASS |
+| 正文声明的深度线 y=30.4 m 与脚本 force_y 一致 | tex 行 906 | PASS |
 | 正文『DeepONet exceeds 5 dB』成立（阈值断言，不指某格） | DeepONet 最大 `7.038` > 5 | PASS |
 | 正文 `$5$\,dB` 不作字面比对 | 该数是阈值表述（exceeds 5 dB），非某单元格的印刷值 | 豁免 |
 

@@ -3,7 +3,7 @@
 - 对象：`fig:ideal-rect`（Fig. ideal-rect）
 - 结论：**PASS** — 37 通过 / 0 失败 / 0 警告，共 37 项
 - 脚本：`ch4_validation/scripts/FIG03_ideal_rect.py`
-- 生成：2026-07-28 21:51:29
+- 生成：2026-07-29 00:26:46
 
 ## 1. 源清单
 
@@ -83,7 +83,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 正文（4.2 节）引用本图 | tex 行 686 | PASS |
+| 正文（4.2 节）引用本图 | tex 行 719 | PASS |
 | 正文该断言可定位 | 含 `Two held-out samples at every frequency` | PASS |
 | npz 每频率恰 2 个样本 | 频率计数 {25: 2, 50: 2, 75: 2, 100: 2} | PASS |
 | 25 Hz 图上取 2 个不同样本 | idx=[1, 0] | PASS |

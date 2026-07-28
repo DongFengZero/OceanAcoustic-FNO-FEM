@@ -3,7 +3,7 @@
 - 对象：`fig:perf`（Fig. 23）
 - 结论：**PASS** — 54 通过 / 0 失败 / 0 警告，共 54 项
 - 脚本：`ch4_validation/scripts/FIG23_perf.py`
-- 生成：2026-07-28 21:54:21
+- 生成：2026-07-29 00:29:41
 
 ## 1. 源清单
 
@@ -96,6 +96,6 @@
 | 编号为 23 | aux `23` | PASS |
 | 正文以 `Fig.~\ref{fig:perf}(a,b)` 引用多 GPU 部分 |  | PASS |
 | 正文以 `Fig.~\ref{fig:perf}(c)` 引用域缩放部分 |  | PASS |
-| 兄弟表 `tab:runtime` 在正文被引 | tex 行 1199 | PASS |
-| 兄弟表 `tab:runtime-scale` 在正文被引 | tex 行 1229 | PASS |
+| 兄弟表 `tab:runtime` 在正文被引 | tex 行 1232 | PASS |
+| 兄弟表 `tab:runtime-scale` 在正文被引 | tex 行 1262 | PASS |
 

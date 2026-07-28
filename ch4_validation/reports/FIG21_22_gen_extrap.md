@@ -3,7 +3,7 @@
 - 对象：`fig:gen-grid / fig:gen-grid-wedge`（Fig. 21/22）
 - 结论：**PASS** — 54 通过 / 0 失败 / 0 警告，共 54 项
 - 脚本：`ch4_validation/scripts/FIG21_22_gen_extrap.py`
-- 生成：2026-07-28 21:54:20
+- 生成：2026-07-29 00:29:40
 
 ## 1. 源清单
 
@@ -111,5 +111,5 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 正文并列引用 Fig 21 与 Fig 22 | 含 `Figs.~\ref{fig:gen-grid} and \ref{fig:gen-grid-wedge}` | PASS |
-| 正文描述该组图的内容 | tex 行 1154 | PASS |
+| 正文描述该组图的内容 | tex 行 1187 | PASS |
 
