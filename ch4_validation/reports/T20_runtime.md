@@ -3,7 +3,7 @@
 - 对象：`tab:runtime`（tab:runtime）
 - 结论：**PASS** — 47 通过 / 0 失败 / 0 警告，共 47 项
 - 脚本：`ch4_validation/scripts/T20_runtime.py`
-- 生成：2026-07-28 20:30:11
+- 生成：2026-07-28 21:38:54
 
 ## 1. 源清单
 

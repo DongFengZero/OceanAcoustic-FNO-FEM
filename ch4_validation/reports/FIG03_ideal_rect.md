@@ -1,9 +1,9 @@
 # Fig. ideal-rect — Fig. 3 矩形理想波导解析验证（R0, Case 1）
 
 - 对象：`fig:ideal-rect`（Fig. ideal-rect）
-- 结论：**PASS** — 30 通过 / 0 失败 / 0 警告，共 30 项
+- 结论：**PASS** — 37 通过 / 0 失败 / 0 警告，共 37 项
 - 脚本：`ch4_validation/scripts/FIG03_ideal_rect.py`
-- 生成：2026-07-28 20:30:25
+- 生成：2026-07-28 21:39:24
 
 ## 1. 源清单
 
@@ -90,4 +90,18 @@
 | 50 Hz 图上取 2 个不同样本 | idx=[3, 2] | PASS |
 | 75 Hz 图上取 2 个不同样本 | idx=[4, 5] | PASS |
 | 100 Hz 图上取 2 个不同样本 | idx=[7, 6] | PASS |
+
+## 7. caption 的取样措辞与实际机制相符
+
+> 本图用 pick_two：按 y=Y_LINE 行的 MAE 升序取前 2 个，是**择优**取样。caption 若含混称 representative，读者会以为是随机抽样，故要求写明 best-matching 与排序依据。（场图族用 pick_rows 按索引顺序取前 2 个，措辞是 the first two，两者不可混用。）
+
+| 检查项 | 源值 / 印刷值 | 结论 |
+|---|---|---|
+| caption 写明 best-matching |  | PASS |
+| caption 写明排序依据为深度线 MAE |  | PASS |
+| caption 未含混使用 representative | 择优取样不应称 representative | PASS |
+| 25 Hz a 列即 MAE 最优样本 | pick_two 首个 idx=1，pick_sample idx=1，MAE=0.151015 | PASS |
+| 50 Hz a 列即 MAE 最优样本 | pick_two 首个 idx=3，pick_sample idx=3，MAE=0.129638 | PASS |
+| 75 Hz a 列即 MAE 最优样本 | pick_two 首个 idx=4，pick_sample idx=4，MAE=0.340546 | PASS |
+| 100 Hz a 列即 MAE 最优样本 | pick_two 首个 idx=7，pick_sample idx=7，MAE=0.429633 | PASS |
 

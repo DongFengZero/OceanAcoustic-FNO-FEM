@@ -1,9 +1,9 @@
 # Fig. 14/15 — 五方法统一网格场图 Fig 14/15
 
 - 对象：`fig:perf-rect / fig:perf-wedge`（Fig. 14/15）
-- 结论：**PASS** — 55 通过 / 0 失败 / 0 警告，共 55 项
+- 结论：**PASS** — 60 通过 / 0 失败 / 0 警告，共 60 项
 - 脚本：`ch4_validation/scripts/FIG14_15_perf_grid.py`
-- 生成：2026-07-28 20:32:29
+- 生成：2026-07-28 21:41:36
 
 ## 1. 源清单
 
@@ -61,6 +61,8 @@
 | fig:perf-rect 行数 = 8（4 频率 x 2 样本） | 实得 8 | PASS |
 | fig:perf-rect 8 个行标签与取样序一致 | 图上 8 个，缺 无 | PASS |
 | fig:perf-rect 样本索引按 0-7 顺序取 | [0, 1, 2, 3, 4, 5, 6, 7] | PASS |
+| fig:perf-rect caption 写明取每频率前两个样本或明确继承 | 含 `the first two` | PASS |
+| fig:perf-rect caption 未含混使用 representative | 索引顺序取样不应称 representative | PASS |
 | fig:perf-rect 含 COMSOL 参考列 |  | PASS |
 | fig:perf-rect 含方法 Proposed 的列标题 |  | PASS |
 | fig:perf-rect 含方法 DeepONet 的列标题 |  | PASS |
@@ -71,6 +73,8 @@
 | fig:perf-wedge 行数 = 8（4 频率 x 2 样本） | 实得 8 | PASS |
 | fig:perf-wedge 8 个行标签与取样序一致 | 图上 8 个，缺 无 | PASS |
 | fig:perf-wedge 样本索引按 0-7 顺序取 | [0, 1, 2, 3, 4, 5, 6, 7] | PASS |
+| fig:perf-wedge caption 写明取每频率前两个样本或明确继承 | 以 Layout as in 继承 | PASS |
+| fig:perf-wedge caption 未含混使用 representative | 索引顺序取样不应称 representative | PASS |
 | fig:perf-wedge 含 COMSOL 参考列 |  | PASS |
 | fig:perf-wedge 含方法 Proposed 的列标题 |  | PASS |
 | fig:perf-wedge 含方法 DeepONet 的列标题 |  | PASS |
@@ -78,6 +82,7 @@
 | fig:perf-wedge 含方法 KNO 的列标题 |  | PASS |
 | fig:perf-wedge 含方法 CNO 的列标题 |  | PASS |
 | fig:perf-wedge 含 |Error| 列 |  | PASS |
+| 被继承的 fig:perf-rect caption 自身写明取样方式 | 含 `the first two` | PASS |
 
 ## 4. 图误差排序 vs 兄弟表 Avg TL 排序
 

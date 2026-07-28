@@ -3,7 +3,7 @@
 - 对象：`fig:dl-abl-rect / fig:dl-abl-wedge`（Fig. 12/13）
 - 结论：**PASS** — 44 通过 / 0 失败 / 0 警告，共 44 项
 - 脚本：`ch4_validation/scripts/FIG12_13_dl_abl.py`
-- 生成：2026-07-28 20:32:11
+- 生成：2026-07-28 21:41:17
 
 ## 1. 源清单
 

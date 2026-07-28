@@ -1,9 +1,9 @@
 # Fig. 21/22 — 源位置外推场图 Fig 21/22
 
 - 对象：`fig:gen-grid / fig:gen-grid-wedge`（Fig. 21/22）
-- 结论：**PASS** — 50 通过 / 0 失败 / 0 警告，共 50 项
+- 结论：**PASS** — 54 通过 / 0 失败 / 0 警告，共 54 项
 - 脚本：`ch4_validation/scripts/FIG21_22_gen_extrap.py`
-- 生成：2026-07-28 20:33:25
+- 生成：2026-07-28 21:42:33
 
 ## 1. 源清单
 
@@ -92,6 +92,17 @@
 | 子图 `fig:gen-w10` 题注含数据集名 W10 |  | PASS |
 | 子图 `fig:gen-w10` 题注标明 range extrapolation | tex 用 `range`，Table 19 同一划分记作 `range` | PASS |
 | 子图 `fig:gen-w10` 题注标明阈值 96 m |  | PASS |
+
+## 5b. caption 的取样措辞与实际机制相符
+
+> 本组按索引顺序取每频率前 2 个样本（非择优），故 caption 应写 the first two，不应含混称 representative。
+
+| 检查项 | 源值 / 印刷值 | 结论 |
+|---|---|---|
+| fig:gen-grid caption 写明取样方式或明确继承 | 含 `the first two` | PASS |
+| fig:gen-grid caption 未含混使用 representative |  | PASS |
+| fig:gen-grid-wedge caption 写明取样方式或明确继承 | 以 Layout as in 继承 | PASS |
+| fig:gen-grid-wedge caption 未含混使用 representative |  | PASS |
 
 ## 6. 正文引用
 

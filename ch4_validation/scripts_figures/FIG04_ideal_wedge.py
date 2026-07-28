@@ -151,6 +151,25 @@ def run():
         c.check(len(ids) == 2 and len(set(ids)) == 2,
                 f"{freq} Hz 图上取 2 个不同样本", f"idx={list(ids)}")
 
+    # ── G ────────────────────────────────────────────────────────
+    c.section("7. caption 的取样措辞与实际机制相符")
+    c.note("本图 caption 以 `Layout as in Fig.~\\ref{fig:ideal-rect}` 继承 "
+           "Fig 3 的布局与取样说明，故此处核『继承链完整』而非重复措辞："
+           "只要 Fig 3 写明了 best-matching / depth-line MAE，本图即随之明确。")
+    cap_s = T.caption_of(LABEL) or ""
+    c.check("Layout as in" in cap_s and "fig:ideal-rect" in cap_s,
+            "caption 明确继承 Fig 3 的布局说明", "含 `Layout as in Fig.~\\ref{...}`")
+    cap_r = T.caption_of("fig:ideal-rect") or ""
+    c.check("best-matching" in cap_r and "depth-line MAE" in cap_r,
+            "被继承的 Fig 3 caption 已写明择优取样机制",
+            "含 `best-matching ... depth-line MAE`")
+    c.check("representative" not in cap_s,
+            "caption 未含混使用 representative", "")
+    for freq in RIP.FREQS:
+        i0 = RIP.pick_two(data, freq)[0]
+        c.check(i0 == RIP.pick_sample(data, freq)[0],
+                f"{freq} Hz a 列即 MAE 最优样本", f"idx={i0}")
+
     return c
 
 

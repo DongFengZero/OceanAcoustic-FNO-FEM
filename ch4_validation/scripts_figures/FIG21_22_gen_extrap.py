@@ -156,6 +156,19 @@ def run():
             c.check(str(thr) in seg,
                     f"子图 `{sub_lb}` 题注标明阈值 {thr} m", "")
 
+    # ── E2 ───────────────────────────────────────────────────────
+    c.section("5b. caption 的取样措辞与实际机制相符")
+    c.note("本组按索引顺序取每频率前 2 个样本（非择优），故 caption 应写 "
+           "the first two，不应含混称 representative。")
+    for label, num, subs in FIGS:
+        cap_s = T.caption_of(label) or ""
+        inherits = "Layout as in" in cap_s
+        c.check(inherits or "first two" in cap_s,
+                f"{label} caption 写明取样方式或明确继承",
+                "含 `the first two`" if not inherits else "以 Layout as in 继承")
+        c.check("representative" not in cap_s,
+                f"{label} caption 未含混使用 representative", "")
+
     # ── F ────────────────────────────────────────────────────────
     c.section("6. 正文引用")
     c.note("正文 4.7 节以 `Figs.~\\ref{fig:gen-grid} and \\ref{fig:gen-grid-wedge}` "

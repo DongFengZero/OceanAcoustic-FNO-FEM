@@ -154,6 +154,26 @@ def run():
         c.check(len(ids) == 2 and len(set(ids)) == 2,
                 f"{freq} Hz 图上取 2 个不同样本", f"idx={list(ids)}")
 
+    # ── G ────────────────────────────────────────────────────────
+    c.section("7. caption 的取样措辞与实际机制相符")
+    c.note("本图用 pick_two：按 y=Y_LINE 行的 MAE 升序取前 2 个，是**择优**"
+           "取样。caption 若含混称 representative，读者会以为是随机抽样，"
+           "故要求写明 best-matching 与排序依据。（场图族用 pick_rows 按索引"
+           "顺序取前 2 个，措辞是 the first two，两者不可混用。）")
+    cap_s = T.caption_of(LABEL) or ""
+    c.check("best-matching" in cap_s, "caption 写明 best-matching", "")
+    c.check("depth-line MAE" in cap_s, "caption 写明排序依据为深度线 MAE", "")
+    c.check("representative" not in cap_s,
+            "caption 未含混使用 representative", "择优取样不应称 representative")
+    # 证实确为升序择优：首列样本的 MAE 应不大于次列
+    for freq in RIP.FREQS:
+        i0, i1 = RIP.pick_two(data, freq)[:2]
+        m0 = RIP.pick_sample(data, freq)[1]
+        c.check(i0 == RIP.pick_sample(data, freq)[0],
+                f"{freq} Hz a 列即 MAE 最优样本",
+                f"pick_two 首个 idx={i0}，pick_sample idx="
+                f"{RIP.pick_sample(data, freq)[0]}，MAE={m0:.6f}")
+
     return c
 
 

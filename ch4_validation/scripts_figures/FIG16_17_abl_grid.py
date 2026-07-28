@@ -141,11 +141,27 @@ def run():
                 f"图上 {len(got)} 个，缺 {sorted(set(want) - set(got)) or '无'}")
         c.check([i for _, i, _ in rows] == list(range(8)),
                 f"{label} 样本索引按 0-7 顺序取", str([i for _, i, _ in rows]))
+        # 措辞须与机制相符：pick_rows 取前 nsample 个索引，不是择优。
+        # 本组的图表名次差异正源于此（见第 4 节），故措辞尤需准确。
+        cap_s = T.caption_of(label) or ""
+        # 楔形图以 `Layout as in Fig.~\ref{fig:abl-rect}` 继承矩形图的说明。
+        inherits = "Layout as in" in cap_s
+        c.check(inherits or "first two" in cap_s,
+                f"{label} caption 写明取每频率前两个样本或明确继承",
+                "以 Layout as in 继承" if inherits else "含 `the first two`")
+        c.check("representative" not in cap_s,
+                f"{label} caption 未含混使用 representative",
+                "索引顺序取样不应称 representative")
         c.check("COMSOL" in txt, f"{label} 含 COMSOL 参考列", "")
         for name in METHODS:
             c.check(name in txt, f"{label} 含方法 {name} 的列标题", "")
         c.check("|Error|" in txt or "Error" in txt,
                 f"{label} 含 |Error| 列", "")
+
+    cap_head = T.caption_of(FIGS[0][0]) or ""
+    c.check("first two" in cap_head,
+            f"被继承的 {FIGS[0][0]} caption 自身写明取样方式",
+            "含 `the first two`")
 
     # ── D ────────────────────────────────────────────────────────
     c.section("4. 图误差与兄弟表 Avg TL 的端点一致性")

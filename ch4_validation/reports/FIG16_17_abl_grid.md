@@ -1,9 +1,9 @@
 # Fig. 16/17 — 四变体消融场图 Fig 16/17
 
 - 对象：`fig:abl-rect / fig:abl-wedge`（Fig. 16/17）
-- 结论：**PASS** — 57 通过 / 0 失败 / 0 警告，共 57 项
+- 结论：**PASS** — 62 通过 / 0 失败 / 0 警告，共 62 项
 - 脚本：`ch4_validation/scripts/FIG16_17_abl_grid.py`
-- 生成：2026-07-28 20:32:42
+- 生成：2026-07-28 21:41:49
 
 ## 1. 源清单
 
@@ -59,6 +59,8 @@
 | fig:abl-rect 行数 = 8（4 频率 x 2 样本） | 实得 8 | PASS |
 | fig:abl-rect 8 个行标签与取样序一致 | 图上 8 个，缺 无 | PASS |
 | fig:abl-rect 样本索引按 0-7 顺序取 | [0, 1, 2, 3, 4, 5, 6, 7] | PASS |
+| fig:abl-rect caption 写明取每频率前两个样本或明确继承 | 含 `the first two` | PASS |
+| fig:abl-rect caption 未含混使用 representative | 索引顺序取样不应称 representative | PASS |
 | fig:abl-rect 含 COMSOL 参考列 |  | PASS |
 | fig:abl-rect 含方法 Full model 的列标题 |  | PASS |
 | fig:abl-rect 含方法 w/o prior 的列标题 |  | PASS |
@@ -68,12 +70,15 @@
 | fig:abl-wedge 行数 = 8（4 频率 x 2 样本） | 实得 8 | PASS |
 | fig:abl-wedge 8 个行标签与取样序一致 | 图上 8 个，缺 无 | PASS |
 | fig:abl-wedge 样本索引按 0-7 顺序取 | [0, 1, 2, 3, 4, 5, 6, 7] | PASS |
+| fig:abl-wedge caption 写明取每频率前两个样本或明确继承 | 以 Layout as in 继承 | PASS |
+| fig:abl-wedge caption 未含混使用 representative | 索引顺序取样不应称 representative | PASS |
 | fig:abl-wedge 含 COMSOL 参考列 |  | PASS |
 | fig:abl-wedge 含方法 Full model 的列标题 |  | PASS |
 | fig:abl-wedge 含方法 w/o prior 的列标题 |  | PASS |
 | fig:abl-wedge 含方法 w/o graph 的列标题 |  | PASS |
 | fig:abl-wedge 含方法 w/o prior-sup. 的列标题 |  | PASS |
 | fig:abl-wedge 含 |Error| 列 |  | PASS |
+| 被继承的 fig:abl-rect caption 自身写明取样方式 | 含 `the first two` | PASS |
 
 ## 4. 图误差与兄弟表 Avg TL 的端点一致性
 

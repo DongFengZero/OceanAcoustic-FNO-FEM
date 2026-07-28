@@ -1,9 +1,9 @@
 # Fig. ideal-wedge — Fig. 4 楔形理想波导解析验证（W0, Case 2）
 
 - 对象：`fig:ideal-wedge`（Fig. ideal-wedge）
-- 结论：**PASS** — 31 通过 / 0 失败 / 0 警告，共 31 项
+- 结论：**PASS** — 38 通过 / 0 失败 / 0 警告，共 38 项
 - 脚本：`ch4_validation/scripts/FIG04_ideal_wedge.py`
-- 生成：2026-07-28 20:30:34
+- 生成：2026-07-28 21:39:35
 
 ## 1. 源清单
 
@@ -89,4 +89,18 @@
 | 50 Hz 图上取 2 个不同样本 | idx=[2, 3] | PASS |
 | 75 Hz 图上取 2 个不同样本 | idx=[4, 5] | PASS |
 | 100 Hz 图上取 2 个不同样本 | idx=[7, 6] | PASS |
+
+## 7. caption 的取样措辞与实际机制相符
+
+> 本图 caption 以 `Layout as in Fig.~\ref{fig:ideal-rect}` 继承 Fig 3 的布局与取样说明，故此处核『继承链完整』而非重复措辞：只要 Fig 3 写明了 best-matching / depth-line MAE，本图即随之明确。
+
+| 检查项 | 源值 / 印刷值 | 结论 |
+|---|---|---|
+| caption 明确继承 Fig 3 的布局说明 | 含 `Layout as in Fig.~\ref{...}` | PASS |
+| 被继承的 Fig 3 caption 已写明择优取样机制 | 含 `best-matching ... depth-line MAE` | PASS |
+| caption 未含混使用 representative |  | PASS |
+| 25 Hz a 列即 MAE 最优样本 | idx=1 | PASS |
+| 50 Hz a 列即 MAE 最优样本 | idx=2 | PASS |
+| 75 Hz a 列即 MAE 最优样本 | idx=4 | PASS |
+| 100 Hz a 列即 MAE 最优样本 | idx=7 | PASS |
 

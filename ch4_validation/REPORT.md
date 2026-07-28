@@ -1,9 +1,9 @@
 # 第 4 章表格与图件核验主报告
 
-- 结论：**PASS** — 3025 项通过 / 0 项失败 / 2 项豁免
+- 结论：**PASS** — 3053 项通过 / 0 项失败 / 2 项豁免
 - 覆盖：40/40 个对象（全覆盖）
 - 核验脚本：34 个，全部通过
-- 生成：2026-07-28 20:33:26
+- 生成：2026-07-28 21:42:34
 - 复现：`python verify.py`
 
 每个对象的逐项明细在 `reports/<脚本名>.md`，本报告只汇总。
@@ -74,8 +74,8 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | `T19_gen_overall` | tab:gen-overall | table | 4.7 | 118 | PASS | [T19_gen_overall](reports/T19_gen_overall.md) |
 | `T20_runtime` | tab:runtime | table | 4.8 | 47 | PASS | [T20_runtime](reports/T20_runtime.md) |
 | `T21_runtime_scale` | tab:runtime-scale | table | 4.8 | 41 | PASS | [T21_runtime_scale](reports/T21_runtime_scale.md) |
-| `F03_ideal_rect` | fig:ideal-rect | figure | 4.2 | 30 | PASS | [FIG03_ideal_rect](reports/FIG03_ideal_rect.md) |
-| `F04_ideal_wedge` | fig:ideal-wedge | figure | 4.2 | 31 | PASS | [FIG04_ideal_wedge](reports/FIG04_ideal_wedge.md) |
+| `F03_ideal_rect` | fig:ideal-rect | figure | 4.2 | 37 | PASS | [FIG03_ideal_rect](reports/FIG03_ideal_rect.md) |
+| `F04_ideal_wedge` | fig:ideal-wedge | figure | 4.2 | 38 | PASS | [FIG04_ideal_wedge](reports/FIG04_ideal_wedge.md) |
 | `F05_res_128` | fig:res-128 | figure | 4.3 | 94 | PASS | [FIG05_07_res_fields](reports/FIG05_07_res_fields.md) |
 | `F06_res_256` | fig:res-256 | figure | 4.3 | 94 | PASS | [FIG05_07_res_fields](reports/FIG05_07_res_fields.md) |
 | `F07_res_512` | fig:res-512 | figure | 4.3 | 94 | PASS | [FIG05_07_res_fields](reports/FIG05_07_res_fields.md) |
@@ -85,15 +85,15 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | `F11_dl_cmp_wedge` | fig:dl-cmp-wedge | figure | 4.4 | 38 | PASS | [FIG10_11_dl_cmp](reports/FIG10_11_dl_cmp.md) |
 | `F12_dl_abl_rect` | fig:dl-abl-rect | figure | 4.5 | 44 | PASS | [FIG12_13_dl_abl](reports/FIG12_13_dl_abl.md) |
 | `F13_dl_abl_wedge` | fig:dl-abl-wedge | figure | 4.5 | 44 | PASS | [FIG12_13_dl_abl](reports/FIG12_13_dl_abl.md) |
-| `F14_perf_rect` | fig:perf-rect | figure | 4.4 | 55 | PASS | [FIG14_15_perf_grid](reports/FIG14_15_perf_grid.md) |
-| `F15_perf_wedge` | fig:perf-wedge | figure | 4.4 | 55 | PASS | [FIG14_15_perf_grid](reports/FIG14_15_perf_grid.md) |
-| `F16_abl_rect` | fig:abl-rect | figure | 4.5 | 57 | PASS | [FIG16_17_abl_grid](reports/FIG16_17_abl_grid.md) |
-| `F17_abl_wedge` | fig:abl-wedge | figure | 4.5 | 57 | PASS | [FIG16_17_abl_grid](reports/FIG16_17_abl_grid.md) |
+| `F14_perf_rect` | fig:perf-rect | figure | 4.4 | 60 | PASS | [FIG14_15_perf_grid](reports/FIG14_15_perf_grid.md) |
+| `F15_perf_wedge` | fig:perf-wedge | figure | 4.4 | 60 | PASS | [FIG14_15_perf_grid](reports/FIG14_15_perf_grid.md) |
+| `F16_abl_rect` | fig:abl-rect | figure | 4.5 | 62 | PASS | [FIG16_17_abl_grid](reports/FIG16_17_abl_grid.md) |
+| `F17_abl_wedge` | fig:abl-wedge | figure | 4.5 | 62 | PASS | [FIG16_17_abl_grid](reports/FIG16_17_abl_grid.md) |
 | `F18_mesh_rect` | fig:mesh-rect | figure | 4.6 | 106 | PASS | [FIG18_19_mesh](reports/FIG18_19_mesh.md) |
 | `F19_mesh_wedge` | fig:mesh-wedge | figure | 4.6 | 106 | PASS | [FIG18_19_mesh](reports/FIG18_19_mesh.md) |
 | `F20_gen_split` | fig:gen-split | figure | 4.7 | 52 | PASS | [FIG20_gen_split](reports/FIG20_gen_split.md) |
-| `F21_gen_grid` | fig:gen-grid | figure | 4.7 | 50 | PASS | [FIG21_22_gen_extrap](reports/FIG21_22_gen_extrap.md) |
-| `F22_gen_grid_wedge` | fig:gen-grid-wedge | figure | 4.7 | 50 | PASS | [FIG21_22_gen_extrap](reports/FIG21_22_gen_extrap.md) |
+| `F21_gen_grid` | fig:gen-grid | figure | 4.7 | 54 | PASS | [FIG21_22_gen_extrap](reports/FIG21_22_gen_extrap.md) |
+| `F22_gen_grid_wedge` | fig:gen-grid-wedge | figure | 4.7 | 54 | PASS | [FIG21_22_gen_extrap](reports/FIG21_22_gen_extrap.md) |
 | `F23_perf` | fig:perf | figure | 4.8 | 44 | PASS | [FIG23_perf](reports/FIG23_perf.md) |
 
 ## 跨对象核验

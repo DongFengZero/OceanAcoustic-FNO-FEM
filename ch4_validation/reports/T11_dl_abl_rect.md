@@ -3,7 +3,7 @@
 - 对象：`tab:dl-abl-rect`（Table 11）
 - 结论：**PASS** — 84 通过 / 0 失败 / 0 警告，共 84 项
 - 脚本：`ch4_validation/scripts/T11_dl_abl_rect.py`
-- 生成：2026-07-28 20:30:00
+- 生成：2026-07-28 21:38:43
 
 ## 1. 源清单
 
