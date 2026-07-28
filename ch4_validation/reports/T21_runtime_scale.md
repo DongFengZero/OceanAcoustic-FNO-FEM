@@ -3,7 +3,7 @@
 - 对象：`tab:runtime-scale`（tab:runtime-scale）
 - 结论：**PASS** — 41 通过 / 0 失败 / 0 警告，共 41 项
 - 脚本：`ch4_validation/scripts/T21_runtime_scale.py`
-- 生成：2026-07-29 00:26:22
+- 生成：2026-07-29 00:55:39
 
 ## 1. 源清单
 
@@ -27,7 +27,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| tex 表格环境可定位且确实包住 label | `tab:runtime-scale`，长度 697 | PASS |
+| tex 表格环境可定位且确实包住 label | `tab:runtime-scale`，长度 801 | PASS |
 | tex 数据行数 = 6 | 实得 6 | PASS |
 | tex 行 No. 覆盖 45-50 | [45, 46, 47, 48, 49, 50] | PASS |
 

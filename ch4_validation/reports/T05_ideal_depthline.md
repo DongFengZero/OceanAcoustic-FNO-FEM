@@ -3,7 +3,7 @@
 - 对象：`tab:ideal-depthline`（Table 5）
 - 结论：**PASS** — 42 通过 / 0 失败 / 0 警告，共 42 项
 - 脚本：`ch4_validation/scripts/T05_ideal_depthline.py`
-- 生成：2026-07-29 00:25:41
+- 生成：2026-07-29 00:54:56
 
 ## 1. 源清单
 

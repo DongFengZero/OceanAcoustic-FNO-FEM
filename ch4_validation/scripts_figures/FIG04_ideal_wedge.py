@@ -155,14 +155,16 @@ def run():
     c.section("7. caption 的取样措辞与实际机制相符")
     c.note("本图 caption 以 `Layout as in Fig.~\\ref{fig:ideal-rect}` 继承 "
            "Fig 3 的布局与取样说明，故此处核『继承链完整』而非重复措辞："
-           "只要 Fig 3 写明了 best-matching / depth-line MAE，本图即随之明确。")
+           "只要 Fig 3 点明了按深度线 MAE 择优，本图即随之明确。")
     cap_s = T.caption_of(LABEL) or ""
     c.check("Layout as in" in cap_s and "fig:ideal-rect" in cap_s,
             "caption 明确继承 Fig 3 的布局说明", "含 `Layout as in Fig.~\\ref{...}`")
+    # 与 FIG03 同口径：校验语义而非字面措辞，题注改写不应使断言失败
     cap_r = T.caption_of("fig:ideal-rect") or ""
-    c.check("best-matching" in cap_r and "depth-line MAE" in cap_r,
+    c.check("depth-line MAE" in cap_r
+            and any(w in cap_r for w in ("best-matching", "lowest", "smallest")),
             "被继承的 Fig 3 caption 已写明择优取样机制",
-            "含 `best-matching ... depth-line MAE`")
+            "含 depth-line MAE 与择优用词")
     c.check("representative" not in cap_s,
             "caption 未含混使用 representative", "")
     for freq in RIP.FREQS:

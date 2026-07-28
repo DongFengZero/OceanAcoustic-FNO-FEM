@@ -158,11 +158,16 @@ def run():
     c.section("7. caption 的取样措辞与实际机制相符")
     c.note("本图用 pick_two：按 y=Y_LINE 行的 MAE 升序取前 2 个，是**择优**"
            "取样。caption 若含混称 representative，读者会以为是随机抽样，"
-           "故要求写明 best-matching 与排序依据。（场图族用 pick_rows 按索引"
-           "顺序取前 2 个，措辞是 the first two，两者不可混用。）")
+           "故要求写明按深度线 MAE 择优。（场图族用 pick_rows 按索引顺序取前 "
+           "2 个，措辞是 the first two，两者不可混用。）")
     cap_s = T.caption_of(LABEL) or ""
-    c.check("best-matching" in cap_s, "caption 写明 best-matching", "")
+    # 校验语义而非字面：措辞可以是 "best-matching ... ordered by depth-line MAE"
+    # 或 "of lowest depth-line MAE"，只要点明依 MAE 择优即可，避免题注一改写
+    # 断言就失败。
     c.check("depth-line MAE" in cap_s, "caption 写明排序依据为深度线 MAE", "")
+    c.check(any(w in cap_s for w in ("best-matching", "lowest", "smallest")),
+            "caption 点明是择优取样（best-matching / lowest 等）",
+            "不可只说取两个样本而不说依据")
     c.check("representative" not in cap_s,
             "caption 未含混使用 representative", "择优取样不应称 representative")
     # 证实确为升序择优：首列样本的 MAE 应不大于次列

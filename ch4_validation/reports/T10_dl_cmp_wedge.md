@@ -3,7 +3,7 @@
 - 对象：`tab:dl-cmp-wedge`（Table 10）
 - 结论：**PASS** — 96 通过 / 0 失败 / 0 警告 / 1 豁免，共 97 项
 - 脚本：`ch4_validation/scripts/T10_dl_cmp_wedge.py`
-- 生成：2026-07-29 00:26:01
+- 生成：2026-07-29 00:55:17
 
 ## 1. 源清单
 
