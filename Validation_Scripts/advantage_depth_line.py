@@ -332,8 +332,10 @@ def _plot_cell(fig, subspec, panel, members, geom, show_label, left_col):
     axT.set_xlim(x_lo, x_hi)
     axT.set_ylim(y_lo, y_hi)
     _sx, _sy = float(panel["src"][0]), float(panel["src"][1])
+    # Src 一位小数，全章坐标统一口径：取整会把 39.5 与 40.0 印成同一个数，
+    # 无法回溯到具体样本；对应 Tables 9-12 表头的 (x,y) 也用一位小数。
     axT.set_title(f"f = {panel['freq']:.0f} Hz   "
-                  f"Src ({_sx:.0f}, {_sy:.0f}) m",
+                  f"Src ({_sx:.1f}, {_sy:.1f}) m",
                   fontsize=18, fontweight="bold")
     axT.tick_params(labelsize=15, labelbottom=False)
     axT.grid(True, alpha=0.25)

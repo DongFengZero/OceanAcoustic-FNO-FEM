@@ -1,7 +1,9 @@
-# Large binary data — hosted on Google Drive, NOT in this repository.
-# (GitHub rejects files > 100 MB; these folders are tens of GB.)
+# Large binary data — hosted on Baidu Netdisk, NOT in this repository.
+# (GitHub rejects files > 100 MB; Dataset is ~74 GB, Raw_Experimental_Data 20.9 GB.)
+# Links and access codes are in README.md.
 Dataset/
 Raw_Experimental_Data/
+Data_and_Code_Availability/
 
 # Common large binary artifacts, in case any are copied in by mistake
 *.mat

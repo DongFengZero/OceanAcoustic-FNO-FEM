@@ -6,17 +6,23 @@ The solver couples a Fourier Neural Operator (FNO) physics prior with a
 finite-element-guided graph correction to predict two-dimensional ocean
 acoustic transmission-loss fields.
 
-## Resources
+## What is here
 
-Small text assets (code, scripts, docs) live in **this GitHub repository**.
-The large binary data (simulation `.mat`, model weights `.pth`) are hosted on
-**Baidu Netdisk** because they exceed GitHub file-size limits.
+Everything needed to reproduce the paper, at three levels of effort:
 
-| Resource | Size | Location |
+| Goal | Needs | Where |
 |---|---|---|
-| Experiment code + validation scripts | < 1 MB | this repository |
-| Simulation datasets (22 configs, R0--R10 / W0--W10) | ~74 GB | [Baidu Netdisk — Dataset](https://pan.baidu.com/s/1-G0axu7IRo3KiqnLv4bI-Q?pwd=9u97) (code: `9u97`) |
-| Raw experimental data (per-case results + training logs) | ~21 GB | [Baidu Netdisk — Raw Data](https://pan.baidu.com/s/14nrzOamy2SqJxcyQ5gz2Jw?pwd=eimh) (code: `eimh`) |
+| Check that every published number is correct | raw data, no GPU | [`ch4_validation/`](ch4_validation/) — `python verify.py` |
+| Regenerate the figures and tables | raw data, no GPU | [`Validation_Scripts/`](Validation_Scripts/) |
+| Retrain, or rebuild the datasets | GPU / MATLAB + COMSOL | [`Experiment_Code/`](Experiment_Code/) |
+
+Code and scripts live in this repository (< 2 MB). The datasets and per-case
+results are tens of gigabytes, so they are hosted on Baidu Netdisk:
+
+| Data | Size | Link |
+|---|---|---|
+| Simulation datasets (22 configs, R0--R10 / W0--W10) | ~74 GB | [Dataset](https://pan.baidu.com/s/1-G0axu7IRo3KiqnLv4bI-Q?pwd=9u97) · code `9u97` |
+| Raw experimental data (per-case results + training logs) | 20.9 GB | [Raw_Experimental_Data](https://pan.baidu.com/s/16Q---bIQs0Hpf-SJxBmnUg?pwd=hmzx) · code `hmzx` |
 
 ## Repository layout
 
@@ -26,53 +32,88 @@ The large binary data (simulation `.mat`, model weights `.pth`) are hosted on
 │   ├── Data_Generate/       MATLAB + COMSOL dataset generation
 │   └── Main_Code/           .mat -> HDF5 conversion, training, inference
 ├── Validation_Scripts/      scripts that regenerate the paper tables/figures
-├── Verification/            systematic reproducibility verification suite
-├── MANIFEST.md              case <-> figure/table <-> data mapping
-├── VERIFICATION_REPORT.md   automated verification results (350 checks)
+├── ch4_validation/          value-level verification of every table and figure
+│   ├── verify.py            entry point: python verify.py
+│   ├── REPORT.md            aggregate report (auto-generated)
+│   └── reports/             per-object itemized results
 └── README.md
 ```
 
-The two Baidu Netdisk folders mirror the structure documented in `MANIFEST.md`:
+The two Baidu Netdisk folders unzip to the layout the scripts expect:
 `Dataset/` is organized as `R0`--`R10` / `W0`--`W10`; `Raw_Experimental_Data/`
 is grouped by paper section (`4.2_Validation` ... `4.8_Performance`), one
-subfolder per case.
+subfolder per case. The case-to-figure/table mapping is Table 3 of the paper,
+which `ch4_validation/` verifies against the dataset folders directly.
 
 ## Reproducing the results
 
 ### Verification suite (automated, no GPU)
 
-The `Verification/` package systematically recomputes every Chapter-4 table and figure from the archived raw data and verifies correctness:
+`ch4_validation/` recomputes every printed value in the 19 tables and 21 figures
+of Chapter 4 from the archived raw data, then compares it against the typeset
+value character by character:
 
 ```bash
-# 1. Download Raw_Experimental_Data from Baidu (link above)
-# 2. Run the suite
-cd Verification
-export RAW_ROOT=/path/to/Raw_Experimental_Data
-python run_all.py
+# 1. Download Raw_Experimental_Data from Baidu (link above), 20.9 GB
+# 2. Point the suite at the data and the compiled paper
+export CH4_RAWROOT=/path/to/parent-of-Data_and_Code_Availability
+export CH4_TEXDIR=/path/to/els-cas-templates    # needs OE_submission.aux
+# 3. Run
+cd ch4_validation && python verify.py
 ```
 
-Expected output: **350 checks, 350 passed, 0 failed** (all accuracy tables, depth-line tables, runtime tables, and figure provenance). See `Verification/README.md` for details.
+Expected output: **40/40 objects, 3025 checks passed, 0 failed**. Beyond the
+numbers themselves, the suite also checks the things that never trigger a
+compile error — whether each table and figure is actually cited in the body
+text, whether the numbers quoted in prose match both the table and the source
+data, whether derived ratios are reproducible from the printed values, and
+whether every caption's `best epoch` / `last epoch` claim matches the epoch the
+data actually came from. See `ch4_validation/README.md` and the generated
+`ch4_validation/REPORT.md`.
 
-### Manual reproduction
+### Regenerating figures and tables (no GPU)
 
-1. **Clone this repository** for all code and scripts.
-2. **Download data from Baidu Netdisk** as needed (see the table above); the
-   `Dataset` and `Raw_Experimental_Data` folders unzip to the same layout
-   referenced by the scripts.
-3. **Figures / tables (no GPU needed).** Run the scripts in
-   `Validation_Scripts/` against the downloaded `Raw_Experimental_Data` to
-   regenerate the paper figures and tables.
-4. **Retrain from scratch (GPU).** Convert the `.mat` datasets to HDF5 with
-   `Experiment_Code/Main_Code/Ocean_Dataset_barrier_comsol.py`, then train with
-   `ocean_trainer_forward_b.py`. See `Experiment_Code/README.md` for commands.
-5. **Regenerate datasets (MATLAB + COMSOL).** Use the scripts in
-   `Experiment_Code/Data_Generate/`.
+Run the scripts in `Validation_Scripts/` against the downloaded
+`Raw_Experimental_Data`. Each script regenerates one family of figures and
+prints the values it writes, so its output can be diffed against the paper:
+
+| Script | Produces |
+|---|---|
+| `regen_ideal_panels.py` | Figs. 3--4, analytical validation (`*_grid2.pdf`) |
+| `regen_results_bigfont.py` | Figs. 5--9, forward-solving fields (`CaseNN_XX_TL.pdf`) |
+| `advantage_depth_line.py` | Figs. 10--13 and Tables 9--12, depth-line families |
+| `regen_method_grid.py` | Figs. 14--17, baseline and ablation grids |
+| `plot_generalization_split.py` | Fig. 20, train/test source split |
+| `regen_gen_extrap_bigfont.py` | Figs. 21--22, extrapolation fields |
+| `build_perf.py` | Tables 20--21, runtime statistics (writes an `.xlsx`) |
+
+The remaining scripts in that folder (`redraw_tl_figures.py`,
+`regen_wide_fields.py`, `restore_tl_figure.py`, `scan_depth_lines.py`) are
+earlier or auxiliary tools kept for provenance; they are not the entry points
+for any figure in the current manuscript.
+
+One gap is worth stating plainly: `build_perf.py` produces the runtime
+spreadsheet behind Tables 20--21 but does not plot, and the script that drew
+Fig. 23 from it is not in this repository. Fig. 23 is therefore verified by
+comparing its printed annotations against those table values rather than by
+re-running its generator — see `ch4_validation/reports/FIG23_perf.md`.
+
+### Retraining (GPU) or rebuilding the datasets (MATLAB + COMSOL)
+
+Convert the `.mat` datasets to HDF5 with
+`Experiment_Code/Main_Code/Ocean_Dataset_barrier_comsol.py`, then train with
+`ocean_trainer_forward_b.py`; see `Experiment_Code/README.md` for commands.
+The datasets themselves are rebuilt with `Experiment_Code/Data_Generate/`.
 
 ## Environment
 
 Python 3.11 with `torch`, `torch_geometric`, `h5py`, `numpy`, `scipy`,
 `scikit-learn`, `matplotlib`, `tqdm`, `openpyxl`. Dataset generation additionally
 requires MATLAB and COMSOL Multiphysics (LiveLink for MATLAB).
+
+The verification suite needs no GPU, but does need `pandas` and the `pdftotext`
+utility (Poppler) — it reads the text layer of the figure PDFs to compare the
+annotations drawn inside them against the source data.
 
 ## Citation
 

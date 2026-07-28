@@ -190,8 +190,11 @@ def _draw_unit(fig, gs_slice, data, freq, idx, k, base_col):
     axL.set_xlim(float(gx[vidx[0]]), float(gx[vidx[-1]]))
     axL.set_xlabel("X / Range (m)", fontsize=FS_LABEL)
     axL.set_ylabel(f"f={freq:.0f}Hz ({tag})\nTL (dB)", fontsize=FS_LABEL)
-    axL.set_title(f"Depth-line @ y={Y_LINE:.1f} m   "
-                  f"Src ({float(src[0]):.0f},{float(src[1]):.0f})",
+    # Src 保留一位小数，全章坐标统一口径（场图 regen_results_bigfont.py 等
+    # 一贯用 .1f）。取整会把 39.5 与 40.0 印成同一个数，无法回溯到具体样本，
+    # 故不用 .0f。标题分两行：第一行深度线位置，第二行源坐标。
+    axL.set_title(f"Depth-line @ y={Y_LINE:.1f} m\n"
+                  f"Src ({float(src[0]):.1f},{float(src[1]):.1f})",
                   fontsize=FS_TITLE, fontweight="bold")
     axL.tick_params(labelsize=FS_TICK)
     axL.grid(True, alpha=0.25)
