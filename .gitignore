@@ -11,6 +11,15 @@ Data_and_Code_Availability/
 *.h5
 *.npz
 
+# Manuscript sources are NOT part of this repository — the paper is under
+# submission and its sources live outside the repo. Ignored so that a stray copy
+# inside the working tree can never be committed by `git add -A`. Note this is
+# deliberately narrow: figure PDFs produced by Validation_Scripts/ are tracked,
+# so a blanket *.pdf rule would be misleading here.
+*.tex
+OE_submission*
+els-cas-templates/
+
 # LaTeX / build leftovers
 *.aux
 *.log
