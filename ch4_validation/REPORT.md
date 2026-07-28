@@ -1,9 +1,9 @@
 # 第 4 章表格与图件核验主报告
 
-- 结论：**PASS** — 3053 项通过 / 0 项失败 / 2 项豁免
+- 结论：**PASS** — 3063 项通过 / 0 项失败 / 2 项豁免
 - 覆盖：40/40 个对象（全覆盖）
 - 核验脚本：34 个，全部通过
-- 生成：2026-07-28 21:42:34
+- 生成：2026-07-28 21:54:22
 - 复现：`python verify.py`
 
 每个对象的逐项明细在 `reports/<脚本名>.md`，本报告只汇总。
@@ -94,7 +94,7 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | `F20_gen_split` | fig:gen-split | figure | 4.7 | 52 | PASS | [FIG20_gen_split](reports/FIG20_gen_split.md) |
 | `F21_gen_grid` | fig:gen-grid | figure | 4.7 | 54 | PASS | [FIG21_22_gen_extrap](reports/FIG21_22_gen_extrap.md) |
 | `F22_gen_grid_wedge` | fig:gen-grid-wedge | figure | 4.7 | 54 | PASS | [FIG21_22_gen_extrap](reports/FIG21_22_gen_extrap.md) |
-| `F23_perf` | fig:perf | figure | 4.8 | 44 | PASS | [FIG23_perf](reports/FIG23_perf.md) |
+| `F23_perf` | fig:perf | figure | 4.8 | 54 | PASS | [FIG23_perf](reports/FIG23_perf.md) |
 
 ## 跨对象核验
 
@@ -110,16 +110,18 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 
 如实记录三处，避免读者以为核验是全覆盖的：
 
-1. **Fig 23 无成图脚本可比对。** 仓库内没有生成 `perf_merged.pdf` 的
-   脚本（`build_perf.py` 只产 xlsx 不画图），故这张图无法做「脚本产物
-   vs 论文图件 md5 同源」的比对。改以「图上标注 vs 表值」逐点核验替代，
-   强度略低。其余 20 张图都有 md5 同源或数值复现两道锁。
+1. **Fig 23 的数值是硬编码在成图脚本里的。** 成图脚本
+   `build_perf_figure.py` 不读 xlsx，而是把 thr/spd/nodes/time 四组常量
+   写在源码中。故这张图的风险不是「图与脚本不一致」，而是「脚本常量与
+   表值脱钩」——表更新而常量未同步，图会静默过期。核验用 ast 解析源码
+   取出这 12 个常量与 xlsx 逐值比对，堵住这条路径。
 
-2. **场图的样本选择是索引顺序，非代表性抽样。** 场图族用 `pick_rows`
-   取每频率前 2 个样本，caption 称 "two representative held-out
-   samples"。这 8 个样本给的是个案观感，不是全测试集的代表值——
-   Fig 16/17 的中段名次与 Tables 15/16 不同就源于此（已在 caption 中
-   加了说明）。深度线族用 `pick_sample` 取 MAE 最优样本，口径不同。
+2. **场图与深度线族的取样口径不同。** 场图族（Figs 14-17、21-22）用
+   `pick_rows` 取每频率前 2 个样本，caption 写 "the first two"；
+   深度线族（Figs 3-4）用 `pick_two` 按深度线 MAE 择优，caption 写
+   "best-matching ... ordered by depth-line MAE"。两者都不是代表性
+   抽样，故图上名次不代表全测试集——Fig 16/17 的中段名次与 Tables 15/16
+   不同即源于此，已在其 caption 中说明。
 
 3. **图上误差与表格 TL 不可互相反算。** 图上 `Avg` 是单样本场误差均值，
    表里的 TL 是全测试集平均，样本集不同。故只核排序或端点是否同向，

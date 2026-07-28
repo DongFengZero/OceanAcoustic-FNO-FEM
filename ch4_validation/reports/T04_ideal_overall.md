@@ -3,7 +3,7 @@
 - 对象：`tab:ideal-overall`（Table 4）
 - 结论：**PASS** — 87 通过 / 0 失败 / 0 警告，共 87 项
 - 脚本：`ch4_validation/scripts/T04_ideal_overall.py`
-- 生成：2026-07-28 21:38:07
+- 生成：2026-07-28 21:50:19
 
 ## 1. 源清单
 

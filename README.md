@@ -86,17 +86,20 @@ prints the values it writes, so its output can be diffed against the paper:
 | `plot_generalization_split.py` | Fig. 20, train/test source split |
 | `regen_gen_extrap_bigfont.py` | Figs. 21--22, extrapolation fields |
 | `build_perf.py` | Tables 20--21, runtime statistics (writes an `.xlsx`) |
+| `build_perf_figure.py` | Fig. 23, the three runtime panels |
 
 The remaining scripts in that folder (`redraw_tl_figures.py`,
 `regen_wide_fields.py`, `restore_tl_figure.py`, `scan_depth_lines.py`) are
 earlier or auxiliary tools kept for provenance; they are not the entry points
 for any figure in the current manuscript.
 
-One gap is worth stating plainly: `build_perf.py` produces the runtime
-spreadsheet behind Tables 20--21 but does not plot, and the script that drew
-Fig. 23 from it is not in this repository. Fig. 23 is therefore verified by
-comparing its printed annotations against those table values rather than by
-re-running its generator — see `ch4_validation/reports/FIG23_perf.md`.
+Note that `build_perf.py` writes the runtime spreadsheet behind Tables 20--21
+but does not plot; `build_perf_figure.py` draws Fig. 23 from it. The latter
+carries its numbers as literals in the source rather than reading the
+spreadsheet, so the verification suite parses those literals out of the script
+and checks them against the spreadsheet — otherwise the figure could silently
+go stale if a table value were updated. See
+`ch4_validation/reports/FIG23_perf.md`.
 
 ### Retraining (GPU) or rebuilding the datasets (MATLAB + COMSOL)
 

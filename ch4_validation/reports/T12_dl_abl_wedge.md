@@ -3,7 +3,7 @@
 - 对象：`tab:dl-abl-wedge`（Table 12）
 - 结论：**PASS** — 85 通过 / 0 失败 / 0 警告，共 85 项
 - 脚本：`ch4_validation/scripts/T12_dl_abl_wedge.py`
-- 生成：2026-07-28 21:38:48
+- 生成：2026-07-28 21:50:58
 
 ## 1. 源清单
 

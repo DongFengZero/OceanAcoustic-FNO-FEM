@@ -3,7 +3,7 @@
 - 对象：`fig:gen-grid / fig:gen-grid-wedge`（Fig. 21/22）
 - 结论：**PASS** — 54 通过 / 0 失败 / 0 警告，共 54 项
 - 脚本：`ch4_validation/scripts/FIG21_22_gen_extrap.py`
-- 生成：2026-07-28 21:42:33
+- 生成：2026-07-28 21:54:20
 
 ## 1. 源清单
 

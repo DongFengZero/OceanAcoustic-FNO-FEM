@@ -59,11 +59,15 @@ def run():
     c.section("1. 图件与已知缺口")
     pdf = os.path.join(paths.FIGDIR, PDF_NAME)
     c.check(os.path.exists(pdf), "图件存在", PDF_NAME)
-    c.note("★ 仓库内没有生成本图的脚本：build_perf.py 只产 xlsx 不画图，"
-           "全仓 grep `perf_merged` 无命中。因此本图无法做『脚本产物 vs "
-           "论文图件 md5 同源』的比对——这是全 21 张图中唯一缺此环节的一张。"
-           "改以『图上标注 vs 表值』逐点核验替代（下两节），强度略低但仍能"
-           "锁住图与数据的一致性。")
+    c.note("成图脚本原先不在仓库内（build_perf.py 只产 xlsx 不画图），现已"
+           "收入 Validation_Scripts/build_perf_figure.py。该脚本把数值**硬编码**"
+           "在源码里而非从 xlsx 读取，所以真正的风险不是『图与脚本不一致』，"
+           "而是『脚本里的常量与表值脱钩』——下一节直接解析源码常量与 xlsx "
+           "比对，正是针对这一点。")
+
+    src = os.path.join(paths.PLOTDIR, "build_perf_figure.py")
+    c.check(os.path.exists(src), "成图脚本已入库",
+            "Validation_Scripts/build_perf_figure.py")
 
     txt = pdftext(pdf)
     c.check(len(txt) > 50, "PDF 文本层可读", f"{len(txt)} 字符")
@@ -101,6 +105,56 @@ def run():
         c.check(txt.count(lbl) >= 2,
                 f"子图(c) 标注域边长 {lbl}（矩形+楔形两条曲线各一次）",
                 f"PDF 内出现 {txt.count(lbl)} 次")
+
+    # ── C2 ───────────────────────────────────────────────────────
+    c.section("3b. 成图脚本硬编码常量 vs xlsx 表值")
+    c.note("脚本里 thr/spd/nodes/time 四组常量是手抄进去的，一旦表值更新而"
+           "常量未同步，图就会静默过期。此处用 ast 解析源码取出常量，与 "
+           "xlsx 逐值比对——这是比『图上标注 vs 表值』更靠前的一道闸。")
+    import ast as _ast
+    tree = _ast.parse(open(src, encoding="utf-8").read())
+    consts = {}
+    for node in _ast.walk(tree):
+        if isinstance(node, _ast.Assign) and len(node.targets) == 1:
+            tgt = node.targets[0]
+            if isinstance(tgt, _ast.Name):
+                try:
+                    consts[tgt.id] = _ast.literal_eval(node.value)
+                except Exception:
+                    pass
+
+    # Table 20：吞吐与加速比（跳过 COMSOL 行）
+    gpu_rows = [r for _, r in df1.iloc[1:].iterrows()
+                if "GPU" in str(r.iloc[4])]
+    want_thr = {"R1": [], "W1": []}
+    want_spd = {"R1": [], "W1": []}
+    for r in gpu_rows:
+        key = "R1" if int(r.iloc[0]) == 43 else "W1"
+        want_thr[key].append(round(float(r.iloc[6]), 2))
+        want_spd[key].append(round(float(r.iloc[8]), 1))
+    for key in ("R1", "W1"):
+        got = [round(float(v), 2) for v in consts.get("thr", {}).get(key, [])]
+        c.check(got == want_thr[key], f"脚本 thr[{key}] 与 Table 20 一致",
+                f"脚本 {got} / xlsx {want_thr[key]}")
+        got = [round(float(v), 1) for v in consts.get("spd", {}).get(key, [])]
+        c.check(got == want_spd[key], f"脚本 spd[{key}] 与 Table 20 一致",
+                f"脚本 {got} / xlsx {want_spd[key]}")
+
+    # Table 21：节点数与推理时间
+    for pre, geo in (("R", "Rect."), ("W", "Wedge")):
+        rows = [r for _, r in df2.iloc[1:].iterrows()
+                if str(r.iloc[1]).startswith(pre)]
+        wn = [int(r.iloc[5]) for r in rows]
+        wt = [round(float(r.iloc[6]), 2) for r in rows]
+        gn = [int(v) for v in consts.get(f"nodes_{pre}", [])]
+        gt = [round(float(v), 2) for v in consts.get(f"time_{pre}", [])]
+        c.check(gn == wn, f"脚本 nodes_{pre} 与 Table 21 一致",
+                f"脚本 {gn} / xlsx {wn}")
+        c.check(gt == wt, f"脚本 time_{pre} 与 Table 21 一致",
+                f"脚本 {gt} / xlsx {wt}")
+    c.check([int(v) for v in consts.get("edge", [])] == [128, 256, 512],
+            "脚本 edge 标注 = 128/256/512",
+            str(consts.get("edge")))
 
     # ── D ────────────────────────────────────────────────────────
     c.section("4. caption 与正文引用")

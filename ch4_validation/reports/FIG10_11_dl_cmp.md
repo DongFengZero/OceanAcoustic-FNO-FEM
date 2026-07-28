@@ -3,7 +3,7 @@
 - 对象：`fig:dl-cmp-rect / fig:dl-cmp-wedge`（Fig. 10/11）
 - 结论：**PASS** — 38 通过 / 0 失败 / 0 警告，共 38 项
 - 脚本：`ch4_validation/scripts/FIG10_11_dl_cmp.py`
-- 生成：2026-07-28 21:41:04
+- 生成：2026-07-28 21:52:57
 
 ## 1. 源清单
 
