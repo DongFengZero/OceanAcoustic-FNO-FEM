@@ -65,9 +65,7 @@ value. Two comparison layers with deliberately different tolerances are used:
   display while the log figure is recomputed in full precision, so the two can
   differ in the 7th–8th significant digit. Agreement is therefore required only
   to within the significant figures the table actually reports; matching to that
-  precision is what establishes the two channels describe the same run, and
-  demanding bit-identical values would only flag a coincidence that rounding
-  makes impossible.
+  precision is what establishes the two channels describe the same run.
 
 ```bash
 # 1. Download Raw_Experimental_Data from Baidu (link above), 20.9 GB
