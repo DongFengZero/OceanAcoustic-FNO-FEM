@@ -3,7 +3,7 @@
 - 对象：`fig:abl-rect / fig:abl-wedge`（Fig. 16/17）
 - 结论：**PASS** — 62 通过 / 0 失败 / 0 警告，共 62 项
 - 脚本：`ch4_validation/scripts/FIG16_17_abl_grid.py`
-- 生成：2026-07-29 01:09:44
+- 生成：2026-07-30 00:06:40
 
 ## 1. 源清单
 

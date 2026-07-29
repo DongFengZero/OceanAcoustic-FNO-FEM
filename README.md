@@ -51,7 +51,23 @@ which `ch4_validation/` verifies against the dataset folders directly.
 
 `ch4_validation/` recomputes every printed value in the 19 tables and 21 figures
 of Chapter 4 from the archived raw data, then compares it against the typeset
-value character by character:
+value. Two comparison layers with deliberately different tolerances are used:
+
+- **Printed value vs. typeset text — exact.** Each source value is rounded to
+  the number of decimals actually printed and must then match the typeset digits
+  character for character, with no tolerance. A tolerance here would hide both a
+  real discrepancy and a zero-padded fabrication.
+- **Source vs. source (xlsx vs. training log) — small numerical tolerance.** The
+  same quantity is read from the summary `.xlsx` and independently recomputed
+  from the training-log loss terms; these two channels must agree to a relative
+  tolerance of `2e-6` (with a `1e-9` absolute floor). They are not expected to be
+  bit-identical, because the spreadsheet stores values already rounded for
+  display while the log figure is recomputed in full precision, so the two can
+  differ in the 7th–8th significant digit. Agreement is therefore required only
+  to within the significant figures the table actually reports; matching to that
+  precision is what establishes the two channels describe the same run, and
+  demanding bit-identical values would only flag a coincidence that rounding
+  makes impossible.
 
 ```bash
 # 1. Download Raw_Experimental_Data from Baidu (link above), 20.9 GB
@@ -62,7 +78,7 @@ export CH4_TEXDIR=/path/to/els-cas-templates    # needs OE_submission.aux
 cd ch4_validation && python verify.py
 ```
 
-Expected output: **40/40 objects, 3025 checks passed, 0 failed**. Beyond the
+Expected output: **40/40 objects, 3068 checks passed, 0 failed**. Beyond the
 numbers themselves, the suite also checks the things that never trigger a
 compile error — whether each table and figure is actually cited in the body
 text, whether the numbers quoted in prose match both the table and the source

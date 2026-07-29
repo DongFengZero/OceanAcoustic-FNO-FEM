@@ -3,7 +3,7 @@
 - 对象：`tab:runtime`（tab:runtime）
 - 结论：**PASS** — 47 通过 / 0 失败 / 0 警告，共 47 项
 - 脚本：`ch4_validation/scripts/T20_runtime.py`
-- 生成：2026-07-29 01:07:03
+- 生成：2026-07-30 00:04:13
 
 ## 1. 源清单
 
@@ -31,7 +31,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| tex 表格环境可定位且确实包住 label | `tab:runtime`，长度 1213 | PASS |
+| tex 表格环境可定位且确实包住 label | `tab:runtime`，长度 1219 | PASS |
 | tex 数据行数 = 8 | 实得 8 | PASS |
 
 ## 3. 印刷值比对（源值舍入到 2 位 vs tex）
@@ -42,7 +42,7 @@
 |---|---|---|
 | Case 43 COMSOL Time | 源 873.1 → `873.10` / 印刷 `873.10` | PASS |
 | Case 43 COMSOL Thr. | 源 1.15 → `1.15` / 印刷 `1.15` | PASS |
-| Case 43 COMSOL Speed-up = 1× | 印刷 `1$x$` | PASS |
+| Case 43 COMSOL Speed-up = 1× | 印刷 `1.00$x$`（解析为 1.00） | PASS |
 | Case 43 1 GPU Time | 源 17.08 → `17.08` / 印刷 `17.08` | PASS |
 | Case 43 1 GPU Thr. | 源 52.82 → `52.82` / 印刷 `52.82` | PASS |
 | Case 43 1 GPU Speed-up | 源 45.9304347826087 → `45.93` / 印刷 `45.93` | PASS |
@@ -54,7 +54,7 @@
 | Case 43 4 GPU Speed-up | 源 142.41739130434783 → `142.42` / 印刷 `142.42` | PASS |
 | Case 44 COMSOL Time | 源 503.0 → `503.00` / 印刷 `503.00` | PASS |
 | Case 44 COMSOL Thr. | 源 1.99 → `1.99` / 印刷 `1.99` | PASS |
-| Case 44 COMSOL Speed-up = 1× | 印刷 `1$x$` | PASS |
+| Case 44 COMSOL Speed-up = 1× | 印刷 `1.00$x$`（解析为 1.00） | PASS |
 | Case 44 1 GPU Time | 源 14.04 → `14.04` / 印刷 `14.04` | PASS |
 | Case 44 1 GPU Thr. | 源 62.42 → `62.42` / 印刷 `62.42` | PASS |
 | Case 44 1 GPU Speed-up | 源 31.366834170854272 → `31.37` / 印刷 `31.37` | PASS |

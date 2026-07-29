@@ -3,7 +3,7 @@
 - 对象：`tab:gen-overall`（Table 19）
 - 结论：**PASS** — 118 通过 / 0 失败 / 0 警告，共 118 项
 - 脚本：`ch4_validation/scripts/T19_gen_overall.py`
-- 生成：2026-07-29 01:07:02
+- 生成：2026-07-30 00:04:12
 
 ## 1. 源清单
 

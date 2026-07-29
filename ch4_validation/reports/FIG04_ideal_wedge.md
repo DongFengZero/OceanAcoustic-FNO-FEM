@@ -3,7 +3,7 @@
 - 对象：`fig:ideal-wedge`（Fig. ideal-wedge）
 - 结论：**PASS** — 38 通过 / 0 失败 / 0 警告，共 38 项
 - 脚本：`ch4_validation/scripts/FIG04_ideal_wedge.py`
-- 生成：2026-07-29 01:07:39
+- 生成：2026-07-30 00:04:46
 
 ## 1. 源清单
 

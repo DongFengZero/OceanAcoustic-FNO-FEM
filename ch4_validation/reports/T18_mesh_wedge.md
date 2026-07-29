@@ -3,7 +3,7 @@
 - 对象：`tab:mesh-wedge`（Table 18）
 - 结论：**PASS** — 55 通过 / 0 失败 / 0 警告，共 55 项
 - 脚本：`ch4_validation/scripts/T18_mesh_wedge.py`
-- 生成：2026-07-29 01:07:01
+- 生成：2026-07-30 00:04:11
 
 ## 1. 源清单
 

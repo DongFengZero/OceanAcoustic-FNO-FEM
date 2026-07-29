@@ -3,7 +3,7 @@
 - 对象：`fig:mesh-rect / fig:mesh-wedge`（Fig. 18/19）
 - 结论：**PASS** — 106 通过 / 0 失败 / 0 警告，共 106 项
 - 脚本：`ch4_validation/scripts/FIG18_19_mesh.py`
-- 生成：2026-07-29 01:10:13
+- 生成：2026-07-30 00:07:07
 
 ## 1. 源清单
 

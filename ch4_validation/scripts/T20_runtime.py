@@ -121,9 +121,15 @@ def run():
             c.eq(f"Case {no} {m} Thr.", src["thr"], prn["thr"], nd=2)
             # Speed-up（特殊：COMSOL 为 "1$x$"，其他从 Thr. 现场计算）
             if m == "COMSOL":
-                c.check(prn["speedup"] in ("1$\\times$", "1$x$"),
-                        f"Case {no} {m} Speed-up = 1×",
-                        f"印刷 `{prn['speedup']}`")
+                # 基准行加速比恒为 1，印刷可为 1 / 1.0 / 1.00×，均等价；
+                # 解析数值判等，不锁字面（tex 为与其他行对齐取 2 位小数）。
+                sv = re.sub(r"\$.*?\$", "", prn["speedup"]).strip()
+                try:
+                    ok = abs(float(sv) - 1.0) < 1e-9
+                except ValueError:
+                    ok = False
+                c.check(ok, f"Case {no} {m} Speed-up = 1×",
+                        f"印刷 `{prn['speedup']}`（解析为 {sv}）")
             else:
                 # Speed-up = 本方法 Thr. / COMSOL Thr.
                 comsol_thr = xd[no]["COMSOL"]["thr"]
