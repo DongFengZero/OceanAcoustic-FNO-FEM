@@ -34,3 +34,6 @@ els-cas-templates/
 Thumbs.db
 __pycache__/
 *.pyc
+
+# JetBrains IDE
+.idea/
