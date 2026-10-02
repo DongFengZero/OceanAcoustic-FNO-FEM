@@ -1,25 +1,33 @@
 #!/usr/bin/env python3
-"""table20_21_runtime.py — 打印 Table 20（tab:runtime）与 Table 21（tab:runtime-scale）
+"""table20_21_runtime.py — 打印 Table 14（tab:runtime）
 
-Table 20  Cases 43-44：COMSOL(CPU) 与 1/2/4 卡 A800 的单样本时延、批量吞吐、加速比
-Table 21  Cases 45-50：单 DCU 上域尺寸 128→512 m 的单样本推理时间
+R1 把原来的两张运行时表并进**同一个 table* 浮动体**，一个 \\label 下挂两个
+tabular：
 
-两表口径不同，不可混比：
-  · Table 20 的吞吐是 200 样本并行的**批量吞吐**（总样本/壁钟）
-  · Table 21 只呈现**单样本时延**，取自训练结束(200 轮)最后一个"推理时间统计摘要"块
-    其吞吐（=1000/单样本ms，逐样本串行速率）只记在 xlsx，不进论文
+  (a) Base-scale, multi-GPU     Cases 43-44
+      COMSOL(CPU) 与 1/2/4 卡 A800 的单样本时延、批量吞吐、相对加速比
+  (b) Scaling with domain size  Cases 45-50
+      单 DCU 上域尺寸 128→512 m 的单样本推理时间
+
+两半口径不同，不可混比：
+  · (a) 的吞吐是 200 样本并行的**批量吞吐**（总样本/壁钟）
+  · (b) 只呈现**单样本时延**，取自训练结束(200 轮)最后一个"推理时间统计摘要"
+    块；其吞吐（=1000/单样本ms，逐样本串行速率）只记在 xlsx，不进论文
+
+取数一律复用核验脚本 ch4_validation/scripts/T14_runtime.py 的 load_base() /
+load_scale()，与 verify.py 走同一次调用，两边不会各写一套解析而漂移。
 
     python table20_21_runtime.py [--tex]
 """
 import _tblcommon as K
 
 
-def table20():
+def table14a():
     K.head("tab:runtime", "Cases 43-44 · 单轮计时与相对 COMSOL 加速比")
     xl = K.paths.xlsx_path("4.8")
     K.note(f"xlsx: {K.paths.rel(xl)}  (sheet 1)")
-    K.note("取数函数复用 ch4_validation/scripts/T20_runtime.py 的 load_xlsx()")
-    xd = K.checker_module("T20_runtime").load_xlsx()
+    K.note("取数复用 ch4_validation/scripts/T14_runtime.py 的 load_base()")
+    xd = K.checker_module("T14_runtime").load_base()
     w = [10, 9, 11, 12, 11]
     K.row(["Case", "Method", "Time(ms)", "Thr.(samp/s)", "Speed-up"], w)
     K.rule(w)
@@ -32,18 +40,18 @@ def table20():
                    K.f2(b.get("speedup"))], w)
         K.rule(w)
     if K.want_tex():
-        print("\n  tex 数据行：")
-        for r in K.tex_rows("tab:runtime"):
+        print("\n  tex 数据行 (a)（浮动体内第一张 tabular）：")
+        for r in K.tex_rows_of(0, "tab:runtime"):
             print("   ", " | ".join(r))
 
 
-def table21():
-    K.head("tab:runtime-scale", "Cases 45-50 · 单 DCU 域尺度缩放（论文只列 Time）")
+def table14b():
+    K.head("tab:runtime", "Cases 45-50 · 单 DCU 域尺度缩放（论文只列 Time）")
     xl = K.paths.xlsx_path("4.8")
     K.note(f"xlsx: {K.paths.rel(xl)}  (sheet 2)")
     K.note("Time 取自各案例最后一个推理时间统计摘要块（训练结束，200 轮）")
-    K.note("Case/Lx/N/Time 复用 T21_runtime_scale.py 的 load_xlsx()；吞吐另读 H 列")
-    xd = K.checker_module("T21_runtime_scale").load_xlsx()
+    K.note("取数复用 T14_runtime.py 的 load_scale()；吞吐另读 H 列")
+    xd = K.checker_module("T14_runtime").load_scale()
     thr = _thr_col(xl)
     w = [6, 8, 7, 11, 11, 13]
     K.row(["Case", "Dataset", "Lx(m)", "N(nodes)", "Time(ms)",
@@ -56,8 +64,8 @@ def table21():
     K.rule(w)
     K.note("* 吞吐 = 1000/Time（逐样本串行速率），仅 xlsx 记录，不进论文表/图")
     if K.want_tex():
-        print("\n  tex 数据行：")
-        for r in K.tex_rows("tab:runtime-scale"):
+        print("\n  tex 数据行 (b)（浮动体内第二张 tabular）：")
+        for r in K.tex_rows_of(1, "tab:runtime"):
             print("   ", " | ".join(r))
 
 
@@ -76,6 +84,6 @@ def _thr_col(xl):
 
 
 if __name__ == "__main__":
-    table20()
-    table21()
+    table14a()
+    table14b()
     print()

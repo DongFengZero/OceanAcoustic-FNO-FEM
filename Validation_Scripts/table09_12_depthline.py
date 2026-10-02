@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """table09_12_depthline.py — 打印 Table 9-12（深度线 TL-MAE）
 
-  Table 9   tab:dl-cmp-rect   Cases 15-19：R1 矩形，y=56.1 m，五方法
-  Table 10  tab:dl-cmp-wedge  Cases 20-24：W1 楔形，五方法
-  Table 11  tab:dl-abl-rect   Cases 25-28：R1 矩形，四消融组
-  Table 12  tab:dl-abl-wedge  Cases 29-32：W1 楔形，四消融组
+  Table 8   tab:dl-cmp  Cases 15-19 (R1 矩形) | 20-24 (W1 楔形)，五方法
+  Table 9   tab:dl-abl  Cases 25-28 (R1 矩形) | 29-32 (W1 楔形)，四消融组
+
+R1 把矩形/楔形并进**同一张 tabular**：左列组矩形、右列组楔形，故整表一次就能
+取全。SPEC 里同一 label 出现两次是因为左右两半的取数分组不同，tex 行只打印一次。
 
 这四张表**不在 xlsx 里**：数值由成图脚本 advantage_depth_line.py 从 ep200 的
 npz 现场提取，所以 caption 标 last epoch。本脚本复用 common/depthline.py 的
@@ -17,21 +18,21 @@ import _tblcommon as K
 
 # label → (标题, 组名, 行定义[(No., 印刷名, 脚本内标签)])
 SPEC = [
-    ("tab:dl-cmp-rect", "Cases 15-19 · R1 矩形深度线，五方法",
+    ("tab:dl-cmp", "Cases 15-19 · R1 矩形深度线，五方法（左列组）",
      "comparison_R1_model_advantage",
      [(15, "Proposed", "Proposed (Ours)"), (16, "DeepONet", "DeepONet"),
       (17, "FNO", "FNO"), (18, "KNO", "KNO"), (19, "CNO", "CNO")]),
-    ("tab:dl-cmp-wedge", "Cases 20-24 · W1 楔形深度线，五方法",
+    ("tab:dl-cmp", "Cases 20-24 · W1 楔形深度线，五方法（右列组）",
      "comparison_W1_model_advantage",
      [(20, "Proposed", "Proposed (Ours)"), (21, "DeepONet", "DeepONet"),
       (22, "FNO", "FNO"), (23, "KNO", "KNO"), (24, "CNO", "CNO")]),
-    ("tab:dl-abl-rect", "Cases 25-28 · R1 矩形深度线，四消融组",
+    ("tab:dl-abl", "Cases 25-28 · R1 矩形深度线，四消融组（左列组）",
      "ablation_R1_module_advantage",
      [(25, "Full model", "Full (Ours)"),
       (26, "w/o physics prior", "w/o prior"),
       (27, "w/o graph correction", "w/o graph"),
       (28, "w/o prior supervision", "w/o prior-sup.")]),
-    ("tab:dl-abl-wedge", "Cases 29-32 · W1 楔形深度线，四消融组",
+    ("tab:dl-abl", "Cases 29-32 · W1 楔形深度线，四消融组（右列组）",
      "ablation_W1_module_advantage",
      [(29, "Full model", "Full (Ours)"),
       (30, "w/o physics prior", "w/o prior"),
@@ -40,7 +41,7 @@ SPEC = [
 ]
 
 
-def one(label, title, group, rows):
+def one(label, title, group, rows, tex=True):
     from common import depthline as DL
     K.head(label, title)
     K.note(f"成图脚本: {getattr(DL.script(), '__file__', '?')}   组: {group}")
@@ -66,13 +67,15 @@ def one(label, title, group, rows):
           [f"({rec['src'][f][0]:.1f},{rec['src'][f][1]:.1f})"
            for f in K.FREQS], w)
     K.note("TL-MAE 单位 dB；论文印刷 3 位小数，最优值加粗（此处不加粗）")
-    if K.want_tex():
-        print("\n  tex 数据行：")
+    if K.want_tex() and tex:
+        print("\n  tex 数据行（左列组矩形 | 右列组楔形，同表）：")
         for r in K.tex_rows(label):
             print("   ", " | ".join(r))
 
 
 if __name__ == "__main__":
+    seen = set()
     for label, title, group, rows in SPEC:
-        one(label, title, group, rows)
+        one(label, title, group, rows, tex=label not in seen)
+        seen.add(label)
     print()

@@ -18,7 +18,7 @@ def main():
     K.note(f"Dataset 根目录: {getattr(mod, 'DATASET_DIR', '?')}")
     K.note("取数：T03_datasets.py 的 load_dataset_config()（读 comsol_mesh_*.mat）")
 
-    rows = K.tex_rows("tab:datasets")
+    rows = K.tex_rows_of(0, "tab:datasets")
     if not rows:
         K.note("未能从 tex 抓到表体——检查 CH4_TEXDIR 是否指向已编译的论文目录")
         return

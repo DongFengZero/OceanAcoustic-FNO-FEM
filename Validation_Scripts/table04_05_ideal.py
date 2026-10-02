@@ -50,7 +50,7 @@ def table05():
     K.note("TL-MAE 单位 dB（印刷 3 位）；Src 为该样本源位，印刷 1 位小数")
     if K.want_tex():
         print("\n  tex 数据行：")
-        for r in K.tex_rows("tab:ideal-depthline"):
+        for r in K.tex_rows_of(0, "tab:ideal-depthline"):
             print("   ", " | ".join(r))
 
 

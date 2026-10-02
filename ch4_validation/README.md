@@ -1,8 +1,11 @@
 # ch4_validation — 论文表格与图件的可复现核验
 
-对论文第 4 章的 **19 张表** 与 **21 张图** 做逐值核验：把每一个印刷出来的
-数字，回到 `Raw_Experimental_Data` 下的原始数据现场重算一遍，再与 tex 里
-排出来的值逐字符比对。
+对 R1 论文第 4 章的 **12 张表** 与 **11 张图**（Tables 3--14、Figures 3--13）
+做逐值核验：把每一个印刷出来的数字，回到 `Raw_Experimental_Data` 下的原始数据
+现场重算一遍，再与 tex 里排出来的值逐字符比对。
+
+表 1--2（缩写表、符号表）与图 1--2（几何示意、方法框图）是描述性对象，不含
+测量值，不在核验范围内。
 
 ```bash
 python verify.py            # 全跑，生成 REPORT.md
@@ -18,7 +21,7 @@ python verify.py            # 全跑，生成 REPORT.md
 
 | 层 | 做法 |
 |---|---|
-| 源可追溯 | 每个数值都指到 xlsx / 训练日志 / npz；成图脚本两份副本须 md5 相同 |
+| 源可追溯 | 每个数值都指到 xlsx / 训练日志 / npz；图件与其成图脚本产物一致 |
 | 双渠道交叉 | 同一量在 xlsx 与训练日志各取一次，先证两渠道一致，再比印刷值 |
 | 口径防漂移 | 插值网格数、插值方法、坐标位数等从成图脚本源码现场读出来断言 |
 
@@ -50,10 +53,11 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 caption 改成 `best` 也照样通过。深度线族的表与图同取 last，判据相应改为
 「两侧声明必须一致」。
 
-**引用完整性.** 本章有四种引用形式：散文单点、散文区间
-（`Figs.~\ref{A}--\ref{B}`，中间各图自身 `\ref` 计数为 0）、散文并列、表格
-Fig. 列。只按单点统计会把区间内部的图误判为漏引。跨对象核验用两级判据：
-宽判「是否被引」，严判「figure/table 环境**之外**是否有独立 `\ref`」。
+**引用完整性.** R1 把矩形与楔形合并后，正文对每张图/表**各写一次** `\ref`
+（含 `Fig.~\ref{fig:perf}(a,b)` 这类面板后缀），不再使用区间引用
+`Figs.~\ref{A}--\ref{B}`。跨对象核验用两级判据：宽判「是否被引」，严判
+「figure/table 环境**之外**是否有独立 `\ref`」——后者堵死靠 caption 交叉
+引用兜底的路径；对已移入补充材料的对象（无 label）另行登记豁免。
 
 ## 用法
 
@@ -71,7 +75,7 @@ python verify.py --list           # 列出对象与脚本，不执行
 
 ```bash
 python scripts/T06_res_rect_mf.py
-python scripts_figures/FIG05_07_res_fields.py
+python scripts_figures/FIG05_sq100.py
 ```
 
 ## 结构
@@ -82,7 +86,7 @@ ch4_validation/
 ├── REPORT.md              主报告（自动生成）
 ├── common/                共用层
 │   ├── paths.py           数据与 tex 路径解析
-│   ├── registry.py        40 个对象的注册表（19 表 + 21 图）
+│   ├── registry.py        23 个对象的注册表（12 表 + 11 图）
 │   ├── metrics.py         xlsx / 训练日志取数与舍入比对
 │   ├── depthline.py       深度线组重算（复用成图脚本自身函数）
 │   ├── texparse.py        tex/aux 解析：表体、caption、label、引用
@@ -92,7 +96,7 @@ ch4_validation/
 └── reports/               各对象的逐项明细（自动生成）
 ```
 
-`registry.py` 登记全部 40 个对象，是覆盖率的分母——注册了但没有对应脚本
+`registry.py` 登记全部 23 个对象，是覆盖率的分母——注册了但没有对应脚本
 的对象会在报告里显示「待实现」，不会被静默漏掉。
 
 ## 依赖与路径
@@ -106,7 +110,7 @@ Python 3.9+，需要 `numpy` / `pandas` / `openpyxl` / `scipy` / `h5py` /
 从仓库位置推断，故给了默认值并支持环境变量覆盖：
 
 ```bash
-export CH4_TEXDIR=/path/to/els-cas-templates      # 含 OE_submission.tex/.aux 与 Figures/results
+export CH4_TEXDIR=/path/to/OE_Revision_R1_Submission   # 含 OE_submission.tex/.aux 与 Figures/results
 export CH4_RAWROOT=/path/to/parent-of-Data_and_Code_Availability
 python verify.py
 ```

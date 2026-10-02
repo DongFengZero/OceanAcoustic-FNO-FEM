@@ -3,7 +3,7 @@
 - 对象：`tab:gen-overall`（Table 13）
 - 结论：**PASS** — 118 通过 / 0 失败 / 0 警告，共 118 项
 - 脚本：`ch4_validation/scripts/T13_gen_overall.py`
-- 生成：2026-10-02 22:45:28
+- 生成：2026-10-03 00:06:37
 
 ## 1. 源清单
 

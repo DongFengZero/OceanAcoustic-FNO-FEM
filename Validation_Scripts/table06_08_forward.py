@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""table06_08_forward.py — 打印 Table 6/7/8（4.3 节，含障碍物的前向精度）
+"""table06_08_forward.py — 打印 Table 6/7（4.3 节，含障碍物的前向精度）
 
-  Table 6  tab:res-rect-mf    Cases 3-5, 9-11：多频，矩形 R1-R3 与楔形 W1-W3
-  Table 7  tab:res-rect-100   Cases 6-8：100 Hz，矩形 R4-R6（域 128/256/512 m）
-  Table 8  tab:res-wedge-100  Cases 12-14：100 Hz，楔形 W4-W6
+  Table 6  tab:res-rect-mf  Cases 3-5 / 9-11：多频，矩形 R1-R3 与楔形 W1-W3
+  Table 7  tab:sq100        100 Hz 方形域，单张 tabular 左右两个列组：
+              左列组 Cases 6-8 矩形 R4-R6，右列组 Cases 12-14 楔形 W4-W6
+              （域尺度均为 128 / 256 / 512 m）
+
+文件名沿用旧编号（R1 前的 Table 6/7/8），目录归属以本文件头的表号为准。
 
 参考解为 COMSOL 数值解（理想几何用解析解，见 Table 4）。
 
@@ -25,15 +28,15 @@ def table06():
 
 
 def table07():
-    A.print_acc("tab:res-rect-100",
-                "Cases 6-8 · 100 Hz 矩形波导（域尺度 128→512 m）", "4.3",
+    A.print_acc("tab:sq100",
+                "Cases 6-8 · 100 Hz 矩形波导（左列组）", "4.3",
                 {6: "R4 (128m)", 7: "R5 (256m)", 8: "R6 (512m)"},
                 ["单频表：只有 100 Hz 一组，Avg. 列即该频值"])
 
 
 def table08():
-    A.print_acc("tab:res-wedge-100",
-                "Cases 12-14 · 100 Hz 楔形波导（域尺度 128→512 m）", "4.3",
+    A.print_acc("tab:sq100",
+                "Cases 12-14 · 100 Hz 楔形波导（右列组）", "4.3",
                 {12: "W4 (128m)", 13: "W5 (256m)", 14: "W6 (512m)"},
                 ["单频表：只有 100 Hz 一组，Avg. 列即该频值"])
 

@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """run_all.py — 一站式跑完 Validation_Scripts 下的全部脚本
 
-给人工核验用：一条命令把 19 张表打印出来、把 21 张图重绘出来，逐个报告成败，
-最后给一行汇总。任何脚本抛异常都会被抓住并计入失败，不会静默跳过。
+给人工核验用：一条命令把 R1 第 4 章的 12 张表打印出来（或把 11 张图重绘出来），
+逐个报告成败，最后给一行汇总。任何脚本抛异常都会被抓住并计入失败，不会静默跳过。
+
+表号按 R1 编。脚本文件名沿用 R1 之前的编号，故清单里显式写出当前表号。
 
     python run_all.py                # 只打印表（快，不写任何文件）
     python run_all.py --figures      # 表 + 重绘图（会覆盖 Figures/ 下的 PDF）
@@ -14,11 +16,10 @@
     CH4_RAWROOT   Raw_Experimental_Data 的父目录
     CH4_TEXDIR    编译好的论文目录（含 .aux）
 
-重要：--figures / --all 会重绘 PDF，这**会打断核验里"图表同源"那条断言**。
-matplotlib 把生成时间写进 PDF，所以即使数据和代码一字未改，重跑出来的 PDF
-md5 也必然不同；而 FIG10-13 / T09-T12 正是用"论文图件与脚本产物 md5 相同"
-来证明表里的 MAE 与图上的曲线出自同一次运行。重绘后要么把新产物同步到论文
-Figures/ 目录，要么从备份还原，否则 verify.py 会报 8 项失败。
+重要：--figures / --all 会重绘 PDF。matplotlib 把生成时间写进 PDF，所以即使
+数据和代码一字未改，重跑出来的 PDF 字节 md5 也必然不同——核验脚本对此已登记
+豁免（比对时剥掉时间戳字段），故重绘不会造成失败；但论文里的图仍是原来那张，
+要让论文用上新图，需自行把产物复制到论文 Figures/ 目录。
 
 只核验数值不需要重绘图——默认（不带参数）只打印表，不写任何文件。
 """
@@ -33,13 +34,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 # (脚本, 说明, 期望打印的表数)
 TABLES = [
-    ("table03_datasets.py", "Table 3   数据集总表", 1),
-    ("table04_05_ideal.py", "Table 4-5  理想波导 + 深度线", 2),
-    ("table06_08_forward.py", "Table 6-8  前向精度", 3),
-    ("table09_12_depthline.py", "Table 9-12 深度线 MAE", 4),
-    ("table13_14_perf.py", "Table 13-14 五方法对比", 2),
-    ("table15_19_abl_mesh_gen.py", "Table 15-19 消融/网格/泛化", 5),
-    ("table20_21_runtime.py", "Table 20-21 运行时", 2),
+    ("table03_datasets.py", "Table 3      数据集总表", 1),
+    ("table04_05_ideal.py", "Table 4-5    理想波导 + 深度线", 2),
+    ("table06_08_forward.py", "Table 6-7    前向精度", 3),
+    ("table09_12_depthline.py", "Table 8-9    深度线 MAE", 4),
+    ("table13_14_perf.py", "Table 10     五方法对比", 2),
+    ("table15_19_abl_mesh_gen.py", "Table 11-13  消融/网格/泛化", 5),
+    ("table20_21_runtime.py", "Table 14     运行时", 2),
 ]
 
 FIGURES = [

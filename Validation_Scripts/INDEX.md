@@ -8,7 +8,7 @@ Set these first (same as the verification suite):
 
 ```bash
 export CH4_RAWROOT=/path/to/parent-of-Data_and_Code_Availability
-export CH4_TEXDIR=/path/to/els-cas-templates    # needs OE_submission.aux
+export CH4_TEXDIR=/path/to/OE_Revision_R1_Submission   # needs OE_submission.aux
 ```
 
 `_figpaths.py` resolves every figure-script path from those two variables, so
@@ -60,14 +60,20 @@ entry points and still carry the old figure numbering.
 | 4 | `tab:ideal-overall` | 1–2 | `table04_05_ideal.py` |
 | 5 | `tab:ideal-depthline` | 1–2 | `table04_05_ideal.py` |
 | 6 | `tab:res-rect-mf` | 3–5, 9–11 | `table06_08_forward.py` |
-| 7 | `tab:res-rect-100` | 6–8 | `table06_08_forward.py` |
-| 8 | `tab:res-wedge-100` | 12–14 | `table06_08_forward.py` |
-| 9 | `tab:dl-cmp-rect` | 15–19 | `table09_12_depthline.py` |
-| 10 | `tab:dl-cmp-wedge` | 20–24 | `table09_12_depthline.py` |
-| 11 | `tab:dl-abl-rect` | 25–28 | `table09_12_depthline.py` |
-| 12 | `tab:dl-abl-wedge` | 29–32 | `table09_12_depthline.py` |
+| 7 | `tab:sq100` | 6–8, 12–14 | `table06_08_forward.py` |
+| 8 | `tab:dl-cmp` | 15–24 | `table09_12_depthline.py` |
+| 9 | `tab:dl-abl` | 25–32 | `table09_12_depthline.py` |
+| 10 | `tab:perf-cmp` | 15–24 | `table13_14_perf.py` |
+| 11 | `tab:abl` | 25–32 | `table15_19_abl_mesh_gen.py` |
+| 12 | `tab:mesh` | 33–38 | `table15_19_abl_mesh_gen.py` |
 | 13 | `tab:gen-overall` | 39–42 | `table15_19_abl_mesh_gen.py` |
 | 14 | `tab:runtime` | 43–50 | `table20_21_runtime.py` |
+
+Tables 7--12 each merge the rectangular and wedge halves into one float: a single
+`tabular` with the two geometries side by side as column groups (not two
+`tabular`s). Table 14 is the exception — one float, two `minipage`s, two
+`tabular`s, written `(a)` and `(b)`. `--tex` handles both: it dumps the float's
+first `tabular`, and for Table 14 prints each half separately.
 
 The left column is the R1 manuscript numbering. The script file names keep their
 original T-numbers, so `table09_12_depthline.py` prints Tables 9–12 of this list.
@@ -87,7 +93,7 @@ The summary layer is one step removed from the logs, so both `.xlsx` families
 have a generator in this folder and the chain closes:
 
 ```
-full_run_*.log  --build_accuracy_xlsx.py-->  4.2-4.7 accuracy xlsx  -->  Tables 4, 6-8, 13
+full_run_*.log  --build_accuracy_xlsx.py-->  4.2-4.7 accuracy xlsx  -->  Tables 4-7, 10-13
 full_run_*.log  --build_perf.py---------->  4.8 runtime xlsx      -->  Table 14, Fig. 13
 ```
 
@@ -101,12 +107,12 @@ spreadsheets are faithful to the logs rather than taking them on trust.
 They do not re-implement any parsing. Each one imports the loader the
 verification suite itself uses — `common/metrics.py:xlsx_case()` for the
 accuracy tables, `common/depthline.py:recompute()` for the depth-line tables
-(full precision, recomputed from the `.npz`), and the `load_xlsx()` of the
-matching `ch4_validation/scripts/T*.py` for the runtime tables. A printed value
+(full precision, recomputed from the `.npz`), and `load_base()` / `load_scale()`
+of `ch4_validation/scripts/T14_runtime.py` for the runtime table. A printed value
 and the value `verify.py` checks come from the same function call, so the two
 cannot drift apart.
 
-For the authoritative pass/fail on all 30 objects, run the suite itself:
+For the authoritative pass/fail on all 23 objects, run the suite itself:
 
 ```bash
 cd ../ch4_validation && python verify.py

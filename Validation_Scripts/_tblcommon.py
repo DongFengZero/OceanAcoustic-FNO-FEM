@@ -35,7 +35,7 @@ FREQS = M.FREQS
 
 
 def checker_module(slug):
-    """导入核验脚本模块（如 "T20_runtime"），复用它的 loader。
+    """导入核验脚本模块（如 "T14_runtime"），复用它的 loader。
 
     这样打印脚本与 verify.py 走的是同一个取数函数，两边不会各写一套解析而
     慢慢漂移——这是这些脚本可信的前提。
@@ -79,13 +79,48 @@ def f2(v):
     return "—" if v is None else f"{v:.2f}"
 
 
-def tex_rows(label):
-    """从 tex 里抓该表环境的数据行（已清洗单元格），用于逐字符对照。"""
+# 浮动体里一张表可能用 tabular 或 tabular*（论文两者都有），统一成一种切法。
+_TAB_BEGIN = r"\\begin\{tabular\*?\}"
+_TAB_END = r"\\end\{tabular\*?\}"
+
+
+def tex_rows_of(i, label):
+    """该浮动体里第 i 张（0 起）tabular 的数据行。
+
+    R1 把若干对表并进同一浮动体：一个 \\label 下挂两张 tabular，而
+    texparse.tabular_body() 只切到第一个 \\end{tabular}，所以第二张取不到。
+    本函数按 \\begin{tabular[*]} 出现顺序切开，调用方按索引取自己那半。
+    """
+    import re
     from common import texparse as T
     env = T.table_env(label)
     if not env:
         return []
-    return T.data_rows(env)
+    parts = re.split(_TAB_BEGIN, env)[1:]
+    if i >= len(parts):
+        return []
+    seg = re.split(_TAB_END, parts[i])[0]
+    # tabular* 的宽度参数与列格式在同一行，data_rows 会把它们当第一行，故去掉
+    seg = re.sub(r"^[^\n]*\n", "", seg, count=1)
+    return T.data_rows(seg)
+
+
+def n_tabulars(label):
+    """该 label 所在浮动体里有几张 tabular（打印脚本据此选择取哪张）。"""
+    import re
+    from common import texparse as T
+    env = T.table_env(label)
+    return len(re.findall(_TAB_BEGIN, env)) if env else 0
+
+
+def tex_rows(label):
+    """该 label 的浮动体里**第一张** tabular 的数据行。
+
+    多数表一个 label 只有一张 tabular（R1 的"合并"是把矩形/楔形并成一张表的
+    左右两个列组，不是两张表），此时本函数即整表。确实是两张的（tab:runtime
+    的 (a)/(b)）用 tex_rows_of(i, label) 指明第 i 张。
+    """
+    return tex_rows_of(0, label)
 
 
 def note(msg):
