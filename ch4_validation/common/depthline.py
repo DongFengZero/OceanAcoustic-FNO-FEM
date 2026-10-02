@@ -6,10 +6,11 @@ depthline.py — 深度线族（Tables 9-12 / Figs 12-15）的公共重算层
 调用它自己的 `_npz / _grid_row_cache / _find_common_line`，
 所以任何一天脚本改了口径，这里跟着变、核验立刻反映出来。
 
-权威副本是 `D:\\Data\\advantage_depth_line.py`：脚本用
-`ROOT = dirname(__file__)` 定位数据（`ROOT/Case15-24/...`）与产物
-（`ROOT/重绘结果/...`），只有放在 D:\\Data 下这两条路径才成立。
-repo 内 `Validation_Scripts/` 的同名文件是副本，md5 相同但 ROOT 不通。
+成图脚本已随 R1 修订整理进仓库：深度线的口径由
+`Validation_Scripts/fig06_dl_cmp/fig06_dl_cmp.py` 与它同目录的
+`_depthline_core.py`（原 advantage_depth_line.py 的原样副本）承载。数据根与
+产物目录经 `_figpaths` 解析（CH4_RAWROOT / CH4_DLCACHE），不再要求脚本
+被放在某个固定盘符下。
 """
 import functools
 import hashlib
@@ -21,11 +22,11 @@ import numpy as np
 
 from . import paths
 
-AUTH = os.path.join(paths.ROOT, "advantage_depth_line.py")
-COPY = os.path.join(paths.PLOTDIR, "advantage_depth_line.py")
-MAE_JSON = os.path.join(paths.ROOT, "重绘结果",
-                        "advantage_depthline_MAE_bigfont", "_mae_tables.json")
-FIG_DIR = os.path.join(paths.ROOT, "重绘结果", "advantage_depthline_MAE_bigfont")
+AUTH = os.path.join(paths.PLOTDIR, "fig06_dl_cmp", "_depthline_core.py")
+COPY = os.path.join(paths.PLOTDIR, "legacy", "advantage_depth_line.py")
+MAE_JSON = os.path.join(paths.PLOTDIR, "fig06_dl_cmp", "cache",
+                        "_mae_tables.json")
+FIG_DIR = os.path.join(paths.PLOTDIR, "fig06_dl_cmp", "cache")
 
 
 def md5(p):

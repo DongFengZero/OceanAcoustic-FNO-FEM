@@ -16,7 +16,7 @@ verify.py — 第 4 章全部表格与图件的核验主程序
     1  有对象失败
     2  用法错误
 
-覆盖率以 common/registry.py 的 40 条记录（19 表 + 21 图）为分母。
+覆盖率以 common/registry.py 的 30 条记录（19 表 + 11 图）为分母。
 一个脚本可覆盖多个对象（例如 FIG05_07_res_fields.py 同时核 Fig 5/6/7），
 映射见 SCRIPT_MAP；注册但无脚本的对象会显示「待实现」，不会被静默漏掉。
 """
@@ -261,7 +261,7 @@ def write_report(objs, missing, results, tot, bad):
         "├── REPORT.md              本报告（自动生成）",
         "├── common/                共用层",
         "│   ├── paths.py           数据与 tex 路径解析",
-        "│   ├── registry.py        40 个对象的注册表（19 表 + 21 图）",
+        "│   ├── registry.py        30 个对象的注册表（19 表 + 11 图）",
         "│   ├── metrics.py         xlsx / 训练日志取数与舍入比对",
         "│   ├── depthline.py       深度线组重算（复用成图脚本自身函数）",
         "│   ├── texparse.py        tex/aux 解析：表体、caption、label、引用",
