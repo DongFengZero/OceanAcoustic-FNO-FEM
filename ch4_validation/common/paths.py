@@ -24,7 +24,7 @@ ROOT = os.path.dirname(REPO)                              # D:/Data
 # 环境变量覆盖，便于他人克隆后无需改动源码：
 #   CH4_TEXDIR  论文 tex 所在目录（含 OE_submission.tex / .aux / Figures/results）
 #   CH4_RAWROOT Raw_Experimental_Data 的父目录（含 Data_and_Code_Availability）
-_TEXDIR = os.environ.get("CH4_TEXDIR", r"D:\JASA\OE\els-cas-templates")
+_TEXDIR = os.environ.get("CH4_TEXDIR", r"D:\JASA\OE\OE_Revision_R1_Submission")
 _RAWROOT = os.environ.get("CH4_RAWROOT", ROOT)
 
 TEX = os.path.join(_TEXDIR, "OE_submission.tex")

@@ -1,9 +1,9 @@
 # 第 4 章表格与图件核验主报告
 
-- 结论：**PASS** — 3068 项通过 / 0 项失败 / 2 项豁免
-- 覆盖：40/40 个对象（全覆盖）
-- 核验脚本：34 个，全部通过
-- 生成：2026-07-31 04:04:57
+- 结论：**PASS** — 3056 项通过 / 0 项失败 / 18 项豁免
+- 覆盖：23/23 个对象（全覆盖）
+- 核验脚本：25 个，全部通过
+- 生成：2026-10-02 22:47:58
 - 复现：`python verify.py`
 
 每个对象的逐项明细在 `reports/<脚本名>.md`，本报告只汇总。
@@ -14,8 +14,11 @@
 中间产物。链路分三层：
 
 1. **源可追溯** — 每个数值都能指到 `Raw_Experimental_Data` 下的
-   xlsx / 训练日志 / npz；成图脚本的两份副本须 md5 相同，否则图
-   与核验可能分属两份数据。
+   xlsx / 训练日志 / npz。成图脚本按图号收在 `Validation_Scripts/
+   figNN_*/`（R1 整理后的布局，一份脚本一个目录），核验从该脚本
+   自身的源码读口径，并核 paper 图件与其产物的一致（PDF 的字节
+   md5 因 matplotlib 每次都写新的 /CreationDate 而必然不同，故比对
+   时剥掉时间戳字段；该约定在各脚本里显式登记为豁免，不隐去）。
 2. **双渠道交叉** — 同一量在 xlsx 与训练日志里各取一次，先证两个
    渠道自身一致，再与印刷值比对。单渠道对得上不足以排除系统性错误。
 3. **口径防漂移** — 插值网格数、插值方法、频率列表、坐标位数这些
@@ -45,11 +48,11 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 `best` 也照样通过。深度线族的表与图同取 last，判据相应改为「两侧声明
 必须一致」，不能照搬场图族的「必然不同」。
 
-**④ 引用完整性** — 本章有四种引用形式：散文单点、散文区间
-（`Figs.~\ref{A}--\ref{B}`，中间各图自身 `\ref` 计数为 0）、散文并列、
-表格 Fig. 列（`\ref{fig}\subref{sub}`）。只按单点统计会把区间内部的图
-误判为漏引。跨对象核验用两级判据：宽判「是否被引」，严判「figure/table
-环境**之外**是否有独立 `\ref`」——后者堵死靠区间或 caption 兜底的路径。
+**④ 引用完整性** — R1 把矩形与楔形合并后，正文对每张图/表**各写一次**
+`\ref`（含 `Fig.~\ref{fig:perf}(a,b)` 这类面板后缀），不再使用区间引用
+`Figs.~\ref{A}--\ref{B}`。跨对象核验仍用两级判据：宽判「是否被引」，
+严判「figure/table 环境**之外**是否有独立 `\ref`」——后者堵死靠 caption
+交叉引用兜底的路径；对已移入补充材料的对象（无 label）另行登记豁免。
 
 ## 覆盖矩阵
 
@@ -58,43 +61,26 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | `T03_datasets` | tab:datasets | table | 4.1 | 303 | PASS | [T03_datasets](reports/T03_datasets.md) |
 | `T04_ideal_overall` | tab:ideal-overall | table | 4.2 | 87 | PASS | [T04_ideal_overall](reports/T04_ideal_overall.md) |
 | `T05_ideal_depthline` | tab:ideal-depthline | table | 4.2 | 42 | PASS | [T05_ideal_depthline](reports/T05_ideal_depthline.md) |
-| `T06_res_rect_mf` | tab:res-rect-mf | table | 4.3 | 277 | PASS | [T06_res_rect_mf](reports/T06_res_rect_mf.md) |
-| `T07_res_rect_100` | tab:res-rect-100 | table | 4.3 | 80 | PASS | [T07_res_rect_100](reports/T07_res_rect_100.md) |
-| `T08_res_wedge_100` | tab:res-wedge-100 | table | 4.3 | 90 | PASS | [T08_res_wedge_100](reports/T08_res_wedge_100.md) |
-| `T09_dl_cmp_rect` | tab:dl-cmp-rect | table | 4.4 | 100 | PASS | [T09_dl_cmp_rect](reports/T09_dl_cmp_rect.md) |
-| `T10_dl_cmp_wedge` | tab:dl-cmp-wedge | table | 4.4 | 97 | PASS | [T10_dl_cmp_wedge](reports/T10_dl_cmp_wedge.md) |
-| `T11_dl_abl_rect` | tab:dl-abl-rect | table | 4.5 | 85 | PASS | [T11_dl_abl_rect](reports/T11_dl_abl_rect.md) |
-| `T12_dl_abl_wedge` | tab:dl-abl-wedge | table | 4.5 | 86 | PASS | [T12_dl_abl_wedge](reports/T12_dl_abl_wedge.md) |
-| `T13_perf_rect` | tab:perf-rect | table | 4.4 | 194 | PASS | [T13_perf_rect](reports/T13_perf_rect.md) |
-| `T14_perf_wedge` | tab:perf-wedge | table | 4.4 | 198 | PASS | [T14_perf_wedge](reports/T14_perf_wedge.md) |
-| `T15_abl_rect` | tab:abl-rect | table | 4.5 | 118 | PASS | [T15_abl_rect](reports/T15_abl_rect.md) |
-| `T16_abl_wedge` | tab:abl-wedge | table | 4.5 | 118 | PASS | [T16_abl_wedge](reports/T16_abl_wedge.md) |
-| `T17_mesh_rect` | tab:mesh-rect | table | 4.6 | 55 | PASS | [T17_mesh_rect](reports/T17_mesh_rect.md) |
-| `T18_mesh_wedge` | tab:mesh-wedge | table | 4.6 | 55 | PASS | [T18_mesh_wedge](reports/T18_mesh_wedge.md) |
-| `T19_gen_overall` | tab:gen-overall | table | 4.7 | 118 | PASS | [T19_gen_overall](reports/T19_gen_overall.md) |
-| `T20_runtime` | tab:runtime | table | 4.8 | 47 | PASS | [T20_runtime](reports/T20_runtime.md) |
-| `T21_runtime_scale` | tab:runtime-scale | table | 4.8 | 41 | PASS | [T21_runtime_scale](reports/T21_runtime_scale.md) |
-| `F03_ideal_rect` | fig:ideal-rect | figure | 4.2 | 37 | PASS | [FIG03_ideal_rect](reports/FIG03_ideal_rect.md) |
-| `F04_ideal_wedge` | fig:ideal-wedge | figure | 4.2 | 38 | PASS | [FIG04_ideal_wedge](reports/FIG04_ideal_wedge.md) |
-| `F05_res_128` | fig:res-128 | figure | 4.3 | 94 | PASS | [FIG05_07_res_fields](reports/FIG05_07_res_fields.md) |
-| `F06_res_256` | fig:res-256 | figure | 4.3 | 94 | PASS | [FIG05_07_res_fields](reports/FIG05_07_res_fields.md) |
-| `F07_res_512` | fig:res-512 | figure | 4.3 | 94 | PASS | [FIG05_07_res_fields](reports/FIG05_07_res_fields.md) |
-| `F08_res_rect_100` | fig:res-rect-100 | figure | 4.3 | 86 | PASS | [FIG08_09_res_100](reports/FIG08_09_res_100.md) |
-| `F09_res_wedge_100` | fig:res-wedge-100 | figure | 4.3 | 86 | PASS | [FIG08_09_res_100](reports/FIG08_09_res_100.md) |
-| `F10_dl_cmp_rect` | fig:dl-cmp-rect | figure | 4.4 | 38 | PASS | [FIG10_11_dl_cmp](reports/FIG10_11_dl_cmp.md) |
-| `F11_dl_cmp_wedge` | fig:dl-cmp-wedge | figure | 4.4 | 38 | PASS | [FIG10_11_dl_cmp](reports/FIG10_11_dl_cmp.md) |
-| `F12_dl_abl_rect` | fig:dl-abl-rect | figure | 4.5 | 44 | PASS | [FIG12_13_dl_abl](reports/FIG12_13_dl_abl.md) |
-| `F13_dl_abl_wedge` | fig:dl-abl-wedge | figure | 4.5 | 44 | PASS | [FIG12_13_dl_abl](reports/FIG12_13_dl_abl.md) |
-| `F14_perf_rect` | fig:perf-rect | figure | 4.4 | 60 | PASS | [FIG14_15_perf_grid](reports/FIG14_15_perf_grid.md) |
-| `F15_perf_wedge` | fig:perf-wedge | figure | 4.4 | 60 | PASS | [FIG14_15_perf_grid](reports/FIG14_15_perf_grid.md) |
-| `F16_abl_rect` | fig:abl-rect | figure | 4.5 | 62 | PASS | [FIG16_17_abl_grid](reports/FIG16_17_abl_grid.md) |
-| `F17_abl_wedge` | fig:abl-wedge | figure | 4.5 | 62 | PASS | [FIG16_17_abl_grid](reports/FIG16_17_abl_grid.md) |
-| `F18_mesh_rect` | fig:mesh-rect | figure | 4.6 | 106 | PASS | [FIG18_19_mesh](reports/FIG18_19_mesh.md) |
-| `F19_mesh_wedge` | fig:mesh-wedge | figure | 4.6 | 106 | PASS | [FIG18_19_mesh](reports/FIG18_19_mesh.md) |
-| `F20_gen_split` | fig:gen-split | figure | 4.7 | 52 | PASS | [FIG20_gen_split](reports/FIG20_gen_split.md) |
-| `F21_gen_grid` | fig:gen-grid | figure | 4.7 | 54 | PASS | [FIG21_22_gen_extrap](reports/FIG21_22_gen_extrap.md) |
-| `F22_gen_grid_wedge` | fig:gen-grid-wedge | figure | 4.7 | 54 | PASS | [FIG21_22_gen_extrap](reports/FIG21_22_gen_extrap.md) |
-| `F23_perf` | fig:perf | figure | 4.8 | 54 | PASS | [FIG23_perf](reports/FIG23_perf.md) |
+| `T06_res_rect_mf` | tab:res-rect-mf | table | 4.3 | 274 | PASS | [T06_res_rect_mf](reports/T06_res_rect_mf.md) |
+| `T07_sq100` | tab:sq100 | table | 4.3 | 139 | PASS | [T07_sq100](reports/T07_sq100.md) |
+| `T08_dl_cmp` | tab:dl-cmp | table | 4.4 | 174 | PASS | [T08_dl_cmp](reports/T08_dl_cmp.md) |
+| `T09_dl_abl` | tab:dl-abl | table | 4.5 | 157 | PASS | [T09_dl_abl](reports/T09_dl_abl.md) |
+| `T10_perf_cmp` | tab:perf-cmp | table | 4.4 | 408 | PASS | [T10_perf_cmp](reports/T10_perf_cmp.md) |
+| `T11_abl` | tab:abl | table | 4.5 | 344 | PASS | [T11_abl](reports/T11_abl.md) |
+| `T12_mesh` | tab:mesh | table | 4.6 | 113 | PASS | [T12_mesh](reports/T12_mesh.md) |
+| `T13_gen_overall` | tab:gen-overall | table | 4.7 | 118 | PASS | [T13_gen_overall](reports/T13_gen_overall.md) |
+| `T14_runtime` | tab:runtime | table | 4.8 | 92 | PASS | [T14_runtime](reports/T14_runtime.md) |
+| `F03_ideal` | fig:ideal | figure | 4.2 | 37 | PASS | [FIG03_ideal](reports/FIG03_ideal.md) |
+| `F04_res_128` | fig:res-128 | figure | 4.3 | 57 | PASS | [FIG04_05_fields](reports/FIG04_05_fields.md) |
+| `F05_sq100` | fig:sq100 | figure | 4.3 | 113 | PASS | [FIG05_sq100](reports/FIG05_sq100.md) |
+| `F06_dl_cmp` | fig:dl-cmp | figure | 4.4 | 74 | PASS | [FIG06_dl_cmp](reports/FIG06_dl_cmp.md) |
+| `F07_dl_abl` | fig:dl-abl | figure | 4.5 | 79 | PASS | [FIG07_dl_abl](reports/FIG07_dl_abl.md) |
+| `F08_perf_cmp_r` | fig:perf-cmp-r | figure | 4.4 | 91 | PASS | [FIG08_09_perf_cmp](reports/FIG08_09_perf_cmp.md) |
+| `F09_perf_cmp_w` | fig:perf-cmp-w | figure | 4.4 | 91 | PASS | [FIG08_09_perf_cmp](reports/FIG08_09_perf_cmp.md) |
+| `F10_mesh` | fig:mesh | figure | 4.6 | 113 | PASS | [FIG10_mesh](reports/FIG10_mesh.md) |
+| `F11_gen_split` | fig:gen-split | figure | 4.7 | 52 | PASS | [FIG11_gen_split](reports/FIG11_gen_split.md) |
+| `F12_gen_grid` | fig:gen-grid | figure | 4.7 | 58 | PASS | [FIG12_gen_extrap](reports/FIG12_gen_extrap.md) |
+| `F13_perf` | fig:perf | figure | 4.8 | 54 | PASS | [FIG13_perf](reports/FIG13_perf.md) |
 
 ## 跨对象核验
 
@@ -102,9 +88,9 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 
 | 检查 | 核验项 | 结论 | 明细 |
 |---|---|---|---|
-| Tables 13-16 等宽版式一致性 | 23 | PASS | [T13_16_layout](reports/T13_16_layout.md) |
-| 全章表格引用完整性（无孤表/无悬空/独立正文引用） | 65 | PASS | [TABALL_refs](reports/TABALL_refs.md) |
-| 全章图件引用完整性（无孤图/无悬空/独立正文引用） | 66 | PASS | [FIGALL_refs](reports/FIGALL_refs.md) |
+| Tables 13-16 等宽版式一致性 | 16 | PASS | [T13_16_layout](reports/T13_16_layout.md) |
+| 全章表格引用完整性（无孤表/无悬空/独立正文引用） | 44 | PASS | [TABALL_refs](reports/TABALL_refs.md) |
+| 全章图件引用完整性（无孤图/无悬空/独立正文引用） | 36 | PASS | [FIGALL_refs](reports/FIGALL_refs.md) |
 
 ## 已知缺口
 
@@ -136,7 +122,7 @@ ch4_validation/
 ├── REPORT.md              本报告（自动生成）
 ├── common/                共用层
 │   ├── paths.py           数据与 tex 路径解析
-│   ├── registry.py        40 个对象的注册表（19 表 + 21 图）
+│   ├── registry.py        23 个对象的注册表（12 表 + 11 图）
 │   ├── metrics.py         xlsx / 训练日志取数与舍入比对
 │   ├── depthline.py       深度线组重算（复用成图脚本自身函数）
 │   ├── texparse.py        tex/aux 解析：表体、caption、label、引用

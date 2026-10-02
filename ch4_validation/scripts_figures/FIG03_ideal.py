@@ -6,7 +6,7 @@ Fig. 3 (fig:ideal) 核验脚本
 R1 修订后两幅合并为一张 Fig. 3，左右各一个 case；本脚本按 case 分别核验
 （各 case 的 Table 5 行、源坐标、深度线 MAE 独立检查）。
 """
-import sys, os, importlib.util
+import sys, os, re, importlib.util
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from common import paths, report
@@ -16,7 +16,9 @@ from common import texparse as T
 # 用基于 __file__ 的绝对路径：相对路径会依赖 cwd 恰为 scripts_figures/，
 # 从 verify.py（cwd=包根）或克隆后的任意位置调用都会断。
 SCRIPT = (Path(__file__).resolve().parents[2]
-          / "Validation_Scripts" / "regen_ideal_panels.py")
+          / "Validation_Scripts" / "fig03_ideal" / "_ideal_core.py")
+# Case1-2 原始 npz 与 Raw 数据同根（CH4_RAWROOT），未显式指定时据此定位
+os.environ.setdefault("CH4_IDEAL_ROOT", os.path.join(paths._RAWROOT, "Case1-2"))
 spec = importlib.util.spec_from_file_location("rip", SCRIPT)
 RIP = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(RIP)
@@ -35,7 +37,7 @@ TABLE5_R0 = {
 
 
 def run():
-    c = report.Checker("FIG03_ideal_rect",
+    c = report.Checker("FIG03_ideal",
                        "Fig. 3 矩形理想波导解析验证（R0, Case 1）",
                        "figure", LABEL, "ideal-rect")
 
@@ -138,16 +140,16 @@ def run():
     # ── F ────────────────────────────────────────────────────────
     c.section("6. 正文引用：被引 + 说明与图内容相符")
     txt = T.tex_text()
-    hits = T.sentences_with(r"rectangular case in Fig", txt)
-    c.check(bool(hits), "正文（4.2 节）引用本图",
-            f"tex 行 {T.line_of(hits[0][0], txt)}" if hits else "未找到")
+    n_ref = txt.count(chr(92) + "ref{" + LABEL + "}")
+    c.check(n_ref >= 1, "正文引用本图", f"共 {n_ref} 处")
 
     # 正文称 "Two held-out samples at every frequency" —— 逐条核结构
     c.note("正文断言『每个频率两个留出样本』。npz 共 8 个样本、4 个频率，"
            "每频率恰 2 个；图按 pick_two 排两列(a/b)，与该断言一致。")
-    c.check(bool(hits) and "Two held-out samples at every frequency" in
-            txt[max(0, hits[0][0] - 300):hits[0][0] + 200],
-            "正文该断言可定位", "含 `Two held-out samples at every frequency`")
+    hits = T.sentences_with(r"Two held-out samples at every frequency", txt)
+    c.check(bool(hits), "正文该断言可定位",
+            f"tex 行 {T.line_of(hits[0][0], txt)}" if hits else
+            "未找到 `Two held-out samples at every frequency`")
     freqs = [int(f) for f in data["freq"]]
     per = {f: freqs.count(f) for f in set(freqs)}
     c.check(len(freqs) == 8 and set(per.values()) == {2},

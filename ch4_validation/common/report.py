@@ -30,6 +30,9 @@ class Checker:
         self.cur = None
         self.n_pass = self.n_fail = self.n_warn = self.n_exempt = 0
         self.t0 = time.time()
+        # 合并表/合并图（R1 把矩形与楔形并进同一对象）由多个"分部"共写一份报告，
+        # 分部名作为节标题前缀，读报告时能分清每一节核的是哪一半。
+        self.prefix = ""
 
     # ── 源清单 ────────────────────────────────────────────────────
     def source(self, role, path, note=""):
@@ -37,6 +40,7 @@ class Checker:
 
     # ── 分段 ──────────────────────────────────────────────────────
     def section(self, name, cols=("检查项", "源值 / 印刷值", "结论")):
+        name = f"{self.prefix}{name}" if self.prefix else name
         self.cur = {"name": name, "cols": cols, "rows": []}
         self.sections.append(self.cur)
 
@@ -123,7 +127,7 @@ class Checker:
     def finish(self, quiet=False):
         out = paths.report_path(self.slug)
         os.makedirs(os.path.dirname(out), exist_ok=True)
-        open(out, "w", encoding="utf-8").write(self.render())
+        open(out, "w", encoding="utf-8", newline="\n").write(self.render())
         if not quiet:
             ex = f" / {self.n_exempt} exempt" if self.n_exempt else ""
             print(f"[{self.verdict()}] {self.slug}: "

@@ -3,13 +3,13 @@
 - 对象：`tab:ideal-overall`（Table 4）
 - 结论：**PASS** — 87 通过 / 0 失败 / 0 警告，共 87 项
 - 脚本：`ch4_validation/scripts/T04_ideal_overall.py`
-- 生成：2026-07-31 03:59:22
+- 生成：2026-10-02 22:44:51
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/els-cas-templates/OE_submission.tex` | `\label{tab:ideal-overall}` 所在 minipage |
+| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{tab:ideal-overall}` 所在 minipage |
 | 渠道1 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/Case1-2_数据汇总.xlsx` | 工作表1『Case1-2 汇总』，best epoch 全测试集 |
 | 渠道2 log (Case 1) | `Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No01_R0/train_rectangle_Lx128_Ly128_H1.000_f25_50_75_100_spf2000_analyticsol__ratio0.90_bs1_mi4_hc48_ddp/logs/full_run_20260719_221907.log` | 训练日志 best epoch 原始块 |
 | 渠道2 log (Case 2) | `Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No02_W0/train_wedge_Lx128_Ly128_H1.000_f25_50_75_100_spf2000_analyticsol__ratio0.90_bs1_mi4_hc48_ddp/logs/full_run_20260720_031249.log` | 训练日志 best epoch 原始块 |
@@ -18,7 +18,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| tex 存在 | ../JASA/OE/els-cas-templates/OE_submission.tex | PASS |
+| tex 存在 | ../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex | PASS |
 | xlsx 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/Case1-2_数据汇总.xlsx | PASS |
 | Case 1 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No01_R0/train_rectangle_Lx128_Ly128_H1.000_f25_50_75_100_spf2000_analyticsol__ratio0.90_bs1_mi4_hc48_ddp/logs/full_run_20260719_221907.log | PASS |
 | Case 2 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No02_W0/train_wedge_Lx128_Ly128_H1.000_f25_50_75_100_spf2000_analyticsol__ratio0.90_bs1_mi4_hc48_ddp/logs/full_run_20260720_031249.log | PASS |
@@ -142,13 +142,13 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 正文 R0 频均 Sol | 正文 `2.090` / 表格 `2.090` — tex 行 719 | PASS |
+| 正文 R0 频均 Sol | 正文 `2.090` / 表格 `2.090` — tex 行 724 | PASS |
 | 正文 R0 频均 Sol ← xlsx 源 | 源 2.090045413933694 → `2.090` / 印刷 `2.090` | PASS |
-| 正文 W0 频均 Sol | 正文 `3.383` / 表格 `3.383` — tex 行 719 | PASS |
+| 正文 W0 频均 Sol | 正文 `3.383` / 表格 `3.383` — tex 行 724 | PASS |
 | 正文 W0 频均 Sol ← xlsx 源 | 源 3.382503363536671 → `3.383` / 印刷 `3.383` | PASS |
-| 正文 R0 场 TL | 正文 `0.509` / 表格 `0.509` — tex 行 719 | PASS |
+| 正文 R0 场 TL | 正文 `0.509` / 表格 `0.509` — tex 行 724 | PASS |
 | 正文 R0 场 TL ← xlsx 源 | 源 0.5088705 → `0.509` / 印刷 `0.509` | PASS |
-| 正文 W0 场 TL | 正文 `0.514` / 表格 `0.514` — tex 行 719 | PASS |
+| 正文 W0 场 TL | 正文 `0.514` / 表格 `0.514` — tex 行 724 | PASS |
 | 正文 W0 场 TL ← xlsx 源 | 源 0.5140532 → `0.514` / 印刷 `0.514` | PASS |
 
 ## 8. Caption epoch 声明核验

@@ -37,3 +37,10 @@ __pycache__/
 
 # JetBrains IDE
 .idea/
+
+# Figure scripts write their regenerated PDFs and caches here at run time; the
+# paper's copies live with the manuscript. Not tracked (see Validation_Scripts/
+# INDEX.md for how to regenerate).
+Validation_Scripts/*/out/
+Validation_Scripts/*/cache/
+Validation_Scripts/*/__pycache__/

@@ -3,14 +3,14 @@
 - 对象：`tab:ideal-depthline`（Table 5）
 - 结论：**PASS** — 42 通过 / 0 失败 / 0 警告，共 42 项
 - 脚本：`ch4_validation/scripts/T05_ideal_depthline.py`
-- 生成：2026-07-31 03:59:27
+- 生成：2026-10-02 22:44:56
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/els-cas-templates/OE_submission.tex` | `\label{tab:ideal-depthline}` 所在 minipage |
-| 提取口径 脚本 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/regen_ideal_panels.py` | 每频率取 y=44.7m 行 MAE 最小样本；成图与表值同一算法 |
+| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{tab:ideal-depthline}` 所在 minipage |
+| 提取口径 脚本 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig03_ideal/fig03_ideal.py` | 每频率取 y=44.7m 行 MAE 最小样本；成图与表值同一算法 |
 | 数据源 npz (Case 1) | `Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No01_R0/Case01_R0__TL原始数据_ep200.npz` | ep200 TL 原始数据（last epoch） |
 | 数据源 npz (Case 2) | `Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No02_W0/Case02_W0__TL原始数据_ep200.npz` | ep200 TL 原始数据（last epoch） |
 
@@ -20,7 +20,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 成图脚本存在 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/regen_ideal_panels.py | PASS |
+| 成图脚本存在 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig03_ideal/fig03_ideal.py | PASS |
 | Case 1 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No01_R0/Case01_R0__TL原始数据_ep200.npz | PASS |
 | Case 2 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No02_W0/Case02_W0__TL原始数据_ep200.npz | PASS |
 | Case 1 两处 npz 同源 | md5 `399d8e5e035e…` == `399d8e5e035e…` | PASS |
@@ -34,9 +34,9 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 常量 GRID | 脚本 `220` / 复刻 `220` | PASS |
-| 常量 METHOD | 脚本 `cubic` / 复刻 `cubic` | PASS |
-| 常量 Y_LINE | 脚本 `44.7` / 复刻 `44.7` | PASS |
+| 常量 GRID | `_ideal_core.py` `220` / 复刻 `220` | PASS |
+| 常量 METHOD | `_ideal_core.py` `cubic` / 复刻 `cubic` | PASS |
+| 常量 Y_LINE | `_ideal_core.py` `44.7` / 复刻 `44.7` | PASS |
 
 ## 4. 从 npz 独立复现（MAE 与源位 vs 印刷值）
 
@@ -96,5 +96,5 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 楔形 W0 误差最大的两个频率 = 75/100Hz | 降序 100Hz(1.235) > 75Hz(0.449) > 25Hz(0.114) > 50Hz(0.069) | PASS |
-| 正文该断言可定位 | tex 行 719 | PASS |
+| 正文该断言可定位 | tex 行 724 | PASS |
 

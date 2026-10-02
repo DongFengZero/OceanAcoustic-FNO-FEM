@@ -29,15 +29,20 @@ SLUG = "T06_res_rect_mf"
 REC = registry.by_slug(SLUG)
 LABEL = REC["label"]
 
-# Case No. -> (Dataset 名, 该行 Fig. 列应引用的 (主图 label, 子图 label))
+# Case No. -> (Dataset 名, 该行 Fig. 列应引用的内容)
+#   3 / 9  仍是正文图 fig:res-128 的两个子图（矩形取 -r、楔形取 -w）；
+#   4 / 5 / 10 / 11  的场图在 R1 已移入补充材料，正文 Fig. 列改写为裸文本
+#   `S3`（256 m）与 `S4`（512 m）——补充材料无 label，故按字面比对。
 CASES = {
     3: ("R1", ("fig:res-128", "fig:res-128-r")),
-    4: ("R2", ("fig:res-256", "fig:res-256-r")),
-    5: ("R3", ("fig:res-512", "fig:res-512-r")),
+    4: ("R2", "S3"),
+    5: ("R3", "S4"),
     9: ("W1", ("fig:res-128", "fig:res-128-w")),
-    10: ("W2", ("fig:res-256", "fig:res-256-w")),
-    11: ("W3", ("fig:res-512", "fig:res-512-w")),
+    10: ("W2", "S3"),
+    11: ("W3", "S4"),
 }
+# 补充材料编号 -> 该编号覆盖的案例（用于核对两处引用一致）
+SUPP = {"S3": (4, 10), "S4": (5, 11)}
 RECT, WEDGE = [3, 4, 5], [9, 10, 11]
 
 # 正文直接引用：(说明, 正文字面量, (case, 组, 量))
@@ -132,13 +137,28 @@ def run():
            "同一尺度下矩形取 `-r` 子图、楔形取 `-w`，错配读者会看错图。"
            "同时确认被引 label 在 aux 里存在（否则排出 `??`）。")
     aux = T.labels()
-    for no, (_, (main, sub)) in CASES.items():
-        got = T.refs_in(printed_raw[no][2])
-        c.check(got == [main, sub], f"Case {no} Fig. 列引用",
-                f"tex `{printed_raw[no][2]}` → {got}，应为 `[{main}, {sub}]`")
-        for lb in (main, sub):
-            c.check(lb in aux, f"label `{lb}` 已在 aux 注册",
-                    f"编号 `{aux.get(lb, {}).get('num', '缺失')}`")
+    for no, (_, want) in CASES.items():
+        cell = printed_raw[no][2]
+        if isinstance(want, tuple):
+            got = T.refs_in(cell)
+            c.check(got == list(want), f"Case {no} Fig. 列引用",
+                    f"tex `{cell}` → {got}，应为 `{list(want)}`")
+            for lb in want:
+                c.check(lb in aux, f"label `{lb}` 已在 aux 注册",
+                        f"编号 `{aux.get(lb, {}).get('num', '缺失')}`")
+        else:
+            got = cell.strip()
+            c.check(got == want, f"Case {no} Fig. 列引用（补充材料 {want}）",
+                    f"tex `{got}`，应为 `{want}`")
+    c.note("补充材料的两处引用（S3 覆盖 256 m 的 Case 4/10，S4 覆盖 512 m 的 "
+           "Case 5/11）在表中各自出现两次，与 SUPP 给的归属一致。")
+    for tag, nos in SUPP.items():
+        for no in nos:
+            c.check(CASES[no][1] == tag, f"Case {no} 归入 {tag}",
+                    f"tex `{CASES[no][1]}`")
+    c.check("Fig.~S3" not in T.tex_text() or "S3--S4" in T.tex_text(),
+            "正文以 `Figs.~S3--S4` 区间形式引用补充图",
+            "正文含区间引用")
 
     # ── F ────────────────────────────────────────────────────────
     c.section("7. 几何分组小标题行")

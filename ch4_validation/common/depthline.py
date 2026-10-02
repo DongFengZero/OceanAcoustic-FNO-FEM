@@ -7,7 +7,7 @@ depthline.py — 深度线族（Tables 9-12 / Figs 12-15）的公共重算层
 所以任何一天脚本改了口径，这里跟着变、核验立刻反映出来。
 
 成图脚本已随 R1 修订整理进仓库：深度线的口径由
-`Validation_Scripts/fig06_dl_cmp/fig06_dl_cmp.py` 与它同目录的
+`Validation_Scripts/fig06_07_dl/fig06_07_dl.py` 与它同目录的
 `_depthline_core.py`（原 advantage_depth_line.py 的原样副本）承载。数据根与
 产物目录经 `_figpaths` 解析（CH4_RAWROOT / CH4_DLCACHE），不再要求脚本
 被放在某个固定盘符下。
@@ -22,11 +22,11 @@ import numpy as np
 
 from . import paths
 
-AUTH = os.path.join(paths.PLOTDIR, "fig06_dl_cmp", "_depthline_core.py")
+AUTH = os.path.join(paths.PLOTDIR, "fig06_07_dl", "_depthline_core.py")
 COPY = os.path.join(paths.PLOTDIR, "legacy", "advantage_depth_line.py")
-MAE_JSON = os.path.join(paths.PLOTDIR, "fig06_dl_cmp", "cache",
+MAE_JSON = os.path.join(paths.PLOTDIR, "fig06_07_dl", "cache",
                         "_mae_tables.json")
-FIG_DIR = os.path.join(paths.PLOTDIR, "fig06_dl_cmp", "cache")
+FIG_DIR = os.path.join(paths.PLOTDIR, "fig06_07_dl", "cache")
 
 
 def md5(p):

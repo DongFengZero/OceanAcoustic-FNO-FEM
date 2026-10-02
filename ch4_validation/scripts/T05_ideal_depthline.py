@@ -83,6 +83,10 @@ def run():
     c = report.Checker(SLUG, REC["desc"], "table", LABEL, T.number_of(LABEL))
 
     ps = paths.plot_script(REC["plot"])
+    # 常量现由同目录的 core 模块持有（成图脚本只 import 它），
+    # 故口径断言读 core；找不到时退回成图脚本本身，以免路径再变就误报。
+    core = os.path.join(os.path.dirname(ps), "_ideal_core.py")
+    ps_const = core if os.path.exists(core) else ps
     c.source("印刷面 tex", paths.TEX, f"`\\label{{{LABEL}}}` 所在 minipage")
     c.source("提取口径 脚本", ps, "每频率取 y=44.7m 行 MAE 最小样本；成图与表值同一算法")
     for no, (_, cd) in CASES.items():
@@ -127,14 +131,15 @@ def run():
     c.section("3. 提取口径与成图脚本一致（防漂移）")
     c.note("本脚本复刻了成图脚本的提取算法。若成图脚本的常量被改动而这里没跟上，"
            "表值就会与图脱钩，故直接从脚本源码解析常量做断言。")
-    src = open(ps, encoding="utf-8", errors="ignore").read()
+    src = open(ps_const, encoding="utf-8", errors="ignore").read()
     for name, mine, pat in (("GRID", GRID, r"^GRID\s*=\s*(\d+)"),
                             ("METHOD", METHOD, r'^METHOD\s*=\s*"([^"]+)"'),
                             ("Y_LINE", Y_LINE, r"^Y_LINE\s*=\s*([0-9.]+)")):
         m = re.search(pat, src, re.M)
         got = m.group(1) if m else None
         ok = got is not None and str(mine) == got
-        c.check(ok, f"常量 {name}", f"脚本 `{got}` / 复刻 `{mine}`")
+        c.check(ok, f"常量 {name}",
+                f"`{os.path.basename(ps_const)}` `{got}` / 复刻 `{mine}`")
 
     # ── C. 值复现 ────────────────────────────────────────────────
     c.section("4. 从 npz 独立复现（MAE 与源位 vs 印刷值）")

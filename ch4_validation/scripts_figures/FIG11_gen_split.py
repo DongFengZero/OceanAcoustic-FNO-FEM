@@ -25,7 +25,7 @@ from common import paths, report, texparse as T  # noqa: E402
 SLUG = "FIG11_gen_split"
 LABEL = "fig:gen-split"
 SCRIPT_AUTH = Path(r"D:\Data\OceanAcoustic-FNO-FEM_github\Validation_Scripts"
-                   r"\plot_generalization_split.py")
+                   r"\fig11_gen_split\_gen_split_core.py")
 PDF_NAME = "generalization_split.pdf"
 
 # Table 19 印刷的 Extrap. region 列（No. -> (类型, 阈值)）
@@ -117,14 +117,16 @@ def run():
         c.check(kw in cap, f"caption 列出数据集 {kw}", "")
     c.check("39" in cap and "42" in cap,
             "caption 标明案例区间 39-42", "含 `Cases~39--42`")
-    c.check("blue" in cap and "red" in cap,
-            "caption 说明 blue/red 配色语义", "")
+    # R1 的配色改为 Okabe-Ito blue / orange（色盲友好），caption 相应写
+    # "blue ... orange"；断言跟 caption 的实际用词走，不沿用旧的 red。
+    c.check("blue" in cap and "orange" in cap,
+            "caption 说明 blue/orange 配色语义", "")
 
     # ── E ────────────────────────────────────────────────────────
     c.section("5. 正文引用")
     txt = T.tex_text()
     aux = T.labels()
-    c.check(aux.get(LABEL, {}).get("num") == "20", "编号为 20",
+    c.check(aux.get(LABEL, {}).get("num") == "11", "编号为 11",
             f"aux `{aux.get(LABEL, {}).get('num', '缺失')}`")
     n = txt.count("\\ref{" + LABEL + "}")
     c.check(n >= 1, "正文引用本图", f"`\\ref{{{LABEL}}}` 出现 {n} 处")

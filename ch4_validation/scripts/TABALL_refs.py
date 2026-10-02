@@ -15,7 +15,7 @@
 只按 1 判定会把区间内部的表误判为漏引。
 
 Tables 1/2 属方法章（method-comparison / method-symbols），一并核引用，
-但不计入第 4 章数值链。
+但不计入第 4 章数值链。R1 修订后第 4 章共 12 张表（No. 3-14）。
 """
 import re
 import sys
@@ -31,15 +31,12 @@ ALL_TABS = [
     ("tab:method-comparison", "1"), ("tab:method-symbols", "2"),
     ("tab:datasets", "3"),
     ("tab:ideal-overall", "4"), ("tab:ideal-depthline", "5"),
-    ("tab:res-rect-mf", "6"), ("tab:res-rect-100", "7"),
-    ("tab:res-wedge-100", "8"),
-    ("tab:dl-cmp-rect", "9"), ("tab:dl-cmp-wedge", "10"),
-    ("tab:dl-abl-rect", "11"), ("tab:dl-abl-wedge", "12"),
-    ("tab:perf-rect", "13"), ("tab:perf-wedge", "14"),
-    ("tab:abl-rect", "15"), ("tab:abl-wedge", "16"),
-    ("tab:mesh-rect", "17"), ("tab:mesh-wedge", "18"),
-    ("tab:gen-overall", "19"),
-    ("tab:runtime", "20"), ("tab:runtime-scale", "21"),
+    ("tab:res-rect-mf", "6"), ("tab:sq100", "7"),
+    ("tab:dl-cmp", "8"), ("tab:dl-abl", "9"),
+    ("tab:perf-cmp", "10"), ("tab:abl", "11"),
+    ("tab:mesh", "12"),
+    ("tab:gen-overall", "13"),
+    ("tab:runtime", "14"),
 ]
 CH4 = [t for t in ALL_TABS if int(t[1]) >= 3]
 
@@ -87,7 +84,7 @@ def env_spans(txt):
 
 def run():
     c = report.Checker(SLUG, "全章表格引用完整性", "table",
-                       "tab:* (all)", "1-21")
+                       "tab:* (all)", "1-14")
     c.source("印刷面 tex", paths.TEX, "全文")
     c.source("编号来源 aux", str(Path(paths.TEX).with_suffix(".aux")),
              "\\newlabel 解析")

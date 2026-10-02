@@ -16,8 +16,9 @@ verify.py — 第 4 章全部表格与图件的核验主程序
     1  有对象失败
     2  用法错误
 
-覆盖率以 common/registry.py 的 30 条记录（19 表 + 11 图）为分母。
-一个脚本可覆盖多个对象（例如 FIG05_07_res_fields.py 同时核 Fig 5/6/7），
+覆盖率以 common/registry.py 的 23 条记录（12 表 + 11 图）为分母。
+Tables 1/2 与 Figs 1/2 属描述性内容，不入册核验。
+一个脚本可覆盖多个对象（例如 FIG08_09_perf_cmp.py 同时核 Fig 8/9），
 映射见 SCRIPT_MAP；注册但无脚本的对象会显示「待实现」，不会被静默漏掉。
 """
 import argparse
@@ -41,31 +42,31 @@ REPORTS = os.path.join(PKG, "reports")
 # ── 对象 → 核验脚本 ────────────────────────────────────────────────
 # 表侧一对一；图侧多为合并式（同一版式的几张图共用一份链路）。
 SCRIPT_MAP = {
-    # 表：scripts/<slug>.py
-    **{r["slug"]: ("scripts", r["slug"]) for r in registry.ALL
-       if r["kind"] == "table"},
+    # 表：一对一（R1 合并后第 4 章共 12 张，No. 3-14；Tables 1/2 属方法章）
+    "T03_datasets":          ("scripts", "T03_datasets"),
+    "T04_ideal_overall":     ("scripts", "T04_ideal_overall"),
+    "T05_ideal_depthline":   ("scripts", "T05_ideal_depthline"),
+    "T06_res_rect_mf":       ("scripts", "T06_res_rect_mf"),
+    "T07_sq100":             ("scripts", "T07_sq100"),
+    "T08_dl_cmp":            ("scripts", "T08_dl_cmp"),
+    "T09_dl_abl":            ("scripts", "T09_dl_abl"),
+    "T10_perf_cmp":          ("scripts", "T10_perf_cmp"),
+    "T11_abl":               ("scripts", "T11_abl"),
+    "T12_mesh":              ("scripts", "T12_mesh"),
+    "T13_gen_overall":       ("scripts", "T13_gen_overall"),
+    "T14_runtime":           ("scripts", "T14_runtime"),
     # 图：scripts_figures/<脚本名>.py
-    "F03_ideal_rect":     ("scripts_figures", "FIG03_ideal_rect"),
-    "F04_ideal_wedge":    ("scripts_figures", "FIG04_ideal_wedge"),
-    "F05_res_128":        ("scripts_figures", "FIG05_07_res_fields"),
-    "F06_res_256":        ("scripts_figures", "FIG05_07_res_fields"),
-    "F07_res_512":        ("scripts_figures", "FIG05_07_res_fields"),
-    "F08_res_rect_100":   ("scripts_figures", "FIG08_09_res_100"),
-    "F09_res_wedge_100":  ("scripts_figures", "FIG08_09_res_100"),
-    "F10_dl_cmp_rect":    ("scripts_figures", "FIG10_11_dl_cmp"),
-    "F11_dl_cmp_wedge":   ("scripts_figures", "FIG10_11_dl_cmp"),
-    "F12_dl_abl_rect":    ("scripts_figures", "FIG12_13_dl_abl"),
-    "F13_dl_abl_wedge":   ("scripts_figures", "FIG12_13_dl_abl"),
-    "F14_perf_rect":      ("scripts_figures", "FIG14_15_perf_grid"),
-    "F15_perf_wedge":     ("scripts_figures", "FIG14_15_perf_grid"),
-    "F16_abl_rect":       ("scripts_figures", "FIG16_17_abl_grid"),
-    "F17_abl_wedge":      ("scripts_figures", "FIG16_17_abl_grid"),
-    "F18_mesh_rect":      ("scripts_figures", "FIG18_19_mesh"),
-    "F19_mesh_wedge":     ("scripts_figures", "FIG18_19_mesh"),
-    "F20_gen_split":      ("scripts_figures", "FIG20_gen_split"),
-    "F21_gen_grid":       ("scripts_figures", "FIG21_22_gen_extrap"),
-    "F22_gen_grid_wedge": ("scripts_figures", "FIG21_22_gen_extrap"),
-    "F23_perf":           ("scripts_figures", "FIG23_perf"),
+    "F03_ideal":       ("scripts_figures", "FIG03_ideal"),
+    "F04_res_128":     ("scripts_figures", "FIG04_05_fields"),
+    "F05_sq100":       ("scripts_figures", "FIG05_sq100"),
+    "F06_dl_cmp":      ("scripts_figures", "FIG06_dl_cmp"),
+    "F07_dl_abl":      ("scripts_figures", "FIG07_dl_abl"),
+    "F08_perf_cmp_r":  ("scripts_figures", "FIG08_09_perf_cmp"),
+    "F09_perf_cmp_w":  ("scripts_figures", "FIG08_09_perf_cmp"),
+    "F10_mesh":        ("scripts_figures", "FIG10_mesh"),
+    "F11_gen_split":   ("scripts_figures", "FIG11_gen_split"),
+    "F12_gen_grid":    ("scripts_figures", "FIG12_gen_extrap"),
+    "F13_perf":        ("scripts_figures", "FIG13_perf"),
 }
 
 # ── 跨对象核验（不属于单个表/图，单独计入） ────────────────────────
@@ -139,8 +140,11 @@ def write_report(objs, missing, results, tot, bad):
         "中间产物。链路分三层：",
         "",
         "1. **源可追溯** — 每个数值都能指到 `Raw_Experimental_Data` 下的",
-        "   xlsx / 训练日志 / npz；成图脚本的两份副本须 md5 相同，否则图",
-        "   与核验可能分属两份数据。",
+        "   xlsx / 训练日志 / npz。成图脚本按图号收在 `Validation_Scripts/",
+        "   figNN_*/`（R1 整理后的布局，一份脚本一个目录），核验从该脚本",
+        "   自身的源码读口径，并核 paper 图件与其产物的一致（PDF 的字节",
+        "   md5 因 matplotlib 每次都写新的 /CreationDate 而必然不同，故比对",
+        "   时剥掉时间戳字段；该约定在各脚本里显式登记为豁免，不隐去）。",
         "2. **双渠道交叉** — 同一量在 xlsx 与训练日志里各取一次，先证两个",
         "   渠道自身一致，再与印刷值比对。单渠道对得上不足以排除系统性错误。",
         "3. **口径防漂移** — 插值网格数、插值方法、频率列表、坐标位数这些",
@@ -172,11 +176,11 @@ def write_report(objs, missing, results, tot, bad):
         "`best` 也照样通过。深度线族的表与图同取 last，判据相应改为「两侧声明",
         "必须一致」，不能照搬场图族的「必然不同」。",
         "",
-        "**④ 引用完整性** — 本章有四种引用形式：散文单点、散文区间",
-        "（`Figs.~\\ref{A}--\\ref{B}`，中间各图自身 `\\ref` 计数为 0）、散文并列、",
-        "表格 Fig. 列（`\\ref{fig}\\subref{sub}`）。只按单点统计会把区间内部的图",
-        "误判为漏引。跨对象核验用两级判据：宽判「是否被引」，严判「figure/table",
-        "环境**之外**是否有独立 `\\ref`」——后者堵死靠区间或 caption 兜底的路径。",
+        "**④ 引用完整性** — R1 把矩形与楔形合并后，正文对每张图/表**各写一次**",
+        "`\\ref`（含 `Fig.~\\ref{fig:perf}(a,b)` 这类面板后缀），不再使用区间引用",
+        "`Figs.~\\ref{A}--\\ref{B}`。跨对象核验仍用两级判据：宽判「是否被引」，",
+        "严判「figure/table 环境**之外**是否有独立 `\\ref`」——后者堵死靠 caption",
+        "交叉引用兜底的路径；对已移入补充材料的对象（无 label）另行登记豁免。",
     ])
     L.append("")
 
@@ -261,7 +265,7 @@ def write_report(objs, missing, results, tot, bad):
         "├── REPORT.md              本报告（自动生成）",
         "├── common/                共用层",
         "│   ├── paths.py           数据与 tex 路径解析",
-        "│   ├── registry.py        30 个对象的注册表（19 表 + 11 图）",
+        "│   ├── registry.py        23 个对象的注册表（12 表 + 11 图）",
         "│   ├── metrics.py         xlsx / 训练日志取数与舍入比对",
         "│   ├── depthline.py       深度线组重算（复用成图脚本自身函数）",
         "│   ├── texparse.py        tex/aux 解析：表体、caption、label、引用",
@@ -349,6 +353,10 @@ def main():
     results, t_all = {}, time.time()
     for i, (p, owners) in enumerate(sorted(todo.items()), 1):
         name = os.path.splitext(os.path.basename(p))[0]
+        # 先删旧报告：脚本中途崩溃时不能让上一轮的 PASS 报告冒充本轮结果
+        old = os.path.join(REPORTS, f"{name}.md")
+        if os.path.exists(old):
+            os.remove(old)
         rc, dt, out = run_script(p)
         rep = parse_report(name)
         results[name] = dict(rc=rc, dt=dt, rep=rep, owners=owners, out=out)

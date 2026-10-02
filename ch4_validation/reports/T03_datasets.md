@@ -3,20 +3,20 @@
 - 对象：`tab:datasets`（tab:datasets）
 - 结论：**PASS** — 303 通过 / 0 失败 / 0 警告，共 303 项
 - 脚本：`ch4_validation/scripts/T03_datasets.py`
-- 生成：2026-07-31 03:59:22
+- 生成：2026-10-02 22:44:51
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/els-cas-templates/OE_submission.tex` | Table None 环境 |
+| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | Table None 环境 |
 | Dataset 目录 | `Data_and_Code_Availability/Dataset` | 22 个数据集配置 |
 
 ## 1. tex 表格结构
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| tex 表格环境可定位且确实包住 label | `tab:datasets`，长度 8477 | PASS |
+| tex 表格环境可定位且确实包住 label | `tab:datasets`，长度 8203 | PASS |
 | tex 数据行数 = 50 | 实得 50 | PASS |
 | tex 行 No. 覆盖 1-50 | 实得 [1, 2, 3, 4, 5]...[46, 47, 48, 49, 50] | PASS |
 

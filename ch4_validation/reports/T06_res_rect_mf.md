@@ -1,15 +1,15 @@
-# Table 6 — 多频前向精度 R1-R3/W1-W3
+# Table 6 — 多频前向精度 R1-R3/W1-W3（矩形与楔形同表）
 
 - 对象：`tab:res-rect-mf`（Table 6）
-- 结论：**PASS** — 277 通过 / 0 失败 / 0 警告，共 277 项
+- 结论：**PASS** — 274 通过 / 0 失败 / 0 警告，共 274 项
 - 脚本：`ch4_validation/scripts/T06_res_rect_mf.py`
-- 生成：2026-07-31 03:59:28
+- 生成：2026-10-02 22:44:56
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/els-cas-templates/OE_submission.tex` | `\label{tab:res-rect-mf}` 所在 table* 环境 |
+| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{tab:res-rect-mf}` 所在 table* 环境 |
 | 渠道1 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/Case3-14_数据汇总.xlsx` | 工作表1，best epoch 全测试集 |
 | 渠道2 log (Case 3) | `Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No03_R1/training_run/logs/full_run_20260710_221657.log` | 训练日志同轮『评估』块 |
 | 渠道2 log (Case 4) | `Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No04_R2/training_run/logs/full_run_20260710_214148.log` | 训练日志同轮『评估』块 |
@@ -29,7 +29,7 @@
 | Case 9 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No09_W1/training_run/logs/full_run_20260710_152228.log | PASS |
 | Case 10 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No10_W2/training_run/logs/full_run_20260710_123954.log | PASS |
 | Case 11 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No11_W3/training_run/logs/full_run_20260710_022039.log | PASS |
-| tex 表格环境可定位且确实包住 label | `tab:res-rect-mf`，长度 1964 | PASS |
+| tex 表格环境可定位且确实包住 label | `tab:res-rect-mf`，长度 1816 | PASS |
 | tex 数据行数 = 6 | 实得 6 | PASS |
 | tex 行 No. 覆盖 3-5 与 9-11 | [3, 4, 5, 9, 10, 11] | PASS |
 
@@ -254,26 +254,25 @@
 
 > 每行的图号必须指向该案例自己的图与子图；同一尺度下矩形取 `-r` 子图、楔形取 `-w`，错配读者会看错图。同时确认被引 label 在 aux 里存在（否则排出 `??`）。
 
+> 补充材料的两处引用（S3 覆盖 256 m 的 Case 4/10，S4 覆盖 512 m 的 Case 5/11）在表中各自出现两次，与 SUPP 给的归属一致。
+
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| Case 3 Fig. 列引用 | tex `\ref{fig:res-128}\subref{fig:res-128-r}` → ['fig:res-128', 'fig:res-128-r']，应为 `[fig:res-128, fig:res-128-r]` | PASS |
-| label `fig:res-128` 已在 aux 注册 | 编号 `5` | PASS |
-| label `fig:res-128-r` 已在 aux 注册 | 编号 `5a` | PASS |
-| Case 4 Fig. 列引用 | tex `\ref{fig:res-256}\subref{fig:res-256-r}` → ['fig:res-256', 'fig:res-256-r']，应为 `[fig:res-256, fig:res-256-r]` | PASS |
-| label `fig:res-256` 已在 aux 注册 | 编号 `6` | PASS |
-| label `fig:res-256-r` 已在 aux 注册 | 编号 `6a` | PASS |
-| Case 5 Fig. 列引用 | tex `\ref{fig:res-512}\subref{fig:res-512-r}` → ['fig:res-512', 'fig:res-512-r']，应为 `[fig:res-512, fig:res-512-r]` | PASS |
-| label `fig:res-512` 已在 aux 注册 | 编号 `7` | PASS |
-| label `fig:res-512-r` 已在 aux 注册 | 编号 `7a` | PASS |
-| Case 9 Fig. 列引用 | tex `\ref{fig:res-128}\subref{fig:res-128-w}` → ['fig:res-128', 'fig:res-128-w']，应为 `[fig:res-128, fig:res-128-w]` | PASS |
-| label `fig:res-128` 已在 aux 注册 | 编号 `5` | PASS |
-| label `fig:res-128-w` 已在 aux 注册 | 编号 `5b` | PASS |
-| Case 10 Fig. 列引用 | tex `\ref{fig:res-256}\subref{fig:res-256-w}` → ['fig:res-256', 'fig:res-256-w']，应为 `[fig:res-256, fig:res-256-w]` | PASS |
-| label `fig:res-256` 已在 aux 注册 | 编号 `6` | PASS |
-| label `fig:res-256-w` 已在 aux 注册 | 编号 `6b` | PASS |
-| Case 11 Fig. 列引用 | tex `\ref{fig:res-512}\subref{fig:res-512-w}` → ['fig:res-512', 'fig:res-512-w']，应为 `[fig:res-512, fig:res-512-w]` | PASS |
-| label `fig:res-512` 已在 aux 注册 | 编号 `7` | PASS |
-| label `fig:res-512-w` 已在 aux 注册 | 编号 `7b` | PASS |
+| Case 3 Fig. 列引用 | tex `\ref{fig:res-128}\subref{fig:res-128-r}` → ['fig:res-128', 'fig:res-128-r']，应为 `['fig:res-128', 'fig:res-128-r']` | PASS |
+| label `fig:res-128` 已在 aux 注册 | 编号 `4` | PASS |
+| label `fig:res-128-r` 已在 aux 注册 | 编号 `4a` | PASS |
+| Case 4 Fig. 列引用（补充材料 S3） | tex `S3`，应为 `S3` | PASS |
+| Case 5 Fig. 列引用（补充材料 S4） | tex `S4`，应为 `S4` | PASS |
+| Case 9 Fig. 列引用 | tex `\ref{fig:res-128}\subref{fig:res-128-w}` → ['fig:res-128', 'fig:res-128-w']，应为 `['fig:res-128', 'fig:res-128-w']` | PASS |
+| label `fig:res-128` 已在 aux 注册 | 编号 `4` | PASS |
+| label `fig:res-128-w` 已在 aux 注册 | 编号 `4b` | PASS |
+| Case 10 Fig. 列引用（补充材料 S3） | tex `S3`，应为 `S3` | PASS |
+| Case 11 Fig. 列引用（补充材料 S4） | tex `S4`，应为 `S4` | PASS |
+| Case 4 归入 S3 | tex `S3` | PASS |
+| Case 10 归入 S3 | tex `S3` | PASS |
+| Case 5 归入 S4 | tex `S4` | PASS |
+| Case 11 归入 S4 | tex `S4` | PASS |
+| 正文以 `Figs.~S3--S4` 区间形式引用补充图 | 正文含区间引用 | PASS |
 
 ## 7. 几何分组小标题行
 
@@ -353,7 +352,7 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 矩形多频 512m/128m TL 倍数 = 2.268 | `2.157`/`0.951` = `2.268139` → `2.268` | PASS |
-| 正文该倍数可定位 | tex 行 811 | PASS |
+| 正文该倍数可定位 | tex 行 816 | PASS |
 
 ## 12. 正文趋势断言
 

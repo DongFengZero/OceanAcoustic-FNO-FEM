@@ -39,8 +39,11 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from scipy.interpolate import griddata
 
-ROOT = os.environ.get("CH4_RAWROOT", os.path.dirname(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+# 数据根：本例的数据按案例分组落在 <RAWROOT>/Case15-24/... 。
+# 本文件在 repo/Validation_Scripts/fig06_07_dl/ 下，故上溯 4 层才是 RAWROOT
+# 的默认位置（与仓库平级）；设 CH4_RAWROOT 可覆盖。
+ROOT = os.environ.get("CH4_RAWROOT", os.path.dirname(os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 OUT_DIR = os.environ.get("CH4_DLCACHE", os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "cache"))
 GRID = 300

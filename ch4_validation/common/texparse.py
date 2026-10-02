@@ -59,6 +59,31 @@ def _brace_span(txt, open_pos):
     return -1
 
 
+def table_body_of(label, txt=None):
+    """\\label{label} 所属的那张表**自己的** tabular 源码。
+
+    R1 把多张表绑进同一个 figure*/table* 浮动体，此时 table_env() 的
+    "最近的 \\begin{table}" 会解析到同浮动体内的邻居（实测 tab:dl-abl
+    取回了 tab:dl-cmp 的 tabular）。可靠的做法是认 label 与它的 tabular
+    的相对位置：本章这两者的排法固定为 caption → label → tabular，
+    故取 label 之后的第一个 \\begin{tabular 到其 \\end{tabular}。
+
+    返回 (源码, 是否为 tabular*)；找不到返回 (None, False)。
+    """
+    txt = txt if txt is not None else tex_text()
+    li = txt.find(f"\\label{{{label}}}")
+    if li < 0:
+        return None, False
+    b = txt.find("\\begin{tabular", li)
+    if b < 0:
+        return None, False
+    e = txt.find("\\end{tabular", b)
+    if e < 0:
+        return None, False
+    star = txt[b:b + 20].startswith("\\begin{tabular*}")
+    return txt[b: e + len("\\end{tabular}")], star
+
+
 def table_env(label, txt=None):
     """含 \\label{label} 的最小 minipage/table/figure 环境源码。
 
@@ -70,6 +95,9 @@ def table_env(label, txt=None):
       不加校验时 rfind 会命中那个 minipage 的 begin，再配上 Table 7 的
       \\end{minipage}，跨出一个横穿三张表的错误区间。
       判据：begin 与 label 之间不得再出现同类型的 end。
+
+    ★ 本函数给出的是**浮动体**边界，同浮动体内可能并列多张表；要取某一张
+      表自己的表体请用 table_body_of()。
     """
     txt = txt if txt is not None else tex_text()
     li = txt.find(f"\\label{{{label}}}")
@@ -109,14 +137,26 @@ def caption_of(label, txt=None):
 
 
 def tabular_body(env):
-    """环境源码 -> tabular/tabular* 的行体（\\midrule 之后、\\bottomrule 之前）。"""
+    """环境源码 -> tabular/tabular* 的行体（表头之后、表尾规则之前）。
+
+    ★ 两个坑：
+      1. `\\midrule` 是 `\\cmidrule` 的子串，裸 find 会命中表头里的
+         分层规则（`\\cmidrule(lr){2-5}`），把表头当表体开始。
+      2. 并非每张表都以 `\\bottomrule` 收尾——Table 1 的方法对比表末行是
+         图例，之后直接 `\\end{tabular}`。故表尾取 `\\bottomrule` 与
+         `\\end{tabular}` 中先出现者。
+    """
     if env is None:
         return None
-    i = env.find("\\midrule")
-    j = env.find("\\bottomrule")
-    if i < 0 or j < 0:
+    m = re.search(r"\\midrule(?!\w)", env)
+    if not m:
         return None
-    return env[i + len("\\midrule"): j]
+    i = m.end()
+    ends = [p for p in (env.find("\\bottomrule", i),
+                        env.find("\\end{tabular}", i)) if p > 0]
+    if not ends:
+        return None
+    return env[i: min(ends)]
 
 
 def tabular_preamble(env):

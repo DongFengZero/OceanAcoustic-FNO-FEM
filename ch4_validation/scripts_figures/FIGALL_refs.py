@@ -25,18 +25,16 @@ from common import paths, report, texparse as T  # noqa: E402
 SLUG = "FIGALL_refs"
 
 # 第 4 章正文图（不含第 1-3 章的 architecture/case 等）
+# R1 修订后正文共 11 张图（Fig 3-13）；256/512 m 与楔形外推的场图已移入补充材料。
 CH4_MAIN = [
-    ("fig:ideal-rect", "3"), ("fig:ideal-wedge", "4"),
-    ("fig:res-128", "5"), ("fig:res-256", "6"), ("fig:res-512", "7"),
-    ("fig:res-rect-100", "8"), ("fig:res-wedge-100", "9"),
-    ("fig:dl-cmp-rect", "10"), ("fig:dl-cmp-wedge", "11"),
-    ("fig:dl-abl-rect", "12"), ("fig:dl-abl-wedge", "13"),
-    ("fig:perf-rect", "14"), ("fig:perf-wedge", "15"),
-    ("fig:abl-rect", "16"), ("fig:abl-wedge", "17"),
-    ("fig:mesh-rect", "18"), ("fig:mesh-wedge", "19"),
-    ("fig:gen-split", "20"),
-    ("fig:gen-grid", "21"), ("fig:gen-grid-wedge", "22"),
-    ("fig:perf", "23"),
+    ("fig:ideal", "3"),
+    ("fig:res-128", "4"),
+    ("fig:sq100", "5"),
+    ("fig:dl-cmp", "6"), ("fig:dl-abl", "7"),
+    ("fig:perf-cmp-r", "8"), ("fig:perf-cmp-w", "9"),
+    ("fig:mesh", "10"),
+    ("fig:gen-split", "11"), ("fig:gen-grid", "12"),
+    ("fig:perf", "13"),
 ]
 
 
@@ -63,7 +61,7 @@ def figure_env_spans(txt):
 
 def run():
     c = report.Checker(SLUG, "全章图件引用完整性", "figure",
-                       "fig:* (Ch.4)", "3-23")
+                       "fig:* (Ch.4)", "3-13")
     c.source("印刷面 tex", paths.TEX, "全文")
     c.source("编号来源 aux", str(Path(paths.TEX).with_suffix(".aux")),
              "\\newlabel 解析")
@@ -89,7 +87,12 @@ def run():
         na, nb = aux.get(a, {}).get("num"), aux.get(b, {}).get("num")
         if na and nb and na.isdigit() and nb.isdigit():
             ranges.append((int(na), int(nb), a, b))
-    c.check(len(ranges) > 0, "正文存在区间引用", f"共 {len(ranges)} 处")
+    # R1 不再使用区间引用：合并后正文对每张图各写一次 \ref（含 (a)/(b)
+    # 面板后缀引用）。故此处不要求区间存在，改为核『每张图确有引用』（见第 1 节）。
+# R1 不再使用区间引用：合并后正文对每张图各写一次 \ref（含 (a)/(b)
+# 面板后缀引用）。故此处不要求区间存在，改为核『每张图确有引用』（见第 1 节）。
+    c.check(len(ranges) >= 0, "区间引用统计（R1 已改为逐图引用）",
+            f"共 {len(ranges)} 处；每张图的引用见第 1 节")
 
     for lb, num_exp in CH4_MAIN:
         n_all = len(re.findall(r"\\ref\{" + re.escape(lb) + r"\}", txt))
@@ -134,7 +137,7 @@ def run():
             weak.append(f"Fig {num}")
         c.check(ok, f"Fig {num} (`{lb}`) 有独立正文引用",
                 f"figure 环境外 {n_body} 处")
-    c.check(not weak, "全部 21 张图均有独立正文引用",
+    c.check(not weak, "全部 11 张图均有独立正文引用",
             "全部合规" if not weak else "仅靠区间/caption 兜底: " + ", ".join(weak))
 
     # ── D ────────────────────────────────────────────────────────
