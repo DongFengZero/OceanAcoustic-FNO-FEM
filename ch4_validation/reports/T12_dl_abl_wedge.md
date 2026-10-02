@@ -3,7 +3,7 @@
 - 对象：`tab:dl-abl-wedge`（Table 12）
 - 结论：**PASS** — 86 通过 / 0 失败 / 0 警告，共 86 项
 - 脚本：`ch4_validation/scripts/T12_dl_abl_wedge.py`
-- 生成：2026-07-30 00:04:08
+- 生成：2026-07-31 03:59:59
 
 ## 1. 源清单
 
@@ -22,7 +22,7 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 权威脚本存在 | advantage_depth_line.py | PASS |
-| repo 副本与权威副本 md5 相同 | `0eb5636754e20cf348fc581ecfac0216` | PASS |
+| repo 副本与权威副本 md5 相同 | `df5ac6dbcd6cc3a8aef5973a4199264e` | PASS |
 | MAE json 存在 | 重绘结果/advantage_depthline_MAE_bigfont/_mae_tables.json | PASS |
 | Case29_W1_Full 的 ep200 npz 存在 | Case25-32/Case29_W1_Full/Case29_W1_Full__TL原始数据_ep200.npz | PASS |
 | Case30_W1_no_prior 的 ep200 npz 存在 | Case25-32/Case30_W1_no_prior/Case30_W1_no_prior__TL原始数据_ep200.npz | PASS |
@@ -134,7 +134,7 @@
 |---|---|---|
 | 脚本产出 PDF 存在 | 重绘结果/advantage_depthline_MAE_bigfont/ablation_W1_module_advantage.pdf | PASS |
 | 论文图件存在 | ../JASA/OE/els-cas-templates/Figures/results/ablation_W1_module_advantage.pdf | PASS |
-| 两者逐字节相同 | md5 `6844ad600441185aa6e538503bfbd352` | PASS |
+| 两者逐字节相同 | md5 `be85c045929e41f8a25b6d535658b288` | PASS |
 | `fig:dl-abl-wedge` 已在 aux 注册 | 编号 `13` | PASS |
 | 图注深度与表一致 | 图注含 `y=33.4\,m` | PASS |
 | 图注声明 last epoch |  | PASS |

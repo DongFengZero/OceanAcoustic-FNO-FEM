@@ -3,7 +3,7 @@
 - 对象：`fig:res-128/256/512`（Fig. 5/6/7）
 - 结论：**PASS** — 94 通过 / 0 失败 / 0 警告，共 94 项
 - 脚本：`ch4_validation/scripts/FIG05_07_res_fields.py`
-- 生成：2026-07-30 00:05:19
+- 生成：2026-07-31 04:01:39
 
 ## 1. 源清单
 
@@ -25,7 +25,7 @@
 |---|---|---|
 | 权威成图脚本存在 | D:\Data\regen_results_bigfont.py | PASS |
 | repo 副本存在 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/regen_results_bigfont.py | PASS |
-| 两份成图脚本 md5 同源 | 6f8f8c47d10457cc… | PASS |
+| 两份成图脚本 md5 同源 | e4706ea954571107… | PASS |
 | Case 3 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No03_R1/Case03_R1__TL原始数据_ep200.npz | PASS |
 | Case 9 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No09_W1/Case09_W1__TL原始数据_ep200.npz | PASS |
 | Case 4 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No04_R2/Case04_R2__TL原始数据_ep200.npz | PASS |

@@ -3,7 +3,12 @@
 """
 regen_gen_extrap_bigfont.py
 ===========================
-重绘论文图 39-42 的泛化外推图 gen_extrap_{R9,R10,W9,W10}.pdf。
+生成论文图（第四章）——本脚本是这 2 张图的成图入口：
+    Fig. 21  fig:gen-grid        Cases 39, 40  (R9/R10, 矩形外推)  4.7 节
+    Fig. 22  fig:gen-grid-wedge  Cases 41, 42  (W9/W10, 楔形外推)  4.7 节
+
+重绘 gen_extrap_{R9,R10,W9,W10}.pdf（R9/R10/W9/W10 即 Cases 39-42；下面旧注释
+里的“图 39-42”是案例号，不是图号）。
 布局与原图完全一致(4 行频率 25/50/75/100 Hz × 3 列 Ours/COMSOL/Error)，
 渲染逻辑与 regen_results_bigfont.py 相同(griddata cubic + 障碍/楔形遮罩 + clip)，
 **仅放大字体**(与 33-38 网格图同款字号)。

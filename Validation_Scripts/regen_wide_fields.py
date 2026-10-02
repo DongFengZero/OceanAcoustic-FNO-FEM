@@ -3,6 +3,11 @@
 """
 regen_wide_fields.py
 ====================
+辅助脚本（非核验入口）：只针对宽扁域（Lx≫Ly）的 Cases 4, 5, 10, 11 重绘 TL 场
+图，修正色条比场图高的版式问题。这些案例出现在 Fig. 6（Cases 4, 10）与
+Fig. 7（Cases 5, 11）中；两图的成图入口是 regen_results_bigfont.py，核验
+（FIG05_07_res_fields.py）也以那个脚本为准。
+
 只重绘论文图6/7 的宽扁域 TL 场图：Case04_R2, Case05_R3 (rect),
 Case10_W2, Case11_W3 (wedge)。这些域 Lx≫Ly，原图 aspect='equal' 下场图很矮、
 色条却按整格高度画(shrink=0.8) → 色条比场图高好几倍，场图显得很小。

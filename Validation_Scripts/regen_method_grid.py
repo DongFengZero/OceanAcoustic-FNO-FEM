@@ -3,6 +3,12 @@
 """
 regen_method_grid.py
 ====================
+生成论文图（第四章）——本脚本是这 4 张图的成图入口：
+    Fig. 14  fig:perf-rect   Cases 15-19  (R1, 五方法对比)  4.4 节
+    Fig. 15  fig:perf-wedge  Cases 20-24  (W1, 五方法对比)  4.4 节
+    Fig. 16  fig:abl-rect    Cases 25-28  (R1, 四消融组)    4.5 节
+    Fig. 17  fig:abl-wedge   Cases 29-32  (W1, 四消融组)    4.5 节
+
 把图14-17(方法对比 R1/W1、消融 R1/W1)从"5(或4)个方法各自一张 8x3 全图并排"
 (COMSOL 列重复 4-5 次、96-120 个微型子图、字迹不可辨)重构为**单张统一网格**：
 

@@ -22,7 +22,7 @@ results are tens of gigabytes, so they are hosted on Baidu Netdisk:
 | Data | Size | Link |
 |---|---|---|
 | Simulation datasets (22 configs, R0--R10 / W0--W10) | ~74 GB | [Dataset](https://pan.baidu.com/s/1-G0axu7IRo3KiqnLv4bI-Q?pwd=9u97) · code `9u97` |
-| Raw experimental data (per-case results + training logs) | 20.9 GB | [Raw_Experimental_Data](https://pan.baidu.com/s/16Q---bIQs0Hpf-SJxBmnUg?pwd=hmzx) · code `hmzx` |
+| Raw experimental data (per-case results + training logs) | 20.9 GB | [Raw_Experimental_Data](https://pan.baidu.com/s/1o3Avf2c7tQyKA3huSwkoSg?pwd=463b) · code `463b` |
 
 ## Repository layout
 
@@ -101,6 +101,52 @@ prints the values it writes, so its output can be diffed against the paper:
 | `regen_gen_extrap_bigfont.py` | Figs. 21--22, extrapolation fields |
 | `build_perf.py` | Tables 20--21, runtime statistics (writes an `.xlsx`) |
 | `build_perf_figure.py` | Fig. 23, the three runtime panels |
+
+Each figure script also names the figures it produces in its own module
+docstring, so the file alone tells you what it is for.
+`Validation_Scripts/INDEX.md` holds the full object-to-script map.
+
+The tables are printed by a parallel set of scripts, one per family, so every
+table in Chapter 4 can be read off stdout and diffed against the paper:
+
+| Script | Prints |
+|---|---|
+| `table03_datasets.py` | Table 3, dataset configurations |
+| `table04_05_ideal.py` | Tables 4--5, ideal waveguides |
+| `table06_08_forward.py` | Tables 6--8, forward accuracy |
+| `table09_12_depthline.py` | Tables 9--12, depth-line MAE |
+| `table13_14_perf.py` | Tables 13--14, five-method comparison |
+| `table15_19_abl_mesh_gen.py` | Tables 15--19, ablation / mesh / generalization |
+| `table20_21_runtime.py` | Tables 20--21, runtime |
+
+These do not re-implement any parsing: each imports the same loader the
+verification suite uses (`common/metrics.py:xlsx_case()`,
+`common/depthline.py:recompute()`, or the matching `scripts/T*.py`), so a
+printed value and a verified value come from one function call and cannot drift
+apart.
+
+Two helpers cover the whole folder at once:
+
+```bash
+cd Validation_Scripts
+python run_all.py                 # print all 19 tables (fast, writes nothing)
+python run_all.py --xlsx-check    # also confirm the xlsx rebuilds from the logs
+python run_all.py --all           # also redraw every figure (see caveat below)
+```
+
+`run_all.py` checks how many tables each script was supposed to print and fails
+if any are missing, so a broken script cannot pass unnoticed.
+`build_accuracy_xlsx.py` closes the last gap in the provenance chain: the
+accuracy spreadsheets behind Tables 4, 6--8 and 13--19 were produced by the
+original training runs, and this script rebuilds them from the training logs
+alone. Its `--check` mode reports **420/420 values matching** the archived
+spreadsheets across Cases 1--42, which is what lets those tables be traced back
+to raw logs rather than taken on trust.
+
+Redrawing figures rewrites the PDF timestamps, which breaks the
+figure-table-same-run `md5` assertions for Figs. 10--13 (8 checks). Use
+`run_all.py --all --sync-figures` to restore them, or leave figures alone when
+only checking values.
 
 The remaining scripts in that folder (`redraw_tl_figures.py`,
 `regen_wide_fields.py`, `restore_tl_figure.py`, `scan_depth_lines.py`) are

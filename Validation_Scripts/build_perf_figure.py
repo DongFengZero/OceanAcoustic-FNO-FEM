@@ -1,6 +1,15 @@
 # -*- coding: utf-8 -*-
-"""Merged performance figure: 3 subplots in one double-column figure.
-(a) multi-GPU throughput, (b) speed-up over COMSOL, (c) single-DCU scaling.
+"""build_perf_figure.py
+=======================
+Paper figure (Chapter 4) — this script is the sole generator for:
+    Fig. 23   fig:perf   Cases 43-50   Sec. 4.8   -> Figures/results/perf_merged.pdf
+        (a) multi-GPU throughput          Cases 43, 44  (cf. Table 20)
+        (b) speed-up over COMSOL          Cases 43, 44  (cf. Table 20)
+        (c) single-DCU per-sample time    Cases 45-50   (cf. Table 21)
+
+Values are hard-coded below and must track Tables 20/21; the verification
+(FIG23_perf.py) asserts they match the typeset tables. build_perf.py is a
+different script -- it writes the xlsx and draws nothing.
 Annotations are kept inside the axes frame."""
 import matplotlib
 matplotlib.use("Agg")
@@ -20,8 +29,8 @@ gpus = [1, 2, 4]
 thr = {"R1": [52.82, 98.22, 163.78], "W1": [62.42, 120.35, 211.77]}
 spd = {"R1": [45.9, 85.4, 142.4],   "W1": [31.4, 60.5, 106.4]}
 # single-DCU scaling (from tab:runtime-scale, authoritative)
-nodes_R = [21737, 85353, 337351]; time_R = [47.02, 85.86, 249.53]
-nodes_W = [10680, 41633, 165034]; time_W = [40.10, 58.24, 132.41]
+nodes_R = [21737, 85353, 337351]; time_R = [47.53, 86.50, 251.39]
+nodes_W = [10680, 41633, 165034]; time_W = [40.57, 58.04, 133.09]
 edge = [128, 256, 512]
 
 # long, wide, short strip

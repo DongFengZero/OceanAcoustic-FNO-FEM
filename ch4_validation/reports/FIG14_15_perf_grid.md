@@ -3,7 +3,7 @@
 - 对象：`fig:perf-rect / fig:perf-wedge`（Fig. 14/15）
 - 结论：**PASS** — 60 通过 / 0 失败 / 0 警告，共 60 项
 - 脚本：`ch4_validation/scripts/FIG14_15_perf_grid.py`
-- 生成：2026-07-30 00:06:27
+- 生成：2026-07-31 04:03:24
 
 ## 1. 源清单
 
@@ -17,7 +17,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 成图脚本两份副本 md5 同源 | 权威 `309abb27` / repo `309abb27` | PASS |
+| 成图脚本两份副本 md5 同源 | 权威 `c77d888b` / repo `c77d888b` | PASS |
 | GRID == 200 | 脚本内 `200` | PASS |
 | 插值 METHOD == cubic | 脚本内 `cubic` | PASS |
 | 每频率展示 2 个样本 | 脚本内 `2` | PASS |

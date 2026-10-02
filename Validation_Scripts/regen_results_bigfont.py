@@ -3,6 +3,15 @@
 """
 regen_results_bigfont.py
 ========================
+生成论文图（第四章）——本脚本是这 7 张图的成图入口：
+    Fig. 5   fig:res-128        Cases 3, 9        (R1/W1, 多频, 128 m)  4.3 节
+    Fig. 6   fig:res-256        Cases 4, 10       (R2/W2, 多频, 256 m)  4.3 节
+    Fig. 7   fig:res-512        Cases 5, 11       (R3/W3, 多频, 512 m)  4.3 节
+    Fig. 8   fig:res-rect-100   Cases 6, 7, 8     (R4/R5/R6, 100 Hz)    4.3 节
+    Fig. 9   fig:res-wedge-100  Cases 12, 13, 14  (W4/W5/W6, 100 Hz)    4.3 节
+    Fig. 18  fig:mesh-rect      Cases 33, 34, 35  (R4/R7/R8, 网格无关)  4.6 节
+    Fig. 19  fig:mesh-wedge     Cases 36, 37, 38  (W4/W7/W8, 网格无关)  4.6 节
+
 重绘 results/ 下当前论文使用的 36 张 TL 对比图 (CaseNN_XX_TL.pdf)。
 结构与原图完全一致 (每个 case 8×3 网格: Ours / COMSOL / Error)，
 仅放大字体、加粗刻度与标记，解决原图字体偏小的问题。

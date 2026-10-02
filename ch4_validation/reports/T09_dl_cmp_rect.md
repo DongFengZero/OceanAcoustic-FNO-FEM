@@ -3,7 +3,7 @@
 - 对象：`tab:dl-cmp-rect`（Table 9）
 - 结论：**PASS** — 99 通过 / 0 失败 / 0 警告 / 1 豁免，共 100 项
 - 脚本：`ch4_validation/scripts/T09_dl_cmp_rect.py`
-- 生成：2026-07-30 00:03:48
+- 生成：2026-07-31 03:59:40
 
 ## 1. 源清单
 
@@ -22,7 +22,7 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 权威脚本存在 | advantage_depth_line.py | PASS |
-| repo 副本与权威副本 md5 相同 | `0eb5636754e20cf348fc581ecfac0216` | PASS |
+| repo 副本与权威副本 md5 相同 | `df5ac6dbcd6cc3a8aef5973a4199264e` | PASS |
 | MAE json 存在 | 重绘结果/advantage_depthline_MAE_bigfont/_mae_tables.json | PASS |
 | Case15_R1_Proposed 的 ep200 npz 存在 | Case15-24/Case15_R1_Proposed/Case15_R1_Proposed__TL原始数据_ep200.npz | PASS |
 | Case16_R1_DeepONet 的 ep200 npz 存在 | Case15-24/Case16_R1_DeepONet/Case16_R1_DeepONet__TL原始数据_ep200.npz | PASS |
@@ -145,7 +145,7 @@
 |---|---|---|
 | 脚本产出 PDF 存在 | 重绘结果/advantage_depthline_MAE_bigfont/comparison_R1_model_advantage.pdf | PASS |
 | 论文图件存在 | ../JASA/OE/els-cas-templates/Figures/results/comparison_R1_model_advantage.pdf | PASS |
-| 两者逐字节相同 | md5 `e98b21f1c17c436932acf38c3190572a` | PASS |
+| 两者逐字节相同 | md5 `df03cb3c4fff3ce8f909916c914be1da` | PASS |
 | `fig:dl-cmp-rect` 已在 aux 注册 | 编号 `10` | PASS |
 | 图注深度与表一致 | 图注含 `y=56.1\,m` | PASS |
 | 图注声明 last epoch |  | PASS |

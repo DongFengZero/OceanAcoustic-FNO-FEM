@@ -3,7 +3,7 @@
 - 对象：`fig:dl-abl-rect / fig:dl-abl-wedge`（Fig. 12/13）
 - 结论：**PASS** — 44 通过 / 0 失败 / 0 警告，共 44 项
 - 脚本：`ch4_validation/scripts/FIG12_13_dl_abl.py`
-- 生成：2026-07-30 00:06:13
+- 生成：2026-07-31 04:03:09
 
 ## 1. 源清单
 
@@ -16,7 +16,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 成图脚本两份副本 md5 同源 | 权威 `0eb56367` / repo `0eb56367` | PASS |
+| 成图脚本两份副本 md5 同源 | 权威 `df5ac6db` / repo `df5ac6db` | PASS |
 | GRID == 300 | 脚本内 `300` | PASS |
 | 插值 METHOD == cubic | 脚本内 `cubic` | PASS |
 | FREQS 一致 | 脚本内 `[25, 50, 75, 100]` | PASS |
@@ -68,8 +68,8 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| fig:dl-abl-rect 论文图件与脚本产物 md5 相同 | `9d0df8af` vs `9d0df8af` | PASS |
-| fig:dl-abl-wedge 论文图件与脚本产物 md5 相同 | `6844ad60` vs `6844ad60` | PASS |
+| fig:dl-abl-rect 论文图件与脚本产物 md5 相同 | `3bf90121` vs `3bf90121` | PASS |
+| fig:dl-abl-wedge 论文图件与脚本产物 md5 相同 | `be85c045` vs `be85c045` | PASS |
 
 ## 5. 图与兄弟表的版面归属
 

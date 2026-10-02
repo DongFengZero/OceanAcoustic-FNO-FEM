@@ -3,6 +3,10 @@
 """
 regen_ideal_panels.py
 =====================
+生成论文图（第四章）：
+    Fig. 3   fig:ideal-rect     Case 1  (R0, 矩形)   4.2 节
+    Fig. 4   fig:ideal-wedge    Case 2  (W0, 楔形)   4.2 节
+
 重绘论文图3(R0)/图4(W0) 的解析验证面板 CaseNN_XX_fYY_panel.pdf。
 统一风格：
   * 深度线(最左)——与图10-13(advantage_depth_line)一致：解析解画成粗灰底带，

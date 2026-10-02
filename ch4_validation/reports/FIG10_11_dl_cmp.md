@@ -3,7 +3,7 @@
 - 对象：`fig:dl-cmp-rect / fig:dl-cmp-wedge`（Fig. 10/11）
 - 结论：**PASS** — 38 通过 / 0 失败 / 0 警告，共 38 项
 - 脚本：`ch4_validation/scripts/FIG10_11_dl_cmp.py`
-- 生成：2026-07-30 00:06:00
+- 生成：2026-07-31 04:02:57
 
 ## 1. 源清单
 
@@ -16,7 +16,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 成图脚本两份副本 md5 同源 | 权威 `0eb56367` / repo `0eb56367` | PASS |
+| 成图脚本两份副本 md5 同源 | 权威 `df5ac6db` / repo `df5ac6db` | PASS |
 | GRID == 300 | 脚本内 `300` | PASS |
 | 插值 METHOD == cubic | 脚本内 `cubic` | PASS |
 | FREQS 一致 | 脚本内 `[25, 50, 75, 100]` | PASS |
@@ -68,8 +68,8 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| fig:dl-cmp-rect 论文图件与脚本产物 md5 相同 | `e98b21f1` vs `e98b21f1` | PASS |
-| fig:dl-cmp-wedge 论文图件与脚本产物 md5 相同 | `67fba98d` vs `67fba98d` | PASS |
+| fig:dl-cmp-rect 论文图件与脚本产物 md5 相同 | `df03cb3c` vs `df03cb3c` | PASS |
+| fig:dl-cmp-wedge 论文图件与脚本产物 md5 相同 | `3889536d` vs `3889536d` | PASS |
 
 ## 5. 图与兄弟表的版面归属
 

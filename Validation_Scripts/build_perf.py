@@ -23,6 +23,21 @@ def get_test_block(txt):
     if m: return float(m.group(1)), float(m.group(2)), float(m.group(3))
     return None, None, None
 
+def get_test_block_final(txt):
+    """同 get_test_block，但取**最后一个**'推理时间统计摘要'块。
+
+    日志每 25 epoch 记一次摘要，末块是训练结束的最终汇总（样本累积量最大、
+    统计最稳）。Case45-50 的域尺度缩放用它，而非首块（epoch 25 的早期快照）。
+    """
+    ms = re.findall(
+        r'测试集:\s*\n\s*平均每样本时间:\s*([\d.]+)\s*ms\s*\n\s*'
+        r'平均每epoch时间:\s*([\d.]+)\s*s\s*\n\s*总测试时间:\s*([\d.]+)\s*s',
+        txt)
+    if ms:
+        a, b, c = ms[-1]
+        return float(a), float(b), float(c)
+    return None, None, None
+
 def get_throughput_test(txt):
     """测试集总体统计里的吞吐量(第2个'吞吐量')"""
     tps = re.findall(r'吞吐量:\s*([\d.]+)\s*samples/s', txt)
@@ -66,8 +81,11 @@ scale_rows = []
 for no, did, geom, lx, ly, folder in SCALE:
     lf = glob.glob(os.path.join(SUP3, folder, '*.log'))[0]
     txt = read(lf)
-    ms, ep, tot = get_test_block(txt)
-    tp = get_throughput_test(txt)
+    ms, ep, tot = get_test_block_final(txt)
+    # 吞吐量由单样本时延导出（1000/ms），即逐样本串行处理的速率。
+    # 不用日志里的"吞吐量"字段——那是 200 样本并行的批量吞吐（口径不同，
+    # 且与 Table 20 的批量吞吐不可混用）。本表/图不呈现吞吐量，仅存于 xlsx。
+    tp = (1000.0 / ms) if ms else None
     # 节点数(从 periodic_tl_raw 保存行 或 网格行)
     mnode = re.search(r'节点[ :]*(\d{3,})', txt)
     N = int(mnode.group(1)) if mnode else None
@@ -116,7 +134,7 @@ ws2.merge_cells('A1:H1')
 ws2['A1']='Case 45-50 推理时间 · 域尺寸缩放 (R4/R5/R6/W4/W5/W6, 100Hz, 单GPU测试集)'
 ws2['A1'].font=Font(bold=True,size=12)
 ws2.merge_cells('A2:H2')
-ws2['A2']='说明: 取自各案例200轮训练日志的测试集推理时间摘要。随域尺寸(128→256→512)增大，节点数与单样本推理时间显著上升。'
+ws2['A2']='说明: 单样本时间取自各案例训练结束时(200轮)最后一个"推理时间统计摘要"块的测试集平均每样本时间。吞吐量由该时延导出(=1000/单样本ms)，即逐样本串行速率，与 Sheet1 中 200 样本并行的批量吞吐口径不同，两者不可直接比较。论文 Table 21 与 Fig. 23(c) 只呈现单样本时间，吞吐量仅记录于此。随域尺寸(128→256→512)增大，节点数与单样本推理时间显著上升。'
 ws2['A2'].font=Font(italic=True,size=9,color='595959'); ws2.row_dimensions[2].height=26
 hdr2=['Case','数据集','几何','Lx','Ly','网格节点数','单样本时间(ms)','吞吐量(samp/s)']
 ws2.append([None]*8)

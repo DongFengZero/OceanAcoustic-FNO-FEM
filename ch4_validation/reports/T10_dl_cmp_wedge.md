@@ -3,7 +3,7 @@
 - 对象：`tab:dl-cmp-wedge`（Table 10）
 - 结论：**PASS** — 96 通过 / 0 失败 / 0 警告 / 1 豁免，共 97 项
 - 脚本：`ch4_validation/scripts/T10_dl_cmp_wedge.py`
-- 生成：2026-07-30 00:03:54
+- 生成：2026-07-31 03:59:45
 
 ## 1. 源清单
 
@@ -22,7 +22,7 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 权威脚本存在 | advantage_depth_line.py | PASS |
-| repo 副本与权威副本 md5 相同 | `0eb5636754e20cf348fc581ecfac0216` | PASS |
+| repo 副本与权威副本 md5 相同 | `df5ac6dbcd6cc3a8aef5973a4199264e` | PASS |
 | MAE json 存在 | 重绘结果/advantage_depthline_MAE_bigfont/_mae_tables.json | PASS |
 | Case20_W1_Proposed 的 ep200 npz 存在 | Case15-24/Case20_W1_Proposed/Case20_W1_Proposed__TL原始数据_ep200.npz | PASS |
 | Case21_W1_DeepONet 的 ep200 npz 存在 | Case15-24/Case21_W1_DeepONet/Case21_W1_DeepONet__TL原始数据_ep200.npz | PASS |
@@ -143,7 +143,7 @@
 |---|---|---|
 | 脚本产出 PDF 存在 | 重绘结果/advantage_depthline_MAE_bigfont/comparison_W1_model_advantage.pdf | PASS |
 | 论文图件存在 | ../JASA/OE/els-cas-templates/Figures/results/comparison_W1_model_advantage.pdf | PASS |
-| 两者逐字节相同 | md5 `67fba98d9555cec3d95add51dc87105a` | PASS |
+| 两者逐字节相同 | md5 `3889536d66f9f2f90c69ee87ba2a2d03` | PASS |
 | `fig:dl-cmp-wedge` 已在 aux 注册 | 编号 `11` | PASS |
 | 图注深度与表一致 | 图注含 `y=30.4\,m` | PASS |
 | 图注声明 last epoch |  | PASS |

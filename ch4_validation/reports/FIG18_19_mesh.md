@@ -3,7 +3,7 @@
 - 对象：`fig:mesh-rect / fig:mesh-wedge`（Fig. 18/19）
 - 结论：**PASS** — 106 通过 / 0 失败 / 0 警告，共 106 项
 - 脚本：`ch4_validation/scripts/FIG18_19_mesh.py`
-- 生成：2026-07-30 00:07:07
+- 生成：2026-07-31 04:04:42
 
 ## 1. 源清单
 
@@ -30,7 +30,7 @@
 | Case 37 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No37_W7/Case37_W7__TL原始数据_ep200.npz | PASS |
 | Case 38 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No38_W8/Case38_W8__TL原始数据_ep200.npz | PASS |
 | 成图脚本两份副本均存在 |  | PASS |
-| 两份成图脚本 md5 同源 | 6f8f8c47d10457cc… | PASS |
+| 两份成图脚本 md5 同源 | e4706ea954571107… | PASS |
 | 图件 Case33_R4_TL.pdf 存在 | ../JASA/OE/els-cas-templates/Figures/results/Case33_R4_TL.pdf | PASS |
 | 图件 Case34_R7_TL.pdf 存在 | ../JASA/OE/els-cas-templates/Figures/results/Case34_R7_TL.pdf | PASS |
 | 图件 Case35_R8_TL.pdf 存在 | ../JASA/OE/els-cas-templates/Figures/results/Case35_R8_TL.pdf | PASS |

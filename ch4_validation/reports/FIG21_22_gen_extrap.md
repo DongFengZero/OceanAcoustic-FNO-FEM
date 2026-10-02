@@ -3,7 +3,7 @@
 - 对象：`fig:gen-grid / fig:gen-grid-wedge`（Fig. 21/22）
 - 结论：**PASS** — 54 通过 / 0 失败 / 0 警告，共 54 项
 - 脚本：`ch4_validation/scripts/FIG21_22_gen_extrap.py`
-- 生成：2026-07-30 00:07:19
+- 生成：2026-07-31 04:04:56
 
 ## 1. 源清单
 
@@ -20,7 +20,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 成图脚本两份副本 md5 同源 | 权威 `f9d74d5c` / repo `f9d74d5c` | PASS |
+| 成图脚本两份副本 md5 同源 | 权威 `699771c3` / repo `699771c3` | PASS |
 | 脚本内 Src 为 1 位小数（全章统一口径） |  | PASS |
 | Case 39 R9 npz 样本数 = 8 | 4 频率 x 2 样本，实得 8 | PASS |
 | gen_extrap_R9.pdf 存在 | gen_extrap_R9.pdf | PASS |

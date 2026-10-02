@@ -3,7 +3,7 @@
 - 对象：`tab:dl-abl-rect`（Table 11）
 - 结论：**PASS** — 85 通过 / 0 失败 / 0 警告，共 85 项
 - 脚本：`ch4_validation/scripts/T11_dl_abl_rect.py`
-- 生成：2026-07-30 00:04:03
+- 生成：2026-07-31 03:59:54
 
 ## 1. 源清单
 
@@ -22,7 +22,7 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 权威脚本存在 | advantage_depth_line.py | PASS |
-| repo 副本与权威副本 md5 相同 | `0eb5636754e20cf348fc581ecfac0216` | PASS |
+| repo 副本与权威副本 md5 相同 | `df5ac6dbcd6cc3a8aef5973a4199264e` | PASS |
 | MAE json 存在 | 重绘结果/advantage_depthline_MAE_bigfont/_mae_tables.json | PASS |
 | Case25_R1_Full 的 ep200 npz 存在 | Case25-32/Case25_R1_Full/Case25_R1_Full__TL原始数据_ep200.npz | PASS |
 | Case26_R1_no_prior 的 ep200 npz 存在 | Case25-32/Case26_R1_no_prior/Case26_R1_no_prior__TL原始数据_ep200.npz | PASS |
@@ -133,7 +133,7 @@
 |---|---|---|
 | 脚本产出 PDF 存在 | 重绘结果/advantage_depthline_MAE_bigfont/ablation_R1_module_advantage.pdf | PASS |
 | 论文图件存在 | ../JASA/OE/els-cas-templates/Figures/results/ablation_R1_module_advantage.pdf | PASS |
-| 两者逐字节相同 | md5 `9d0df8af47d1b1bb78566520bdb02f1f` | PASS |
+| 两者逐字节相同 | md5 `3bf9012160fae36f2af92a8134b76a4e` | PASS |
 | `fig:dl-abl-rect` 已在 aux 注册 | 编号 `12` | PASS |
 | 图注深度与表一致 | 图注含 `y=71.9\,m` | PASS |
 | 图注声明 last epoch |  | PASS |

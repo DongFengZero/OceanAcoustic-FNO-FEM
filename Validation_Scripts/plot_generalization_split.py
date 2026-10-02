@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """plot_generalization_split.py
 ================================
+Paper figure (Chapter 4) — this script is the sole generator for:
+    Fig. 20   fig:gen-split   Cases 39-42 (R9, R10, W9, W10)   Sec. 4.7
+
 Generate the train/test source-distribution figure for the generalization
 experiments (Cases 39-42: R9, R10, W9, W10) of Sec. 4.7.
 
