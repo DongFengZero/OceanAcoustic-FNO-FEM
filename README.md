@@ -54,7 +54,7 @@ verifies against the dataset folders directly.
 │   ├── ...                  (fig04_05_10_fields, fig06_07_dl, ... fig13_perf)
 │   ├── table03_datasets.py  one script per table family
 │   ├── ...
-│   ├── table20_21_runtime.py
+│   ├── table14_runtime.py
 │   └── run_all.py           prints every table in one command
 ├── ch4_validation/          value-level verification of every table and figure
 │   ├── verify.py            entry point: python verify.py
@@ -65,10 +65,9 @@ verifies against the dataset folders directly.
 └── README.md
 ```
 
-The script file names keep their pre-revision numbers (`table09_12_depthline.py`
-prints Tables 8--9 of the R1 manuscript, for example). Each file's docstring
-states the numbers it currently serves, and `Validation_Scripts/INDEX.md` maps
-every object to its script in paper order.
+Script names follow the R1 numbering of tables and figures (Figs. S1--S7 for the
+Supplementary Material); `Validation_Scripts/INDEX.md` maps every object to its
+script in paper order.
 
 ## Reproducing the results
 
@@ -170,15 +169,15 @@ Table numbers are R1's:
 | 3 | `tab:datasets` | 1--50 | `table03_datasets.py` |
 | 4 | `tab:ideal-overall` | 1--2 | `table04_05_ideal.py` |
 | 5 | `tab:ideal-depthline` | 1--2 | `table04_05_ideal.py` |
-| 6 | `tab:res-rect-mf` | 3--5, 9--11 | `table06_08_forward.py` |
-| 7 | `tab:sq100` | 6--8, 12--14 | `table06_08_forward.py` |
-| 8 | `tab:dl-cmp` | 15--24 | `table09_12_depthline.py` |
-| 9 | `tab:dl-abl` | 25--32 | `table09_12_depthline.py` |
-| 10 | `tab:perf-cmp` | 15--24 | `table13_14_perf.py` |
-| 11 | `tab:abl` | 25--32 | `table15_19_abl_mesh_gen.py` |
-| 12 | `tab:mesh` | 33--38 | `table15_19_abl_mesh_gen.py` |
-| 13 | `tab:gen-overall` | 39--42 | `table15_19_abl_mesh_gen.py` |
-| 14 | `tab:runtime` | 43--50 | `table20_21_runtime.py` |
+| 6 | `tab:res-rect-mf` | 3--5, 9--11 | `table06_07_forward.py` |
+| 7 | `tab:sq100` | 6--8, 12--14 | `table06_07_forward.py` |
+| 8 | `tab:dl-cmp` | 15--24 | `table08_09_depthline.py` |
+| 9 | `tab:dl-abl` | 25--32 | `table08_09_depthline.py` |
+| 10 | `tab:perf-cmp` | 15--24 | `table10_perf_cmp.py` |
+| 11 | `tab:abl` | 25--32 | `table11_13_abl_mesh_gen.py` |
+| 12 | `tab:mesh` | 33--38 | `table11_13_abl_mesh_gen.py` |
+| 13 | `tab:gen-overall` | 39--42 | `table11_13_abl_mesh_gen.py` |
+| 14 | `tab:runtime` | 43--50 | `table14_runtime.py` |
 
 Tables 1--2 are typeset directly in the manuscript source and have no generating
 script.

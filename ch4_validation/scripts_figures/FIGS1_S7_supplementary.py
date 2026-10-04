@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-FIGS_supplementary.py — 补充材料 Figs. S1-S7 核验（跨文件）
+FIGS1_S7_supplementary.py — 补充材料 Figs. S1-S7 核验（跨文件）
 
 R1 把 5 组场图（原 Fig. 6、7、16、17、22）移出正文，作为补充材料 Figs. S1-S7，
-用正文同一套渲染器按印刷尺寸重绘（Validation_Scripts/figS_supplementary）。
+用正文同一套渲染器按印刷尺寸重绘（Validation_Scripts/figS1_S7_supplementary）。
 本脚本核四件事：
 
   A. 图上数值 ↔ 原始 npz：每行的声源坐标与平均误差，用成图脚本自身的插值函数
@@ -22,12 +22,12 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from common import paths, report, texparse as T
 
-SLUG = "FIGS_supplementary"
+SLUG = "FIGS1_S7_supplementary"
 TEXDIR = os.path.dirname(paths.TEX)
 SUPP = os.path.join(TEXDIR, "OE_supplementary.tex")
 RTR = os.path.join(TEXDIR, "Response_to_Reviewers.tex")
 FIGDIR = os.path.join(TEXDIR, "Figures", "supplementary")
-GEN = os.path.join(paths.REPO, "Validation_Scripts", "figS_supplementary")
+GEN = os.path.join(paths.REPO, "Validation_Scripts", "figS1_S7_supplementary")
 sys.path.insert(0, GEN)
 sys.path.insert(0, os.path.join(paths.REPO, "Validation_Scripts"))
 
@@ -72,14 +72,14 @@ def run():
     c.source("补充材料 tex", SUPP, "图题与正文编号")
     c.source("正文 tex", paths.TEX, "S 引用")
     c.source("回复信 tex", RTR, "附录 B 映射")
-    c.source("成图脚本", os.path.join(GEN, "figS_supplementary.py"), "渲染器复用正文 Fig. 4/8/12")
+    c.source("成图脚本", os.path.join(GEN, "figS1_S7_supplementary.py"), "渲染器复用正文 Fig. 4/8/12")
 
     supp = io.open(SUPP, encoding="utf8").read()
     main = T.tex_text()
     aux = T.labels()
 
     # ── A + B ───────────────────────────────────────────────────
-    import figS_supplementary as G
+    import figS1_S7_supplementary as G
     FF, PG = G.FF, G.PG
     import numpy as np
     c.section("1. 图上数值 ↔ npz（ep200，成图脚本同一插值）", ("检查项", "重算 / 图上", "结论"))

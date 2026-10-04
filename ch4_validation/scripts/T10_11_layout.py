@@ -16,7 +16,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from common import paths, registry, report, texparse as T
 
-SLUG = "T13_16_layout"
+SLUG = "T10_11_layout"
 TABLES = {
     "tab:perf-cmp": {"num": 10, "style": "TABstylePerf", "col2": "Method"},
     "tab:abl": {"num": 11, "style": "TABstylePerfTight", "col2": "Variant"},

@@ -57,7 +57,7 @@ SCRIPT_MAP = {
     "T14_runtime":           ("scripts", "T14_runtime"),
     # 图：scripts_figures/<脚本名>.py
     "F03_ideal":       ("scripts_figures", "FIG03_ideal"),
-    "F04_res_128":     ("scripts_figures", "FIG04_05_fields"),
+    "F04_res_128":     ("scripts_figures", "FIG04_res_128"),
     "F05_sq100":       ("scripts_figures", "FIG05_sq100"),
     "F06_dl_cmp":      ("scripts_figures", "FIG06_dl_cmp"),
     "F07_dl_abl":      ("scripts_figures", "FIG07_dl_abl"),
@@ -71,13 +71,13 @@ SCRIPT_MAP = {
 
 # ── 跨对象核验（不属于单个表/图，单独计入） ────────────────────────
 CROSS_CHECKS = [
-    ("T13_16_layout", "scripts", "T13_16_layout",
-     "Tables 13-16 等宽版式一致性"),
+    ("T10_11_layout", "scripts", "T10_11_layout",
+     "Tables 10-11 等宽版式一致性"),
     ("TABALL_refs", "scripts", "TABALL_refs",
      "全章表格引用完整性（无孤表/无悬空/独立正文引用）"),
     ("FIGALL_refs", "scripts_figures", "FIGALL_refs",
      "全章图件引用完整性（无孤图/无悬空/独立正文引用）"),
-    ("FIGS_supplementary", "scripts_figures", "FIGS_supplementary",
+    ("FIGS1_S7_supplementary", "scripts_figures", "FIGS1_S7_supplementary",
      "补充材料 Figs. S1-S7：图上数值↔npz、印刷字号、正文/回复信交叉引用"),
     ("PROSE_numbers", "scripts", "PROSE_numbers",
      "从正文出发：每个小数须为本节所引表的印刷值（括注 Case 则须在该行）、推导量或配置"),

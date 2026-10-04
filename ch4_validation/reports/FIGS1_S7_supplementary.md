@@ -2,8 +2,8 @@
 
 - 对象：`Figs. S1-S7`（Fig. S1-S7）
 - 结论：**PASS** — 61 通过 / 0 失败 / 0 警告，共 61 项
-- 脚本：`ch4_validation/scripts/FIGS_supplementary.py`
-- 生成：2026-10-04 16:27:25
+- 脚本：`ch4_validation/scripts/FIGS1_S7_supplementary.py`
+- 生成：2026-10-04 17:28:58
 
 ## 1. 源清单
 
@@ -12,7 +12,7 @@
 | 补充材料 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_supplementary.tex` | 图题与正文编号 |
 | 正文 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | S 引用 |
 | 回复信 tex | `../JASA/OE/OE_Revision_R1_Submission/Response_to_Reviewers.tex` | 附录 B 映射 |
-| 成图脚本 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/figS_supplementary/figS_supplementary.py` | 渲染器复用正文 Fig. 4/8/12 |
+| 成图脚本 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/figS1_S7_supplementary/figS1_S7_supplementary.py` | 渲染器复用正文 Fig. 4/8/12 |
 
 ## 1. 图上数值 ↔ npz（ep200，成图脚本同一插值）
 

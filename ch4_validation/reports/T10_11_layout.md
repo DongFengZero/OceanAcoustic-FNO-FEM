@@ -2,8 +2,8 @@
 
 - 对象：``（）
 - 结论：**PASS** — 16 通过 / 0 失败 / 0 警告，共 16 项
-- 脚本：`ch4_validation/scripts/T13_16_layout.py`
-- 生成：2026-10-04 16:24:16
+- 脚本：`ch4_validation/scripts/T10_11_layout.py`
+- 生成：2026-10-04 17:19:37
 
 ## 1. 源清单
 

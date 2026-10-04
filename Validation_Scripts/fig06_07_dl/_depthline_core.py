@@ -10,7 +10,7 @@ advantage_depth_line.py
     Fig. 13  fig:dl-abl-wedge   Cases 29-32  (W1, 四消融组)  4.5 节 · Table 12
 
 图与表出自同一次运行（核验做 PDF md5 比对），表值可用
-Validation_Scripts/table09_12_depthline.py 打印。
+Validation_Scripts/table08_09_depthline.py 打印。
 
 为对比案例(Case13-22)和消融案例(Case23-30)绘制"能证明本文模型/模块优势"的
 深度线折线图。

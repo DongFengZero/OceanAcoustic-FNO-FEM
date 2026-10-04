@@ -3,7 +3,7 @@
 - 结论：**PASS** — 3348 项通过 / 0 项失败 / 19 项豁免
 - 覆盖：23/23 个对象（全覆盖）
 - 核验脚本：28 个，全部通过
-- 生成：2026-10-04 16:27:25
+- 生成：2026-10-04 17:28:58
 - 复现：`python verify.py`
 
 每个对象的逐项明细在 `reports/<脚本名>.md`，本报告只汇总。
@@ -71,7 +71,7 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | `T13_gen_overall` | tab:gen-overall | table | 4.7 | 118 | PASS | [T13_gen_overall](reports/T13_gen_overall.md) |
 | `T14_runtime` | tab:runtime | table | 4.8 | 92 | PASS | [T14_runtime](reports/T14_runtime.md) |
 | `F03_ideal` | fig:ideal | figure | 4.2 | 37 | PASS | [FIG03_ideal](reports/FIG03_ideal.md) |
-| `F04_res_128` | fig:res-128 | figure | 4.3 | 51 | PASS | [FIG04_05_fields](reports/FIG04_05_fields.md) |
+| `F04_res_128` | fig:res-128 | figure | 4.3 | 51 | PASS | [FIG04_res_128](reports/FIG04_res_128.md) |
 | `F05_sq100` | fig:sq100 | figure | 4.3 | 113 | PASS | [FIG05_sq100](reports/FIG05_sq100.md) |
 | `F06_dl_cmp` | fig:dl-cmp | figure | 4.4 | 74 | PASS | [FIG06_dl_cmp](reports/FIG06_dl_cmp.md) |
 | `F07_dl_abl` | fig:dl-abl | figure | 4.5 | 79 | PASS | [FIG07_dl_abl](reports/FIG07_dl_abl.md) |
@@ -88,10 +88,10 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 
 | 检查 | 核验项 | 结论 | 明细 |
 |---|---|---|---|
-| Tables 13-16 等宽版式一致性 | 16 | PASS | [T13_16_layout](reports/T13_16_layout.md) |
+| Tables 10-11 等宽版式一致性 | 16 | PASS | [T10_11_layout](reports/T10_11_layout.md) |
 | 全章表格引用完整性（无孤表/无悬空/独立正文引用） | 44 | PASS | [TABALL_refs](reports/TABALL_refs.md) |
 | 全章图件引用完整性（无孤图/无悬空/独立正文引用） | 36 | PASS | [FIGALL_refs](reports/FIGALL_refs.md) |
-| 补充材料 Figs. S1-S7：图上数值↔npz、印刷字号、正文/回复信交叉引用 | 61 | PASS | [FIGS_supplementary](reports/FIGS_supplementary.md) |
+| 补充材料 Figs. S1-S7：图上数值↔npz、印刷字号、正文/回复信交叉引用 | 61 | PASS | [FIGS1_S7_supplementary](reports/FIGS1_S7_supplementary.md) |
 | 从正文出发：每个小数须为本节所引表的印刷值（括注 Case 则须在该行）、推导量或配置 | 109 | PASS | [PROSE_numbers](reports/PROSE_numbers.md) |
 | 正文中不挂靠表/图的数值：超参数↔代码、三维推导量、样本数、基线门槛 | 21 | PASS | [PROSE_derived](reports/PROSE_derived.md) |
 

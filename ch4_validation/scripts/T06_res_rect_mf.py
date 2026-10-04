@@ -123,7 +123,7 @@ def run():
     # ── E ────────────────────────────────────────────────────────
     c.section("6. Fig. 列已删除；256/512 m 场图由正文指向补充材料")
     c.note("R1 删去了 Table 6 的 Fig. 列（它曾以裸文本 S3/S4 指代补充图）。256/512 m 的"
-           "场图现为补充材料 Figs. S1-S4，由 4.3 节正文引用；补充材料本身由 FIGS_supplementary 核验。")
+           "场图现为补充材料 Figs. S1-S4，由 4.3 节正文引用；补充材料本身由 FIGS1_S7_supplementary 核验。")
     head = (T.tabular_body(env) or "")
     hdr = env[:env.find('\\' + "midrule")] if env else ""
     c.check("Fig." not in hdr, "表头不含 Fig. 列", "表头无 `Fig.`")

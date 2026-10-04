@@ -17,8 +17,8 @@ from common import texparse as T
 # 从 verify.py（cwd=包根）或克隆后的任意位置调用都会断。
 SCRIPT = (Path(__file__).resolve().parents[2]
           / "Validation_Scripts" / "fig03_ideal" / "_ideal_core.py")
-# Case1-2 原始 npz 与 Raw 数据同根（CH4_RAWROOT），未显式指定时据此定位
-os.environ.setdefault("CH4_IDEAL_ROOT", os.path.join(paths._RAWROOT, "Case1-2"))
+# 成图脚本默认读公开数据 Raw_Experimental_Data/4.2_Validation（经 CH4_RAWROOT）
+os.environ.setdefault("CH4_RAWROOT", paths._RAWROOT)
 spec = importlib.util.spec_from_file_location("rip", SCRIPT)
 RIP = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(RIP)
@@ -49,15 +49,16 @@ def run():
     c.check(npz_path and os.path.exists(npz_path), "npz 文件存在",
             paths.rel(npz_path) if npz_path else "未找到")
 
-    # ★ 绘图脚本按 CASE_ROOT=D:\Data\Case1-2 取数，而权威原始数据在
-    #   Raw_Experimental_Data 下。二者必须逐字节相同，否则图与核验分属两份数据。
-    import hashlib
-    mirror = Path(RIP.CASE_ROOT) / CASE / f"{CASE}__TL原始数据_ep200.npz"
-    same = (mirror.exists() and npz_path and
-            hashlib.md5(mirror.read_bytes()).hexdigest() ==
-            hashlib.md5(Path(npz_path).read_bytes()).hexdigest())
-    c.check(same, "绘图脚本取数目录与 Raw_Experimental_Data 同源",
-            f"md5 相同（{paths.rel(str(mirror))}）" if same else "两份 npz 不一致")
+    # ★ 成图脚本实际加载的数组，必须与核验注册的公开 npz 完全相同，
+    #   否则图与核验分属两份数据（例如有人用 CH4_IDEAL_ROOT 指向了别处）。
+    import numpy as np
+    gen = RIP.load(CASE)
+    reg = np.load(npz_path, allow_pickle=True)
+    same = all(np.array_equal(gen[k], reg[k]) for k in ("pred_tl", "fem_tl", "source_pos", "freq"))
+    c.check(same and RIP.CASE_ROOT is None,
+            "成图脚本读取的就是公开数据 Raw_Experimental_Data/4.2_Validation",
+            "pred_tl / fem_tl / source_pos / freq 逐元素相同"
+            + ("" if RIP.CASE_ROOT is None else f"；但 CH4_IDEAL_ROOT 被设为 {RIP.CASE_ROOT}"))
 
     c.check(SCRIPT.exists(), "绘图脚本存在", str(SCRIPT))
     c.check(hasattr(RIP, 'load'), "load 函数可导入", "口径防漂移")

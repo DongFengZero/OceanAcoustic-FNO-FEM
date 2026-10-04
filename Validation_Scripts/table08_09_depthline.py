@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""table09_12_depthline.py — 打印 Table 9-12（深度线 TL-MAE）
+"""table08_09_depthline.py — 打印 Table 8-9（深度线 TL-MAE）
 
   Table 8   tab:dl-cmp  Cases 15-19 (R1 矩形) | 20-24 (W1 楔形)，五方法
   Table 9   tab:dl-abl  Cases 25-28 (R1 矩形) | 29-32 (W1 楔形)，四消融组
@@ -12,7 +12,7 @@ npz 现场提取，所以 caption 标 last epoch。本脚本复用 common/depthl
 recompute()，与 verify.py 走同一条重算路径（不复制算法），得到的是全精度值，
 论文印刷 3 位小数。
 
-    python table09_12_depthline.py [--tex]
+    python table08_09_depthline.py [--tex]
 """
 import _tblcommon as K
 

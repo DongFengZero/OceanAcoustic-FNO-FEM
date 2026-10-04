@@ -48,10 +48,10 @@ M = [
      ("tex", "25,50,75,100 & 8000" + B + ",(2000) & (64,64,16,8)  &        & A800 & Runtime",
              "25,50,75,100 & 2000" + B + ",(2000) & (64,64,16,8)  &        & A800 & Runtime"), "scripts/T03_datasets"),
     ("M14", "Table 14 运行时间 873.10→873.01", ("tex", "COMSOL  & 873.10", "COMSOL  & 873.01"), "scripts/T14_runtime"),
-    ("M15", "Fig. 4 放错图件（矩形位置放楔形图）", ("swap", "Figures/results/case03_r1_tl.pdf", "Figures/results/case09_w1_tl.pdf"), "scripts_figures/FIG04_05_fields"),
+    ("M15", "Fig. 4 放错图件（矩形位置放楔形图）", ("swap", "Figures/results/case03_r1_tl.pdf", "Figures/results/case09_w1_tl.pdf"), "scripts_figures/FIG04_res_128"),
     ("M16", "Fig. 6 放错图件（对比图换成消融图）", ("swap", "Figures/results/comparison_r1_model_advantage.pdf", "Figures/results/ablation_r1_module_advantage.pdf"), "scripts_figures/FIG06_dl_cmp"),
-    ("M17", "Fig. S1 放错图件（S1 位置放 S2）", ("swap", "Figures/supplementary/figS1_case04_r2.pdf", "Figures/supplementary/figS2_case10_w2.pdf"), "scripts_figures/FIGS_supplementary"),
-    ("M18", "正文 S 编号越界 Fig.~S7→Fig.~S8", ("tex", "and Fig.~S7 of the Supplementary", "and Fig.~S8 of the Supplementary"), "scripts_figures/FIGS_supplementary"),
+    ("M17", "Fig. S1 放错图件（S1 位置放 S2）", ("swap", "Figures/supplementary/figS1_case04_r2.pdf", "Figures/supplementary/figS2_case10_w2.pdf"), "scripts_figures/FIGS1_S7_supplementary"),
+    ("M18", "正文 S 编号越界 Fig.~S7→Fig.~S8", ("tex", "and Fig.~S7 of the Supplementary", "and Fig.~S8 of the Supplementary"), "scripts_figures/FIGS1_S7_supplementary"),
 ]
 
 

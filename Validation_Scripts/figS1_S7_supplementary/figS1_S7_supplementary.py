@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-figS_supplementary.py
+figS1_S7_supplementary.py
 =====================
 Supplementary Material, Figs. S1-S7 -- the field figures moved out of the main
 text in R1, redrawn at printed size with the same renderers as the main-text
@@ -23,7 +23,7 @@ page holds all eight rows (4 frequencies x 2 held-out samples, as in Fig. 4).
 Ablation grids (S5-S6): fig08_09_perf_grid.render() with the four variants in
 place of the five methods.
 
-    python figS_supplementary.py      -> out/figS1.pdf ... figS7_*.pdf
+    python figS1_S7_supplementary.py      -> out/figS1.pdf ... figS7_*.pdf
 """
 import os
 import sys

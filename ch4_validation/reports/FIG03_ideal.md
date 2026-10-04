@@ -3,7 +3,7 @@
 - 对象：`fig:ideal`（Fig. ideal-rect）
 - 结论：**PASS** — 37 通过 / 0 失败 / 0 警告，共 37 项
 - 脚本：`ch4_validation/scripts/FIG03_ideal.py`
-- 生成：2026-10-04 16:24:39
+- 生成：2026-10-04 17:20:50
 
 ## 1. 源清单
 
@@ -17,7 +17,7 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | npz 文件存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No01_R0/Case01_R0__TL原始数据_ep200.npz | PASS |
-| 绘图脚本取数目录与 Raw_Experimental_Data 同源 | md5 相同（Case1-2/Case01_R0/Case01_R0__TL原始数据_ep200.npz） | PASS |
+| 成图脚本读取的就是公开数据 Raw_Experimental_Data/4.2_Validation | pred_tl / fem_tl / source_pos / freq 逐元素相同 | PASS |
 | 绘图脚本存在 | D:\Data\OceanAcoustic-FNO-FEM_github\Validation_Scripts\fig03_ideal\_ideal_core.py | PASS |
 | load 函数可导入 | 口径防漂移 | PASS |
 | pick_sample 函数可导入 | 口径防漂移 | PASS |

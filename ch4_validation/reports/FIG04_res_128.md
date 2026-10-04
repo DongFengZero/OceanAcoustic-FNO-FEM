@@ -2,8 +2,8 @@
 
 - 对象：`fig:res-128`（Fig. 4）
 - 结论：**PASS** — 51 通过 / 0 失败 / 0 警告，共 51 项
-- 脚本：`ch4_validation/scripts/FIG04_05_fields.py`
-- 生成：2026-10-04 16:24:44
+- 脚本：`ch4_validation/scripts/FIG04_res_128.py`
+- 生成：2026-10-04 17:21:04
 
 ## 1. 源清单
 

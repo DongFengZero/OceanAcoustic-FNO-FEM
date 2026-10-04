@@ -3,7 +3,7 @@
 - 对象：`tab:ideal-depthline`（Table 5）
 - 结论：**PASS** — 42 通过 / 0 失败 / 0 警告，共 42 项
 - 脚本：`ch4_validation/scripts/T05_ideal_depthline.py`
-- 生成：2026-10-04 16:23:46
+- 生成：2026-10-04 17:18:13
 
 ## 1. 源清单
 
@@ -16,15 +16,15 @@
 
 ## 2. 源可追溯性
 
-> 成图脚本硬编码 `CASE_ROOT = D:\Data\Case1-2`，与注册表用的 `Raw_Experimental_Data/4.2_Validation/` 是两处副本，故校验 md5 确认同源——不同源则图与表的数据基础就不一致。
+> 成图脚本默认读公开数据 `Raw_Experimental_Data/4.2_Validation/`，与注册表同一份；此处断言它实际加载的数组与注册 npz 逐元素相同，确保图与表的数据基础一致。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 成图脚本存在 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig03_ideal/fig03_ideal.py | PASS |
 | Case 1 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No01_R0/Case01_R0__TL原始数据_ep200.npz | PASS |
 | Case 2 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No02_W0/Case02_W0__TL原始数据_ep200.npz | PASS |
-| Case 1 两处 npz 同源 | md5 `399d8e5e035e…` == `399d8e5e035e…` | PASS |
-| Case 2 两处 npz 同源 | md5 `2361cff6159b…` == `2361cff6159b…` | PASS |
+| Case 1 成图脚本读取的即公开 npz | 逐元素相同 | PASS |
+| Case 2 成图脚本读取的即公开 npz | 逐元素相同 | PASS |
 | tex 数据行数 = 2 | 实得 2 | PASS |
 | tex 行 No. 覆盖 Case 1-2 | [1, 2] | PASS |
 

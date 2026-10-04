@@ -101,25 +101,20 @@ def run():
         npz[no] = p
         c.check(p is not None and os.path.exists(p), f"Case {no} npz 存在", paths.rel(p))
 
-    c.note("成图脚本硬编码 `CASE_ROOT = D:\\Data\\Case1-2`，"
-           "与注册表用的 `Raw_Experimental_Data/4.2_Validation/` 是两处副本，"
-           "故校验 md5 确认同源——不同源则图与表的数据基础就不一致。")
-    import hashlib
-
-    def md5(p):
-        h = hashlib.md5()
-        with open(p, "rb") as f:
-            for blk in iter(lambda: f.read(1 << 20), b""):
-                h.update(blk)
-        return h.hexdigest()
-
+    c.note("成图脚本默认读公开数据 `Raw_Experimental_Data/4.2_Validation/`，与注册表同一份；"
+           "此处断言它实际加载的数组与注册 npz 逐元素相同，确保图与表的数据基础一致。")
+    import importlib.util
+    import numpy as np
+    os.environ.setdefault("CH4_RAWROOT", paths._RAWROOT)
+    _sp = importlib.util.spec_from_file_location("ideal_core_t05", os.path.join(os.path.dirname(ps), "_ideal_core.py"))
+    _core = importlib.util.module_from_spec(_sp)
+    _sp.loader.exec_module(_core)
     for no, (_, cd) in CASES.items():
-        alt = os.path.join(paths.ROOT, "Case1-2", cd, f"{cd}__TL原始数据_ep200.npz")
-        if os.path.exists(alt):
-            a, b = md5(alt), md5(npz[no])
-            c.check(a == b, f"Case {no} 两处 npz 同源", f"md5 `{a[:12]}…` == `{b[:12]}…`")
-        else:
-            c.check(False, f"Case {no} 成图脚本侧 npz 存在", paths.rel(alt), warn_only=True)
+        gen = _core.load(cd)
+        reg = np.load(npz[no], allow_pickle=True)
+        same = all(np.array_equal(gen[k], reg[k]) for k in ("pred_tl", "fem_tl", "source_pos", "freq"))
+        c.check(same and _core.CASE_ROOT is None, f"Case {no} 成图脚本读取的即公开 npz",
+                "逐元素相同" + ("" if _core.CASE_ROOT is None else f"；CH4_IDEAL_ROOT={_core.CASE_ROOT}"))
 
     env = T.table_env(LABEL)
     rows = T.data_rows(env, ncol=10)

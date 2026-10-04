@@ -50,7 +50,7 @@ Two notes on coverage:
 ## Supplementary Material — Figs. S1–S7
 
 The field figures moved out of the main text in R1 are redrawn at printed size by
-`figS_supplementary/figS_supplementary.py`, which reuses the main-text renderers
+`figS1_S7_supplementary/figS1_S7_supplementary.py`, which reuses the main-text renderers
 (`fig04_05_10_fields.py` for field panels, `fig08_09_perf_grid.py` for the grids).
 
 | Figure | Content | Cases | Original |
@@ -60,7 +60,7 @@ The field figures moved out of the main text in R1 are redrawn at printed size b
 | S5 / S6 | Ablation-variant grids, R1 / W1 | 25–28 / 29–32 | 16 / 17 |
 | S7 | Wedge extrapolation, W9 / W10 | 41 / 42 | 22 |
 
-`ch4_validation/scripts_figures/FIGS_supplementary.py` recomputes every source position
+`ch4_validation/scripts_figures/FIGS1_S7_supplementary.py` recomputes every source position
 and averaged error printed on these figures from the ep200 npz and cross-checks the
 S-numbering across the manuscript, the supplementary document and the response letter.
 
@@ -76,15 +76,15 @@ entry points and still carry the old figure numbering.
 | 3 | `tab:datasets` | 1–50 | `table03_datasets.py` |
 | 4 | `tab:ideal-overall` | 1–2 | `table04_05_ideal.py` |
 | 5 | `tab:ideal-depthline` | 1–2 | `table04_05_ideal.py` |
-| 6 | `tab:res-rect-mf` | 3–5, 9–11 | `table06_08_forward.py` |
-| 7 | `tab:sq100` | 6–8, 12–14 | `table06_08_forward.py` |
-| 8 | `tab:dl-cmp` | 15–24 | `table09_12_depthline.py` |
-| 9 | `tab:dl-abl` | 25–32 | `table09_12_depthline.py` |
-| 10 | `tab:perf-cmp` | 15–24 | `table13_14_perf.py` |
-| 11 | `tab:abl` | 25–32 | `table15_19_abl_mesh_gen.py` |
-| 12 | `tab:mesh` | 33–38 | `table15_19_abl_mesh_gen.py` |
-| 13 | `tab:gen-overall` | 39–42 | `table15_19_abl_mesh_gen.py` |
-| 14 | `tab:runtime` | 43–50 | `table20_21_runtime.py` |
+| 6 | `tab:res-rect-mf` | 3–5, 9–11 | `table06_07_forward.py` |
+| 7 | `tab:sq100` | 6–8, 12–14 | `table06_07_forward.py` |
+| 8 | `tab:dl-cmp` | 15–24 | `table08_09_depthline.py` |
+| 9 | `tab:dl-abl` | 25–32 | `table08_09_depthline.py` |
+| 10 | `tab:perf-cmp` | 15–24 | `table10_perf_cmp.py` |
+| 11 | `tab:abl` | 25–32 | `table11_13_abl_mesh_gen.py` |
+| 12 | `tab:mesh` | 33–38 | `table11_13_abl_mesh_gen.py` |
+| 13 | `tab:gen-overall` | 39–42 | `table11_13_abl_mesh_gen.py` |
+| 14 | `tab:runtime` | 43–50 | `table14_runtime.py` |
 
 Tables 7--12 each merge the rectangular and wedge halves into one float: a single
 `tabular` with the two geometries side by side as column groups (not two
@@ -92,8 +92,7 @@ Tables 7--12 each merge the rectangular and wedge halves into one float: a singl
 `tabular`s, written `(a)` and `(b)`. `--tex` handles both: it dumps the float's
 first `tabular`, and for Table 14 prints each half separately.
 
-The left column is the R1 manuscript numbering. The script file names keep their
-original T-numbers, so `table09_12_depthline.py` prints Tables 9–12 of this list.
+The left column is the R1 manuscript numbering, and the script names follow it.
 
 ## Where the numbers come from
 

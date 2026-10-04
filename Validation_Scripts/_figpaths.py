@@ -9,8 +9,8 @@
                   默认 <repo>/.. 即与仓库平级的目录
     CH4_DATASET   Dataset 目录（各 case 的 comsol_batch_manifest_*.mat）
                   默认 $CH4_RAWROOT/Data_and_Code_Availability/Dataset
-    CH4_IDEAL_ROOT Case1-2 所在目录（解析解 npz）
-                  默认 $CH4_RAWROOT/Case1-2
+    CH4_IDEAL_ROOT 可选：解析解 npz 的另一份副本（<root>/Case0X_*/ 布局）；
+                  不设时 fig03_ideal 读公开数据 Raw_Experimental_Data/4.2_Validation
     CH4_TEXDIR    论文目录（含 Figures/results）；默认 <repo>/../els-cas-templates
     CH4_FIGDIR    成图输出目录；默认与脚本同级的 out/
 
@@ -29,7 +29,7 @@ RAWROOT = os.environ.get("CH4_RAWROOT", _DEFAULT_ROOT)
 DATASET = os.environ.get(
     "CH4_DATASET", os.path.join(RAWROOT, "Data_and_Code_Availability", "Dataset"))
 RAW = os.path.join(RAWROOT, "Data_and_Code_Availability", "Raw_Experimental_Data")
-IDEAL_ROOT = os.environ.get("CH4_IDEAL_ROOT", os.path.join(RAWROOT, "Case1-2"))
+IDEAL_ROOT = os.environ.get("CH4_IDEAL_ROOT")      # 可选覆盖；默认读公开数据
 TEXDIR = os.environ.get("CH4_TEXDIR", os.path.join(_DEFAULT_ROOT, "els-cas-templates"))
 
 FIGDIR_PAPER = os.path.join(TEXDIR, "Figures", "results")

@@ -10,7 +10,7 @@ R1 修订把原来的矩形 Fig 8 与楔形 Fig 9 合并为本图（单一 label
 子图 label 为 `fig:sq100-r4` … `fig:sq100-w6`。旧 label `fig:res-rect-100` /
 `fig:res-wedge-100` 及其子图 label 均已不存在。
 
-★ Fig 5 的归属：本脚本负责。同渲染器的 FIG04_05_fields.py 只核 Fig 4，
+★ Fig 5 的归属：本脚本负责。同渲染器的 FIG04_res_128.py 只核 Fig 4，
 不再重复核 Fig 5（两脚本此前判据重叠且对 Fig 5 的 label 口径互相冲突）。
 
 与 Fig 4 的差别：单频 npz 只含 2 个样本（多频 8 个）；对应 Table 7 取

@@ -16,9 +16,11 @@ regen_ideal_panels.py
   * 三个子图**等高**；字号统一放大(label/title/tick 与图5同款基准)。
 每个频率 = 一整行(1x3)，四个频率各存一个 panel.pdf；tex 里 4 行满栏堆叠，充分利用版面。
 
-数据源 D:\\Data\\Case1-2。深度线沿 y≈44.7m(与表 tab:ideal-depthline 口径一致)，
-每频率取该行 MAE 最小的样本(与表数值对应)。原图备份后覆盖。
+数据源：公开发布的 Raw_Experimental_Data/4.2_Validation/No0{1,2}_*/（经 CH4_RAWROOT
+解析）；设 CH4_IDEAL_ROOT 可改读 <root>/Case0X_*/ 布局。深度线沿 y≈44.7m(与表
+tab:ideal-depthline 口径一致)，每频率取该行 MAE 最小的样本(与表数值对应)。
 """
+import glob
 import os
 import shutil
 import datetime
@@ -29,11 +31,12 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from scipy.interpolate import griddata
 
-PAPER = 'D:\\Data\\_R1_merge\\fix3'
-CASE_ROOT = os.environ.get(
-    "CH4_IDEAL_ROOT",
-    os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
-        os.path.abspath(__file__)))), "Case1-2"))
+HERE = os.path.dirname(os.path.abspath(__file__))
+PAPER = os.path.join(HERE, "out")          # 产物只写本目录，不碰论文 Figures/
+_RAWROOT = os.environ.get("CH4_RAWROOT", os.path.dirname(os.path.dirname(os.path.dirname(HERE))))
+RELEASED = os.path.join(_RAWROOT, "Data_and_Code_Availability", "Raw_Experimental_Data",
+                        "4.2_Validation")
+CASE_ROOT = os.environ.get("CH4_IDEAL_ROOT")   # 可选覆盖；默认读公开数据
 GRID = 220
 METHOD = "cubic"
 FREQS = [25, 50, 75, 100]
@@ -53,7 +56,15 @@ CASES = {
 
 
 def load(case):
-    p = os.path.join(CASE_ROOT, case, f"{case}__TL原始数据_ep200.npz")
+    """case 如 'Case01_R0'。默认读公开数据 4.2_Validation/No01_*/；设 CH4_IDEAL_ROOT 则读该处。"""
+    name = f"{case}__TL原始数据_ep200.npz"
+    if CASE_ROOT:
+        p = os.path.join(CASE_ROOT, case, name)
+    else:
+        hits = glob.glob(os.path.join(RELEASED, f"No{case[4:6]}_*", name))
+        if len(hits) != 1:
+            raise FileNotFoundError(f"{name} not found (or ambiguous) under {RELEASED}: {hits}")
+        p = hits[0]
     return np.load(p, allow_pickle=True)
 
 

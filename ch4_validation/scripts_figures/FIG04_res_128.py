@@ -52,7 +52,7 @@ SCRIPT = (Path(__file__).resolve().parents[2] / "Validation_Scripts"
 # 本图在该脚本里的产出清单（main() 的 FIG4 分支）
 FIG4_SPEC = [("Case03", "case03_r1_tl"), ("Case09", "case09_w1_tl")]
 TABLE = "tab:res-rect-mf"
-SLUG = "FIG04_05_fields"
+SLUG = "FIG04_res_128"
 
 
 def pdf_text(pdf_path):

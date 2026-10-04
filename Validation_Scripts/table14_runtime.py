@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""table20_21_runtime.py — 打印 Table 14（tab:runtime）
+"""table14_runtime.py — 打印 Table 14（tab:runtime）
 
 R1 把原来的两张运行时表并进**同一个 table* 浮动体**，一个 \\label 下挂两个
 tabular：
@@ -17,12 +17,12 @@ tabular：
 取数一律复用核验脚本 ch4_validation/scripts/T14_runtime.py 的 load_base() /
 load_scale()，与 verify.py 走同一次调用，两边不会各写一套解析而漂移。
 
-    python table20_21_runtime.py [--tex]
+    python table14_runtime.py [--tex]
 """
 import _tblcommon as K
 
 
-def table14a():
+def table14_a():
     K.head("tab:runtime", "Cases 43-44 · 单轮计时与相对 COMSOL 加速比")
     xl = K.paths.xlsx_path("4.8")
     K.note(f"xlsx: {K.paths.rel(xl)}  (sheet 1)")
@@ -45,7 +45,7 @@ def table14a():
             print("   ", " | ".join(r))
 
 
-def table14b():
+def table14_b():
     K.head("tab:runtime", "Cases 45-50 · 单 DCU 域尺度缩放（论文只列 Time）")
     xl = K.paths.xlsx_path("4.8")
     K.note(f"xlsx: {K.paths.rel(xl)}  (sheet 2)")
@@ -84,6 +84,6 @@ def _thr_col(xl):
 
 
 if __name__ == "__main__":
-    table14a()
-    table14b()
+    table14_a()
+    table14_b()
     print()
