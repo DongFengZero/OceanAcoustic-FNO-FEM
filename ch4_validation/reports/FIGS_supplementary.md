@@ -3,7 +3,7 @@
 - 对象：`Figs. S1-S7`（Fig. S1-S7）
 - 结论：**PASS** — 61 通过 / 0 失败 / 0 警告，共 61 项
 - 脚本：`ch4_validation/scripts/FIGS_supplementary.py`
-- 生成：2026-10-04 14:16:21
+- 生成：2026-10-04 16:27:25
 
 ## 1. 源清单
 
@@ -76,19 +76,21 @@
 | 补充材料一览表含 `Sec.~4.5`（sec:ablation） |  | PASS |
 | 补充材料一览表含 `Sec.~4.7`（sec:generalization） |  | PASS |
 
-## 3. 回复信附录 B ↔ 补充材料
+## 3. 补充材料为独立文件 / 回复信附录 B ↔ 补充材料
+
+> 补充材料只用修订后的编号体系，不出现修订前图号或修订过程措辞；原图号 → S 编号的对应只记在回复信附录 B，并按内容与补充材料图题核对。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 附录 B：原图 6 + 7 → S1--S4 |  | PASS |
-| 补充材料一览表 S1 原图号 `6(a)` ∈ 附录 B 的 `6 + 7` |  | PASS |
-| 补充材料一览表 S2 原图号 `6(b)` ∈ 附录 B 的 `6 + 7` |  | PASS |
-| 补充材料一览表 S3 原图号 `7(a)` ∈ 附录 B 的 `6 + 7` |  | PASS |
-| 补充材料一览表 S4 原图号 `7(b)` ∈ 附录 B 的 `6 + 7` |  | PASS |
-| 附录 B：原图 16 + 17 → S5--S6 |  | PASS |
-| 补充材料一览表 S5 原图号 `16` ∈ 附录 B 的 `16 + 17` |  | PASS |
-| 补充材料一览表 S6 原图号 `17` ∈ 附录 B 的 `16 + 17` |  | PASS |
-| 附录 B：原图 22 → S7 |  | PASS |
-| 补充材料一览表 S7 原图号 `22` ∈ 附录 B 的 `22` |  | PASS |
+| 补充材料正文不含修订前图号或修订过程措辞 | 无 | PASS |
+| 一览表不含『Original figure』列 |  | PASS |
+| 附录 B 有行：原图 6 + 7 → S1--S4 |  | PASS |
+| 附录 B 行『S1--S4』与补充材料图题同含 `256` | Transmission-loss fields, $256$ and $512$~m scales | PASS |
+| 附录 B 行『S1--S4』与补充材料图题同含 `512` | Transmission-loss fields, $256$ and $512$~m scales | PASS |
+| 附录 B 有行：原图 16 + 17 → S5--S6 |  | PASS |
+| 附录 B 行『S5--S6』与补充材料图题同含 `ablation` | Transmission-loss fields, ablation variants | PASS |
+| 附录 B 有行：原图 22 → S7 |  | PASS |
+| 附录 B 行『S7』与补充材料图题同含 `extrapolation` | Source-position extrapolation, wedge | PASS |
+| 附录 B 行『S7』与补充材料图题同含 `wedge` | Source-position extrapolation, wedge | PASS |
 | 回复信以 `Figs.~S1--S7` 指称补充材料 |  | PASS |
 

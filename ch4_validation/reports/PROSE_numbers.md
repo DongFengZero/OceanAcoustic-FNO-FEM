@@ -3,7 +3,7 @@
 - 对象：`prose (abstract + Sec. 4-5)`（Table —）
 - 结论：**PASS** — 108 通过 / 0 失败 / 0 警告 / 1 豁免，共 109 项
 - 脚本：`ch4_validation/scripts/PROSE_numbers.py`
-- 生成：2026-10-04 14:12:35
+- 生成：2026-10-04 16:23:40
 
 ## 1. 源清单
 

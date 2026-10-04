@@ -161,17 +161,26 @@ def run():
         c.check(f"Sec.~{num}" in supp, f"补充材料一览表含 `Sec.~{num}`（{lab}）", "")
 
     # ── D ──────────────────────────────────────────────────────
-    c.section("3. 回复信附录 B ↔ 补充材料")
+    c.section("3. 补充材料为独立文件 / 回复信附录 B ↔ 补充材料")
+    c.note("补充材料只用修订后的编号体系，不出现修订前图号或修订过程措辞；"
+           "原图号 → S 编号的对应只记在回复信附录 B，并按内容与补充材料图题核对。")
+    body = "\n".join(l for l in supp.split("\n") if not l.lstrip().startswith("%"))
+    stale = re.findall(r"[Oo]riginal|orig\.|moved out|[Rr]evision|revised manuscript", body)
+    c.check(not stale, "补充材料正文不含修订前图号或修订过程措辞", f"{stale or '无'}")
+    c.check(not re.search(r"Original figure", supp), "一览表不含『Original figure』列", "")
     rtr = io.open(RTR, encoding="utf8").read()
-    for snums, orig in (("S1--S4", "6 + 7"), ("S5--S6", "16 + 17"), ("S7", "22")):
-        ok = re.search(re.escape(snums) + r"\s*&\s*" + re.escape(orig) + r"\s*&", rtr) is not None
-        c.check(ok, f"附录 B：原图 {orig} → {snums}", "")
-        for k in expand(snums):
-            # 读补充材料 tex 里一览表的实际行，取末列『Original figure』
-            row = re.search(r"^S%d &(.*)\\\\" % k, supp, re.M)
-            got = row.group(1).split("&")[-1].strip() if row else None
-            ok = got is not None and re.sub(r"\(.\)$", "", got) in orig.split(" + ")
-            c.check(ok, f"补充材料一览表 S{k} 原图号 `{got}` ∈ 附录 B 的 `{orig}`", "")
+    caps = {k: re.findall(r"\\caption\{(.*?)\}\s*\\label\{fig:S%d\}" % k, supp, re.S) for k in SFIG}
+    # 附录 B 的一行：S 编号 & 原图号 & 内容；内容关键词须在对应 S 图题中出现
+    for snums, orig, keys in (("S1--S4", "6 + 7", ("256", "512")),
+                              ("S5--S6", "16 + 17", ("ablation",)),
+                              ("S7", "22", ("extrapolation", "wedge"))):
+        row = re.search(re.escape(snums) + r"\s*&\s*" + re.escape(orig) + r"\s*&([^&]*)&", rtr)
+        c.check(row is not None, f"附录 B 有行：原图 {orig} → {snums}", "")
+        text = " ".join(" ".join(caps[k]) for k in expand(snums))
+        for kw in keys:
+            c.check(row is not None and kw in row.group(1) and kw.lower() in text.lower(),
+                    f"附录 B 行『{snums}』与补充材料图题同含 `{kw}`",
+                    (row.group(1).strip()[:60] if row else "无此行"))
     c.check("Supplementary" not in rtr or "Figs.~S1--S7" in rtr,
             "回复信以 `Figs.~S1--S7` 指称补充材料", "")
     return c
