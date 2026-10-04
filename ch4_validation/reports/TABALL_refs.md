@@ -3,7 +3,7 @@
 - 对象：`tab:* (all)`（Table 1-14）
 - 结论：**PASS** — 44 通过 / 0 失败 / 0 警告，共 44 项
 - 脚本：`ch4_validation/scripts/TABALL_refs.py`
-- 生成：2026-10-03 00:06:38
+- 生成：2026-10-04 11:11:08
 
 ## 1. 源清单
 
@@ -20,7 +20,7 @@
 |---|---|---|
 | Table 1 (`tab:method-comparison`) 已被引用 | 正文 1 处 | PASS |
 | Table 2 (`tab:method-symbols`) 已被引用 | 正文 1 处 | PASS |
-| Table 3 (`tab:datasets`) 已被引用 | 正文 8 处 | PASS |
+| Table 3 (`tab:datasets`) 已被引用 | 正文 9 处 | PASS |
 | Table 4 (`tab:ideal-overall`) 已被引用 | 正文 1 处 | PASS |
 | Table 5 (`tab:ideal-depthline`) 已被引用 | 正文 1 处；环境内 1 处 | PASS |
 | Table 6 (`tab:res-rect-mf`) 已被引用 | 正文 2 处 | PASS |
@@ -28,10 +28,10 @@
 | Table 8 (`tab:dl-cmp`) 已被引用 | 正文 1 处；环境内 3 处 | PASS |
 | Table 9 (`tab:dl-abl`) 已被引用 | 正文 4 处 | PASS |
 | Table 10 (`tab:perf-cmp`) 已被引用 | 正文 1 处 | PASS |
-| Table 11 (`tab:abl`) 已被引用 | 正文 3 处 | PASS |
+| Table 11 (`tab:abl`) 已被引用 | 正文 1 处 | PASS |
 | Table 12 (`tab:mesh`) 已被引用 | 正文 1 处 | PASS |
 | Table 13 (`tab:gen-overall`) 已被引用 | 正文 1 处 | PASS |
-| Table 14 (`tab:runtime`) 已被引用 | 正文 3 处 | PASS |
+| Table 14 (`tab:runtime`) 已被引用 | 正文 2 处 | PASS |
 
 ## 2. 无悬空引用：每个 \ref 都指向真实 label
 
@@ -47,7 +47,7 @@
 |---|---|---|
 | Table 1 (`tab:method-comparison`) 有独立正文引用 | 环境外 1 处 | PASS |
 | Table 2 (`tab:method-symbols`) 有独立正文引用 | 环境外 1 处 | PASS |
-| Table 3 (`tab:datasets`) 有独立正文引用 | 环境外 8 处 | PASS |
+| Table 3 (`tab:datasets`) 有独立正文引用 | 环境外 9 处 | PASS |
 | Table 4 (`tab:ideal-overall`) 有独立正文引用 | 环境外 1 处 | PASS |
 | Table 5 (`tab:ideal-depthline`) 有独立正文引用 | 环境外 1 处 | PASS |
 | Table 6 (`tab:res-rect-mf`) 有独立正文引用 | 环境外 2 处 | PASS |
@@ -55,10 +55,10 @@
 | Table 8 (`tab:dl-cmp`) 有独立正文引用 | 环境外 1 处 | PASS |
 | Table 9 (`tab:dl-abl`) 有独立正文引用 | 环境外 4 处 | PASS |
 | Table 10 (`tab:perf-cmp`) 有独立正文引用 | 环境外 1 处 | PASS |
-| Table 11 (`tab:abl`) 有独立正文引用 | 环境外 3 处 | PASS |
+| Table 11 (`tab:abl`) 有独立正文引用 | 环境外 1 处 | PASS |
 | Table 12 (`tab:mesh`) 有独立正文引用 | 环境外 1 处 | PASS |
 | Table 13 (`tab:gen-overall`) 有独立正文引用 | 环境外 1 处 | PASS |
-| Table 14 (`tab:runtime`) 有独立正文引用 | 环境外 3 处 | PASS |
+| Table 14 (`tab:runtime`) 有独立正文引用 | 环境外 2 处 | PASS |
 | 全部 14 张表均有独立正文引用 | 全部合规 | PASS |
 
 ## 4. 编号与预期一致

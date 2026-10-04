@@ -2,14 +2,14 @@
 T06_res_rect_mf.py — Table 6（tab:res-rect-mf）核验
 ====================================================
 对象：多频前向精度，矩形 R1–R3 (Cases 3–5) + 楔形 W1–W3 (Cases 9–11)，
-      逐频 Sol/TL + Avg.，13 列（含 Fig. 列）。
+      逐频 Sol/TL + Avg.，12 列（R1 已删除 Fig. 列）。
 
 核验链（较 T04 多出三项）
   A. 源可追溯      xlsx / 6 份日志 / tex
   B. best epoch    xlsx 列 == 日志自证
   C. 双渠道交叉     xlsx vs 日志同轮评估块，60 个量
   D. 印刷值比对     两渠道 × 60 格
-  E. Fig. 列引用    每行图号须指向该案例自己的图与子图（★T06 独有）
+  E. Fig. 列已删    表头/数据行均无 Fig. 列，正文无 Fig.~S* 引用（★T06 独有）
   F. 分组行         两个 \\multicolumn 小标题行存在且几何归属正确（★T06 独有）
   G. Avg. 自洽      Avg. == 四频均值
   H. 位数一致       Sol/TL 全 3 位
@@ -29,20 +29,11 @@ SLUG = "T06_res_rect_mf"
 REC = registry.by_slug(SLUG)
 LABEL = REC["label"]
 
-# Case No. -> (Dataset 名, 该行 Fig. 列应引用的内容)
-#   3 / 9  仍是正文图 fig:res-128 的两个子图（矩形取 -r、楔形取 -w）；
-#   4 / 5 / 10 / 11  的场图在 R1 已移入补充材料，正文 Fig. 列改写为裸文本
-#   `S3`（256 m）与 `S4`（512 m）——补充材料无 label，故按字面比对。
-CASES = {
-    3: ("R1", ("fig:res-128", "fig:res-128-r")),
-    4: ("R2", "S3"),
-    5: ("R3", "S4"),
-    9: ("W1", ("fig:res-128", "fig:res-128-w")),
-    10: ("W2", "S3"),
-    11: ("W3", "S4"),
-}
-# 补充材料编号 -> 该编号覆盖的案例（用于核对两处引用一致）
-SUPP = {"S3": (4, 10), "S4": (5, 11)}
+# Case No. -> (Dataset 名,)
+#   R1 曾有 Fig. 列（3/9 指向 fig:res-128，4/5/10/11 写裸文本 S3/S4）。
+#   补充材料并不存在，Fig. 列已整列删除；256/512 m 场图不再出现在正文中。
+CASES = {3: ("R1",), 4: ("R2",), 5: ("R3",), 9: ("W1",), 10: ("W2",), 11: ("W3",)}
+NCOL = 12
 RECT, WEDGE = [3, 4, 5], [9, 10, 11]
 
 # 正文直接引用：(说明, 正文字面量, (case, 组, 量))
@@ -85,11 +76,9 @@ def run():
     env = T.table_env(LABEL)
     c.check(env is not None and f"\\label{{{LABEL}}}" in env,
             "tex 表格环境可定位且确实包住 label", f"`{LABEL}`，长度 {len(env or '')}")
-    rows = T.data_rows(env, ncol=13)
-    raws = T.data_rows_raw(env, ncol=13)
+    rows = T.data_rows(env, ncol=NCOL)
     c.check(len(rows) == 6, "tex 数据行数 = 6", f"实得 {len(rows)}")
     printed = {int(r[0]): r for r in rows}
-    printed_raw = {int(r[0].strip()): r for r in raws}
     c.check(set(printed) == set(CASES), "tex 行 No. 覆盖 3-5 与 9-11",
             str(sorted(printed)))
 
@@ -118,7 +107,7 @@ def run():
 
     # ── D ────────────────────────────────────────────────────────
     c.section("5. 印刷值比对（源值舍入到 3 位 vs tex）")
-    c.note("列序：No., Dataset, Fig., 25Hz(Sol,TL), 50Hz, 75Hz, 100Hz, Avg.(Sol,TL)。"
+    c.note("列序：No., Dataset, 25Hz(Sol,TL), 50Hz, 75Hz, 100Hz, Avg.(Sol,TL)。"
            "Avg. 对应 xlsx/日志的 Overall 组。")
     order = [(25, 0), (50, 1), (75, 2), (100, 3), ("Overall", 4)]
     for no in CASES:
@@ -126,43 +115,27 @@ def run():
                 f"tex `{printed[no][1].strip()}`")
         for g, blk in order:
             for k, q in enumerate(("sol", "tl")):
-                cell = printed[no][3 + blk * 2 + k]
+                cell = printed[no][2 + blk * 2 + k]
                 gname = "Avg." if g == "Overall" else f"{g}Hz"
                 c.eq(f"Case {no} {gname} {q.upper()} (xlsx)", xd[no][g][q], cell)
                 c.eq(f"Case {no} {gname} {q.upper()} (log)", ld[no][g][q], cell)
 
     # ── E ────────────────────────────────────────────────────────
-    c.section("6. Fig. 列引用正确性")
-    c.note("每行的图号必须指向该案例自己的图与子图；"
-           "同一尺度下矩形取 `-r` 子图、楔形取 `-w`，错配读者会看错图。"
-           "同时确认被引 label 在 aux 里存在（否则排出 `??`）。")
-    aux = T.labels()
-    for no, (_, want) in CASES.items():
-        cell = printed_raw[no][2]
-        if isinstance(want, tuple):
-            got = T.refs_in(cell)
-            c.check(got == list(want), f"Case {no} Fig. 列引用",
-                    f"tex `{cell}` → {got}，应为 `{list(want)}`")
-            for lb in want:
-                c.check(lb in aux, f"label `{lb}` 已在 aux 注册",
-                        f"编号 `{aux.get(lb, {}).get('num', '缺失')}`")
-        else:
-            got = cell.strip()
-            c.check(got == want, f"Case {no} Fig. 列引用（补充材料 {want}）",
-                    f"tex `{got}`，应为 `{want}`")
-    c.note("补充材料的两处引用（S3 覆盖 256 m 的 Case 4/10，S4 覆盖 512 m 的 "
-           "Case 5/11）在表中各自出现两次，与 SUPP 给的归属一致。")
-    for tag, nos in SUPP.items():
-        for no in nos:
-            c.check(CASES[no][1] == tag, f"Case {no} 归入 {tag}",
-                    f"tex `{CASES[no][1]}`")
-    c.check("Fig.~S3" not in T.tex_text() or "S3--S4" in T.tex_text(),
-            "正文以 `Figs.~S3--S4` 区间形式引用补充图",
-            "正文含区间引用")
+    c.section("6. Fig. 列已删除、无补充材料引用")
+    c.note("R1 的 Fig. 列曾写裸文本 S3/S4 指向并不存在的补充材料，已整列删除。"
+           "此处断言删除彻底：表头无 Fig.，每行恰为 12 列，正文无任何 Fig.~S 引用。")
+    head = (T.tabular_body(env) or "")
+    hdr = env[:env.find('\\' + "midrule")] if env else ""
+    c.check("Fig." not in hdr, "表头不含 Fig. 列", "表头无 `Fig.`")
+    c.check(all(len(r) == NCOL for r in rows), f"每个数据行恰为 {NCOL} 列",
+            str(sorted({len(r) for r in rows})))
+    c.check(not re.search(r"Figs?\.~?\s*S\d", T.tex_text()),
+            "正文无 `Fig.~S*` / `Figs.~S*` 引用", "补充材料不存在，引用应全部移除")
+    c.check(not re.search(r"\bS[34]\b", head), "表体无裸文本 S3/S4", "")
 
     # ── F ────────────────────────────────────────────────────────
     c.section("7. 几何分组小标题行")
-    c.note("表内用两行 `\\multicolumn{13}` 小标题分隔矩形/楔形；"
+    c.note("表内用两行 `\\multicolumn{12}` 小标题分隔矩形/楔形；"
            "它们不是数据行（会被 ncol 过滤掉），但缺失会让 6 行混为一体。")
     body = T.tabular_body(env) or ""
     for name, kw, cases in (("Rectangular waveguide", "Rectangular", RECT),
@@ -189,7 +162,7 @@ def run():
     c.section("9. 同表小数位一致性")
     bad = []
     for no in CASES:
-        for j in range(3, 13):
+        for j in range(2, NCOL):
             v = printed[no][j]
             if not re.fullmatch(r"\d+\.\d{3}", v):
                 bad.append(f"Case {no} 第{j + 1}列 `{v}`")
@@ -202,7 +175,7 @@ def run():
            "只查①会漏掉正文与表格一起错的情形。")
     for name, lit, (no, g, q) in PROSE:
         blk = 4 if g == "Overall" else [25, 50, 75, 100].index(g)
-        cell = printed[no][3 + blk * 2 + (0 if q == "sol" else 1)]
+        cell = printed[no][2 + blk * 2 + (0 if q == "sol" else 1)]
         c.check(lit == cell, f"正文 {name}", f"正文 `{lit}` / 表格 `{cell}`")
         c.eq(f"正文 {name} ← xlsx 源", xd[no][g][q], lit)
 
@@ -210,7 +183,7 @@ def run():
     c.note("派生倍数一律用**表格印刷值**相除，读者才能直接复算。"
            "用全精度源值回算会得到另一个数（如 2.268 变 2.267），"
            "此前 8.676/8.670 就是这么错的。")
-    tl3, tl5 = float(printed[3][12]), float(printed[5][12])
+    tl3, tl5 = float(printed[3][11]), float(printed[5][11])
     ratio = tl5 / tl3
     c.check(f"{ratio:.3f}" == "2.268",
             "矩形多频 512m/128m TL 倍数 = 2.268",
@@ -225,7 +198,7 @@ def run():
     c.check(s11 < s5, "512m 处楔形 Sol < 矩形 Sol",
             f"W3 `{s11:.3f}` < R3 `{s5:.3f}`")
     for lit, no in (("10.797", 11), ("13.164", 5)):
-        cell = printed[no][11]
+        cell = printed[no][10]
         c.check(lit == cell, f"正文对比值 {lit} (Case {no})", f"表格 `{cell}`")
 
 

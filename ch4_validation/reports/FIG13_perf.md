@@ -3,7 +3,7 @@
 - 对象：`fig:perf`（Fig. 13）
 - 结论：**PASS** — 54 通过 / 0 失败 / 0 警告，共 54 项
 - 脚本：`ch4_validation/scripts/FIG13_perf.py`
-- 生成：2026-10-03 00:09:38
+- 生成：2026-10-04 11:16:23
 
 ## 1. 源清单
 
@@ -96,6 +96,6 @@
 | 编号为 13 | aux `13` | PASS |
 | 正文以 `Fig.~\ref{fig:perf}(a,b)` 引用多 GPU 部分 |  | PASS |
 | 正文以 `Fig.~\ref{fig:perf}(c)` 引用域缩放部分 |  | PASS |
-| 兄弟表 `tab:runtime` 在正文被引 | tex 行 1187 | PASS |
+| 兄弟表 `tab:runtime` 在正文被引 | tex 行 1173 | PASS |
 | 兄弟表 tab:runtime 编号为 14 | aux `14` | PASS |
 

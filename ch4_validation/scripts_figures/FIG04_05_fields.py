@@ -6,7 +6,7 @@ Fig. 4（fig:res-128）核验
   Fig 4 = Case 3 (R1) + Case 9 (W1)，子图 label `fig:res-128-r` / `fig:res-128-w`
 
 R1 修订后 256/512 m 两张同族图（旧 fig:res-256 / fig:res-512）移入
-Supplementary Material，正文与 aux 里都不再有这两个 label：Table 6 的
+已从正文删除（无补充材料），正文与 aux 里都不再有这两个 label；Table 6 的
 Fig. 列改以裸文本 `S3` / `S4` 指代。本脚本只核 R1 正文真正保留的这一张。
 
 Fig 5（100 Hz 方形域，fig:sq100）由 FIG05_sq100.py 负责，本脚本不再重复核
@@ -246,8 +246,8 @@ def run():
     # ── I ────────────────────────────────────────────────────────
     c.section("10. 正文引用：逐张引用（R1 无区间引用）")
     c.note("R1 已取消旧稿的 `Figs.~\\ref{fig:res-128}--\\ref{fig:res-wedge-100}` "
-           "区间写法，改为逐张引用；256/512 m 两张同族图移入 Supplementary，"
-           "在 Table 6 的 Fig. 列以裸文本 S3/S4 指代，正文不再有它们的 label。")
+           "区间写法，改为逐张引用；256/512 m 两张同族图已从正文删除，"
+           "其精度数据保留在 Table 6，正文与 aux 均不再有它们的 label。")
     txt = T.tex_text()
     BS = chr(92)
     n_main = len(re.findall(re.escape(BS) + r"ref\{" + re.escape(LABEL) + r"\}",
@@ -258,33 +258,19 @@ def run():
                            + r"ref\{fig:", txt)) == 0,
             "正文不含覆盖 Fig 4/5 的区间引用（R1 已改逐张引用）",
             "全文无 `\\ref{fig:..}--\\ref{fig:..}` 形式的图区间")
+    # R1 删除了 Table 6 的 Fig. 列（它曾以裸文本 S3/S4 指向并不存在的补充材料），
+    # 故 Fig. 4 的子图不再被表格交叉引用；改为断言删除彻底。
+    te = T.table_env(TABLE) or ""
+    c.check(BS + "subref{fig:res-128" not in te,
+            "Table 6 不再以 `\\subref` 交叉引用 Fig. 4 子图（Fig. 列已删）", "")
+    c.check(not re.search(r"Figs?\.~?\s*S\d", txt),
+            "正文无 `Fig.~S*` 引用（补充材料不存在）", "")
     for lb in SUB_LABELS:
-        pair = (BS + f"ref{{{LABEL}}}" + BS + f"subref{{{lb}}}")
-        c.check(pair in txt,
-                f"Table 6 的 Fig. 列以 `\\ref..\\subref` 指向子图 `{lb}`",
-                f"tex 含 `{pair}`")
-
-    # Table 6 的 Fig. 列：Case 3/9 指向本图，Case 4/5/10/11 指向补充材料 S3/S4
-    te_raw = T.table_env(TABLE)
-    figcol = {}
-    for r in T.data_rows_raw(te_raw, ncol=13):
-        if r[0].strip().isdigit():
-            figcol[int(r[0])] = r[2]
-    c.check(figcol.get(3) == BS + f"ref{{{LABEL}}}" + BS
-            + "subref{fig:res-128-r}",
-            "Table 6 Case 3 行 Fig. 列指向 Fig. 4(a)",
-            f"tex `{figcol.get(3)}`")
-    c.check(figcol.get(9) == BS + f"ref{{{LABEL}}}" + BS
-            + "subref{fig:res-128-w}",
-            "Table 6 Case 9 行 Fig. 列指向 Fig. 4(b)",
-            f"tex `{figcol.get(9)}`")
-    for no, tag in ((4, "S3"), (5, "S4"), (10, "S3"), (11, "S4")):
-        c.check(figcol.get(no) == tag,
-                f"Table 6 Case {no} 行 Fig. 列为补充材料裸文本 `{tag}`",
-                f"tex `{figcol.get(no)}`（无 label，故不在 aux）")
+        c.check(lb in aux, f"子图 label `{lb}` 仍在 aux 注册",
+                f"编号 `{aux.get(lb, {}).get('num', '缺失')}`")
     c.check("fig:res-256" not in aux and "fig:res-512" not in aux,
             "`fig:res-256` / `fig:res-512` 已不在 aux 注册",
-            "两张图 R1 移入 Supplementary，正文不再排版它们")
+            "两张图 R1 已删除，正文不再排版它们")
 
     # 正文对图的两条描述性断言，逐条用 npz 核
     c.note("正文称『误差集中在低幅零点与源附近，而非弥散全场』且『障碍物"

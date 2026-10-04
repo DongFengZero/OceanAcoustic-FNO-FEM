@@ -3,7 +3,7 @@
 - 对象：`fig:gen-grid`（Fig. 12）
 - 结论：**PASS** — 55 通过 / 0 失败 / 0 警告 / 3 豁免，共 58 项
 - 脚本：`ch4_validation/scripts/FIG12_gen_extrap.py`
-- 生成：2026-10-03 00:09:36
+- 生成：2026-10-04 11:16:22
 
 ## 1. 源清单
 
@@ -17,12 +17,12 @@
 
 ## 2. 源可追溯与样本数
 
-> ★ 本组成图脚本有两处，格式不同：R9/R10（正文 Fig 12）由 fig04_05_10_fields.py 生成，行标题 `f = 25 Hz (a),  Src (78.5, 122.3)` 且平均误差排在同一行（`Avg 1.91 dB`）；W9/W10（补充材料）由 fig12_gen_extrap.py 生成，行标题拆三行（`(f=25Hz, a)` / `Src (121.5, 68.0)` / `(Avg 1.68 dB)`）。两处的 regex 不能混用。
+> ★ 本组成图脚本有两处，格式不同：R9/R10（正文 Fig 12）由 fig04_05_10_fields.py 生成，行标题 `f = 25 Hz (a),  Src (78.5, 122.3)` 且平均误差排在同一行（`Avg 1.91 dB`）；W9/W10（已从正文删除）由 fig12_gen_extrap.py 生成，行标题拆三行（`(f=25Hz, a)` / `Src (121.5, 68.0)` / `(Avg 1.68 dB)`）。两处的 regex 不能混用。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 成图脚本（矩形两幅）已入库 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig04_05_10_fields/fig04_05_10_fields.py | PASS |
-| 成图脚本（楔形两幅）已入库（供补充材料） | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig12_gen_extrap/fig12_gen_extrap.py | PASS |
+| 成图脚本（楔形两幅）已入库（图已从正文删除，脚本留档） | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig12_gen_extrap/fig12_gen_extrap.py | PASS |
 | 脚本内 R9/R10 行标题格式为 `f = NN Hz (a/b),  Src (x.x, y.y)` |  | PASS |
 | 脚本内平均误差标注为 `Avg %.2f dB`（2 位小数） |  | PASS |
 | Case 39 R9 npz 样本数 = 8 | 4 频率 x 2 样本，实得 8 | PASS |
@@ -100,30 +100,30 @@
 | caption 说明行以 a/b 标样本 |  | PASS |
 | caption 声明矩形几何 |  | PASS |
 
-## 8. R1 版式变动：楔形两幅已移入补充材料
+## 8. R1 版式变动：楔形两幅已从正文删除
 
-> ★ R1 把 W9/W10 两幅（旧 fig:gen-grid-wedge = Fig 22）移入补充材料，正文以 `Fig.~S5` 引用。故 main text 只剩矩形一张；相关核验项（旧 Fig 22 编号、gen-w9/gen-w10 子图号、wedge caption 的 last epoch）在 R1 已无对象，逐条豁免如下。W9/W10 的 PDF 与其脚本仍在仓库内，供补充材料核对。
+> ★ R1 把 W9/W10 两幅（旧 fig:gen-grid-wedge = Fig 22）从正文删除，正文以 `Fig.~S5` 引用。故 main text 只剩矩形一张；相关核验项（旧 Fig 22 编号、gen-w9/gen-w10 子图号、wedge caption 的 last epoch）在 R1 已无对象，逐条豁免如下。W9/W10 的 PDF 与其脚本仍在仓库内，供回溯核对。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| `fig:gen-grid-wedge` 已不在正文（aux 无登记） | R1 移入补充材料 | PASS |
-| `fig:gen-w9` 已不在正文（aux 无登记） | R1 移入补充材料 | PASS |
-| `fig:gen-w10` 已不在正文（aux 无登记） | R1 移入补充材料 | PASS |
-| 旧 Fig 22（fig:gen-grid-wedge）编号 == 22 | 该浮动体在 R1 已整段注释移入补充材料，aux 无登记 | 豁免 |
-| 子图 fig:gen-w9 / fig:gen-w10 编号为 22a/22b | 两幅随楔形图移入补充材料，main text 不再引用其 label | 豁免 |
-| 移入补充材料的楔形浮动体以注释形式留在 tex 末尾（可回溯） | tex 内含注释掉的 \label{fig:gen-grid-wedge} | PASS |
-| 补充材料图件 gen_extrap_W9.pdf 仍在 Figures/results/ | W9 | PASS |
-| 补充材料图件 gen_extrap_W10.pdf 仍在 Figures/results/ | W10 | PASS |
+| `fig:gen-grid-wedge` 已不在正文（aux 无登记） | R1 已从正文删除 | PASS |
+| `fig:gen-w9` 已不在正文（aux 无登记） | R1 已从正文删除 | PASS |
+| `fig:gen-w10` 已不在正文（aux 无登记） | R1 已从正文删除 | PASS |
+| 旧 Fig 22（fig:gen-grid-wedge）编号 == 22 | 该浮动体在 R1 已整段注释从正文删除，aux 无登记 | 豁免 |
+| 子图 fig:gen-w9 / fig:gen-w10 编号为 22a/22b | 两幅随楔形图从正文删除，main text 不再引用其 label | 豁免 |
+| 删除的楔形浮动体以注释形式留在 tex 中（可回溯） | tex 内含注释掉的 \label{fig:gen-grid-wedge} | PASS |
+| 已删图件 gen_extrap_W9.pdf 仍在 Figures/results/ | W9 | PASS |
+| 已删图件 gen_extrap_W10.pdf 仍在 Figures/results/ | W10 | PASS |
 
 ## 9. 正文引用
 
-> 正文 4.7 节以 `Fig.~\ref{fig:gen-grid} and Fig.~S5` 并列引用矩形（正文）与楔形（补充）两张图，非区间引用，且第二张已改为硬写的 `Fig.~S5`（补充材料图号）。
+> 正文 4.7 节以 `Fig.~\ref{fig:gen-grid} and Fig.~S5` 并列引用矩形（正文）与楔形（补充）两张图，非区间引用，且第二张已改为硬写的 （R1 已改为只引用矩形图）。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 正文引用 Fig. 12 |  | PASS |
-| 正文以 `Fig.~S5` 引用移入补充材料的楔形图 |  | PASS |
-| 正文以 `Fig.~\ref{fig:gen-grid} and Fig.~S5` 并列引用 | 含 `\ref{fig:gen-grid} and Fig.~S5` | PASS |
-| 正文并列引用 Fig 21 与 Fig 22（`\ref{{fig:gen-grid}} and \ref{{fig:gen-grid-wedge}}`） | R1 的楔形图已移入补充材料，正文改写为 `Fig.~S5` 硬引用，不再有 fig:gen-grid-wedge 的 \ref | 豁免 |
-| 正文描述该组图的内容 | tex 行 1140 | PASS |
+| 正文不再引用 `Fig.~S5`（补充材料不存在，楔形图已删除） |  | PASS |
+| 正文以 `Fig.~\ref{fig:gen-grid}` 单独引用矩形外推图 |  | PASS |
+| 正文并列引用 Fig 21 与 Fig 22（`\ref{{fig:gen-grid}} and \ref{{fig:gen-grid-wedge}}`） | R1 的楔形图已从正文删除，正文改写为 `Fig.~S5` 硬引用，不再有 fig:gen-grid-wedge 的 \ref | 豁免 |
+| 正文描述该组图的内容 | tex 行 1126 | PASS |
 

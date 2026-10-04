@@ -258,7 +258,7 @@ def run():
     c.section("9. 正文引用：单张被引 + 表 caption 交代子图对应")
     c.note("R1 已取消旧稿的区间引用（`Figs.~\\ref{fig:res-128}--...`），"
            "Fig. 5 由正文三处单张 \\ref 引用，并被 Table 7 的 caption 交叉引用。"
-           "256/512 m 两档在 Table 6 里以补充材料裸文本 S3/S4 指代。")
+           "256/512 m 两档的场图已删除，精度数据保留在 Table 6。")
     txt = T.tex_text()
     BS = chr(92)
     hits = re.findall(re.escape(BS) + r"ref\{" + re.escape(LABEL) + r"\}", txt)

@@ -1,9 +1,9 @@
 # 第 4 章表格与图件核验主报告
 
-- 结论：**PASS** — 3056 项通过 / 0 项失败 / 18 项豁免
+- 结论：**PASS** — 3039 项通过 / 0 项失败 / 18 项豁免
 - 覆盖：23/23 个对象（全覆盖）
 - 核验脚本：25 个，全部通过
-- 生成：2026-10-03 00:09:38
+- 生成：2026-10-04 11:16:23
 - 复现：`python verify.py`
 
 每个对象的逐项明细在 `reports/<脚本名>.md`，本报告只汇总。
@@ -52,7 +52,7 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 `\ref`（含 `Fig.~\ref{fig:perf}(a,b)` 这类面板后缀），不再使用区间引用
 `Figs.~\ref{A}--\ref{B}`。跨对象核验仍用两级判据：宽判「是否被引」，
 严判「figure/table 环境**之外**是否有独立 `\ref`」——后者堵死靠 caption
-交叉引用兜底的路径；对已移入补充材料的对象（无 label）另行登记豁免。
+交叉引用兜底的路径；对已从正文删除的对象（无 label）另行登记豁免。
 
 ## 覆盖矩阵
 
@@ -61,7 +61,7 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | `T03_datasets` | tab:datasets | table | 4.1 | 303 | PASS | [T03_datasets](reports/T03_datasets.md) |
 | `T04_ideal_overall` | tab:ideal-overall | table | 4.2 | 87 | PASS | [T04_ideal_overall](reports/T04_ideal_overall.md) |
 | `T05_ideal_depthline` | tab:ideal-depthline | table | 4.2 | 42 | PASS | [T05_ideal_depthline](reports/T05_ideal_depthline.md) |
-| `T06_res_rect_mf` | tab:res-rect-mf | table | 4.3 | 274 | PASS | [T06_res_rect_mf](reports/T06_res_rect_mf.md) |
+| `T06_res_rect_mf` | tab:res-rect-mf | table | 4.3 | 263 | PASS | [T06_res_rect_mf](reports/T06_res_rect_mf.md) |
 | `T07_sq100` | tab:sq100 | table | 4.3 | 139 | PASS | [T07_sq100](reports/T07_sq100.md) |
 | `T08_dl_cmp` | tab:dl-cmp | table | 4.4 | 174 | PASS | [T08_dl_cmp](reports/T08_dl_cmp.md) |
 | `T09_dl_abl` | tab:dl-abl | table | 4.5 | 157 | PASS | [T09_dl_abl](reports/T09_dl_abl.md) |
@@ -71,7 +71,7 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | `T13_gen_overall` | tab:gen-overall | table | 4.7 | 118 | PASS | [T13_gen_overall](reports/T13_gen_overall.md) |
 | `T14_runtime` | tab:runtime | table | 4.8 | 92 | PASS | [T14_runtime](reports/T14_runtime.md) |
 | `F03_ideal` | fig:ideal | figure | 4.2 | 37 | PASS | [FIG03_ideal](reports/FIG03_ideal.md) |
-| `F04_res_128` | fig:res-128 | figure | 4.3 | 57 | PASS | [FIG04_05_fields](reports/FIG04_05_fields.md) |
+| `F04_res_128` | fig:res-128 | figure | 4.3 | 51 | PASS | [FIG04_05_fields](reports/FIG04_05_fields.md) |
 | `F05_sq100` | fig:sq100 | figure | 4.3 | 113 | PASS | [FIG05_sq100](reports/FIG05_sq100.md) |
 | `F06_dl_cmp` | fig:dl-cmp | figure | 4.4 | 74 | PASS | [FIG06_dl_cmp](reports/FIG06_dl_cmp.md) |
 | `F07_dl_abl` | fig:dl-abl | figure | 4.5 | 79 | PASS | [FIG07_dl_abl](reports/FIG07_dl_abl.md) |

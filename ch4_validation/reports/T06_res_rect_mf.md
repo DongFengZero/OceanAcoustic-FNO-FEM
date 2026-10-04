@@ -1,9 +1,9 @@
 # Table 6 — 多频前向精度 R1-R3/W1-W3（矩形与楔形同表）
 
 - 对象：`tab:res-rect-mf`（Table 6）
-- 结论：**PASS** — 274 通过 / 0 失败 / 0 警告，共 274 项
+- 结论：**PASS** — 263 通过 / 0 失败 / 0 警告，共 263 项
 - 脚本：`ch4_validation/scripts/T06_res_rect_mf.py`
-- 生成：2026-10-03 00:06:03
+- 生成：2026-10-04 11:10:37
 
 ## 1. 源清单
 
@@ -29,7 +29,7 @@
 | Case 9 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No09_W1/training_run/logs/full_run_20260710_152228.log | PASS |
 | Case 10 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No10_W2/training_run/logs/full_run_20260710_123954.log | PASS |
 | Case 11 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No11_W3/training_run/logs/full_run_20260710_022039.log | PASS |
-| tex 表格环境可定位且确实包住 label | `tab:res-rect-mf`，长度 1816 | PASS |
+| tex 表格环境可定位且确实包住 label | `tab:res-rect-mf`，长度 1684 | PASS |
 | tex 数据行数 = 6 | 实得 6 | PASS |
 | tex 行 No. 覆盖 3-5 与 9-11 | [3, 4, 5, 9, 10, 11] | PASS |
 
@@ -119,7 +119,7 @@
 
 ## 5. 印刷值比对（源值舍入到 3 位 vs tex）
 
-> 列序：No., Dataset, Fig., 25Hz(Sol,TL), 50Hz, 75Hz, 100Hz, Avg.(Sol,TL)。Avg. 对应 xlsx/日志的 Overall 组。
+> 列序：No., Dataset, 25Hz(Sol,TL), 50Hz, 75Hz, 100Hz, Avg.(Sol,TL)。Avg. 对应 xlsx/日志的 Overall 组。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
@@ -250,33 +250,20 @@
 | Case 11 Avg. TL (xlsx) | 源 1.85227 → `1.852` / 印刷 `1.852` | PASS |
 | Case 11 Avg. TL (log) | 源 1.85227 → `1.852` / 印刷 `1.852` | PASS |
 
-## 6. Fig. 列引用正确性
+## 6. Fig. 列已删除、无补充材料引用
 
-> 每行的图号必须指向该案例自己的图与子图；同一尺度下矩形取 `-r` 子图、楔形取 `-w`，错配读者会看错图。同时确认被引 label 在 aux 里存在（否则排出 `??`）。
-
-> 补充材料的两处引用（S3 覆盖 256 m 的 Case 4/10，S4 覆盖 512 m 的 Case 5/11）在表中各自出现两次，与 SUPP 给的归属一致。
+> R1 的 Fig. 列曾写裸文本 S3/S4 指向并不存在的补充材料，已整列删除。此处断言删除彻底：表头无 Fig.，每行恰为 12 列，正文无任何 Fig.~S 引用。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| Case 3 Fig. 列引用 | tex `\ref{fig:res-128}\subref{fig:res-128-r}` → ['fig:res-128', 'fig:res-128-r']，应为 `['fig:res-128', 'fig:res-128-r']` | PASS |
-| label `fig:res-128` 已在 aux 注册 | 编号 `4` | PASS |
-| label `fig:res-128-r` 已在 aux 注册 | 编号 `4a` | PASS |
-| Case 4 Fig. 列引用（补充材料 S3） | tex `S3`，应为 `S3` | PASS |
-| Case 5 Fig. 列引用（补充材料 S4） | tex `S4`，应为 `S4` | PASS |
-| Case 9 Fig. 列引用 | tex `\ref{fig:res-128}\subref{fig:res-128-w}` → ['fig:res-128', 'fig:res-128-w']，应为 `['fig:res-128', 'fig:res-128-w']` | PASS |
-| label `fig:res-128` 已在 aux 注册 | 编号 `4` | PASS |
-| label `fig:res-128-w` 已在 aux 注册 | 编号 `4b` | PASS |
-| Case 10 Fig. 列引用（补充材料 S3） | tex `S3`，应为 `S3` | PASS |
-| Case 11 Fig. 列引用（补充材料 S4） | tex `S4`，应为 `S4` | PASS |
-| Case 4 归入 S3 | tex `S3` | PASS |
-| Case 10 归入 S3 | tex `S3` | PASS |
-| Case 5 归入 S4 | tex `S4` | PASS |
-| Case 11 归入 S4 | tex `S4` | PASS |
-| 正文以 `Figs.~S3--S4` 区间形式引用补充图 | 正文含区间引用 | PASS |
+| 表头不含 Fig. 列 | 表头无 `Fig.` | PASS |
+| 每个数据行恰为 12 列 | [12] | PASS |
+| 正文无 `Fig.~S*` / `Figs.~S*` 引用 | 补充材料不存在，引用应全部移除 | PASS |
+| 表体无裸文本 S3/S4 |  | PASS |
 
 ## 7. 几何分组小标题行
 
-> 表内用两行 `\multicolumn{13}` 小标题分隔矩形/楔形；它们不是数据行（会被 ncol 过滤掉），但缺失会让 6 行混为一体。
+> 表内用两行 `\multicolumn{12}` 小标题分隔矩形/楔形；它们不是数据行（会被 ncol 过滤掉），但缺失会让 6 行混为一体。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|

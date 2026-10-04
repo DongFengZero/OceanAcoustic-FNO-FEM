@@ -7,7 +7,7 @@ Fig 12（fig:gen-grid）核验 — R1
         (a) fig:gen-r9  = gen_extrap_R9.pdf  = Fig. 12a，Case 39 R9，depth 外推 y>96 m
         (b) fig:gen-r10 = gen_extrap_R10.pdf = Fig. 12b，Case 40 R10，range 外推 x>96 m
 
-★ R1 把楔形两幅（W9/W10，旧 fig:gen-grid-wedge = Fig 22）**移入补充材料**
+★ R1 把楔形两幅（W9/W10，旧 fig:gen-grid-wedge = Fig 22）**从正文删除**（无补充材料）
   （正文以 `Fig.~S5` 引用），故 main text 只剩矩形这一张。本脚本只核正文
   实际包含的两幅；W9/W10 的核验项显式豁免并说明去向。
 
@@ -56,7 +56,7 @@ SUBS = [
     (39, "R9", "fig:gen-r9", "a", "gen_extrap_R9.pdf", "depth", 96),
     (40, "R10", "fig:gen-r10", "b", "gen_extrap_R10.pdf", "range", 96),
 ]
-# R1 已移入补充材料（正文 `Fig.~S5`），本脚本不核其正文编号
+# R1 已从正文删除，本脚本不核其正文编号
 SUBS_SUPP = [
     (41, "W9", "gen_extrap_W9.pdf"),
     (42, "W10", "gen_extrap_W10.pdf"),
@@ -108,7 +108,7 @@ def run():
     c.section("2. 源可追溯与样本数")
     c.check(os.path.exists(SRC_SCRIPT), "成图脚本（矩形两幅）已入库",
             paths.rel(SRC_SCRIPT))
-    c.check(os.path.exists(SRC_SCRIPT_W), "成图脚本（楔形两幅）已入库（供补充材料）",
+    c.check(os.path.exists(SRC_SCRIPT_W), "成图脚本（楔形两幅）已入库（图已从正文删除，脚本留档）",
             paths.rel(SRC_SCRIPT_W))
     src_txt = open(SRC_SCRIPT, encoding="utf-8").read()
     # R9/R10 的行标题在 fig04_05_10_fields.py 的 rows_multi() 里拼装：
@@ -120,7 +120,7 @@ def run():
             "脚本内平均误差标注为 `Avg %.2f dB`（2 位小数）", "")
     c.note("★ 本组成图脚本有两处，格式不同：R9/R10（正文 Fig 12）由 "
            "fig04_05_10_fields.py 生成，行标题 `f = 25 Hz (a),  Src (78.5, "
-           "122.3)` 且平均误差排在同一行（`Avg 1.91 dB`）；W9/W10（补充材料）"
+           "122.3)` 且平均误差排在同一行（`Avg 1.91 dB`）；W9/W10（已从正文删除）"
            "由 fig12_gen_extrap.py 生成，行标题拆三行（`(f=25Hz, a)` / "
            "`Src (121.5, 68.0)` / `(Avg 1.68 dB)`）。两处的 regex 不能混用。")
 
@@ -235,40 +235,40 @@ def run():
     c.check("rectangular" in cap.lower(), "caption 声明矩形几何", "")
 
     # ── E3 ───────────────────────────────────────────────────────
-    c.section("8. R1 版式变动：楔形两幅已移入补充材料")
-    c.note("★ R1 把 W9/W10 两幅（旧 fig:gen-grid-wedge = Fig 22）移入补充材料，"
+    c.section("8. R1 版式变动：楔形两幅已从正文删除")
+    c.note("★ R1 把 W9/W10 两幅（旧 fig:gen-grid-wedge = Fig 22）从正文删除，"
            "正文以 `Fig.~S5` 引用。故 main text 只剩矩形一张；相关核验项"
            "（旧 Fig 22 编号、gen-w9/gen-w10 子图号、wedge caption 的 last "
            "epoch）在 R1 已无对象，逐条豁免如下。W9/W10 的 PDF 与其脚本仍在"
-           "仓库内，供补充材料核对。")
+           "仓库内，供回溯核对。")
     for lb in ("fig:gen-grid-wedge", "fig:gen-w9", "fig:gen-w10"):
         c.check(aux.get(lb) is None, f"`{lb}` 已不在正文（aux 无登记）",
-                "R1 移入补充材料")
+                "R1 已从正文删除")
     c.exempt("旧 Fig 22（fig:gen-grid-wedge）编号 == 22",
-             "该浮动体在 R1 已整段注释移入补充材料，aux 无登记")
+             "该浮动体在 R1 已整段注释从正文删除，aux 无登记")
     c.exempt("子图 fig:gen-w9 / fig:gen-w10 编号为 22a/22b",
-             "两幅随楔形图移入补充材料，main text 不再引用其 label")
+             "两幅随楔形图从正文删除，main text 不再引用其 label")
     c.check(chr(92) + "label{fig:gen-grid-wedge}" in txt,
-            "移入补充材料的楔形浮动体以注释形式留在 tex 末尾（可回溯）",
+            "删除的楔形浮动体以注释形式留在 tex 中（可回溯）",
             "tex 内含注释掉的 \\label{fig:gen-grid-wedge}")
     for no, ds, pdf in SUBS_SUPP:
         c.check(os.path.exists(os.path.join(paths.FIGDIR, pdf)),
-                f"补充材料图件 {pdf} 仍在 Figures/results/", ds)
+                f"已删图件 {pdf} 仍在 Figures/results/", ds)
 
     # ── F ────────────────────────────────────────────────────────
     c.section("9. 正文引用")
     c.note("正文 4.7 节以 `Fig.~\\ref{fig:gen-grid} and Fig.~S5` 并列引用矩形"
            "（正文）与楔形（补充）两张图，非区间引用，且第二张已改为硬写的 "
-           "`Fig.~S5`（补充材料图号）。")
+           "（R1 已改为只引用矩形图）。")
     c.check(chr(92) + "ref{" + LABEL + "}" in txt,
             "正文引用 Fig. 12", "")
-    c.check("Fig.~S5" in txt, "正文以 `Fig.~S5` 引用移入补充材料的楔形图", "")
-    pair = chr(92) + "ref{" + LABEL + "} and Fig.~S5"
-    c.check(pair in txt, "正文以 `Fig.~\\ref{fig:gen-grid} and Fig.~S5` 并列引用",
-            f"含 `{pair}`")
+    c.check("Fig.~S5" not in txt and "S5" not in txt.replace("Section", ""),
+            "正文不再引用 `Fig.~S5`（补充材料不存在，楔形图已删除）", "")
+    c.check(chr(92) + "ref{" + LABEL + "} show" in txt,
+            "正文以 `Fig.~\\ref{fig:gen-grid}` 单独引用矩形外推图", "")
     c.exempt("正文并列引用 Fig 21 与 Fig 22（`\\ref{{fig:gen-grid}} and "
              "\\ref{{fig:gen-grid-wedge}}`）",
-             "R1 的楔形图已移入补充材料，正文改写为 `Fig.~S5` 硬引用，"
+             "R1 的楔形图已从正文删除，正文改写为 `Fig.~S5` 硬引用，"
              "不再有 fig:gen-grid-wedge 的 \\ref")
     hits = T.sentences_with(r"held-out extrapolation region", txt)
     c.check(bool(hits), "正文描述该组图的内容",

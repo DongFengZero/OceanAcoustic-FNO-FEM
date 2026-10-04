@@ -3,7 +3,7 @@
 - 对象：`tab:runtime`（Table 14）
 - 结论：**PASS** — 92 通过 / 0 失败 / 0 警告，共 92 项
 - 脚本：`ch4_validation/scripts/T14_runtime.py`
-- 生成：2026-10-03 00:06:38
+- 生成：2026-10-04 11:11:08
 
 ## 1. 源清单
 
@@ -160,6 +160,6 @@
 |---|---|---|
 | caption 分述 (a)/(b) 两个面板 |  | PASS |
 | caption 标明两个面板各自的硬件平台（跨平台不可直接比） |  | PASS |
-| 正文引用 Fig.\ref{fig:perf} | 实得 2 处 | PASS |
+| 正文引用 Fig.\ref{fig:perf} | 实得 3 处 | PASS |
 | 表号为 14 | aux `14` | PASS |
 

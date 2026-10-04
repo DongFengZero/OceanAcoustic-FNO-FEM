@@ -180,7 +180,7 @@ def write_report(objs, missing, results, tot, bad):
         "`\\ref`（含 `Fig.~\\ref{fig:perf}(a,b)` 这类面板后缀），不再使用区间引用",
         "`Figs.~\\ref{A}--\\ref{B}`。跨对象核验仍用两级判据：宽判「是否被引」，",
         "严判「figure/table 环境**之外**是否有独立 `\\ref`」——后者堵死靠 caption",
-        "交叉引用兜底的路径；对已移入补充材料的对象（无 label）另行登记豁免。",
+        "交叉引用兜底的路径；对已从正文删除的对象（无 label）另行登记豁免。",
     ])
     L.append("")
 

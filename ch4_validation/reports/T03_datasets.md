@@ -3,7 +3,7 @@
 - 对象：`tab:datasets`（tab:datasets）
 - 结论：**PASS** — 303 通过 / 0 失败 / 0 警告，共 303 项
 - 脚本：`ch4_validation/scripts/T03_datasets.py`
-- 生成：2026-10-03 00:05:57
+- 生成：2026-10-04 11:10:32
 
 ## 1. 源清单
 

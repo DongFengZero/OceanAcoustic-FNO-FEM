@@ -1,9 +1,9 @@
 # Fig. 4 — 多频前向 TL 场图 Fig. 4（128x128 m）
 
 - 对象：`fig:res-128`（Fig. 4）
-- 结论：**PASS** — 57 通过 / 0 失败 / 0 警告，共 57 项
+- 结论：**PASS** — 51 通过 / 0 失败 / 0 警告，共 51 项
 - 脚本：`ch4_validation/scripts/FIG04_05_fields.py`
-- 生成：2026-10-03 00:07:11
+- 生成：2026-10-04 11:11:37
 
 ## 1. 源清单
 
@@ -105,9 +105,7 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | Case 3 图内 25Hz 误差 < 100Hz 误差 | `1.09` < `1.44` dB | PASS |
-| Case 3 表内 25Hz TL < 100Hz TL | 表 `0.705` < `1.490` | PASS |
 | Case 9 图内 25Hz 误差 < 100Hz 误差 | `0.43` < `0.81` dB | PASS |
-| Case 9 表内 25Hz TL < 100Hz TL | 表 `0.709` < `1.265` | PASS |
 
 ## 9. 引用完整性（label 已在 aux 注册）
 
@@ -119,23 +117,19 @@
 
 ## 10. 正文引用：逐张引用（R1 无区间引用）
 
-> R1 已取消旧稿的 `Figs.~\ref{fig:res-128}--\ref{fig:res-wedge-100}` 区间写法，改为逐张引用；256/512 m 两张同族图移入 Supplementary，在 Table 6 的 Fig. 列以裸文本 S3/S4 指代，正文不再有它们的 label。
+> R1 已取消旧稿的 `Figs.~\ref{fig:res-128}--\ref{fig:res-wedge-100}` 区间写法，改为逐张引用；256/512 m 两张同族图已从正文删除，其精度数据保留在 Table 6，正文与 aux 均不再有它们的 label。
 
 > 正文称『误差集中在低幅零点与源附近，而非弥散全场』且『障碍物后阴影区清晰、内部掩膜精确置零』。掩膜发生在绘图插值网格上（gp[inside]=NaN），故在 200x200 网格上核验。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 正文引用 `fig:res-128` 至少 1 处 | 实得 6 处：入口段 + 结论段 | PASS |
+| 正文引用 `fig:res-128` 至少 1 处 | 实得 4 处：入口段 + 结论段 | PASS |
 | 正文不含覆盖 Fig 4/5 的区间引用（R1 已改逐张引用） | 全文无 `\ref{fig:..}--\ref{fig:..}` 形式的图区间 | PASS |
-| Table 6 的 Fig. 列以 `\ref..\subref` 指向子图 `fig:res-128-r` | tex 含 `\ref{fig:res-128}\subref{fig:res-128-r}` | PASS |
-| Table 6 的 Fig. 列以 `\ref..\subref` 指向子图 `fig:res-128-w` | tex 含 `\ref{fig:res-128}\subref{fig:res-128-w}` | PASS |
-| Table 6 Case 3 行 Fig. 列指向 Fig. 4(a) | tex `\ref{fig:res-128}\subref{fig:res-128-r}` | PASS |
-| Table 6 Case 9 行 Fig. 列指向 Fig. 4(b) | tex `\ref{fig:res-128}\subref{fig:res-128-w}` | PASS |
-| Table 6 Case 4 行 Fig. 列为补充材料裸文本 `S3` | tex `S3`（无 label，故不在 aux） | PASS |
-| Table 6 Case 5 行 Fig. 列为补充材料裸文本 `S4` | tex `S4`（无 label，故不在 aux） | PASS |
-| Table 6 Case 10 行 Fig. 列为补充材料裸文本 `S3` | tex `S3`（无 label，故不在 aux） | PASS |
-| Table 6 Case 11 行 Fig. 列为补充材料裸文本 `S4` | tex `S4`（无 label，故不在 aux） | PASS |
-| `fig:res-256` / `fig:res-512` 已不在 aux 注册 | 两张图 R1 移入 Supplementary，正文不再排版它们 | PASS |
+| Table 6 不再以 `\subref` 交叉引用 Fig. 4 子图（Fig. 列已删） |  | PASS |
+| 正文无 `Fig.~S*` 引用（补充材料不存在） |  | PASS |
+| 子图 label `fig:res-128-r` 仍在 aux 注册 | 编号 `4a` | PASS |
+| 子图 label `fig:res-128-w` 仍在 aux 注册 | 编号 `4b` | PASS |
+| `fig:res-256` / `fig:res-512` 已不在 aux 注册 | 两张图 R1 已删除，正文不再排版它们 | PASS |
 | Case 3 椭圆内在插值网格上被硬掩膜 | 椭圆内 960 格，掩膜后有限值 0（应 0） | PASS |
 | Case 9 椭圆内在插值网格上被硬掩膜 | 椭圆内 972 格，掩膜后有限值 0（应 0） | PASS |
 

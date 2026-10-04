@@ -3,7 +3,7 @@
 - 对象：`tab:abl`（Table 11）
 - 结论：**PASS** — 343 通过 / 0 失败 / 1 警告，共 344 项
 - 脚本：`ch4_validation/scripts/T11_abl.py`
-- 生成：2026-10-03 00:06:36
+- 生成：2026-10-04 11:11:06
 
 ## 1. 源清单
 
@@ -33,7 +33,7 @@
 | Case 30 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No30_W1_no_prior/training_run/logs/full_run_20260715_023311.log | PASS |
 | Case 31 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No31_W1_no_graph/training_run/logs/full_run_20260715_082131.log | PASS |
 | Case 32 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No32_W1_no_prior_loss/training_run/logs/full_run_20260715_023318.log | PASS |
-| tex 表格环境可定位且确实包住 label | 长度 2296 | PASS |
+| tex 表格环境可定位且确实包住 label | 长度 2211 | PASS |
 
 ## 1. 本表 tabular 的定位
 

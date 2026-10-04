@@ -25,7 +25,7 @@ from common import paths, report, texparse as T  # noqa: E402
 SLUG = "FIGALL_refs"
 
 # 第 4 章正文图（不含第 1-3 章的 architecture/case 等）
-# R1 修订后正文共 11 张图（Fig 3-13）；256/512 m 与楔形外推的场图已移入补充材料。
+# R1 修订后正文共 11 张图（Fig 3-13）；256/512 m 与楔形外推的场图已从正文删除。
 CH4_MAIN = [
     ("fig:ideal", "3"),
     ("fig:res-128", "4"),
