@@ -79,6 +79,8 @@ CROSS_CHECKS = [
      "全章图件引用完整性（无孤图/无悬空/独立正文引用）"),
     ("FIGS_supplementary", "scripts_figures", "FIGS_supplementary",
      "补充材料 Figs. S1-S7：图上数值↔npz、印刷字号、正文/回复信交叉引用"),
+    ("PROSE_numbers", "scripts", "PROSE_numbers",
+     "从正文出发：每个小数须为本节所引表的印刷值（括注 Case 则须在该行）、推导量或配置"),
     ("PROSE_derived", "scripts", "PROSE_derived",
      "正文中不挂靠表/图的数值：超参数↔代码、三维推导量、样本数、基线门槛"),
 ]

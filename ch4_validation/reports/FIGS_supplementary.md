@@ -3,7 +3,7 @@
 - 对象：`Figs. S1-S7`（Fig. S1-S7）
 - 结论：**PASS** — 61 通过 / 0 失败 / 0 警告，共 61 项
 - 脚本：`ch4_validation/scripts/FIGS_supplementary.py`
-- 生成：2026-10-04 13:28:22
+- 生成：2026-10-04 14:16:21
 
 ## 1. 源清单
 

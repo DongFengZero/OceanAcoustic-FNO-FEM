@@ -3,7 +3,7 @@
 - 对象：`fig:ideal`（Fig. ideal-rect）
 - 结论：**PASS** — 37 通过 / 0 失败 / 0 警告，共 37 项
 - 脚本：`ch4_validation/scripts/FIG03_ideal.py`
-- 生成：2026-10-04 13:25:19
+- 生成：2026-10-04 14:13:35
 
 ## 1. 源清单
 

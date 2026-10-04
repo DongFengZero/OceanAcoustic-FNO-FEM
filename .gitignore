@@ -44,3 +44,4 @@ __pycache__/
 Validation_Scripts/*/out/
 Validation_Scripts/*/cache/
 Validation_Scripts/*/__pycache__/
+ch4_validation/selftest/_mutwork/

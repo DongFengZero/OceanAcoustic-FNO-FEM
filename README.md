@@ -106,7 +106,7 @@ export CH4_TEXDIR=/path/to/OE_Revision_R1_Submission   # needs OE_submission.aux
 cd ch4_validation && python verify.py
 ```
 
-Expected output: **23/23 objects, 3240 checks passed, 0 failed, 18 exempt**
+Expected output: **23/23 objects, 3348 checks passed, 0 failed, 19 exempt**
 (about 3 minutes).
 
 Beyond the numbers themselves, the suite also checks the things that never
