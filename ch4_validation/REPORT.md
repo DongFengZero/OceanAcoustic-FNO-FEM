@@ -1,9 +1,9 @@
 # 第 4 章表格与图件核验主报告
 
-- 结论：**PASS** — 3348 项通过 / 0 项失败 / 19 项豁免
+- 结论：**PASS** — 3347 项通过 / 0 项失败 / 19 项豁免
 - 覆盖：23/23 个对象（全覆盖）
 - 核验脚本：28 个，全部通过
-- 生成：2026-10-04 17:28:58
+- 生成：2026-10-04 23:10:22
 - 复现：`python verify.py`
 
 每个对象的逐项明细在 `reports/<脚本名>.md`，本报告只汇总。
@@ -93,7 +93,7 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | 全章图件引用完整性（无孤图/无悬空/独立正文引用） | 36 | PASS | [FIGALL_refs](reports/FIGALL_refs.md) |
 | 补充材料 Figs. S1-S7：图上数值↔npz、印刷字号、正文/回复信交叉引用 | 61 | PASS | [FIGS1_S7_supplementary](reports/FIGS1_S7_supplementary.md) |
 | 从正文出发：每个小数须为本节所引表的印刷值（括注 Case 则须在该行）、推导量或配置 | 109 | PASS | [PROSE_numbers](reports/PROSE_numbers.md) |
-| 正文中不挂靠表/图的数值：超参数↔代码、三维推导量、样本数、基线门槛 | 21 | PASS | [PROSE_derived](reports/PROSE_derived.md) |
+| 正文中不挂靠表/图的数值：超参数↔代码、三维推导量、样本数、基线门槛 | 20 | PASS | [PROSE_derived](reports/PROSE_derived.md) |
 
 ## 已知缺口
 

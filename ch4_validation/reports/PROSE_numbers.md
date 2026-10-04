@@ -3,7 +3,7 @@
 - 对象：`prose (abstract + Sec. 4-5)`（Table —）
 - 结论：**PASS** — 108 通过 / 0 失败 / 0 警告 / 1 豁免，共 109 项
 - 脚本：`ch4_validation/scripts/PROSE_numbers.py`
-- 生成：2026-10-04 17:17:58
+- 生成：2026-10-04 23:06:40
 
 ## 1. 源清单
 
@@ -126,7 +126,7 @@
 | `251.39` @ sec:runtime | 印刷于本节所引 ['tab:runtime'] | PASS |
 | `40.57` @ sec:runtime | 印刷于本节所引 ['tab:runtime'] | PASS |
 | `133.09` @ sec:runtime | 印刷于本节所引 ['tab:runtime'] | PASS |
-| `337{,}351` @ sec:runtime | 印刷于本节所引 ['tab:runtime'] | PASS |
-| `1.96` @ sec:runtime | 三维节点数 337351^1.5（PROSE_derived 回源核）  | PASS |
-| `9.4` @ sec:runtime | 48²×16³（PROSE_derived 回源核）  | PASS |
+| `337{,}351` @ sec:cons | 印刷于本节所引 ['tab:runtime'] | PASS |
+| `5.9` @ sec:cons | 48²×16²（PROSE_derived 回源核）  | PASS |
+| `9.4` @ sec:cons | 48²×16³（PROSE_derived 回源核）  | PASS |
 

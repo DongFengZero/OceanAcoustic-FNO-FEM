@@ -6,15 +6,14 @@ PROSE_derived.py — 正文中不属于任何表/图的数值（跨对象核验�
 81 个已由各表/图脚本断言；余下 4 个只出现在正文里，不挂靠任何表格：
 
   γ = 0.995           学习率衰减系数（4.1 节）
-  1.96×10^8           三维节点数估计（4.8 节三维代价段）
+  1.96×10^8           三维节点数估计（第 5 章结论三维代价段）
   > 2.6 dB            "其余基线 TL 均超过 2.6 dB"（4.4 节）
-  8000 / 2000         "每个多频算例 8000 个有限元解，每频 2000"（4.8 节）
+  8000 / 2000         "每个多频算例 8000 个有限元解，每频 2000"（第 5 章）
 
 其中 8000 那句曾写成"每个算例 8000 个解"，与 Table 3 中 20 个单频算例
 （2000 个解）矛盾——正因为没有任何脚本断言它，才一直没被发现。
 
-本脚本把这几处、连同三维段落里的其余推导量（5.9×10^5、9.4×10^6、96 倍、
-513^3），以及 4.1 节的 FNO 超参数，逐一回到**源头**核对：
+本脚本把这几处、连同三维段落里的其余推导量（5.9×10^5、9.4×10^6、96 倍），以及 4.1 节的 FNO 超参数，逐一回到**源头**核对：
   · 超参数 → 训练代码（Experiment_Code）里的默认值
   · 节点数 → 4.8 节运行时 xlsx（与 Table 14 同源）
   · 样本数 → Table 3 印刷值（Table 3 自身已由 T03 回到 Dataset 核过）
@@ -52,7 +51,7 @@ def run():
     c = report.Checker(SLUG, "正文推导与独立数值（不挂靠表/图）", "table",
                        "prose", "—")
     txt = T.tex_text()
-    c.source("印刷面 tex", paths.TEX, "4.1 / 4.4 / 4.8 节正文")
+    c.source("印刷面 tex", paths.TEX, "4.1 / 4.4 节与第 5 章正文")
     c.source("训练代码", TRAINER, "学习率调度、通道宽度")
     c.source("模型代码", MODELS, "FNO 网格/模态/层数")
     c.source("运行时 xlsx", paths.xlsx_path("4.8"), "网格节点数（Table 14 同源）")
@@ -74,8 +73,8 @@ def run():
         c.check(val is not None and lit in txt and f"{val:g}" == f"{float(printed):g}",
                 f"{name}：代码 `{val}` / 正文 `{lit}`", "代码默认值与正文一致")
 
-    # ── 2. 4.8 节三维代价段的推导量 ────────────────────────────────
-    c.section("2. 4.8 节三维代价段：推导量现场重算")
+    # ── 2. 第 5 章三维代价段的推导量 ────────────────────────────────
+    c.section("2. 第 5 章三维代价段：推导量现场重算（节点数取自 4.8 节 xlsx）")
     import T14_runtime as R
     scale = R.load_scale()
     n_max = max(d["n"] for d in scale.values())
@@ -85,9 +84,6 @@ def run():
     n3 = n_max ** 1.5
     c.check(sci(n3, 2) in txt, "三维节点数 N^{3/2}",
             f"`{n_max}^1.5 = {n3:.4e}` → `{sci(n3, 2)}`")
-    pts = lx_max + 1                                    # Δ = 1 m 时每轴点数
-    c.check(f"{pts}^{{3}}" in txt and sci(pts ** 3, 2) in txt,
-            f"同分辨率直读口径 {pts}^3", f"`{pts ** 3:.4e}` → `{sci(pts ** 3, 2)}`")
     wts = width ** 2 * modes ** 2
     c.check(sci(wts, 1) in txt, "每层截断模态张量 W²m1m2",
             f"`{width}²×{modes}² = {wts:,}` → `{sci(wts, 1)}`")
@@ -97,7 +93,7 @@ def run():
     c.check(f"about {ratio:.0f} times more work at $G={grid}$" in txt,
             "FFT 代价增长倍数 (G³logG³)/(G²logG²) = 1.5G", f"`1.5×{grid} = {ratio:g}`")
 
-    # ── 3. 4.8 节"每个多频算例 8000 个解，每频 2000" ↔ Table 3 ────
+    # ── 3. 第 5 章"每个多频算例 8000 个解，每频 2000" ↔ Table 3 ────
     c.section("3. 参考解数量 ↔ Table 3")
     env = T.table_env("tab:datasets")
     rows = T.data_rows(env, ncol=13)
@@ -109,7 +105,7 @@ def run():
             f"全部 {len(rows)} 个算例每频 2000", "")
     c.check(all(r[8].replace(" ", "").startswith("2000") for r in single),
             f"{len(single)} 个单频算例 N = 2000（故不能写成『每个算例 8000』）", "")
-    c.check("Each multi-frequency case reported here rests on $8000$" in txt
+    c.check("each multi-frequency case here rests on $8000$" in txt
             and "$2000$ per frequency" in txt,
             "正文限定为『每个多频算例 8000、每频 2000』", "")
     c.check("Each case reported here rests on $8000$" not in txt,

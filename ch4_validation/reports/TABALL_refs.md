@@ -3,7 +3,7 @@
 - 对象：`tab:* (all)`（Table 1-14）
 - 结论：**PASS** — 44 通过 / 0 失败 / 0 警告，共 44 项
 - 脚本：`ch4_validation/scripts/TABALL_refs.py`
-- 生成：2026-10-04 17:19:40
+- 生成：2026-10-04 23:07:17
 
 ## 1. 源清单
 
@@ -31,7 +31,7 @@
 | Table 11 (`tab:abl`) 已被引用 | 正文 1 处 | PASS |
 | Table 12 (`tab:mesh`) 已被引用 | 正文 1 处 | PASS |
 | Table 13 (`tab:gen-overall`) 已被引用 | 正文 1 处 | PASS |
-| Table 14 (`tab:runtime`) 已被引用 | 正文 2 处 | PASS |
+| Table 14 (`tab:runtime`) 已被引用 | 正文 3 处 | PASS |
 
 ## 2. 无悬空引用：每个 \ref 都指向真实 label
 
@@ -58,7 +58,7 @@
 | Table 11 (`tab:abl`) 有独立正文引用 | 环境外 1 处 | PASS |
 | Table 12 (`tab:mesh`) 有独立正文引用 | 环境外 1 处 | PASS |
 | Table 13 (`tab:gen-overall`) 有独立正文引用 | 环境外 1 处 | PASS |
-| Table 14 (`tab:runtime`) 有独立正文引用 | 环境外 2 处 | PASS |
+| Table 14 (`tab:runtime`) 有独立正文引用 | 环境外 3 处 | PASS |
 | 全部 14 张表均有独立正文引用 | 全部合规 | PASS |
 
 ## 4. 编号与预期一致
