@@ -83,6 +83,24 @@ def load_dataset_config(dataset_id):
     return {"lx": lx, "ly": ly, "delta": delta, "n": n, "obstacle": obstacle}
 
 
+def run_log_facts(no):
+    """Case no 的训练日志 -> (样本数, [频率...], 日志路径)；找不到返回 None。"""
+    pats = [os.path.join(paths.RAW, "*", f"No{no:02d}_*", "training_run", "logs", "*.log"),
+            os.path.join(paths.RAW, "*", f"No{no:02d}_*", "*", "logs", "*.log")]
+    for pat in pats:
+        for lp in sorted(glob.glob(pat)):
+            try:
+                txt = open(lp, encoding="utf-8", errors="replace").read(2000000)
+            except OSError:
+                continue
+            n = re.search(r"样本数:\s*(\d+)", txt)
+            f = re.search(r"发现\s*(\d+)\s*个频率:\s*\[([^\]]*)\]", txt)
+            if n and f:
+                freqs = [int(x) for x in re.findall(r"(\d+)\)?(?=,|$)", f.group(2).replace(" ", ""))]
+                return int(n.group(1)), freqs, lp
+    return None
+
+
 def run():
     c = report.Checker(SLUG, r["desc"], "table", LABEL, r.get("number"))
     c.source("印刷面 tex", paths.TEX, f"Table {r.get('number')} 环境")
@@ -112,6 +130,9 @@ def run():
         delta = row[6].strip()
         obstacle = row[9].strip()
         printed[case] = {
+            "freq": row[7].strip(),
+            "n": row[8].strip(),
+            "reuse": row[10].strip(),
             "dataset": dataset,
             "geom": geom,
             "lx": lx,
@@ -188,6 +209,51 @@ def run():
             expected = f"({int(cx)},{int(cy)},{int(a)},{int(b)})"
             c.check(prn["obstacle"] == expected, f"Case {no} Obstacle",
                     f"源 {expected} / 印刷 `{prn['obstacle']}`")
+
+    # ── E ────────────────────────────────────────────────────────
+    c.section("5. Freq. 与 N (N/f) 列 ↔ 训练日志")
+    c.note("每行回到该算例自己的训练日志，读『样本数: N』与『发现 k 个频率: [...]』；"
+           "Reuse 列非空的行（复用他例数据与模型）取被复用算例的日志。"
+           "N/f 应等于 N/k。此前这两列未被断言，Cases 43/44 曾误印为 2000 (2000)。")
+    for no in range(1, 51):
+        if no not in printed:
+            continue
+        prn = printed[no]
+        src_no = int(prn["reuse"]) if prn["reuse"].isdigit() else no
+        facts = run_log_facts(src_no) or run_log_facts(no)
+        if facts is None:
+            c.check(False, f"Case {no} 训练日志可定位", f"No{src_no:02d}_* 下未找到含样本数的日志")
+            continue
+        n_log, freqs, lp = facts
+        freq_txt = ",".join(str(f) for f in freqs)
+        c.check(prn["freq"].replace(" ", "") == freq_txt, f"Case {no} Freq.",
+                f"日志 `{freq_txt}` / 印刷 `{prn['freq']}`（{paths.rel(lp)}）")
+        want = f"{n_log}({n_log // len(freqs)})"
+        got = prn["n"].replace(" ", "").replace("\\,", "")
+        c.check(got == want, f"Case {no} N (N/f)",
+                f"日志 样本数 {n_log}、{len(freqs)} 频 → `{n_log} ({n_log // len(freqs)})` / 印刷 `{prn['n']}`")
+
+    # ── F ────────────────────────────────────────────────────────
+    c.section("6. Reuse 列 ↔ 训练日志 md5")
+    c.note("Reuse 声明『本行与第 k 行共用数据与已训练模型』。判据：本行目录下的训练日志"
+           "与第 k 行的训练日志逐字节相同（md5），且两行 Dataset 与 Freq. 一致。"
+           "R1 前 Cases 15/20/33/36 的 Reuse 曾误印为 1/7/4/10（各小 2，"
+           "源于表首插入 Cases 1-2 后未顺延），已改为 3/9/6/12。")
+    import hashlib
+    def log_md5(no):
+        f = run_log_facts(no)
+        return hashlib.md5(open(f[2], "rb").read()).hexdigest() if f else None
+    for no in range(1, 51):
+        if no not in printed or not printed[no]["reuse"].isdigit():
+            continue
+        k = int(printed[no]["reuse"])
+        same_meta = (printed[k]["dataset"] == printed[no]["dataset"]
+                     and printed[k]["freq"] == printed[no]["freq"])
+        c.check(same_meta, f"Case {no} → Reuse {k}：Dataset/Freq. 一致",
+                f"{printed[no]['dataset']}/{printed[no]['freq']} vs {printed[k]['dataset']}/{printed[k]['freq']}")
+        a, b = log_md5(no), log_md5(k)
+        c.check(a is not None and a == b, f"Case {no} → Reuse {k}：训练日志 md5 相同",
+                f"`{(a or 'none')[:10]}` / `{(b or 'none')[:10]}`")
 
     return c
 

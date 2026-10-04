@@ -1,9 +1,9 @@
 # 第 4 章表格与图件核验主报告
 
-- 结论：**PASS** — 3039 项通过 / 0 项失败 / 18 项豁免
+- 结论：**PASS** — 3180 项通过 / 0 项失败 / 18 项豁免
 - 覆盖：23/23 个对象（全覆盖）
-- 核验脚本：25 个，全部通过
-- 生成：2026-10-04 11:16:23
+- 核验脚本：26 个，全部通过
+- 生成：2026-10-04 12:50:03
 - 复现：`python verify.py`
 
 每个对象的逐项明细在 `reports/<脚本名>.md`，本报告只汇总。
@@ -58,7 +58,7 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 
 | 对象 | 编号 | 类型 | 节 | 核验项 | 结论 | 明细 |
 |---|---|---|---|---|---|---|
-| `T03_datasets` | tab:datasets | table | 4.1 | 303 | PASS | [T03_datasets](reports/T03_datasets.md) |
+| `T03_datasets` | tab:datasets | table | 4.1 | 423 | PASS | [T03_datasets](reports/T03_datasets.md) |
 | `T04_ideal_overall` | tab:ideal-overall | table | 4.2 | 87 | PASS | [T04_ideal_overall](reports/T04_ideal_overall.md) |
 | `T05_ideal_depthline` | tab:ideal-depthline | table | 4.2 | 42 | PASS | [T05_ideal_depthline](reports/T05_ideal_depthline.md) |
 | `T06_res_rect_mf` | tab:res-rect-mf | table | 4.3 | 263 | PASS | [T06_res_rect_mf](reports/T06_res_rect_mf.md) |
@@ -91,6 +91,7 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | Tables 13-16 等宽版式一致性 | 16 | PASS | [T13_16_layout](reports/T13_16_layout.md) |
 | 全章表格引用完整性（无孤表/无悬空/独立正文引用） | 44 | PASS | [TABALL_refs](reports/TABALL_refs.md) |
 | 全章图件引用完整性（无孤图/无悬空/独立正文引用） | 36 | PASS | [FIGALL_refs](reports/FIGALL_refs.md) |
+| 正文中不挂靠表/图的数值：超参数↔代码、三维推导量、样本数、基线门槛 | 21 | PASS | [PROSE_derived](reports/PROSE_derived.md) |
 
 ## 已知缺口
 

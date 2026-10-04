@@ -77,6 +77,8 @@ CROSS_CHECKS = [
      "全章表格引用完整性（无孤表/无悬空/独立正文引用）"),
     ("FIGALL_refs", "scripts_figures", "FIGALL_refs",
      "全章图件引用完整性（无孤图/无悬空/独立正文引用）"),
+    ("PROSE_derived", "scripts", "PROSE_derived",
+     "正文中不挂靠表/图的数值：超参数↔代码、三维推导量、样本数、基线门槛"),
 ]
 
 

@@ -1,9 +1,9 @@
 # tab:datasets — 数据集总表 No.1-50（结构性，非测量值）
 
 - 对象：`tab:datasets`（tab:datasets）
-- 结论：**PASS** — 303 通过 / 0 失败 / 0 警告，共 303 项
+- 结论：**PASS** — 423 通过 / 0 失败 / 0 警告，共 423 项
 - 脚本：`ch4_validation/scripts/T03_datasets.py`
-- 生成：2026-10-04 11:10:32
+- 生成：2026-10-04 12:46:59
 
 ## 1. 源清单
 
@@ -342,4 +342,138 @@
 | Case 50 Ly | 源 512.0 / 印刷 `512` | PASS |
 | Case 50 Δ | 源 1.0 → `1.00` / 印刷 `1.00` | PASS |
 | Case 50 Obstacle | 源 (384,128,64,32) / 印刷 `(384,128,64,32)` | PASS |
+
+## 5. Freq. 与 N (N/f) 列 ↔ 训练日志
+
+> 每行回到该算例自己的训练日志，读『样本数: N』与『发现 k 个频率: [...]』；Reuse 列非空的行（复用他例数据与模型）取被复用算例的日志。N/f 应等于 N/k。此前这两列未被断言，Cases 43/44 曾误印为 2000 (2000)。
+
+| 检查项 | 源值 / 印刷值 | 结论 |
+|---|---|---|
+| Case 1 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No01_R0/train_rectangle_Lx128_Ly128_H1.000_f25_50_75_100_spf2000_analyticsol__ratio0.90_bs1_mi4_hc48_ddp/logs/full_run_20260719_221907.log） | PASS |
+| Case 1 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 2 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No02_W0/train_wedge_Lx128_Ly128_H1.000_f25_50_75_100_spf2000_analyticsol__ratio0.90_bs1_mi4_hc48_ddp/logs/full_run_20260720_031249.log） | PASS |
+| Case 2 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 3 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No03_R1/training_run/logs/full_run_20260710_221657.log） | PASS |
+| Case 3 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 4 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No04_R2/training_run/logs/full_run_20260710_214148.log） | PASS |
+| Case 4 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 5 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No05_R3/training_run/logs/full_run_20260710_024112.log） | PASS |
+| Case 5 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 6 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No06_R4/training_run/logs/full_run_20260710_224527.log） | PASS |
+| Case 6 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 7 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No07_R5/training_run/logs/full_run_20260710_220509.log） | PASS |
+| Case 7 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 8 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No08_R6/training_run/logs/full_run_20260710_024837.log） | PASS |
+| Case 8 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 9 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No09_W1/training_run/logs/full_run_20260710_152228.log） | PASS |
+| Case 9 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 10 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No10_W2/training_run/logs/full_run_20260710_123954.log） | PASS |
+| Case 10 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 11 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No11_W3/training_run/logs/full_run_20260710_022039.log） | PASS |
+| Case 11 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 12 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No12_W4/training_run/logs/full_run_20260710_150948.log） | PASS |
+| Case 12 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 13 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No13_W5/training_run/logs/full_run_20260710_122002.log） | PASS |
+| Case 13 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 14 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No14_W6/training_run/logs/full_run_20260710_024405.log） | PASS |
+| Case 14 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 15 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No03_R1/training_run/logs/full_run_20260710_221657.log） | PASS |
+| Case 15 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 16 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.4_Comparison/No16_R1_DeepONet/training_run/logs/full_run_20260711_003124.log） | PASS |
+| Case 16 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 17 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.4_Comparison/No17_R1_FNO/training_run/logs/full_run_20260711_004949.log） | PASS |
+| Case 17 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 18 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.4_Comparison/No18_R1_KNO/training_run/logs/full_run_20260711_013721.log） | PASS |
+| Case 18 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 19 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.4_Comparison/No19_R1_CNO/training_run/logs/full_run_20260711_022215.log） | PASS |
+| Case 19 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 20 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No09_W1/training_run/logs/full_run_20260710_152228.log） | PASS |
+| Case 20 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 21 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.4_Comparison/No21_W1_DeepONet/training_run/logs/full_run_20260710_162410.log） | PASS |
+| Case 21 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 22 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.4_Comparison/No22_W1_FNO/training_run/logs/full_run_20260710_172139.log） | PASS |
+| Case 22 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 23 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.4_Comparison/No23_W1_KNO/training_run/logs/full_run_20260710_202430.log） | PASS |
+| Case 23 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 24 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.4_Comparison/No24_W1_CNO/training_run/logs/full_run_20260710_184721.log） | PASS |
+| Case 24 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 25 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No25_R1_Full/training_run/logs/full_run_20260712_150041.log） | PASS |
+| Case 25 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 26 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No26_R1_no_prior/training_run/logs/full_run_20260713_025215.log） | PASS |
+| Case 26 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 27 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No27_R1_no_graph/training_run/logs/full_run_20260712_193334.log） | PASS |
+| Case 27 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 28 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No28_R1_no_prior_loss/training_run/logs/full_run_20260712_150158.log） | PASS |
+| Case 28 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 29 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No29_W1_Full/training_run/logs/full_run_20260715_023150.log） | PASS |
+| Case 29 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 30 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No30_W1_no_prior/training_run/logs/full_run_20260715_023311.log） | PASS |
+| Case 30 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 31 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No31_W1_no_graph/training_run/logs/full_run_20260715_082131.log） | PASS |
+| Case 31 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 32 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No32_W1_no_prior_loss/training_run/logs/full_run_20260715_023318.log） | PASS |
+| Case 32 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 33 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No06_R4/training_run/logs/full_run_20260710_224527.log） | PASS |
+| Case 33 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 34 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No34_R7/training_run/logs/full_run_20260710_220203.log） | PASS |
+| Case 34 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 35 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No35_R8/training_run/logs/full_run_20260710_025319.log） | PASS |
+| Case 35 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 36 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No12_W4/training_run/logs/full_run_20260710_150948.log） | PASS |
+| Case 36 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 37 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No37_W7/training_run/logs/full_run_20260710_123333.log） | PASS |
+| Case 37 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 38 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No38_W8/training_run/logs/full_run_20260710_030023.log） | PASS |
+| Case 38 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 39 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.7_Generalization/No39_R9/training_run/logs/full_run_20260720_153827.log） | PASS |
+| Case 39 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 40 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.7_Generalization/No40_R10/training_run/logs/full_run_20260720_103428.log） | PASS |
+| Case 40 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 41 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.7_Generalization/No41_W9/training_run/logs/full_run_20260720_204724.log） | PASS |
+| Case 41 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 42 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.7_Generalization/No42_W10/training_run/logs/full_run_20260721_011504.log） | PASS |
+| Case 42 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 43 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.8_Performance/No43_R1/training_run/logs/gpu1_full_run_20260721_111502.log） | PASS |
+| Case 43 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 44 Freq. | 日志 `25,50,75,100` / 印刷 `25,50,75,100`（Data_and_Code_Availability/Raw_Experimental_Data/4.8_Performance/No44_W1/training_run/logs/gpu1_full_run_20260721_113657.log） | PASS |
+| Case 44 N (N/f) | 日志 样本数 8000、4 频 → `8000 (2000)` / 印刷 `8000(2000)` | PASS |
+| Case 45 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No06_R4/training_run/logs/full_run_20260710_224527.log） | PASS |
+| Case 45 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 46 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No07_R5/training_run/logs/full_run_20260710_220509.log） | PASS |
+| Case 46 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 47 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No08_R6/training_run/logs/full_run_20260710_024837.log） | PASS |
+| Case 47 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 48 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No12_W4/training_run/logs/full_run_20260710_150948.log） | PASS |
+| Case 48 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 49 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No13_W5/training_run/logs/full_run_20260710_122002.log） | PASS |
+| Case 49 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+| Case 50 Freq. | 日志 `100` / 印刷 `100`（Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No14_W6/training_run/logs/full_run_20260710_024405.log） | PASS |
+| Case 50 N (N/f) | 日志 样本数 2000、1 频 → `2000 (2000)` / 印刷 `2000(2000)` | PASS |
+
+## 6. Reuse 列 ↔ 训练日志 md5
+
+> Reuse 声明『本行与第 k 行共用数据与已训练模型』。判据：本行目录下的训练日志与第 k 行的训练日志逐字节相同（md5），且两行 Dataset 与 Freq. 一致。R1 前 Cases 15/20/33/36 的 Reuse 曾误印为 1/7/4/10（各小 2，源于表首插入 Cases 1-2 后未顺延），已改为 3/9/6/12。
+
+| 检查项 | 源值 / 印刷值 | 结论 |
+|---|---|---|
+| Case 15 → Reuse 3：Dataset/Freq. 一致 | R1/25,50,75,100 vs R1/25,50,75,100 | PASS |
+| Case 15 → Reuse 3：训练日志 md5 相同 | `7b7a1bfe12` / `7b7a1bfe12` | PASS |
+| Case 20 → Reuse 9：Dataset/Freq. 一致 | W1/25,50,75,100 vs W1/25,50,75,100 | PASS |
+| Case 20 → Reuse 9：训练日志 md5 相同 | `7f1dde4cbe` / `7f1dde4cbe` | PASS |
+| Case 33 → Reuse 6：Dataset/Freq. 一致 | R4/100 vs R4/100 | PASS |
+| Case 33 → Reuse 6：训练日志 md5 相同 | `a1917a0b42` / `a1917a0b42` | PASS |
+| Case 36 → Reuse 12：Dataset/Freq. 一致 | W4/100 vs W4/100 | PASS |
+| Case 36 → Reuse 12：训练日志 md5 相同 | `ff4a9d9c4b` / `ff4a9d9c4b` | PASS |
+| Case 45 → Reuse 6：Dataset/Freq. 一致 | R4/100 vs R4/100 | PASS |
+| Case 45 → Reuse 6：训练日志 md5 相同 | `a1917a0b42` / `a1917a0b42` | PASS |
+| Case 46 → Reuse 7：Dataset/Freq. 一致 | R5/100 vs R5/100 | PASS |
+| Case 46 → Reuse 7：训练日志 md5 相同 | `b1eadb401b` / `b1eadb401b` | PASS |
+| Case 47 → Reuse 8：Dataset/Freq. 一致 | R6/100 vs R6/100 | PASS |
+| Case 47 → Reuse 8：训练日志 md5 相同 | `7625980c68` / `7625980c68` | PASS |
+| Case 48 → Reuse 12：Dataset/Freq. 一致 | W4/100 vs W4/100 | PASS |
+| Case 48 → Reuse 12：训练日志 md5 相同 | `ff4a9d9c4b` / `ff4a9d9c4b` | PASS |
+| Case 49 → Reuse 13：Dataset/Freq. 一致 | W5/100 vs W5/100 | PASS |
+| Case 49 → Reuse 13：训练日志 md5 相同 | `17a6ce7519` / `17a6ce7519` | PASS |
+| Case 50 → Reuse 14：Dataset/Freq. 一致 | W6/100 vs W6/100 | PASS |
+| Case 50 → Reuse 14：训练日志 md5 相同 | `b5277b4bf6` / `b5277b4bf6` | PASS |
 
