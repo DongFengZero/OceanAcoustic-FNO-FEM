@@ -121,16 +121,16 @@ def run():
                 c.eq(f"Case {no} {gname} {q.upper()} (log)", ld[no][g][q], cell)
 
     # ── E ────────────────────────────────────────────────────────
-    c.section("6. Fig. 列已删除、无补充材料引用")
-    c.note("R1 的 Fig. 列曾写裸文本 S3/S4 指向并不存在的补充材料，已整列删除。"
-           "此处断言删除彻底：表头无 Fig.，每行恰为 12 列，正文无任何 Fig.~S 引用。")
+    c.section("6. Fig. 列已删除；256/512 m 场图由正文指向补充材料")
+    c.note("R1 删去了 Table 6 的 Fig. 列（它曾以裸文本 S3/S4 指代补充图）。256/512 m 的"
+           "场图现为补充材料 Figs. S1-S4，由 4.3 节正文引用；补充材料本身由 FIGS_supplementary 核验。")
     head = (T.tabular_body(env) or "")
     hdr = env[:env.find('\\' + "midrule")] if env else ""
     c.check("Fig." not in hdr, "表头不含 Fig. 列", "表头无 `Fig.`")
     c.check(all(len(r) == NCOL for r in rows), f"每个数据行恰为 {NCOL} 列",
             str(sorted({len(r) for r in rows})))
-    c.check(not re.search(r"Figs?\.~?\s*S\d", T.tex_text()),
-            "正文无 `Fig.~S*` / `Figs.~S*` 引用", "补充材料不存在，引用应全部移除")
+    c.check("Figs.~S1--S4" in T.tex_text(),
+            "4.3 节正文以 `Figs.~S1--S4` 引用 256/512 m 场图", "")
     c.check(not re.search(r"\bS[34]\b", head), "表体无裸文本 S3/S4", "")
 
     # ── F ────────────────────────────────────────────────────────

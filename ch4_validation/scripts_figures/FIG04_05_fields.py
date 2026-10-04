@@ -263,8 +263,8 @@ def run():
     te = T.table_env(TABLE) or ""
     c.check(BS + "subref{fig:res-128" not in te,
             "Table 6 不再以 `\\subref` 交叉引用 Fig. 4 子图（Fig. 列已删）", "")
-    c.check(not re.search(r"Figs?\.~?\s*S\d", txt),
-            "正文无 `Fig.~S*` 引用（补充材料不存在）", "")
+    c.check("Figs.~S1--S4" in txt,
+            "同族 256/512 m 场图由正文指向补充材料 `Figs.~S1--S4`", "")
     for lb in SUB_LABELS:
         c.check(lb in aux, f"子图 label `{lb}` 仍在 aux 注册",
                 f"编号 `{aux.get(lb, {}).get('num', '缺失')}`")

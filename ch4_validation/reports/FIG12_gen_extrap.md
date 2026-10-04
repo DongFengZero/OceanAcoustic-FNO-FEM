@@ -1,9 +1,9 @@
 # Fig. 12 — 源位置外推场图 Fig 12（矩形 R9/R10）
 
 - 对象：`fig:gen-grid`（Fig. 12）
-- 结论：**PASS** — 55 通过 / 0 失败 / 0 警告 / 3 豁免，共 58 项
+- 结论：**PASS** — 54 通过 / 0 失败 / 0 警告 / 3 豁免，共 57 项
 - 脚本：`ch4_validation/scripts/FIG12_gen_extrap.py`
-- 生成：2026-10-04 12:50:02
+- 生成：2026-10-04 13:27:37
 
 ## 1. 源清单
 
@@ -122,8 +122,7 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 正文引用 Fig. 12 |  | PASS |
-| 正文不再引用 `Fig.~S5`（补充材料不存在，楔形图已删除） |  | PASS |
-| 正文以 `Fig.~\ref{fig:gen-grid}` 单独引用矩形外推图 |  | PASS |
+| 正文以 `Fig.~\ref{fig:gen-grid} and Fig.~S7` 并列引用矩形与楔形外推图 | 楔形 W9/W10 在补充材料 Fig. S7 | PASS |
 | 正文并列引用 Fig 21 与 Fig 22（`\ref{{fig:gen-grid}} and \ref{{fig:gen-grid-wedge}}`） | R1 的楔形图已从正文删除，正文改写为 `Fig.~S5` 硬引用，不再有 fig:gen-grid-wedge 的 \ref | 豁免 |
 | 正文描述该组图的内容 | tex 行 1126 | PASS |
 

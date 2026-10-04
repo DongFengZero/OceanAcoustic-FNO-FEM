@@ -47,6 +47,23 @@ Two notes on coverage:
   `ast` and compares them against the xlsx, which catches the real failure mode
   (a table value updated while the figure constant is left behind).
 
+## Supplementary Material — Figs. S1–S7
+
+The field figures moved out of the main text in R1 are redrawn at printed size by
+`figS_supplementary/figS_supplementary.py`, which reuses the main-text renderers
+(`fig04_05_10_fields.py` for field panels, `fig08_09_perf_grid.py` for the grids).
+
+| Figure | Content | Cases | Original |
+|---|---|---|---|
+| S1 / S2 | 256 m fields, rectangular / wedge | 4 / 10 | 6 |
+| S3 / S4 | 512 m fields, rectangular / wedge | 5 / 11 | 7 |
+| S5 / S6 | Ablation-variant grids, R1 / W1 | 25–28 / 29–32 | 16 / 17 |
+| S7 | Wedge extrapolation, W9 / W10 | 41 / 42 | 22 |
+
+`ch4_validation/scripts_figures/FIGS_supplementary.py` recomputes every source position
+and averaged error printed on these figures from the ep200 npz and cross-checks the
+S-numbering across the manuscript, the supplementary document and the response letter.
+
 `legacy/` holds the pre-revision scripts, kept for provenance. They are no longer
 entry points and still carry the old figure numbering.
 

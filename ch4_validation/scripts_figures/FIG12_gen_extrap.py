@@ -262,10 +262,9 @@ def run():
            "（R1 已改为只引用矩形图）。")
     c.check(chr(92) + "ref{" + LABEL + "}" in txt,
             "正文引用 Fig. 12", "")
-    c.check("Fig.~S5" not in txt and "S5" not in txt.replace("Section", ""),
-            "正文不再引用 `Fig.~S5`（补充材料不存在，楔形图已删除）", "")
-    c.check(chr(92) + "ref{" + LABEL + "} show" in txt,
-            "正文以 `Fig.~\\ref{fig:gen-grid}` 单独引用矩形外推图", "")
+    c.check(chr(92) + "ref{" + LABEL + "} and Fig.~S7 of the Supplementary" in txt,
+            "正文以 `Fig.~\\ref{fig:gen-grid} and Fig.~S7` 并列引用矩形与楔形外推图",
+            "楔形 W9/W10 在补充材料 Fig. S7")
     c.exempt("正文并列引用 Fig 21 与 Fig 22（`\\ref{{fig:gen-grid}} and "
              "\\ref{{fig:gen-grid-wedge}}`）",
              "R1 的楔形图已从正文删除，正文改写为 `Fig.~S5` 硬引用，"

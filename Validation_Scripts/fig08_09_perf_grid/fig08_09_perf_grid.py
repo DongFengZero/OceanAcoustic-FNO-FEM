@@ -209,7 +209,7 @@ def render(cfg, out_pdf):
         bh = 3.5
         for (xa, xb, im, lbl, tk) in [
                 (x_ref, x_err[1] + w, im_tl, "TL (dB)", [-60, -40, -20, 0]),
-                (x_pred[3], x_err[4] + w, im_err, "|Error| (dB)",
+                (x_pred[nm - 2], x_err[nm - 1] + w, im_err, "|Error| (dB)",
                  [0, 2, 4, 6, 8, 10])]:
             cax = fig.add_axes(box(xa, y + 2.0, xb - xa, bh))
             cb = fig.colorbar(im, cax=cax, orientation="horizontal", ticks=tk)

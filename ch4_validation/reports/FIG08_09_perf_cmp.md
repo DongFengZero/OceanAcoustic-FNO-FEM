@@ -3,7 +3,7 @@
 - 对象：`fig:perf-cmp-r / fig:perf-cmp-w`（Fig. 8/9）
 - 结论：**PASS** — 89 通过 / 0 失败 / 0 警告 / 2 豁免，共 91 项
 - 脚本：`ch4_validation/scripts/FIG08_09_perf_cmp.py`
-- 生成：2026-10-04 12:49:27
+- 生成：2026-10-04 13:26:46
 
 ## 1. 源清单
 

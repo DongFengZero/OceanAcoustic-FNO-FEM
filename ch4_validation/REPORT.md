@@ -1,9 +1,9 @@
 # 第 4 章表格与图件核验主报告
 
-- 结论：**PASS** — 3180 项通过 / 0 项失败 / 18 项豁免
+- 结论：**PASS** — 3240 项通过 / 0 项失败 / 18 项豁免
 - 覆盖：23/23 个对象（全覆盖）
-- 核验脚本：26 个，全部通过
-- 生成：2026-10-04 12:50:03
+- 核验脚本：27 个，全部通过
+- 生成：2026-10-04 13:28:22
 - 复现：`python verify.py`
 
 每个对象的逐项明细在 `reports/<脚本名>.md`，本报告只汇总。
@@ -79,7 +79,7 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | `F09_perf_cmp_w` | fig:perf-cmp-w | figure | 4.4 | 91 | PASS | [FIG08_09_perf_cmp](reports/FIG08_09_perf_cmp.md) |
 | `F10_mesh` | fig:mesh | figure | 4.6 | 113 | PASS | [FIG10_mesh](reports/FIG10_mesh.md) |
 | `F11_gen_split` | fig:gen-split | figure | 4.7 | 52 | PASS | [FIG11_gen_split](reports/FIG11_gen_split.md) |
-| `F12_gen_grid` | fig:gen-grid | figure | 4.7 | 58 | PASS | [FIG12_gen_extrap](reports/FIG12_gen_extrap.md) |
+| `F12_gen_grid` | fig:gen-grid | figure | 4.7 | 57 | PASS | [FIG12_gen_extrap](reports/FIG12_gen_extrap.md) |
 | `F13_perf` | fig:perf | figure | 4.8 | 54 | PASS | [FIG13_perf](reports/FIG13_perf.md) |
 
 ## 跨对象核验
@@ -91,6 +91,7 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | Tables 13-16 等宽版式一致性 | 16 | PASS | [T13_16_layout](reports/T13_16_layout.md) |
 | 全章表格引用完整性（无孤表/无悬空/独立正文引用） | 44 | PASS | [TABALL_refs](reports/TABALL_refs.md) |
 | 全章图件引用完整性（无孤图/无悬空/独立正文引用） | 36 | PASS | [FIGALL_refs](reports/FIGALL_refs.md) |
+| 补充材料 Figs. S1-S7：图上数值↔npz、印刷字号、正文/回复信交叉引用 | 61 | PASS | [FIGS_supplementary](reports/FIGS_supplementary.md) |
 | 正文中不挂靠表/图的数值：超参数↔代码、三维推导量、样本数、基线门槛 | 21 | PASS | [PROSE_derived](reports/PROSE_derived.md) |
 
 ## 已知缺口

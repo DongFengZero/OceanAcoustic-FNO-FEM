@@ -3,7 +3,7 @@
 - 对象：`fig:res-128`（Fig. 4）
 - 结论：**PASS** — 51 通过 / 0 失败 / 0 警告，共 51 项
 - 脚本：`ch4_validation/scripts/FIG04_05_fields.py`
-- 生成：2026-10-04 12:48:06
+- 生成：2026-10-04 13:25:25
 
 ## 1. 源清单
 
@@ -126,7 +126,7 @@
 | 正文引用 `fig:res-128` 至少 1 处 | 实得 4 处：入口段 + 结论段 | PASS |
 | 正文不含覆盖 Fig 4/5 的区间引用（R1 已改逐张引用） | 全文无 `\ref{fig:..}--\ref{fig:..}` 形式的图区间 | PASS |
 | Table 6 不再以 `\subref` 交叉引用 Fig. 4 子图（Fig. 列已删） |  | PASS |
-| 正文无 `Fig.~S*` 引用（补充材料不存在） |  | PASS |
+| 同族 256/512 m 场图由正文指向补充材料 `Figs.~S1--S4` |  | PASS |
 | 子图 label `fig:res-128-r` 仍在 aux 注册 | 编号 `4a` | PASS |
 | 子图 label `fig:res-128-w` 仍在 aux 注册 | 编号 `4b` | PASS |
 | `fig:res-256` / `fig:res-512` 已不在 aux 注册 | 两张图 R1 已删除，正文不再排版它们 | PASS |
