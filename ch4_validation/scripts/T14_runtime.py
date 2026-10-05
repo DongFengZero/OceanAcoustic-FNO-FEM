@@ -103,7 +103,7 @@ def load_scale():
         except (TypeError, ValueError):
             continue
         data[case] = {"dataset": str(row.iloc[1]).strip(), "lx": int(row.iloc[3]),
-                      "n": int(row.iloc[5]), "time": float(row.iloc[6])}
+                      "ly": int(row.iloc[4]), "n": int(row.iloc[5]), "time": float(row.iloc[6])}
     return data
 
 
@@ -186,7 +186,8 @@ def run():
 
     # ── (b) ──────────────────────────────────────────────────────
     c.section("5. (b) 印刷值比对")
-    c.note("列：Case | Dataset | Lx(m) | N | Time(ms)。N 用千位逗号，"
+    c.note("列：Case | Dataset | Lx×Ly(m) | N | Time(ms)。域尺寸印作 `$128\\times128$`，"
+           "两个边长分别对照 xlsx 的 Lx、Ly 列；N 用千位逗号，"
            "tex 里写作 `21{,}737`，clean 后为 `21,737`。")
     pb = {}
     for row in rows_b:
@@ -198,8 +199,10 @@ def run():
         src, prn = xs[no], pb[no]
         c.check(prn[1].strip() == SCALE[no], f"Case {no} Dataset 名",
                 f"tex `{prn[1].strip()}`")
-        c.check(prn[2].strip() == str(src["lx"]), f"Case {no} Lx",
-                f"源 {src['lx']} / 印刷 `{prn[2].strip()}`")
+        m = re.fullmatch(r"\$(\d+)(?:\\times|x)(\d+)\$", prn[2].strip())   # texparse 把 \times 清成 x
+        c.check(m is not None and (m.group(1), m.group(2)) == (str(src["lx"]), str(src["ly"])),
+                f"Case {no} Lx×Ly",
+                f"源 {src['lx']}×{src['ly']} / 印刷 `{prn[2].strip()}`")
         c.check(prn[3].replace("{,}", ",").replace("$", "") == f"{src['n']:,}",
                 f"Case {no} N（千位分隔）",
                 f"源 {src['n']} → `{src['n']:,}` / 印刷 `{prn[3]}`")

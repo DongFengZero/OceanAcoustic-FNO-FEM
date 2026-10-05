@@ -3,7 +3,7 @@
 - 对象：`tab:runtime`（Table 14）
 - 结论：**PASS** — 92 通过 / 0 失败 / 0 警告，共 92 项
 - 脚本：`ch4_validation/scripts/T14_runtime.py`
-- 生成：2026-10-04 23:07:17
+- 生成：2026-10-05 10:16:35
 
 ## 1. 源清单
 
@@ -81,33 +81,33 @@
 
 ## 5. (b) 印刷值比对
 
-> 列：Case | Dataset | Lx(m) | N | Time(ms)。N 用千位逗号，tex 里写作 `21{,}737`，clean 后为 `21,737`。
+> 列：Case | Dataset | Lx×Ly(m) | N | Time(ms)。域尺寸印作 `$128\times128$`，两个边长分别对照 xlsx 的 Lx、Ly 列；N 用千位逗号，tex 里写作 `21{,}737`，clean 后为 `21,737`。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | (b) 行 No. 覆盖 45-50 | [45, 46, 47, 48, 49, 50] | PASS |
 | Case 45 Dataset 名 | tex `R4` | PASS |
-| Case 45 Lx | 源 128 / 印刷 `128` | PASS |
+| Case 45 Lx×Ly | 源 128×128 / 印刷 `$128x128$` | PASS |
 | Case 45 N（千位分隔） | 源 21737 → `21,737` / 印刷 `21,737` | PASS |
 | Case 45 Time | 源 47.53 → `47.53` / 印刷 `47.53` | PASS |
 | Case 46 Dataset 名 | tex `R5` | PASS |
-| Case 46 Lx | 源 256 / 印刷 `256` | PASS |
+| Case 46 Lx×Ly | 源 256×256 / 印刷 `$256x256$` | PASS |
 | Case 46 N（千位分隔） | 源 85353 → `85,353` / 印刷 `85,353` | PASS |
 | Case 46 Time | 源 86.5 → `86.50` / 印刷 `86.50` | PASS |
 | Case 47 Dataset 名 | tex `R6` | PASS |
-| Case 47 Lx | 源 512 / 印刷 `512` | PASS |
+| Case 47 Lx×Ly | 源 512×512 / 印刷 `$512x512$` | PASS |
 | Case 47 N（千位分隔） | 源 337351 → `337,351` / 印刷 `337,351` | PASS |
 | Case 47 Time | 源 251.39 → `251.39` / 印刷 `251.39` | PASS |
 | Case 48 Dataset 名 | tex `W4` | PASS |
-| Case 48 Lx | 源 128 / 印刷 `128` | PASS |
+| Case 48 Lx×Ly | 源 128×128 / 印刷 `$128x128$` | PASS |
 | Case 48 N（千位分隔） | 源 10680 → `10,680` / 印刷 `10,680` | PASS |
 | Case 48 Time | 源 40.57 → `40.57` / 印刷 `40.57` | PASS |
 | Case 49 Dataset 名 | tex `W5` | PASS |
-| Case 49 Lx | 源 256 / 印刷 `256` | PASS |
+| Case 49 Lx×Ly | 源 256×256 / 印刷 `$256x256$` | PASS |
 | Case 49 N（千位分隔） | 源 41633 → `41,633` / 印刷 `41,633` | PASS |
 | Case 49 Time | 源 58.04 → `58.04` / 印刷 `58.04` | PASS |
 | Case 50 Dataset 名 | tex `W6` | PASS |
-| Case 50 Lx | 源 512 / 印刷 `512` | PASS |
+| Case 50 Lx×Ly | 源 512×512 / 印刷 `$512x512$` | PASS |
 | Case 50 N（千位分隔） | 源 165034 → `165,034` / 印刷 `165,034` | PASS |
 | Case 50 Time | 源 133.09 → `133.09` / 印刷 `133.09` | PASS |
 
