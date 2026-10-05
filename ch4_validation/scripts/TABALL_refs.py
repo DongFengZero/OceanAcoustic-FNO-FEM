@@ -16,7 +16,7 @@
 
 Tables 1/2 属方法章（method-comparison / method-symbols），一并核引用，
 但不计入第 4 章数值链。R1 修订后第 4 章共 11 张表（No. 3-13）；原 Table 5
-（理想深度线）已移入补充材料为 Table S1。
+（理想深度线）已删除：Fig. 3 显示同一批样本的深度线。
 """
 import re
 import sys
@@ -39,7 +39,7 @@ ALL_TABS = [
     ("tab:gen-overall", "12"),
     ("tab:runtime", "13"),
 ]
-# 原 Table 5（tab:ideal-depthline）已移入补充材料为 Table S1，由 TS1_ideal_depthline 核；
+# 原 Table 5（tab:ideal-depthline）在 R1 终稿删除（Fig. 3 显示同一批样本）；
 # 正文不得再出现它的 label 或 \ref。
 RETIRED = ["tab:ideal-depthline"]
 CH4 = [t for t in ALL_TABS if int(t[1]) >= 3]
@@ -142,7 +142,7 @@ def run():
     for lb in RETIRED:
         gone = ("\\label{" + lb + "}") not in txt and ("\\ref{" + lb + "}") not in txt
         c.check(gone, f"已移入补充材料的 `{lb}` 在正文中无 label 也无 \\ref",
-                "正文以 Table~S1 指向补充材料")
+                "该表已删除，正文无残留 label 或引用")
 
     # ── C ────────────────────────────────────────────────────────
     c.section("3. 每表均有独立正文引用（不靠区间/环境内兜底）")

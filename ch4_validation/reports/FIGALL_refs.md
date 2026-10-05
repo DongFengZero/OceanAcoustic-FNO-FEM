@@ -3,7 +3,7 @@
 - 对象：`fig:* (Ch.4)`（Fig. 3-13）
 - 结论：**PASS** — 36 通过 / 0 失败 / 0 警告，共 36 项
 - 脚本：`ch4_validation/scripts/FIGALL_refs.py`
-- 生成：2026-10-05 21:30:22
+- 生成：2026-10-06 00:29:12
 
 ## 1. 源清单
 
@@ -21,7 +21,7 @@
 | 区间引用统计（R1 已改为逐图引用） | 共 0 处；每张图的引用见第 1 节 | PASS |
 | Fig 3 (`fig:ideal`) 已被引用 | 正文 1 处；caption 内 1 处 | PASS |
 | Fig 4 (`fig:res-128`) 已被引用 | 正文 4 处 | PASS |
-| Fig 5 (`fig:sq100`) 已被引用 | 正文 4 处；caption 内 1 处 | PASS |
+| Fig 5 (`fig:sq100`) 已被引用 | 正文 4 处；caption 内 2 处 | PASS |
 | Fig 6 (`fig:dl-cmp`) 已被引用 | 正文 1 处；caption 内 1 处 | PASS |
 | Fig 7 (`fig:dl-abl`) 已被引用 | 正文 2 处 | PASS |
 | Fig 8 (`fig:perf-cmp-r`) 已被引用 | 正文 2 处；caption 内 2 处 | PASS |

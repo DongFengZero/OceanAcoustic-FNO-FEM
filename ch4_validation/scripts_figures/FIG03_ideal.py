@@ -4,7 +4,7 @@ Fig. 3 (fig:ideal) 核验脚本
 验证解析验证图：矩形 R0 (Case 1) 与楔形 W0 (Case 2)。
 
 R1 修订后两幅合并为一张 Fig. 3，左右各一个 case；本脚本按 case 分别核验
-（各 case 的 Table S1 行、源坐标、深度线 MAE 独立检查）。
+（各 case 的 原 Table 5 行、源坐标、深度线 MAE 独立检查）。
 """
 import sys, os, re, importlib.util
 from pathlib import Path
@@ -27,7 +27,7 @@ LABEL = "fig:ideal"
 CASE = "Case01_R0"
 CASE_NO = 1
 
-# Table S1 (tab:ideal-depthline) 印刷的 R0 行：TL MAE 与 Src 坐标（2位小数）
+# 原 Table 5 (tab:ideal-depthline，R1 终稿已删除，数值留作选样基准) 印刷的 R0 行：TL MAE 与 Src 坐标（2位小数）
 TABLE5_R0 = {
     25:  {"tl": 0.151, "src": (39.5, 36.4)},
     50:  {"tl": 0.130, "src": (49.5, 38.1)},
@@ -92,8 +92,8 @@ def run():
     c.check(has_last, "Caption 声明 epoch", "声明 'last epoch'" if has_last else "未声明")
 
     # ── C ────────────────────────────────────────────────────────
-    c.section("3. 深度线 MAE 反向验证（与 Table S1 对齐）")
-    c.note("从 npz 全精度重算 MAE，舍入 3 位后与 Table S1 印刷值比对")
+    c.section("3. 深度线 MAE 反向验证（与 原 Table 5 对齐）")
+    c.note("从 npz 全精度重算 MAE，舍入 3 位后与 原 Table 5 印刷值比对")
 
     for freq in RIP.FREQS:
         idx, mae_full = RIP.pick_sample(data, freq)
@@ -105,8 +105,8 @@ def run():
                 f"npz全精度 {mae_full:.9f} → 3dp {mae_3dp:.3f} / 表印 {tl_printed:.3f}")
 
     # ── D ────────────────────────────────────────────────────────
-    c.section("4. Source 坐标反向验证（与 Table S1 / 图标题对齐）")
-    c.note("从 npz source_pos 舍入 1 位后与 Table S1 Src 列、图面板标题比对。"
+    c.section("4. Source 坐标反向验证（与 原 Table 5 / 图标题对齐）")
+    c.note("从 npz source_pos 舍入 1 位后与 原 Table 5 Src 列、图面板标题比对。"
            "全章坐标统一 1 位小数（深度线与场图同口径）。")
 
     for freq in RIP.FREQS:

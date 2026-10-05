@@ -1,9 +1,9 @@
 # 第 4 章表格与图件核验主报告
 
-- 结论：**PASS** — 3362 项通过 / 0 项失败 / 16 项豁免
-- 覆盖：23/23 个对象（全覆盖）
-- 核验脚本：28 个，全部通过
-- 生成：2026-10-05 21:31:06
+- 结论：**PASS** — 3309 项通过 / 0 项失败 / 16 项豁免
+- 覆盖：22/22 个对象（全覆盖）
+- 核验脚本：27 个，全部通过
+- 生成：2026-10-06 00:29:59
 - 复现：`python verify.py`
 
 每个对象的逐项明细在 `reports/<脚本名>.md`，本报告只汇总。
@@ -60,7 +60,6 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 |---|---|---|---|---|---|---|
 | `T03_datasets` | tab:datasets | table | 4.1 | 423 | PASS | [T03_datasets](reports/T03_datasets.md) |
 | `T04_ideal_overall` | tab:ideal-overall | table | 4.2 | 87 | PASS | [T04_ideal_overall](reports/T04_ideal_overall.md) |
-| `TS1_ideal_depthline` | tab:S1 | table | 4.2 | 51 | PASS | [TS1_ideal_depthline](reports/TS1_ideal_depthline.md) |
 | `T05_res_rect_mf` | tab:res-rect-mf | table | 4.3 | 263 | PASS | [T05_res_rect_mf](reports/T05_res_rect_mf.md) |
 | `T06_sq100` | tab:sq100 | table | 4.3 | 139 | PASS | [T06_sq100](reports/T06_sq100.md) |
 | `T07_dl_cmp` | tab:dl-cmp | table | 4.4 | 174 | PASS | [T07_dl_cmp](reports/T07_dl_cmp.md) |
@@ -91,7 +90,7 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | Tables 9-10 等宽版式一致性 | 16 | PASS | [T09_10_layout](reports/T09_10_layout.md) |
 | 全章表格引用完整性（无孤表/无悬空/独立正文引用） | 42 | PASS | [TABALL_refs](reports/TABALL_refs.md) |
 | 全章图件引用完整性（无孤图/无悬空/独立正文引用） | 36 | PASS | [FIGALL_refs](reports/FIGALL_refs.md) |
-| 补充材料 Figs. S1-S7：图上数值↔npz、印刷字号、正文/回复信交叉引用 | 65 | PASS | [FIGS1_S7_supplementary](reports/FIGS1_S7_supplementary.md) |
+| 补充材料 Figs. S1-S7：图上数值↔npz、印刷字号、正文/回复信交叉引用 | 63 | PASS | [FIGS1_S7_supplementary](reports/FIGS1_S7_supplementary.md) |
 | 从正文出发：每个小数须为本节所引表的印刷值（括注 Case 则须在该行）、推导量或配置 | 109 | PASS | [PROSE_numbers](reports/PROSE_numbers.md) |
 | 正文中不挂靠表/图的数值：超参数↔代码、三维推导量、样本数、基线门槛 | 20 | PASS | [PROSE_derived](reports/PROSE_derived.md) |
 

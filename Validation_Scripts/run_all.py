@@ -35,7 +35,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # (脚本, 说明, 期望打印的表数)
 TABLES = [
     ("table03_datasets.py", "Table 3      数据集总表", 1),
-    ("table04_S1_ideal.py", "Table 4 + S1 理想波导 + 深度线（S1 在补充材料）", 2),
+    ("table04_ideal.py", "Table 4      理想波导", 1),
     ("table05_06_forward.py", "Table 5-6    前向精度", 3),
     ("table07_08_depthline.py", "Table 7-8    深度线 MAE", 4),
     ("table09_perf_cmp.py", "Table 9     五方法对比", 2),

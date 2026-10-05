@@ -1,9 +1,9 @@
 # Fig. S1-S7 — 补充材料 Figs. S1-S7（跨文件核验）
 
 - 对象：`Figs. S1-S7`（Fig. S1-S7）
-- 结论：**PASS** — 65 通过 / 0 失败 / 0 警告，共 65 项
+- 结论：**PASS** — 63 通过 / 0 失败 / 0 警告，共 63 项
 - 脚本：`ch4_validation/scripts/FIGS1_S7_supplementary.py`
-- 生成：2026-10-05 21:31:06
+- 生成：2026-10-06 00:29:59
 
 ## 1. 源清单
 
@@ -66,7 +66,6 @@
 | S5 在 sec:ablation（4.5 节）被引用 | 实际出现于 ['sec:ablation', 'sec:performance'] | PASS |
 | S6 在 sec:ablation（4.5 节）被引用 | 实际出现于 ['sec:ablation', 'sec:performance'] | PASS |
 | S7 在 sec:generalization（4.7 节）被引用 | 实际出现于 ['sec:generalization'] | PASS |
-| 补充材料写 `Fig.~3` ↔ 正文 `fig:ideal` = 3 |  | PASS |
 | 补充材料写 `Fig.~4` ↔ 正文 `fig:res-128` = 4 |  | PASS |
 | 补充材料写 `Table~5` ↔ 正文 `tab:res-rect-mf` = 5 |  | PASS |
 | 补充材料写 `Fig.~8` ↔ 正文 `fig:perf-cmp-r` = 8 |  | PASS |
@@ -74,7 +73,6 @@
 | 补充材料写 `Fig.~12` ↔ 正文 `fig:gen-grid` = 12 |  | PASS |
 | 补充材料写 `Table~12` ↔ 正文 `tab:gen-overall` = 12 |  | PASS |
 | 补充材料不含改号前的正文表号（6/11/13/14） | 无 | PASS |
-| 补充材料一览表含 `Sec.~4.2`（sec:ideal） |  | PASS |
 | 补充材料一览表含 `Sec.~4.3`（sec:forward） |  | PASS |
 | 补充材料一览表含 `Sec.~4.5`（sec:ablation） |  | PASS |
 | 补充材料一览表含 `Sec.~4.7`（sec:generalization） |  | PASS |

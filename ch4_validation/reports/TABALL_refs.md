@@ -3,7 +3,7 @@
 - 对象：`tab:* (all)`（Table 1-13）
 - 结论：**PASS** — 42 通过 / 0 失败 / 0 警告，共 42 项
 - 脚本：`ch4_validation/scripts/TABALL_refs.py`
-- 生成：2026-10-05 21:27:55
+- 生成：2026-10-06 00:26:12
 
 ## 1. 源清单
 
@@ -37,7 +37,7 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 全部 \ref{tab:...} 的 label 均已注册 | 全部合规 | PASS |
-| 已移入补充材料的 `tab:ideal-depthline` 在正文中无 label 也无 \ref | 正文以 Table~S1 指向补充材料 | PASS |
+| 已移入补充材料的 `tab:ideal-depthline` 在正文中无 label 也无 \ref | 该表已删除，正文无残留 label 或引用 | PASS |
 
 ## 3. 每表均有独立正文引用（不靠区间/环境内兜底）
 

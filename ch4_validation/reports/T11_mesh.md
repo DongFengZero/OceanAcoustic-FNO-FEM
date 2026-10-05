@@ -3,7 +3,7 @@
 - 对象：`tab:mesh`（Table 11）
 - 结论：**PASS** — 113 通过 / 0 失败 / 0 警告，共 113 项
 - 脚本：`ch4_validation/scripts/T11_mesh.py`
-- 生成：2026-10-05 21:27:53
+- 生成：2026-10-06 00:26:11
 
 ## 1. 源清单
 
@@ -30,7 +30,7 @@
 | Case 36 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No36_W4/training_run/logs/full_run_20260710_150948.log | PASS |
 | Case 37 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No37_W7/training_run/logs/full_run_20260710_123333.log | PASS |
 | Case 38 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No38_W8/training_run/logs/full_run_20260710_030023.log | PASS |
-| tex 表格环境可定位且确实包住 label | 长度 2359 | PASS |
+| tex 表格环境可定位且确实包住 label | 长度 2334 | PASS |
 
 ## 2. 源可追溯性
 

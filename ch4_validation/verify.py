@@ -43,10 +43,9 @@ REPORTS = os.path.join(PKG, "reports")
 # 表侧一对一；图侧多为合并式（同一版式的几张图共用一份链路）。
 SCRIPT_MAP = {
     # 表：一对一（R1 合并后第 4 章共 11 张，No. 3-13；Tables 1/2 属方法章；
-    #       原正文第 5 表已移至补充材料 Table S1，由 TS1_ideal_depthline 核）
+    #       原正文第 5 表（理想深度线 MAE）在 R1 终稿删除：Fig. 3 显示同一批样本）
     "T03_datasets":          ("scripts", "T03_datasets"),
     "T04_ideal_overall":     ("scripts", "T04_ideal_overall"),
-    "TS1_ideal_depthline":   ("scripts", "TS1_ideal_depthline"),
     "T05_res_rect_mf":       ("scripts", "T05_res_rect_mf"),
     "T06_sq100":             ("scripts", "T06_sq100"),
     "T07_dl_cmp":            ("scripts", "T07_dl_cmp"),

@@ -4,8 +4,8 @@ FIGS1_S7_supplementary.py — 补充材料 Figs. S1-S7 核验（跨文件）
 
 R1 把场图（原 Fig. 6、7、16、17，以及原 Fig. 21/22 各一幅）移出正文，作为补充材料
 Figs. S1-S7，用正文同一套渲染器按印刷尺寸重绘（Validation_Scripts/figS1_S7_supplementary）。
-S7 = R10（矩形远区）+ W9（楔形深区）；正文 Fig. 12 保留 R9 + W10。补充材料另含
-Table S1（原正文 Table 5），由 scripts/TS1_ideal_depthline.py 核验。
+S7 = R10（矩形远区）+ W9（楔形深区）；正文 Fig. 12 保留 R9 + W10。补充材料不含表格
+（原正文 Table 5 的理想深度线 MAE 表在 R1 终稿删除，Fig. 3 显示同一批样本）。
 本脚本核四件事：
 
   A. 图上数值 ↔ 原始 npz：每行的声源坐标与平均误差，用成图脚本自身的插值函数
@@ -152,7 +152,7 @@ def run():
         c.check(sec in where, f"S{k} 在 {sec}（{aux.get(sec, {}).get('num', '?')} 节）被引用",
                 f"实际出现于 {where}")
     # 补充材料里写出的正文编号
-    expect = {"Fig.~3": "fig:ideal", "Fig.~4": "fig:res-128", "Table~5": "tab:res-rect-mf",
+    expect = {"Fig.~4": "fig:res-128", "Table~5": "tab:res-rect-mf",
               "Fig.~8": "fig:perf-cmp-r", "Table~10": "tab:abl", "Fig.~12": "fig:gen-grid",
               "Table~12": "tab:gen-overall"}
     for lit, lab in expect.items():
@@ -161,7 +161,7 @@ def run():
                 f"补充材料写 `{lit}` ↔ 正文 `{lab}` = {num}", "")
     stale_nums = [lit for lit in ("Table~6 ", "Table~11", "Table~13", "Table~14") if lit in supp]
     c.check(not stale_nums, "补充材料不含改号前的正文表号（6/11/13/14）", f"{stale_nums or '无'}")
-    for lab in ("sec:ideal", "sec:forward", "sec:ablation", "sec:generalization"):
+    for lab in ("sec:forward", "sec:ablation", "sec:generalization"):
         num = aux.get(lab, {}).get("num")
         c.check(f"Sec.~{num}" in supp, f"补充材料一览表含 `Sec.~{num}`（{lab}）", "")
 

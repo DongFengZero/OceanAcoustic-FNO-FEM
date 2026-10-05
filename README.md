@@ -166,8 +166,7 @@ Table numbers are R1's:
 | Table | Label | Cases | Script |
 |---|---|---|---|
 | 3 | `tab:datasets` | 1--50 | `table03_datasets.py` |
-| 4 | `tab:ideal-overall` | 1--2 | `table04_S1_ideal.py` |
-| S1 | `tab:S1` (Supplementary Material) | 1--2 | `table04_S1_ideal.py` |
+| 4 | `tab:ideal-overall` | 1--2 | `table04_ideal.py` |
 | 5 | `tab:res-rect-mf` | 3--5, 9--11 | `table05_06_forward.py` |
 | 6 | `tab:sq100` | 6--8, 12--14 | `table05_06_forward.py` |
 | 7 | `tab:dl-cmp` | 15--24 | `table07_08_depthline.py` |

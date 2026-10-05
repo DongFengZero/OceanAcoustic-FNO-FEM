@@ -8,8 +8,8 @@
 
 用法
 ----
-    python table04_S1_ideal.py            # 打印 Table 4 与 Table S1
-    python table04_S1_ideal.py --tex      # 顺便打印 tex 行，便于逐字符对照
+    python table04_ideal.py               # 打印 Table 4
+    python table04_ideal.py --tex         # 顺便打印 tex 行，便于逐字符对照
 
 需要先设好环境变量（与 verify.py 相同）：
     CH4_RAWROOT   Raw_Experimental_Data 的父目录

@@ -48,7 +48,7 @@ Two notes on coverage:
   `ast` and compares them against the xlsx, which catches the real failure mode
   (a table value updated while the figure constant is left behind).
 
-## Supplementary Material — Table S1 and Figs. S1–S7
+## Supplementary Material — Figs. S1–S7
 
 The field figures moved out of the main text in R1 are redrawn at printed size by
 `figS1_S7_supplementary/figS1_S7_supplementary.py`, which reuses the main-text renderers
@@ -60,9 +60,6 @@ The field figures moved out of the main text in R1 are redrawn at printed size b
 | S3 / S4 | 512 m fields, rectangular / wedge | 5 / 11 | 7 |
 | S5 / S6 | Ablation-variant grids, R1 / W1 | 25–28 / 29–32 | 16 / 17 |
 | S7 | Extrapolation, R10 / W9 | 40 / 41 | 21 / 22 |
-
-Table S1, the depth-line MAE of the idealized waveguides (main-text Table S1 before this
-revision round), is printed by `table04_S1_ideal.py`.
 
 `ch4_validation/scripts_figures/FIGS1_S7_supplementary.py` recomputes every source position
 and averaged error printed on these figures from the ep200 npz and cross-checks the
@@ -78,8 +75,7 @@ entry points and still carry the old figure numbering.
 | 1 | `tab:applicability` | — | typeset in the manuscript source |
 | 2 | `tab:symbols` | — | typeset in the manuscript source |
 | 3 | `tab:datasets` | 1–50 | `table03_datasets.py` |
-| 4 | `tab:ideal-overall` | 1–2 | `table04_S1_ideal.py` |
-| S1 | `tab:S1` (Supplementary) | 1–2 | `table04_S1_ideal.py` |
+| 4 | `tab:ideal-overall` | 1–2 | `table04_ideal.py` |
 | 5 | `tab:res-rect-mf` | 3–5, 9–11 | `table05_06_forward.py` |
 | 6 | `tab:sq100` | 6–8, 12–14 | `table05_06_forward.py` |
 | 7 | `tab:dl-cmp` | 15–24 | `table07_08_depthline.py` |
