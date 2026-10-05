@@ -3,7 +3,7 @@
 - 对象：`fig:mesh`（Fig. 10）
 - 结论：**PASS** — 113 通过 / 0 失败 / 0 警告，共 113 项
 - 脚本：`ch4_validation/scripts/FIG10_mesh.py`
-- 生成：2026-10-05 10:18:58
+- 生成：2026-10-05 21:30:13
 
 ## 1. 源清单
 
@@ -66,7 +66,7 @@
 
 ## 4. epoch 自证与 caption 声明
 
-> 图取 ep200（last epoch），兄弟表 Table 12 取 best epoch。
+> 图取 ep200（last epoch），兄弟表 Table 11 取 best epoch。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
@@ -108,7 +108,7 @@
 
 ## 6. Src 坐标：npz 重算 vs 图上标注
 
-> 坐标 1 位小数，与深度线图及 Tables 6/7/12 同口径。
+> 坐标 1 位小数，与深度线图及 Tables 5/6/11 同口径。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
@@ -146,22 +146,22 @@
 | Case 38 npz 样本数 = 2 | 单频 case，实得 2 | PASS |
 | Case 38 全部样本为 100 Hz | [100] | PASS |
 | 主图 label `fig:mesh` 注册且编号为 10 | aux `10` | PASS |
-| 子图 label `fig:mesh-a` 已注册 | 编号 `13a` | PASS |
+| 子图 label `fig:mesh-a` 已注册 | 编号 `12a` | PASS |
 | 子图 `fig:mesh-a` 题注标注 Case 33 / R4 | subfloat 题注含 `Case~33` 与 `R4` | PASS |
 | 子图 `fig:mesh-a` 题注标注 Δ=1.00 m | subfloat 题注含 `$\Delta=1.00$\,m` | PASS |
-| 子图 label `fig:mesh-b` 已注册 | 编号 `13b` | PASS |
+| 子图 label `fig:mesh-b` 已注册 | 编号 `12b` | PASS |
 | 子图 `fig:mesh-b` 题注标注 Case 34 / R7 | subfloat 题注含 `Case~34` 与 `R7` | PASS |
 | 子图 `fig:mesh-b` 题注标注 Δ=0.50 m | subfloat 题注含 `$\Delta=0.50$\,m` | PASS |
-| 子图 label `fig:mesh-c` 已注册 | 编号 `13c` | PASS |
+| 子图 label `fig:mesh-c` 已注册 | 编号 `12c` | PASS |
 | 子图 `fig:mesh-c` 题注标注 Case 35 / R8 | subfloat 题注含 `Case~35` 与 `R8` | PASS |
 | 子图 `fig:mesh-c` 题注标注 Δ=0.25 m | subfloat 题注含 `$\Delta=0.25$\,m` | PASS |
-| 子图 label `fig:mesh-d` 已注册 | 编号 `13d` | PASS |
+| 子图 label `fig:mesh-d` 已注册 | 编号 `12d` | PASS |
 | 子图 `fig:mesh-d` 题注标注 Case 36 / W4 | subfloat 题注含 `Case~36` 与 `W4` | PASS |
 | 子图 `fig:mesh-d` 题注标注 Δ=1.00 m | subfloat 题注含 `$\Delta=1.00$\,m` | PASS |
-| 子图 label `fig:mesh-e` 已注册 | 编号 `13e` | PASS |
+| 子图 label `fig:mesh-e` 已注册 | 编号 `12e` | PASS |
 | 子图 `fig:mesh-e` 题注标注 Case 37 / W7 | subfloat 题注含 `Case~37` 与 `W7` | PASS |
 | 子图 `fig:mesh-e` 题注标注 Δ=0.50 m | subfloat 题注含 `$\Delta=0.50$\,m` | PASS |
-| 子图 label `fig:mesh-f` 已注册 | 编号 `13f` | PASS |
+| 子图 label `fig:mesh-f` 已注册 | 编号 `12f` | PASS |
 | 子图 `fig:mesh-f` 题注标注 Case 38 / W8 | subfloat 题注含 `Case~38` 与 `W8` | PASS |
 | 子图 `fig:mesh-f` 题注标注 Δ=0.25 m | subfloat 题注含 `$\Delta=0.25$\,m` | PASS |
 
@@ -178,17 +178,17 @@
 
 ## 9. 引用方式：正文/表注引用 + caption 交叉引用
 
-> ★ R1 的 Table 12 已无 Fig. 列（合并后只有 Δ|No.R|Dataset|Sol|TL |No.W|Dataset|Sol|TL 九列），故旧稿的『逐行 Fig. 列指向子图』断言已不成立，改为核 caption 与正文的交叉引用。
+> ★ R1 的 Table 11 已无 Fig. 列（合并后只有 Δ|No.R|Dataset|Sol|TL |No.W|Dataset|Sol|TL 九列），故旧稿的『逐行 Fig. 列指向子图』断言已不成立，改为核 caption 与正文的交叉引用。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 正文/表注引用 `fig:mesh` 至少 2 处 | 实得 2 处（4.6 节正文 + Table 12 caption） | PASS |
+| 正文/表注引用 `fig:mesh` 至少 2 处 | 实得 2 处（4.6 节正文 + Table 11 caption） | PASS |
 | 正文不含图区间引用（R1 已改逐张引用） | 全文无 `\ref{fig:..}--\ref{fig:..}` 形式 | PASS |
 | 旧 label `fig:mesh-rect` / `fig:mesh-wedge` 已不存在 | R1 合并为单一 `fig:mesh` | PASS |
-| Table 12 caption 写明行对应子图 (a)-(c)/(d)-(f) | caption 含 `panels (a)--(c) and (d)--(f)` | PASS |
-| Table 12 caption 交叉引用 Fig. 10 |  | PASS |
-| Table 12 数据行 3 行（三档 Δ） | 实得 3 | PASS |
-| Table 12 每行 9 列（两几何并排，无 Fig. 列） | Δ | No.R | Dataset | Sol | TL || No.W | Dataset | Sol | TL | PASS |
+| Table 11 caption 写明行对应子图 (a)-(c)/(d)-(f) | caption 含 `panels (a)--(c) and (d)--(f)` | PASS |
+| Table 11 caption 交叉引用 Fig. 10 |  | PASS |
+| Table 11 数据行 3 行（三档 Δ） | 实得 3 | PASS |
+| Table 11 每行 9 列（两几何并排，无 Fig. 列） | Δ | No.R | Dataset | Sol | TL || No.W | Dataset | Sol | TL | PASS |
 
 ## 10. caption 已声明『个别样本、非最优』的免责说明
 

@@ -1,9 +1,9 @@
-# Table 14 — 推理耗时：多 GPU 基准(a) 与跨域尺度(b) 同表
+# Table 13 — 推理耗时：多 GPU 基准(a) 与跨域尺度(b) 同表
 
-- 对象：`tab:runtime`（Table 14）
+- 对象：`tab:runtime`（Table 13）
 - 结论：**PASS** — 92 通过 / 0 失败 / 0 警告，共 92 项
-- 脚本：`ch4_validation/scripts/T14_runtime.py`
-- 生成：2026-10-05 10:16:35
+- 脚本：`ch4_validation/scripts/T13_runtime.py`
+- 生成：2026-10-05 21:27:55
 
 ## 1. 源清单
 
@@ -161,5 +161,5 @@
 | caption 分述 (a)/(b) 两个面板 |  | PASS |
 | caption 标明两个面板各自的硬件平台（跨平台不可直接比） |  | PASS |
 | 正文引用 Fig.\ref{fig:perf} | 实得 3 处 | PASS |
-| 表号为 14 | aux `14` | PASS |
+| 表号为 13 | aux `13` | PASS |
 

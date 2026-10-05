@@ -1,9 +1,9 @@
-# Table 12 — 网格无关性，矩形与楔形并排
+# Table 11 — 网格无关性，矩形与楔形并排
 
-- 对象：`tab:mesh`（Table 12）
+- 对象：`tab:mesh`（Table 11）
 - 结论：**PASS** — 113 通过 / 0 失败 / 0 警告，共 113 项
-- 脚本：`ch4_validation/scripts/T12_mesh.py`
-- 生成：2026-10-05 10:16:33
+- 脚本：`ch4_validation/scripts/T11_mesh.py`
+- 生成：2026-10-05 21:27:53
 
 ## 1. 源清单
 
@@ -193,7 +193,7 @@
 |---|---|---|
 | caption 声明 best epoch | 数据源确为该口径 | PASS |
 | caption 未误写 last epoch | 口径唯一 | PASS |
-| 表号为 12 | aux `12` | PASS |
+| 表号为 11 | aux `11` | PASS |
 
 ## 12. caption 已写明行与子图的对应关系
 

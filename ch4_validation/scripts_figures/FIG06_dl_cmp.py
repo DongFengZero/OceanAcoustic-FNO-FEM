@@ -8,10 +8,10 @@ Fig 6（fig:dl-cmp）核验 — R1
         (b) fig:dl-cmp-w = Fig. 6b，comparison_W1_model_advantage.pdf，y=30.4 m，Cases 20-24
 
 R1 把原来分开的两张图（旧 fig:dl-cmp-rect / fig:dl-cmp-wedge = Fig 10/11）并为
-一张，编号 6；两张表（旧 tab:dl-cmp-rect / -wedge）也并为 Table 8（tab:dl-cmp）。
+一张，编号 6；两张表（旧 tab:dl-cmp-rect / -wedge）也并为 Table 7（tab:dl-cmp）。
 故本脚本覆盖两个几何，每块的判据与合并前逐条相同，只是版式与编号变了。
 
-与场图的差别：本组与 Table 8 是同一次 build_group 的两个产物（表给 MAE 数值、
+与场图的差别：本组与 Table 7 是同一次 build_group 的两个产物（表给 MAE 数值、
 图给曲线），故除数值复现外，还能用 md5 证明图与表同源。
 
 ★ 成图脚本 fig06_07_dl.py 写的是**纸面尺寸** PDF（240x142 pt = 0.49\\linewidth），
@@ -24,7 +24,7 @@ R1 把原来分开的两张图（旧 fig:dl-cmp-rect / fig:dl-cmp-wedge = Fig 10
   C. 图上 Src      4 组源坐标逐频吻合（PDF 文本层 vs npz 重算）
   D. 图表同源      论文图件 == 脚本 out/ 产物（抹掉嵌入时间戳后 md5 相同）
   E. 表头源坐标    8 个 (x,y) 与两组各自所选样本一致（★）
-  F. 子图题注      subfloat 题注标明的 y 深度与重算、与 Table 8 一致
+  F. 子图题注      subfloat 题注标明的 y 深度与重算、与 Table 7 一致
   G. 正文引用      图号 6；正文单点引用（R1 已取消区间引用）
 """
 import hashlib
@@ -210,7 +210,7 @@ def run():
              "本组五条曲线的方法名在此图中")
 
     # ── D ────────────────────────────────────────────────────────
-    c.section("5. 图与表同源（Fig. 6 <-> Table 8）")
+    c.section("5. 图与表同源（Fig. 6 <-> Table 7）")
     c.note("MAE 表与深度线图是同一次 build_group 的两个产物。比对论文图件与成图"
            "脚本 out/ 下同名 PDF：抹掉嵌入时间戳后 md5 相同，即证明表里的数"
            "与图里的线出自同一次运行，不可能各自漂移。"
@@ -236,11 +236,11 @@ def run():
 
     # ── E ────────────────────────────────────────────────────────
     c.section("6. 表头源坐标与所选样本一致（两块各 4 个）")
-    c.note("Table 8 表头每频率标 $(x,y)$（\\srcxy），须等于该频率**实际选中"
+    c.note("Table 7 表头每频率标 $(x,y)$（\\srcxy），须等于该频率**实际选中"
            "样本**的 source_pos；八个坐标互不相同，写错不会报编译错。"
            "★ 图的 subfloat 题注深度也在此一并核：题注写 1 位小数，重算给全精度。")
     env, star = T.table_body_of(SIB)
-    c.check(env is not None, "Table 8 表体可定位", f"长度 {len(env or '')}")
+    c.check(env is not None, "Table 7 表体可定位", f"长度 {len(env or '')}")
     hdr = T.header_row(env) or ""
     got = [(float(a), float(b))
            for a, b in re.findall(r"\\srcxy\{([\d.]+)\}\{([\d.]+)\}", hdr)]
@@ -264,17 +264,17 @@ def run():
                     f"样本 {R['sample'][f]} 实际 ({sx:.5f}, {sy:.5f}) -> `{want}`")
 
     # ── F ────────────────────────────────────────────────────────
-    c.section("7. 与 Table 8 的一致性（数与数同源）")
+    c.section("7. 与 Table 7 的一致性（数与数同源）")
     c.note("图的 subfloat 题注声明的深度、案例区间必须与表 caption 同值；"
            "两者排在同一浮动体内并列同页，读者左右对读。")
     cap_t = flat(T.caption_of(SIB))
     for b in BLOCKS:
-        c.check(b["cases"] in cap_t, f"Table 8 caption 声明 {b['cases']}",
+        c.check(b["cases"] in cap_t, f"Table 7 caption 声明 {b['cases']}",
                 "与 subfloat 题注的几何对应")
         c.check(f"y={b['y']}" in cap_t,
-                f"Table 8 caption 声明 {b['geo']} 深度 y={b['y']} m", "")
+                f"Table 7 caption 声明 {b['geo']} 深度 y={b['y']} m", "")
         c.check(f"y={b['y']}" in flat(subfloat_title(b["lb"])),
-                f"{b['lb']} 题注深度与 Table 8 同值", "")
+                f"{b['lb']} 题注深度与 Table 7 同值", "")
 
     # ── G ────────────────────────────────────────────────────────
     c.section("8. 正文引用与编号")
@@ -296,12 +296,12 @@ def run():
     c.exempt("正文以区间引用覆盖两张图",
              "R1 合并后正文改为单点引用（Fig.~\\ref{fig:dl-cmp}），"
              f"全章已无 \\ref{{A}}--\\ref{{B}} 形式（实测 {len(rng)} 处）")
-    # 子图计数器是全章全局递增的（Fig 3=3a/b, 4=4a/b, 5=8a-f, 6=9a/b, 7=10a/b），
-    # 故 Fig 6 的面板在 aux 里是 9a/9b 而非 6a/6b。这是排版事实，正文从不引用
+    # 子图计数器是全章全局递增的（Fig 3=3a/b, 4=4a/b, 5=7a-f, 6=8a/b, 7=9a/b），
+    # 故 Fig 6 的面板在 aux 里是 8a/8b 而非 6a/6b。这是排版事实，正文从不引用
     # 这两个面板 label，读者看不到编号错位。
-    c.check(aux.get("fig:dl-cmp-r", {}).get("num") == "9a",
-            "子图编号为全章全局递增的 9a/9b（排版事实）",
-            "aux 9a/9b：subfig 计数器跨图累加，正文不引用面板 label")
+    c.check(aux.get("fig:dl-cmp-r", {}).get("num") == "8a",
+            "子图编号为全章全局递增的 8a/8b（排版事实）",
+            "aux 8a/8b：subfig 计数器跨图累加，正文不引用面板 label")
 
     return c
 

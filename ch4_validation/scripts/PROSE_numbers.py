@@ -44,7 +44,7 @@ def run():
         env, _ = T.table_body_of(lab)
         if not env:
             continue
-        # 浮动体里只有这一个表 label、却含多张 tabular（如 Table 14 的 (a)(b)）：取整个浮动体
+        # 浮动体里只有这一个表 label、却含多张 tabular（如 Table 13 的 (a)(b)）：取整个浮动体
         whole = T.table_env(lab) or ""
         if len(re.findall(r"\\label\{tab:", whole)) == 1 and len(re.findall(r"\\begin\{tabular", whole)) > 1:
             env = whole
@@ -67,7 +67,7 @@ def run():
         m = re.search(r"'--" + arg + r"',\s*type=\w+,\s*default=([0-9.eE+-]+)", code)
         return float(m.group(1)) if m else None
 
-    # Table 12 的 TL 列：行格式  Δ | No. Dataset Sol TL | No. Dataset Sol TL
+    # Table 11 的 TL 列：行格式  Δ | No. Dataset Sol TL | No. Dataset Sol TL
     mesh_tl = []
     for r in tab_rows["tab:mesh"]:
         vals = [x.strip().strip("$") for x in r if re.fullmatch(r"\d+\.\d+", x.strip().strip("$"))]
@@ -77,19 +77,19 @@ def run():
     tl6 = lambda no: float(cell("tab:res-rect-mf", no, 9))      # Avg. TL
     dl = lambda row, k: float(cell("tab:dl-abl", row, k))
     derived = {
-        "2.268": ("R3/R1 多频 TL 倍数 = Table 6 印刷值相除",
+        "2.268": ("R3/R1 多频 TL 倍数 = Table 5 印刷值相除",
                   f3(tl6("5") / tl6("3")) == "2.268", f"{tl6('5')}/{tl6('3')}"),
-        "8.676": ("R6/R4 单频 TL 倍数 = Table 7 印刷值相除",
+        "8.676": ("R6/R4 单频 TL 倍数 = Table 6 印刷值相除",
                   f3(3.852 / 0.444) == "8.676" and {"3.852", "0.444"} <= tab_cells["tab:sq100"],
                   "3.852/0.444"),
-        "1.356": ("Table 9：w/o graph − Full @75 Hz（印刷值相减）",
+        "1.356": ("Table 8：w/o graph − Full @75 Hz（印刷值相减）",
                   f3(dl("w/o graph correction", 2) - dl("Full model", 2)) == "1.356", ""),
-        "1.834": ("Table 9：w/o graph − Full @100 Hz（印刷值相减）",
+        "1.834": ("Table 8：w/o graph − Full @100 Hz（印刷值相减）",
                   f3(dl("w/o graph correction", 3) - dl("Full model", 3)) == "1.834", ""),
-        "0.65": ("门槛：Table 12 全部 TL < 0.65 dB",
+        "0.65": ("门槛：Table 11 全部 TL < 0.65 dB",
                  len(mesh_tl) == 6 and max(mesh_tl) < 0.65,
                  f"max TL = {max(mesh_tl) if mesh_tl else None}"),
-        "2.6": ("门槛：Table 10 中 DeepONet/KNO/CNO 矩形 Avg. TL 均 > 2.6 dB",
+        "2.6": ("门槛：Table 9 中 DeepONet/KNO/CNO 矩形 Avg. TL 均 > 2.6 dB",
                 all(float(cell("tab:perf-cmp", n, 9)) > 2.6 for n in ("16", "18", "19")), ""),
         "1.96": ("三维节点数 337351^1.5（PROSE_derived 回源核）", f"{337351 ** 1.5:.2e}" == "1.96e+08", ""),
         "5.9": ("48²×16²（PROSE_derived 回源核）", f"{48 ** 2 * 16 ** 2:.1e}" == "5.9e+05", ""),
@@ -97,10 +97,10 @@ def run():
         "0.995": ("γ（ExponentialLR）↔ 训练代码", "gamma=0.995" in code, ""),
         "1.0": ("λ_p ↔ 训练代码 --loss_w_prior 默认值", code_default("loss_w_prior") == 1.0,
                 f"default={code_default('loss_w_prior')}"),
-        # 网格分辨率 Δ：对照 Table 12 的 Δ 列（同为印刷值）
-        "1.00": ("网格分辨率 Δ ∈ Table 12 Δ 列", "1.00" in tab_cells["tab:mesh"], ""),
-        "0.50": ("网格分辨率 Δ ∈ Table 12 Δ 列", "0.50" in tab_cells["tab:mesh"], ""),
-        "0.25": ("网格分辨率 Δ ∈ Table 12 Δ 列", "0.25" in tab_cells["tab:mesh"], ""),
+        # 网格分辨率 Δ：对照 Table 11 的 Δ 列（同为印刷值）
+        "1.00": ("网格分辨率 Δ ∈ Table 11 Δ 列", "1.00" in tab_cells["tab:mesh"], ""),
+        "0.50": ("网格分辨率 Δ ∈ Table 11 Δ 列", "0.50" in tab_cells["tab:mesh"], ""),
+        "0.25": ("网格分辨率 Δ ∈ Table 11 Δ 列", "0.25" in tab_cells["tab:mesh"], ""),
     }
     EXEMPT = {"6.4": "COMSOL 软件版本号（作者确认），非数据，无法由归档数据核实"}
 

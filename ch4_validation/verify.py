@@ -42,19 +42,20 @@ REPORTS = os.path.join(PKG, "reports")
 # ── 对象 → 核验脚本 ────────────────────────────────────────────────
 # 表侧一对一；图侧多为合并式（同一版式的几张图共用一份链路）。
 SCRIPT_MAP = {
-    # 表：一对一（R1 合并后第 4 章共 12 张，No. 3-14；Tables 1/2 属方法章）
+    # 表：一对一（R1 合并后第 4 章共 11 张，No. 3-13；Tables 1/2 属方法章；
+    #       原正文第 5 表已移至补充材料 Table S1，由 TS1_ideal_depthline 核）
     "T03_datasets":          ("scripts", "T03_datasets"),
     "T04_ideal_overall":     ("scripts", "T04_ideal_overall"),
-    "T05_ideal_depthline":   ("scripts", "T05_ideal_depthline"),
-    "T06_res_rect_mf":       ("scripts", "T06_res_rect_mf"),
-    "T07_sq100":             ("scripts", "T07_sq100"),
-    "T08_dl_cmp":            ("scripts", "T08_dl_cmp"),
-    "T09_dl_abl":            ("scripts", "T09_dl_abl"),
-    "T10_perf_cmp":          ("scripts", "T10_perf_cmp"),
-    "T11_abl":               ("scripts", "T11_abl"),
-    "T12_mesh":              ("scripts", "T12_mesh"),
-    "T13_gen_overall":       ("scripts", "T13_gen_overall"),
-    "T14_runtime":           ("scripts", "T14_runtime"),
+    "TS1_ideal_depthline":   ("scripts", "TS1_ideal_depthline"),
+    "T05_res_rect_mf":       ("scripts", "T05_res_rect_mf"),
+    "T06_sq100":             ("scripts", "T06_sq100"),
+    "T07_dl_cmp":            ("scripts", "T07_dl_cmp"),
+    "T08_dl_abl":            ("scripts", "T08_dl_abl"),
+    "T09_perf_cmp":          ("scripts", "T09_perf_cmp"),
+    "T10_abl":               ("scripts", "T10_abl"),
+    "T11_mesh":              ("scripts", "T11_mesh"),
+    "T12_gen_overall":       ("scripts", "T12_gen_overall"),
+    "T13_runtime":           ("scripts", "T13_runtime"),
     # 图：scripts_figures/<脚本名>.py
     "F03_ideal":       ("scripts_figures", "FIG03_ideal"),
     "F04_res_128":     ("scripts_figures", "FIG04_res_128"),
@@ -71,8 +72,8 @@ SCRIPT_MAP = {
 
 # ── 跨对象核验（不属于单个表/图，单独计入） ────────────────────────
 CROSS_CHECKS = [
-    ("T10_11_layout", "scripts", "T10_11_layout",
-     "Tables 10-11 等宽版式一致性"),
+    ("T09_10_layout", "scripts", "T09_10_layout",
+     "Tables 9-10 等宽版式一致性"),
     ("TABALL_refs", "scripts", "TABALL_refs",
      "全章表格引用完整性（无孤表/无悬空/独立正文引用）"),
     ("FIGALL_refs", "scripts_figures", "FIGALL_refs",

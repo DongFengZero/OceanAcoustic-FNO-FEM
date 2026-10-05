@@ -1,9 +1,9 @@
 # 第 4 章表格与图件核验主报告
 
-- 结论：**PASS** — 3347 项通过 / 0 项失败 / 19 项豁免
+- 结论：**PASS** — 3362 项通过 / 0 项失败 / 16 项豁免
 - 覆盖：23/23 个对象（全覆盖）
 - 核验脚本：28 个，全部通过
-- 生成：2026-10-05 10:19:56
+- 生成：2026-10-05 21:31:06
 - 复现：`python verify.py`
 
 每个对象的逐项明细在 `reports/<脚本名>.md`，本报告只汇总。
@@ -60,16 +60,16 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 |---|---|---|---|---|---|---|
 | `T03_datasets` | tab:datasets | table | 4.1 | 423 | PASS | [T03_datasets](reports/T03_datasets.md) |
 | `T04_ideal_overall` | tab:ideal-overall | table | 4.2 | 87 | PASS | [T04_ideal_overall](reports/T04_ideal_overall.md) |
-| `T05_ideal_depthline` | tab:ideal-depthline | table | 4.2 | 42 | PASS | [T05_ideal_depthline](reports/T05_ideal_depthline.md) |
-| `T06_res_rect_mf` | tab:res-rect-mf | table | 4.3 | 263 | PASS | [T06_res_rect_mf](reports/T06_res_rect_mf.md) |
-| `T07_sq100` | tab:sq100 | table | 4.3 | 139 | PASS | [T07_sq100](reports/T07_sq100.md) |
-| `T08_dl_cmp` | tab:dl-cmp | table | 4.4 | 174 | PASS | [T08_dl_cmp](reports/T08_dl_cmp.md) |
-| `T09_dl_abl` | tab:dl-abl | table | 4.5 | 157 | PASS | [T09_dl_abl](reports/T09_dl_abl.md) |
-| `T10_perf_cmp` | tab:perf-cmp | table | 4.4 | 408 | PASS | [T10_perf_cmp](reports/T10_perf_cmp.md) |
-| `T11_abl` | tab:abl | table | 4.5 | 344 | PASS | [T11_abl](reports/T11_abl.md) |
-| `T12_mesh` | tab:mesh | table | 4.6 | 113 | PASS | [T12_mesh](reports/T12_mesh.md) |
-| `T13_gen_overall` | tab:gen-overall | table | 4.7 | 118 | PASS | [T13_gen_overall](reports/T13_gen_overall.md) |
-| `T14_runtime` | tab:runtime | table | 4.8 | 92 | PASS | [T14_runtime](reports/T14_runtime.md) |
+| `TS1_ideal_depthline` | tab:S1 | table | 4.2 | 51 | PASS | [TS1_ideal_depthline](reports/TS1_ideal_depthline.md) |
+| `T05_res_rect_mf` | tab:res-rect-mf | table | 4.3 | 263 | PASS | [T05_res_rect_mf](reports/T05_res_rect_mf.md) |
+| `T06_sq100` | tab:sq100 | table | 4.3 | 139 | PASS | [T06_sq100](reports/T06_sq100.md) |
+| `T07_dl_cmp` | tab:dl-cmp | table | 4.4 | 174 | PASS | [T07_dl_cmp](reports/T07_dl_cmp.md) |
+| `T08_dl_abl` | tab:dl-abl | table | 4.5 | 157 | PASS | [T08_dl_abl](reports/T08_dl_abl.md) |
+| `T09_perf_cmp` | tab:perf-cmp | table | 4.4 | 408 | PASS | [T09_perf_cmp](reports/T09_perf_cmp.md) |
+| `T10_abl` | tab:abl | table | 4.5 | 344 | PASS | [T10_abl](reports/T10_abl.md) |
+| `T11_mesh` | tab:mesh | table | 4.6 | 113 | PASS | [T11_mesh](reports/T11_mesh.md) |
+| `T12_gen_overall` | tab:gen-overall | table | 4.7 | 118 | PASS | [T12_gen_overall](reports/T12_gen_overall.md) |
+| `T13_runtime` | tab:runtime | table | 4.8 | 92 | PASS | [T13_runtime](reports/T13_runtime.md) |
 | `F03_ideal` | fig:ideal | figure | 4.2 | 37 | PASS | [FIG03_ideal](reports/FIG03_ideal.md) |
 | `F04_res_128` | fig:res-128 | figure | 4.3 | 51 | PASS | [FIG04_res_128](reports/FIG04_res_128.md) |
 | `F05_sq100` | fig:sq100 | figure | 4.3 | 113 | PASS | [FIG05_sq100](reports/FIG05_sq100.md) |
@@ -79,7 +79,7 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | `F09_perf_cmp_w` | fig:perf-cmp-w | figure | 4.4 | 91 | PASS | [FIG08_09_perf_cmp](reports/FIG08_09_perf_cmp.md) |
 | `F10_mesh` | fig:mesh | figure | 4.6 | 113 | PASS | [FIG10_mesh](reports/FIG10_mesh.md) |
 | `F11_gen_split` | fig:gen-split | figure | 4.7 | 52 | PASS | [FIG11_gen_split](reports/FIG11_gen_split.md) |
-| `F12_gen_grid` | fig:gen-grid | figure | 4.7 | 57 | PASS | [FIG12_gen_extrap](reports/FIG12_gen_extrap.md) |
+| `F12_gen_grid` | fig:gen-grid | figure | 4.7 | 58 | PASS | [FIG12_gen_extrap](reports/FIG12_gen_extrap.md) |
 | `F13_perf` | fig:perf | figure | 4.8 | 54 | PASS | [FIG13_perf](reports/FIG13_perf.md) |
 
 ## 跨对象核验
@@ -88,10 +88,10 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 
 | 检查 | 核验项 | 结论 | 明细 |
 |---|---|---|---|
-| Tables 10-11 等宽版式一致性 | 16 | PASS | [T10_11_layout](reports/T10_11_layout.md) |
-| 全章表格引用完整性（无孤表/无悬空/独立正文引用） | 44 | PASS | [TABALL_refs](reports/TABALL_refs.md) |
+| Tables 9-10 等宽版式一致性 | 16 | PASS | [T09_10_layout](reports/T09_10_layout.md) |
+| 全章表格引用完整性（无孤表/无悬空/独立正文引用） | 42 | PASS | [TABALL_refs](reports/TABALL_refs.md) |
 | 全章图件引用完整性（无孤图/无悬空/独立正文引用） | 36 | PASS | [FIGALL_refs](reports/FIGALL_refs.md) |
-| 补充材料 Figs. S1-S7：图上数值↔npz、印刷字号、正文/回复信交叉引用 | 61 | PASS | [FIGS1_S7_supplementary](reports/FIGS1_S7_supplementary.md) |
+| 补充材料 Figs. S1-S7：图上数值↔npz、印刷字号、正文/回复信交叉引用 | 65 | PASS | [FIGS1_S7_supplementary](reports/FIGS1_S7_supplementary.md) |
 | 从正文出发：每个小数须为本节所引表的印刷值（括注 Case 则须在该行）、推导量或配置 | 109 | PASS | [PROSE_numbers](reports/PROSE_numbers.md) |
 | 正文中不挂靠表/图的数值：超参数↔代码、三维推导量、样本数、基线门槛 | 20 | PASS | [PROSE_derived](reports/PROSE_derived.md) |
 

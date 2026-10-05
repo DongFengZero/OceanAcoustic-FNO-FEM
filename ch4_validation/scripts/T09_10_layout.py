@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tables 10-11 等宽版式一致性核验。
+"""Tables 9-10 等宽版式一致性核验。
 
 R1 修订把原来的四张表（perf-rect/perf-wedge/abl-rect/abl-wedge）合并为两张，
 并 bound 在同一个 figure* 浮动体内，故"等宽"约束现在落在**两张**表之间：
@@ -16,15 +16,15 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from common import paths, registry, report, texparse as T
 
-SLUG = "T10_11_layout"
+SLUG = "T09_10_layout"
 TABLES = {
-    "tab:perf-cmp": {"num": 10, "style": "TABstylePerf", "col2": "Method"},
-    "tab:abl": {"num": 11, "style": "TABstylePerfTight", "col2": "Variant"},
+    "tab:perf-cmp": {"num": 9, "style": "TABstylePerf", "col2": "Method"},
+    "tab:abl": {"num": 10, "style": "TABstylePerfTight", "col2": "Variant"},
 }
 
 
 def run():
-    c = report.Checker(SLUG, "Tables 10-11 等宽版式一致性", "cross-table", "", "")
+    c = report.Checker(SLUG, "Tables 9-10 等宽版式一致性", "cross-table", "", "")
     c.source("印刷面 tex", paths.TEX, "两张表所在 table* 环境")
 
     # ── A ────────────────────────────────────────────────────────

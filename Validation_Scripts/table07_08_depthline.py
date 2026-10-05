@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""table08_09_depthline.py — 打印 Table 8-9（深度线 TL-MAE）
+"""table07_08_depthline.py — 打印 Table 7-8（深度线 TL-MAE）
 
-  Table 8   tab:dl-cmp  Cases 15-19 (R1 矩形) | 20-24 (W1 楔形)，五方法
-  Table 9   tab:dl-abl  Cases 25-28 (R1 矩形) | 29-32 (W1 楔形)，四消融组
+  Table 7   tab:dl-cmp  Cases 15-19 (R1 矩形) | 20-24 (W1 楔形)，五方法
+  Table 8   tab:dl-abl  Cases 25-28 (R1 矩形) | 29-32 (W1 楔形)，四消融组
 
 R1 把矩形/楔形并进**同一张 tabular**：左列组矩形、右列组楔形，故整表一次就能
 取全。SPEC 里同一 label 出现两次是因为左右两半的取数分组不同，tex 行只打印一次。
@@ -12,7 +12,7 @@ npz 现场提取，所以 caption 标 last epoch。本脚本复用 common/depthl
 recompute()，与 verify.py 走同一条重算路径（不复制算法），得到的是全精度值，
 论文印刷 3 位小数。
 
-    python table08_09_depthline.py [--tex]
+    python table07_08_depthline.py [--tex]
 """
 import _tblcommon as K
 

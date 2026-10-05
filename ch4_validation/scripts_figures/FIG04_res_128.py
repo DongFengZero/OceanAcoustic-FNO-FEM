@@ -6,7 +6,7 @@ Fig. 4（fig:res-128）核验
   Fig 4 = Case 3 (R1) + Case 9 (W1)，子图 label `fig:res-128-r` / `fig:res-128-w`
 
 R1 修订后 256/512 m 两张同族图（旧 fig:res-256 / fig:res-512）移入
-已从正文删除（无补充材料），正文与 aux 里都不再有这两个 label；Table 6 的
+已从正文删除（无补充材料），正文与 aux 里都不再有这两个 label；Table 5 的
 Fig. 列改以裸文本 `S3` / `S4` 指代。本脚本只核 R1 正文真正保留的这一张。
 
 Fig 5（100 Hz 方形域，fig:sq100）由 FIG05_sq100.py 负责，本脚本不再重复核
@@ -24,7 +24,7 @@ Fig 5（100 Hz 方形域，fig:sq100）由 FIG05_sq100.py 负责，本脚本不�
   F. 结构        8 样本 = 4 频率 × 2，与 caption 声明一致
   G. 图表关系    图为逐样本、表为全测试集，不可互算；只核趋势同向（★）
   H. 引用完整    Fig 4 的 label/子图 label 在 aux 注册且编号为 4/4a/4b
-  I. 正文引用    正文逐张引用（R1 无区间引用），Table 6 的 Fig. 列指向本图
+  I. 正文引用    正文逐张引用（R1 无区间引用），Table 5 的 Fig. 列指向本图
 """
 import os
 import re
@@ -151,7 +151,7 @@ def run():
 
     # ── C ────────────────────────────────────────────────────────
     c.section("4. epoch 自证与 caption 声明")
-    c.note("场图取 ep200（last epoch）；兄弟表 Table 6 取各案例 best epoch，"
+    c.note("场图取 ep200（last epoch）；兄弟表 Table 5 取各案例 best epoch，"
            "两者本是不同轮，故两处 epoch 措辞不同是正确的，不可强行统一。")
     rec = {}
     for no in CASES:
@@ -169,7 +169,7 @@ def run():
             f"{LABEL} caption 标明两个案例", "含 `Case~3` 与 `Case~9`")
 
     # ★ 双侧判据：证明 last 与 best 确为不同轮，caption 的 last 不是"随便写对"
-    c.note("图取 ep200(last)，兄弟表 Table 6 取 best epoch。下表列出两者差异，"
+    c.note("图取 ep200(last)，兄弟表 Table 5 取 best epoch。下表列出两者差异，"
            "说明 caption 必须写 last —— 若写 best，数值就该换成另一轮的评估值。")
     from common import metrics as M
     for no in CASES:
@@ -215,7 +215,7 @@ def run():
 
     # ── G ────────────────────────────────────────────────────────
     c.section("8. 图与表的关系（趋势同向，不可互算）")
-    c.note("图上 Avg 是单样本场误差，Table 6 的 TL 是全测试集平均，"
+    c.note("图上 Avg 是单样本场误差，Table 5 的 TL 是全测试集平均，"
            "量纲相同但统计口径不同，**不可互相反算**；"
            "可核验的是二者趋势必须同向：高频误差大于低频。")
     te = T.table_env(TABLE)
@@ -247,7 +247,7 @@ def run():
     c.section("10. 正文引用：逐张引用（R1 无区间引用）")
     c.note("R1 已取消旧稿的 `Figs.~\\ref{fig:res-128}--\\ref{fig:res-wedge-100}` "
            "区间写法，改为逐张引用；256/512 m 两张同族图已从正文删除，"
-           "其精度数据保留在 Table 6，正文与 aux 均不再有它们的 label。")
+           "其精度数据保留在 Table 5，正文与 aux 均不再有它们的 label。")
     txt = T.tex_text()
     BS = chr(92)
     n_main = len(re.findall(re.escape(BS) + r"ref\{" + re.escape(LABEL) + r"\}",
@@ -258,11 +258,11 @@ def run():
                            + r"ref\{fig:", txt)) == 0,
             "正文不含覆盖 Fig 4/5 的区间引用（R1 已改逐张引用）",
             "全文无 `\\ref{fig:..}--\\ref{fig:..}` 形式的图区间")
-    # R1 删除了 Table 6 的 Fig. 列（它曾以裸文本 S3/S4 指向并不存在的补充材料），
+    # R1 删除了 Table 5 的 Fig. 列（它曾以裸文本 S3/S4 指向并不存在的补充材料），
     # 故 Fig. 4 的子图不再被表格交叉引用；改为断言删除彻底。
     te = T.table_env(TABLE) or ""
     c.check(BS + "subref{fig:res-128" not in te,
-            "Table 6 不再以 `\\subref` 交叉引用 Fig. 4 子图（Fig. 列已删）", "")
+            "Table 5 不再以 `\\subref` 交叉引用 Fig. 4 子图（Fig. 列已删）", "")
     c.check("Figs.~S1--S4" in txt,
             "同族 256/512 m 场图由正文指向补充材料 `Figs.~S1--S4`", "")
     for lb in SUB_LABELS:

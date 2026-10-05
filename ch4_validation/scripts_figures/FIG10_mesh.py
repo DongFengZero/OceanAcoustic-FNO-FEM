@@ -139,7 +139,7 @@ def run():
 
     # ── C ────────────────────────────────────────────────────────
     c.section("4. epoch 自证与 caption 声明")
-    c.note("图取 ep200（last epoch），兄弟表 Table 12 取 best epoch。")
+    c.note("图取 ep200（last epoch），兄弟表 Table 11 取 best epoch。")
     rec = {}
     for cno in CASES:
         rec[cno] = recompute(paths.npz_path(cno))
@@ -177,7 +177,7 @@ def run():
 
     # ── E ────────────────────────────────────────────────────────
     c.section("6. Src 坐标：npz 重算 vs 图上标注")
-    c.note("坐标 1 位小数，与深度线图及 Tables 6/7/12 同口径。")
+    c.note("坐标 1 位小数，与深度线图及 Tables 5/6/11 同口径。")
     for cno in CASES:
         got = pdf_srcs(os.path.join(paths.FIGDIR, PDF[cno]))
         want = [(f"{s['src'][0]:.1f}", f"{s['src'][1]:.1f}")
@@ -239,14 +239,14 @@ def run():
 
     # ── H ────────────────────────────────────────────────────────
     c.section("9. 引用方式：正文/表注引用 + caption 交叉引用")
-    c.note("★ R1 的 Table 12 已无 Fig. 列（合并后只有 Δ|No.R|Dataset|Sol|TL "
+    c.note("★ R1 的 Table 11 已无 Fig. 列（合并后只有 Δ|No.R|Dataset|Sol|TL "
            "|No.W|Dataset|Sol|TL 九列），故旧稿的『逐行 Fig. 列指向子图』断言"
            "已不成立，改为核 caption 与正文的交叉引用。")
     txt = T.tex_text()
     BS = chr(92)
     hits = re.findall(re.escape(BS) + r"ref\{" + re.escape(LABEL) + r"\}", txt)
     c.check(len(hits) >= 2, f"正文/表注引用 `{LABEL}` 至少 2 处",
-            f"实得 {len(hits)} 处（4.6 节正文 + Table 12 caption）")
+            f"实得 {len(hits)} 处（4.6 节正文 + Table 11 caption）")
     c.check(len(re.findall(re.escape(BS) + r"ref\{[^}]*\}--" + re.escape(BS)
                            + r"ref\{fig:", txt)) == 0,
             "正文不含图区间引用（R1 已改逐张引用）",
@@ -257,16 +257,16 @@ def run():
             "R1 合并为单一 `fig:mesh`")
     tcap = T.caption_of(TABLE) or ""
     c.check("(a)--(c)" in tcap and "(d)--(f)" in tcap,
-            "Table 12 caption 写明行对应子图 (a)-(c)/(d)-(f)",
+            "Table 11 caption 写明行对应子图 (a)-(c)/(d)-(f)",
             "caption 含 `panels (a)--(c) and (d)--(f)`")
     c.check("ref{" + LABEL + "}" in tcap,
-            "Table 12 caption 交叉引用 Fig. 10", "")
-    # Table 12 的列数与本案一致，且确无 Fig. 列
+            "Table 11 caption 交叉引用 Fig. 10", "")
+    # Table 11 的列数与本案一致，且确无 Fig. 列
     te = T.table_env(TABLE)
     rows = T.data_rows(te, ncol=9)
-    c.check(len(rows) == 3, "Table 12 数据行 3 行（三档 Δ）", f"实得 {len(rows)}")
+    c.check(len(rows) == 3, "Table 11 数据行 3 行（三档 Δ）", f"实得 {len(rows)}")
     c.check(all(len(r) == 9 for r in rows),
-            "Table 12 每行 9 列（两几何并排，无 Fig. 列）",
+            "Table 11 每行 9 列（两几何并排，无 Fig. 列）",
             "Δ | No.R | Dataset | Sol | TL || No.W | Dataset | Sol | TL")
 
     # ── I ────────────────────────────────────────────────────────

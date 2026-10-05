@@ -1,6 +1,6 @@
 # ch4_validation — 论文表格与图件的可复现核验
 
-对 R1 论文第 4 章的 **12 张表** 与 **11 张图**（Tables 3--14、Figures 3--13）
+对 R1 论文第 4 章的 **12 张表** 与 **11 张图**（Tables 3--13、Figures 3--13）
 做逐值核验：把每一个印刷出来的数字，回到 `Raw_Experimental_Data` 下的原始数据
 现场重算一遍，再与 tex 里排出来的值逐字符比对。
 
@@ -70,7 +70,7 @@ caption 改成 `best` 也照样通过。深度线族的表与图同取 last，�
 **2. 独立重算深度线** `selftest/independent_depthline.py`：核验套件计算深度线时直接调用成图脚本自己的函数，这样能保证口径一致；但如果那个函数本身算错，表、图和核验会"一致地错"。这个脚本与成图脚本、核验套件**不共用任何代码**：
 - 自己解析 tex，按表头印出的声源坐标定位样本，按印出的 y 值定位深度线；
 - 沿深度线逐点求值插值函数（`CloughTocher2DInterpolator`），不经过整张网格；
-- 重算 Table 5、8、9 全部 80 格。
+- 重算 Table S1、7、8 全部 80 格。
 
 当前结果：**80 格 0 处不符**。敏感性已验证：把障碍物屏蔽倍数从 1.10 改为 1.00，80 格中 72 格不符；把深度线偏移一行，79 格不符。
 
@@ -94,7 +94,7 @@ python verify.py --list           # 列出对象与脚本，不执行
 单个对象也可以直接跑，输出同样落到 `reports/`：
 
 ```bash
-python scripts/T06_res_rect_mf.py
+python scripts/T05_res_rect_mf.py
 python scripts_figures/FIG05_sq100.py
 ```
 

@@ -3,7 +3,7 @@
 - 对象：`fig:perf-cmp-r / fig:perf-cmp-w`（Fig. 8/9）
 - 结论：**PASS** — 89 通过 / 0 失败 / 0 警告 / 2 豁免，共 91 项
 - 脚本：`ch4_validation/scripts/FIG08_09_perf_cmp.py`
-- 生成：2026-10-05 10:18:31
+- 生成：2026-10-05 21:29:47
 
 ## 1. 源清单
 
@@ -46,7 +46,7 @@
 
 ## 3. epoch 双侧判据与 caption 声明
 
-> 图取 ep200(last)，兄弟表 Table 10 取 best epoch，本是两套口径。故除『caption 含 last』外，还须断言『caption 未误写 best』，并列出各 case 的 best 与 200 的差异佐证。
+> 图取 ep200(last)，兄弟表 Table 9 取 best epoch，本是两套口径。故除『caption 含 last』外，还须断言『caption 未误写 best』，并列出各 case 的 best 与 200 的差异佐证。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
@@ -117,15 +117,15 @@
 | Fig 9 图上解析到 40 个平均误差标注 | 实得 40 | PASS |
 | Fig 9 40 个平均误差逐一吻合 npz 重算 | 全部吻合 | PASS |
 
-## 6. 图误差排序 vs 兄弟表 Table 10 的 Avg TL 排序
+## 6. 图误差排序 vs 兄弟表 Table 9 的 Avg TL 排序
 
-> 图上展示样本的逐方法场误差均值，与表的全测试集 Avg TL 数值不同（样本集不同），但**排序必须同向**——若图里某方法看着最准而表里它最差，就是图表不同源的信号。表侧取 Table 10 各自几何块的行。
+> 图上展示样本的逐方法场误差均值，与表的全测试集 Avg TL 数值不同（样本集不同），但**排序必须同向**——若图里某方法看着最准而表里它最差，就是图表不同源的信号。表侧取 Table 9 各自几何块的行。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| Fig 8 图误差排序 == Table 10 TL 排序 | 图 ['Proposed', 'FNO', 'CNO', 'KNO', 'DeepONet'] / 表 ['Proposed', 'FNO', 'CNO', 'KNO', 'DeepONet'] | PASS |
+| Fig 8 图误差排序 == Table 9 TL 排序 | 图 ['Proposed', 'FNO', 'CNO', 'KNO', 'DeepONet'] / 表 ['Proposed', 'FNO', 'CNO', 'KNO', 'DeepONet'] | PASS |
 | Fig 8 图上本文法误差最小 | Proposed:0.761 < FNO:1.018 < CNO:2.234 < KNO:2.376 < DeepONet:2.846 | PASS |
-| Fig 9 图误差排序 == Table 10 TL 排序 | 图 ['Proposed', 'FNO', 'KNO', 'CNO', 'DeepONet'] / 表 ['Proposed', 'FNO', 'KNO', 'CNO', 'DeepONet'] | PASS |
+| Fig 9 图误差排序 == Table 9 TL 排序 | 图 ['Proposed', 'FNO', 'KNO', 'CNO', 'DeepONet'] / 表 ['Proposed', 'FNO', 'KNO', 'CNO', 'DeepONet'] | PASS |
 | Fig 9 图上本文法误差最小 | Proposed:0.485 < FNO:0.671 < KNO:1.545 < CNO:1.803 < DeepONet:2.537 | PASS |
 
 ## 7. caption 与图表交叉引用
@@ -139,11 +139,11 @@
 | Fig 8 caption 说明 |Error| 的域平均标注 |  | PASS |
 | Fig 9 caption 以 Layout as in Fig.~\ref{fig:perf-cmp-r} 继承布局 | 含该交叉引用 | PASS |
 | Fig 9 caption 的继承链指向 Fig 8 |  | PASS |
-| Fig 8 caption 以 Table~\ref{tab:dl-cmp} 交代与表的对应 | 含 `these include the sources of Table~\ref{tab:dl-cmp}`；★ 被引的是 Table 8（深度线表）而非兄弟表 Table 10——本组图的 40 个展示样本里，每频率恰有一个就是 Table 8 的深度线声源，caption 指的是这个事实 | PASS |
-| Fig 9 caption 以 Table~\ref{tab:dl-cmp} 交代与表的对应 | 含 `these include the sources of Table~\ref{tab:dl-cmp}`；★ 被引的是 Table 8（深度线表）而非兄弟表 Table 10——本组图的 40 个展示样本里，每频率恰有一个就是 Table 8 的深度线声源，caption 指的是这个事实 | PASS |
-| Table 8 表头解析到 8 个深度线声源 | [('113.4', '64.0'), ('117.6', '43.4'), ('120.7', '89.5'), ('25.9', '49.5'), ('44.5', '21.9'), ('77.5', '103.0'), ('80.7', '72.7'), ('88.0', '78.9')] | PASS |
-| Fig 8 每个频率各有一个展示样本是 Table 8 的深度线声源 | 交集 [('120.7', '89.5'), ('25.9', '49.5'), ('44.5', '21.9'), ('77.5', '103.0')]（每频率 1 个 = 4 个，与 caption 的 `these include the sources of Table~\ref{tab:dl-cmp}` 相符；该判决由坐标事实而非 \ref 字符串给出） | PASS |
-| Fig 9 每个频率各有一个展示样本是 Table 8 的深度线声源 | 交集 [('113.4', '64.0'), ('117.6', '43.4'), ('80.7', '72.7'), ('88.0', '78.9')]（每频率 1 个 = 4 个，与 caption 的 `these include the sources of Table~\ref{tab:dl-cmp}` 相符；该判决由坐标事实而非 \ref 字符串给出） | PASS |
+| Fig 8 caption 以 Table~\ref{tab:dl-cmp} 交代与表的对应 | 含 `these include the sources of Table~\ref{tab:dl-cmp}`；★ 被引的是 Table 7（深度线表）而非兄弟表 Table 9——本组图的 40 个展示样本里，每频率恰有一个就是 Table 7 的深度线声源，caption 指的是这个事实 | PASS |
+| Fig 9 caption 以 Table~\ref{tab:dl-cmp} 交代与表的对应 | 含 `these include the sources of Table~\ref{tab:dl-cmp}`；★ 被引的是 Table 7（深度线表）而非兄弟表 Table 9——本组图的 40 个展示样本里，每频率恰有一个就是 Table 7 的深度线声源，caption 指的是这个事实 | PASS |
+| Table 7 表头解析到 8 个深度线声源 | [('113.4', '64.0'), ('117.6', '43.4'), ('120.7', '89.5'), ('25.9', '49.5'), ('44.5', '21.9'), ('77.5', '103.0'), ('80.7', '72.7'), ('88.0', '78.9')] | PASS |
+| Fig 8 每个频率各有一个展示样本是 Table 7 的深度线声源 | 交集 [('120.7', '89.5'), ('25.9', '49.5'), ('44.5', '21.9'), ('77.5', '103.0')]（每频率 1 个 = 4 个，与 caption 的 `these include the sources of Table~\ref{tab:dl-cmp}` 相符；该判决由坐标事实而非 \ref 字符串给出） | PASS |
+| Fig 9 每个频率各有一个展示样本是 Table 7 的深度线声源 | 交集 [('113.4', '64.0'), ('117.6', '43.4'), ('80.7', '72.7'), ('88.0', '78.9')]（每频率 1 个 = 4 个，与 caption 的 `these include the sources of Table~\ref{tab:dl-cmp}` 相符；该判决由坐标事实而非 \ref 字符串给出） | PASS |
 
 ## 8. 正文引用
 
@@ -152,5 +152,5 @@
 | fig:perf-cmp-r 编号为 8 | aux `8` | PASS |
 | fig:perf-cmp-w 编号为 9 | aux `9` | PASS |
 | 正文并列引用 Fig 8 与 Fig 9 | 含 `Figs.~\ref{fig:perf-cmp-r} and~\ref{fig:perf-cmp-w}` | PASS |
-| 兄弟表 Table 10 在正文被引 | tex 行 897 | PASS |
+| 兄弟表 Table 9 在正文被引 | tex 行 876 | PASS |
 

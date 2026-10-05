@@ -54,7 +54,7 @@ verifies against the dataset folders directly.
 │   ├── ...                  (fig04_05_10_fields, fig06_07_dl, ... fig13_perf)
 │   ├── table03_datasets.py  one script per table family
 │   ├── ...
-│   ├── table14_runtime.py
+│   ├── table13_runtime.py
 │   └── run_all.py           prints every table in one command
 ├── ch4_validation/          value-level verification of every table and figure
 │   ├── verify.py            entry point: python verify.py
@@ -74,7 +74,7 @@ script in paper order.
 ### Verification suite (automated, no GPU)
 
 `ch4_validation/` recomputes every printed value in the 12 tables and 11 figures
-that Section 4 of the R1 manuscript carries (Tables 3--14, Figures 3--13) from
+that Section 4 of the R1 manuscript carries (Tables 3--13, Figures 3--13) from
 the archived raw data, then compares it against the typeset value. Tables 1--2
 (`tab:applicability`, `tab:symbols`) and Figures 1--2 are descriptive objects — a
 table of acronyms, a table of symbols, a geometry sketch and a block diagram — so
@@ -132,15 +132,14 @@ manuscript figure number, so the listing below is in paper order:
 | 9 | `fig:perf-cmp-w` | 20--24 | `fig08_09_perf_grid/fig08_09_perf_grid.py` |
 | 10 | `fig:mesh` | 33--38 | `fig04_05_10_fields/fig04_05_10_fields.py` |
 | 11 | `fig:gen-split` | 39--42 | `fig11_gen_split/fig11_gen_split.py` |
-| 12 | `fig:gen-grid` | 39--42 | `fig12_gen_extrap/fig12_gen_extrap.py` |
+| 12 | `fig:gen-grid` | 39, 42 | `fig04_05_10_fields/fig04_05_10_fields.py` |
 | 13 | `fig:perf` | 43--50 | `fig13_perf/fig13_perf.py` |
 
-Two coverage notes. `fig04_05_10_fields.py` generates Figures 4, 5 and 10
+Two coverage notes. `fig04_05_10_fields.py` generates Figures 4, 5, 10 and 12
 because those field panels share one renderer (same interpolation, mask and
-clip); Figure 12's *rectangular* panels come from it as well, while the wedge
-ones come from `fig12_gen_extrap.py` — that split mirrors the two renderers
-behind the published files, so each output reproduces exactly what the paper
-carries. And `fig13_perf.py` plots hard-coded constants that must track Table 14;
+clip); Figure 12 pairs the rectangular deep split (R9) with the wedge far-range
+split (W10), and the other two splits (R10, W9) are Figure S7, drawn by
+`figS1_S7_supplementary.py` with the same renderer. And `fig13_perf.py` plots hard-coded constants that must track Table 13;
 `ch4_validation/scripts_figures/FIG13_perf.py` parses those constants with `ast`
 and compares them against the spreadsheet, which catches the real failure mode (a
 table value updated while the figure constant is left behind). `legacy/` holds
@@ -167,17 +166,17 @@ Table numbers are R1's:
 | Table | Label | Cases | Script |
 |---|---|---|---|
 | 3 | `tab:datasets` | 1--50 | `table03_datasets.py` |
-| 4 | `tab:ideal-overall` | 1--2 | `table04_05_ideal.py` |
-| 5 | `tab:ideal-depthline` | 1--2 | `table04_05_ideal.py` |
-| 6 | `tab:res-rect-mf` | 3--5, 9--11 | `table06_07_forward.py` |
-| 7 | `tab:sq100` | 6--8, 12--14 | `table06_07_forward.py` |
-| 8 | `tab:dl-cmp` | 15--24 | `table08_09_depthline.py` |
-| 9 | `tab:dl-abl` | 25--32 | `table08_09_depthline.py` |
-| 10 | `tab:perf-cmp` | 15--24 | `table10_perf_cmp.py` |
-| 11 | `tab:abl` | 25--32 | `table11_13_abl_mesh_gen.py` |
-| 12 | `tab:mesh` | 33--38 | `table11_13_abl_mesh_gen.py` |
-| 13 | `tab:gen-overall` | 39--42 | `table11_13_abl_mesh_gen.py` |
-| 14 | `tab:runtime` | 43--50 | `table14_runtime.py` |
+| 4 | `tab:ideal-overall` | 1--2 | `table04_S1_ideal.py` |
+| S1 | `tab:S1` (Supplementary Material) | 1--2 | `table04_S1_ideal.py` |
+| 5 | `tab:res-rect-mf` | 3--5, 9--11 | `table05_06_forward.py` |
+| 6 | `tab:sq100` | 6--8, 12--14 | `table05_06_forward.py` |
+| 7 | `tab:dl-cmp` | 15--24 | `table07_08_depthline.py` |
+| 8 | `tab:dl-abl` | 25--32 | `table07_08_depthline.py` |
+| 9 | `tab:perf-cmp` | 15--24 | `table09_perf_cmp.py` |
+| 10 | `tab:abl` | 25--32 | `table10_12_abl_mesh_gen.py` |
+| 11 | `tab:mesh` | 33--38 | `table10_12_abl_mesh_gen.py` |
+| 12 | `tab:gen-overall` | 39--42 | `table10_12_abl_mesh_gen.py` |
+| 13 | `tab:runtime` | 43--50 | `table13_runtime.py` |
 
 Tables 1--2 are typeset directly in the manuscript source and have no generating
 script.

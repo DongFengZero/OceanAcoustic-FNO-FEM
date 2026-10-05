@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-"""table11_13_abl_mesh_gen.py — 打印 Table 11-13（4.5 消融 / 4.6 网格 / 4.7 泛化）
+"""table10_12_abl_mesh_gen.py — 打印 Table 10-12（4.5 消融 / 4.6 网格 / 4.7 泛化）
 
-  Table 11  tab:abl         单张 tabular 左右两个列组：
+  Table 10  tab:abl         单张 tabular 左右两个列组：
               左列组 Cases 25-28 矩形消融，右列组 Cases 29-32 楔形消融
               四组：去先验 / 去图修正 / 去先验监督 / 全模型
-  Table 12  tab:mesh        单张 tabular 左右两个列组：
+  Table 11  tab:mesh        单张 tabular 左右两个列组：
               左列组 Cases 33-35 矩形网格（R4 / R7 / R8）
               右列组 Cases 36-38 楔形网格（W4 / W7 / W8）
-  Table 13  tab:gen-overall Cases 39-42：源位外推泛化（R9 / R10 / W9 / W10）
+  Table 12  tab:gen-overall Cases 39-42：源位外推泛化（R9 / R10 / W9 / W10）
 
 
 取数层：归档汇总 xlsx，可用 build_accuracy_xlsx.py 从训练日志重建（--check
 已验证逐值一致），故最终仍可追到源数据。
 
-    python table11_13_abl_mesh_gen.py [--tex]
+    python table10_12_abl_mesh_gen.py [--tex]
 """
 import _acctable as A
 

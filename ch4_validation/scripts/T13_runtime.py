@@ -1,5 +1,5 @@
 """
-T14_runtime.py — Table 14（tab:runtime）核验
+T13_runtime.py — Table 13（tab:runtime）核验
 ===========================================
 对象：推理耗时性能表，R1 修订把原来的两张表并进**同一个 table*** 浮动体，
       左右两个 minipage 各一张 tabular：
@@ -27,10 +27,10 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import _boot  # noqa: F401
 from common import paths, registry, report, texparse as T
 
-SLUG = "T14_runtime"
+SLUG = "T13_runtime"
 REC = registry.by_slug(SLUG)
 LABEL = REC["label"]
-NUMBER = 14
+NUMBER = 13
 SEC = REC["sec"]
 
 BASE = {43: "R1", 44: "W1"}                      # (a) 工作表0

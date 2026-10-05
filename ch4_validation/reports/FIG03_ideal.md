@@ -3,7 +3,7 @@
 - 对象：`fig:ideal`（Fig. ideal-rect）
 - 结论：**PASS** — 37 通过 / 0 失败 / 0 警告，共 37 项
 - 脚本：`ch4_validation/scripts/FIG03_ideal.py`
-- 生成：2026-10-05 10:16:59
+- 生成：2026-10-05 21:28:22
 
 ## 1. 源清单
 
@@ -36,9 +36,9 @@
 | caption 未误写 best epoch | 图源自 ep200 npz，非 best-epoch 评估 | PASS |
 | Caption 声明 epoch | 声明 'last epoch' | PASS |
 
-## 3. 深度线 MAE 反向验证（与 Table 5 对齐）
+## 3. 深度线 MAE 反向验证（与 Table S1 对齐）
 
-> 从 npz 全精度重算 MAE，舍入 3 位后与 Table 5 印刷值比对
+> 从 npz 全精度重算 MAE，舍入 3 位后与 Table S1 印刷值比对
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
@@ -47,9 +47,9 @@
 | 75 Hz TL MAE (idx=4) | npz全精度 0.340546016 → 3dp 0.341 / 表印 0.341 | PASS |
 | 100 Hz TL MAE (idx=7) | npz全精度 0.429632562 → 3dp 0.430 / 表印 0.430 | PASS |
 
-## 4. Source 坐标反向验证（与 Table 5 / 图标题对齐）
+## 4. Source 坐标反向验证（与 Table S1 / 图标题对齐）
 
-> 从 npz source_pos 舍入 1 位后与 Table 5 Src 列、图面板标题比对。全章坐标统一 1 位小数（深度线与场图同口径）。
+> 从 npz source_pos 舍入 1 位后与 Table S1 Src 列、图面板标题比对。全章坐标统一 1 位小数（深度线与场图同口径）。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
@@ -83,7 +83,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 正文引用本图 | 共 3 处 | PASS |
+| 正文引用本图 | 共 2 处 | PASS |
 | 正文该断言可定位 | tex 行 724 | PASS |
 | npz 每频率恰 2 个样本 | 频率计数 {25: 2, 50: 2, 75: 2, 100: 2} | PASS |
 | 25 Hz 图上取 2 个不同样本 | idx=[1, 0] | PASS |

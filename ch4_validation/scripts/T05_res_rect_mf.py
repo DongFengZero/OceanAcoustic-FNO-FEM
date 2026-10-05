@@ -1,5 +1,5 @@
 """
-T06_res_rect_mf.py — Table 6（tab:res-rect-mf）核验
+T05_res_rect_mf.py — Table 5（tab:res-rect-mf）核验
 ====================================================
 对象：多频前向精度，矩形 R1–R3 (Cases 3–5) + 楔形 W1–W3 (Cases 9–11)，
       逐频 Sol/TL + Avg.，12 列（R1 已删除 Fig. 列）。
@@ -25,7 +25,7 @@ import _boot  # noqa: F401
 from common import metrics as M
 from common import paths, registry, report, texparse as T
 
-SLUG = "T06_res_rect_mf"
+SLUG = "T05_res_rect_mf"
 REC = registry.by_slug(SLUG)
 LABEL = REC["label"]
 
@@ -122,7 +122,7 @@ def run():
 
     # ── E ────────────────────────────────────────────────────────
     c.section("6. Fig. 列已删除；256/512 m 场图由正文指向补充材料")
-    c.note("R1 删去了 Table 6 的 Fig. 列（它曾以裸文本 S3/S4 指代补充图）。256/512 m 的"
+    c.note("R1 删去了 Table 5 的 Fig. 列（它曾以裸文本 S3/S4 指代补充图）。256/512 m 的"
            "场图现为补充材料 Figs. S1-S4，由 4.3 节正文引用；补充材料本身由 FIGS1_S7_supplementary 核验。")
     head = (T.tabular_body(env) or "")
     hdr = env[:env.find('\\' + "midrule")] if env else ""

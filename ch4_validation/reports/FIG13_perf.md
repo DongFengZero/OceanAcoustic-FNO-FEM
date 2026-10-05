@@ -3,14 +3,14 @@
 - 对象：`fig:perf`（Fig. 13）
 - 结论：**PASS** — 54 通过 / 0 失败 / 0 警告，共 54 项
 - 脚本：`ch4_validation/scripts/FIG13_perf.py`
-- 生成：2026-10-05 10:19:09
+- 生成：2026-10-05 21:30:21
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
 | 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | 单个 figure* 环境 |
-| 运行时 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.8_Performance/Case43-50_推理时间性能分析.xlsx` | 两个 sheet，即 Table 14(a)/(b) 的来源 |
+| 运行时 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.8_Performance/Case43-50_推理时间性能分析.xlsx` | 两个 sheet，即 Table 13(a)/(b) 的来源 |
 
 ## 1. 图件与已知缺口
 
@@ -22,13 +22,13 @@
 | 成图脚本已入库 | Validation_Scripts/fig13_perf/fig13_perf.py | PASS |
 | PDF 文本层可读 | 484 字符 | PASS |
 
-## 2. 子图(a)(b) 标注 vs Table 14(a)
+## 2. 子图(a)(b) 标注 vs Table 13(a)
 
 > 图上标注取整，表值保留小数。逐点核『图标注 == round(表值)』。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| Table 14(a) 含 6 行 GPU 数据（R1/W1 各 1/2/4 卡） | 实得 6 | PASS |
+| Table 13(a) 含 6 行 GPU 数据（R1/W1 各 1/2/4 卡） | 实得 6 | PASS |
 | 图(a) 第1点吞吐 53 == round(52.82) | 表 `52.82` → `53` | PASS |
 | 图(b) 第1点加速 46x == round(45.9) | 表 `45.9` → `46` | PASS |
 | 图(a) 标注 `53` 见于 PDF |  | PASS |
@@ -54,13 +54,13 @@
 | 图(a) 标注 `212` 见于 PDF |  | PASS |
 | 图(b) 标注 `106` 见于 PDF |  | PASS |
 
-## 3. 子图(c) 标注 vs Table 14(b)
+## 3. 子图(c) 标注 vs Table 13(b)
 
 > 子图(c) 只在数据点旁标域边长，不标数值；核标注齐全且与 Table 21 的 Lx 列一致（三种尺度各出现于矩形与楔形两条曲线）。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| Table 14(b) 的 Lx 取值 = 128/256/512 | [128, 256, 512] | PASS |
+| Table 13(b) 的 Lx 取值 = 128/256/512 | [128, 256, 512] | PASS |
 | 子图(c) 标注域边长 128 m（矩形+楔形两条曲线各一次） | PDF 内出现 2 次 | PASS |
 | 子图(c) 标注域边长 256 m（矩形+楔形两条曲线各一次） | PDF 内出现 2 次 | PASS |
 | 子图(c) 标注域边长 512 m（矩形+楔形两条曲线各一次） | PDF 内出现 2 次 | PASS |
@@ -71,14 +71,14 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 脚本 thr[R1] 与 Table 14(a) 一致 | 脚本 [52.82, 98.22, 163.78] / xlsx [52.82, 98.22, 163.78] | PASS |
-| 脚本 spd[R1] 与 Table 14(a) 一致 | 脚本 [45.9, 85.4, 142.4] / xlsx [45.9, 85.4, 142.4] | PASS |
-| 脚本 thr[W1] 与 Table 14(a) 一致 | 脚本 [62.42, 120.35, 211.77] / xlsx [62.42, 120.35, 211.77] | PASS |
-| 脚本 spd[W1] 与 Table 14(a) 一致 | 脚本 [31.4, 60.5, 106.4] / xlsx [31.4, 60.5, 106.4] | PASS |
-| 脚本 nodes_R 与 Table 14(b) 一致 | 脚本 [21737, 85353, 337351] / xlsx [21737, 85353, 337351] | PASS |
-| 脚本 time_R 与 Table 14(b) 一致 | 脚本 [47.53, 86.5, 251.39] / xlsx [47.53, 86.5, 251.39] | PASS |
-| 脚本 nodes_W 与 Table 14(b) 一致 | 脚本 [10680, 41633, 165034] / xlsx [10680, 41633, 165034] | PASS |
-| 脚本 time_W 与 Table 14(b) 一致 | 脚本 [40.57, 58.04, 133.09] / xlsx [40.57, 58.04, 133.09] | PASS |
+| 脚本 thr[R1] 与 Table 13(a) 一致 | 脚本 [52.82, 98.22, 163.78] / xlsx [52.82, 98.22, 163.78] | PASS |
+| 脚本 spd[R1] 与 Table 13(a) 一致 | 脚本 [45.9, 85.4, 142.4] / xlsx [45.9, 85.4, 142.4] | PASS |
+| 脚本 thr[W1] 与 Table 13(a) 一致 | 脚本 [62.42, 120.35, 211.77] / xlsx [62.42, 120.35, 211.77] | PASS |
+| 脚本 spd[W1] 与 Table 13(a) 一致 | 脚本 [31.4, 60.5, 106.4] / xlsx [31.4, 60.5, 106.4] | PASS |
+| 脚本 nodes_R 与 Table 13(b) 一致 | 脚本 [21737, 85353, 337351] / xlsx [21737, 85353, 337351] | PASS |
+| 脚本 time_R 与 Table 13(b) 一致 | 脚本 [47.53, 86.5, 251.39] / xlsx [47.53, 86.5, 251.39] | PASS |
+| 脚本 nodes_W 与 Table 13(b) 一致 | 脚本 [10680, 41633, 165034] / xlsx [10680, 41633, 165034] | PASS |
+| 脚本 time_W 与 Table 13(b) 一致 | 脚本 [40.57, 58.04, 133.09] / xlsx [40.57, 58.04, 133.09] | PASS |
 | 脚本 edge 标注 = 128/256/512 | [128, 256, 512] | PASS |
 
 ## 4. caption 与正文引用
@@ -96,6 +96,6 @@
 | 编号为 13 | aux `13` | PASS |
 | 正文以 `Fig.~\ref{fig:perf}(a,b)` 引用多 GPU 部分 |  | PASS |
 | 正文以 `Fig.~\ref{fig:perf}(c)` 引用域缩放部分 |  | PASS |
-| 兄弟表 `tab:runtime` 在正文被引 | tex 行 1173 | PASS |
-| 兄弟表 tab:runtime 编号为 14 | aux `14` | PASS |
+| 兄弟表 `tab:runtime` 在正文被引 | tex 行 1141 | PASS |
+| 兄弟表 tab:runtime 编号为 13 | aux `13` | PASS |
 

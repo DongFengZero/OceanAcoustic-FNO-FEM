@@ -1,9 +1,9 @@
 # Fig. S1-S7 — 补充材料 Figs. S1-S7（跨文件核验）
 
 - 对象：`Figs. S1-S7`（Fig. S1-S7）
-- 结论：**PASS** — 61 通过 / 0 失败 / 0 警告，共 61 项
+- 结论：**PASS** — 65 通过 / 0 失败 / 0 警告，共 65 项
 - 脚本：`ch4_validation/scripts/FIGS1_S7_supplementary.py`
-- 生成：2026-10-05 10:19:56
+- 生成：2026-10-05 21:31:06
 
 ## 1. 源清单
 
@@ -44,14 +44,14 @@
 | S6 `figS6_abl_w1.pdf` 宽度不超过版心 494.5 pt | 491.5 pt | PASS |
 | S6 `figS6_abl_w1.pdf` 最小字号 ≥ 6 pt | 6.00 pt | PASS |
 | S6 消融网格：8 行声源与 32 个平均误差与重算一致 | 全部一致 | PASS |
-| S7 图件 `figS7a_gen_extrap_w9.pdf` 存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/supplementary/figS7a_gen_extrap_w9.pdf | PASS |
-| S7 `figS7a_gen_extrap_w9.pdf` 宽度不超过版心 494.5 pt | 225.0 pt | PASS |
-| S7 `figS7a_gen_extrap_w9.pdf` 最小字号 ≥ 6 pt | 6.00 pt | PASS |
-| S7 图件 `figS7b_gen_extrap_w10.pdf` 存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/supplementary/figS7b_gen_extrap_w10.pdf | PASS |
-| S7 `figS7b_gen_extrap_w10.pdf` 宽度不超过版心 494.5 pt | 225.0 pt | PASS |
-| S7 `figS7b_gen_extrap_w10.pdf` 最小字号 ≥ 6 pt | 6.00 pt | PASS |
+| S7 图件 `figS7a_gen_extrap_r10.pdf` 存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/supplementary/figS7a_gen_extrap_r10.pdf | PASS |
+| S7 `figS7a_gen_extrap_r10.pdf` 宽度不超过版心 494.5 pt | 225.0 pt | PASS |
+| S7 `figS7a_gen_extrap_r10.pdf` 最小字号 ≥ 6 pt | 6.00 pt | PASS |
+| S7 图件 `figS7b_gen_extrap_w9.pdf` 存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/supplementary/figS7b_gen_extrap_w9.pdf | PASS |
+| S7 `figS7b_gen_extrap_w9.pdf` 宽度不超过版心 494.5 pt | 225.0 pt | PASS |
+| S7 `figS7b_gen_extrap_w9.pdf` 最小字号 ≥ 6 pt | 6.00 pt | PASS |
+| S7 Case40：8 行声源与平均误差与重算一致 | 全部一致 | PASS |
 | S7 Case41：8 行声源与平均误差与重算一致 | 全部一致 | PASS |
-| S7 Case42：8 行声源与平均误差与重算一致 | 全部一致 | PASS |
 
 ## 2. 正文 ↔ 补充材料
 
@@ -66,12 +66,15 @@
 | S5 在 sec:ablation（4.5 节）被引用 | 实际出现于 ['sec:ablation', 'sec:performance'] | PASS |
 | S6 在 sec:ablation（4.5 节）被引用 | 实际出现于 ['sec:ablation', 'sec:performance'] | PASS |
 | S7 在 sec:generalization（4.7 节）被引用 | 实际出现于 ['sec:generalization'] | PASS |
+| 补充材料写 `Fig.~3` ↔ 正文 `fig:ideal` = 3 |  | PASS |
 | 补充材料写 `Fig.~4` ↔ 正文 `fig:res-128` = 4 |  | PASS |
-| 补充材料写 `Table~6` ↔ 正文 `tab:res-rect-mf` = 6 |  | PASS |
+| 补充材料写 `Table~5` ↔ 正文 `tab:res-rect-mf` = 5 |  | PASS |
 | 补充材料写 `Fig.~8` ↔ 正文 `fig:perf-cmp-r` = 8 |  | PASS |
-| 补充材料写 `Table~11` ↔ 正文 `tab:abl` = 11 |  | PASS |
+| 补充材料写 `Table~10` ↔ 正文 `tab:abl` = 10 |  | PASS |
 | 补充材料写 `Fig.~12` ↔ 正文 `fig:gen-grid` = 12 |  | PASS |
-| 补充材料写 `Table~13` ↔ 正文 `tab:gen-overall` = 13 |  | PASS |
+| 补充材料写 `Table~12` ↔ 正文 `tab:gen-overall` = 12 |  | PASS |
+| 补充材料不含改号前的正文表号（6/11/13/14） | 无 | PASS |
+| 补充材料一览表含 `Sec.~4.2`（sec:ideal） |  | PASS |
 | 补充材料一览表含 `Sec.~4.3`（sec:forward） |  | PASS |
 | 补充材料一览表含 `Sec.~4.5`（sec:ablation） |  | PASS |
 | 补充材料一览表含 `Sec.~4.7`（sec:generalization） |  | PASS |
@@ -89,8 +92,9 @@
 | 附录 B 行『S1--S4』与补充材料图题同含 `512` | Transmission-loss fields, $256$ and $512$~m scales | PASS |
 | 附录 B 有行：原图 16 + 17 → S5--S6 |  | PASS |
 | 附录 B 行『S5--S6』与补充材料图题同含 `ablation` | Transmission-loss fields, ablation variants | PASS |
-| 附录 B 有行：原图 22 → S7 |  | PASS |
-| 附录 B 行『S7』与补充材料图题同含 `extrapolation` | Source-position extrapolation, wedge | PASS |
-| 附录 B 行『S7』与补充材料图题同含 `wedge` | Source-position extrapolation, wedge | PASS |
+| 附录 B 有行：原图 21 + 22 → S7 |  | PASS |
+| 附录 B 行『S7』与补充材料图题同含 `extrapolation` | Source-position extrapolation, rectangular far-range split a | PASS |
+| 附录 B 行『S7』与补充材料图题同含 `rectangular` | Source-position extrapolation, rectangular far-range split a | PASS |
+| 附录 B 行『S7』与补充材料图题同含 `wedge` | Source-position extrapolation, rectangular far-range split a | PASS |
 | 回复信以 `Figs.~S1--S7` 指称补充材料 |  | PASS |
 

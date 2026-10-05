@@ -1,9 +1,9 @@
-# Table 13 — 泛化外推精度 R9/R10/W9/W10
+# Table 12 — 泛化外推精度 R9/R10/W9/W10
 
-- 对象：`tab:gen-overall`（Table 13）
+- 对象：`tab:gen-overall`（Table 12）
 - 结论：**PASS** — 118 通过 / 0 失败 / 0 警告，共 118 项
-- 脚本：`ch4_validation/scripts/T13_gen_overall.py`
-- 生成：2026-10-05 10:16:34
+- 脚本：`ch4_validation/scripts/T12_gen_overall.py`
+- 生成：2026-10-05 21:27:54
 
 ## 1. 源清单
 

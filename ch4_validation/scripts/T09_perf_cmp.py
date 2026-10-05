@@ -1,12 +1,12 @@
 """
-T10_perf_cmp.py — Table 10（tab:perf-cmp）核验
+T09_perf_cmp.py — Table 9（tab:perf-cmp）核验
 ==============================================
 对象：五方法逐频前向精度，**矩形 R1（Cases 15-19）与楔形 W1（Cases 20-24）
       分块排在同一张表**，12 列：
 
         No. | Method | 25Hz(Sol,TL) | 50Hz | 75Hz | 100Hz | Avg.(Sol,TL)
 
-R1 修订把原来的 Table 13（perf-rect）与 Table 14（perf-wedge）合并为本表，
+R1 修订把原来的 Table 12（perf-rect）与 Table 13（perf-wedge）合并为本表，
 故本脚本覆盖两个几何；每块的判据与合并前逐条相同，只是版式变了。
 
 版式要点（与合并前的并排表不同）
@@ -36,10 +36,10 @@ import _acctable as A
 from common import metrics as M
 from common import paths, registry, report, texparse as T
 
-SLUG = "T10_perf_cmp"
+SLUG = "T09_perf_cmp"
 REC = registry.by_slug(SLUG)
 LABEL = REC["label"]
-NUMBER = 10
+NUMBER = 9
 
 # 行标签 -> Method 名。矩形块 15-19，楔形块 20-24。
 RECT = {15: "Proposed", 16: "DeepONet", 17: "FNO", 18: "KNO", 19: "CNO"}
@@ -55,7 +55,7 @@ NUMCOLS = list(range(2, 12))
 # 4.4 节正文直接引用：(说明, 正文字面量, (案例, 组, 量), 定位用的原句片段)
 #
 # 第四项是必需的：本表的数值与 4.3 / 4.5 节正文共用同一批字面量
-# （1.688 / 0.951 / 2.121 / 0.899 在 4.3 节讲 Table 6 的 128m 案例时也出现），
+# （1.688 / 0.951 / 2.121 / 0.899 在 4.3 节讲 Table 5 的 128m 案例时也出现），
 # 只按裸数值定位会命中别的节。原句片段取自 4.4 节那段实际文字。
 PROSE = [
     ("Case 15 频均 Sol", "1.688", (15, "Overall", "sol"),
@@ -93,7 +93,7 @@ def cell_index(g, q):
 def prose_window():
     """4.4 节正文片段：从本表段落起句到下一个 \\subsection 为止。
 
-    限定窗口是必需的：本表的数值与 Table 6 的 4.3 节正文、Table 11 的
+    限定窗口是必需的：本表的数值与 Table 5 的 4.3 节正文、Table 10 的
     4.5 节正文共用同一批字面量（如 1.688 / 0.951 在 4.3 节也出现），
     全场搜会把别的节的引用误当成本表的引用。
     """

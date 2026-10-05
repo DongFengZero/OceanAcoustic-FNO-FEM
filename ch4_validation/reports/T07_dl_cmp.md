@@ -1,9 +1,9 @@
-# Table 8 — 五方法深度线 TL（矩形 R1 y=56.1m 与楔形 W1 y=30.4m 并排）
+# Table 7 — 五方法深度线 TL（矩形 R1 y=56.1m 与楔形 W1 y=30.4m 并排）
 
-- 对象：`tab:dl-cmp`（Table 8）
+- 对象：`tab:dl-cmp`（Table 7）
 - 结论：**PASS** — 172 通过 / 0 失败 / 0 警告 / 2 豁免，共 174 项
-- 脚本：`ch4_validation/scripts/T08_dl_cmp.py`
-- 生成：2026-10-05 10:16:18
+- 脚本：`ch4_validation/scripts/T07_dl_cmp.py`
+- 生成：2026-10-05 21:27:39
 
 ## 1. 源清单
 
@@ -200,7 +200,7 @@
 | wedge 75Hz 源坐标 | tex `(113.4, 64.0)` / 样本 5 实际 (113.42506, 63.99967) → `(113.4, 64.0)` | PASS |
 | wedge 100Hz 源坐标 | tex `(88.0, 78.9)` / 样本 6 实际 (88.02824, 78.86678) → `(88.0, 78.9)` | PASS |
 
-## 9. 表与图同源（Table 8 ↔ Fig. 的两块）
+## 9. 表与图同源（Table 7 ↔ Fig. 的两块）
 
 > MAE 表和深度线图是同一次选线/选样本的两个产物。比对论文图件与成图脚本 out/ 下同名 PDF：内容逐字节相同（仅嵌入时间戳不同，比对前抹掉），则『表里的数』与『图里的线』必定来自同一次计算，不可能各自漂移。
 
@@ -235,17 +235,17 @@
 |---|---|---|
 | 全部 40 个数值单元格均为 3 位小数 | 全部合规 | PASS |
 
-## 12. 与 Table 9 的版式一致性
+## 12. 与 Table 8 的版式一致性
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| Table 9 表体可定位 | 长度 1133 | PASS |
-| Table 9 亦为 tabular* | is_star=True | PASS |
-| 两表列定义可解析 | Table 8 `@{\extracolsep{\fill}}M EEEE EEEE@{}` / Table 9 `@{\extracolsep{\fill}}A EEEE EEEE@{}` | PASS |
-| Table 8 列类型序列为 `M EEEE EEEE` | `@{\extracolsep{\fill}}M EEEE EEEE@{}` | PASS |
-| Table 9 列类型序列为 `A EEEE EEEE` | `@{\extracolsep{\fill}}A EEEE EEEE@{}` | PASS |
-| Table 8 用 \extracolsep{\fill} 均分列间余量 | `@{\extracolsep{\fill}}M EEEE EEEE@{}` | PASS |
-| Table 9 用 \extracolsep{\fill} 均分列间余量 | `@{\extracolsep{\fill}}A EEEE EEEE@{}` | PASS |
+| Table 8 表体可定位 | 长度 1133 | PASS |
+| Table 8 亦为 tabular* | is_star=True | PASS |
+| 两表列定义可解析 | Table 7 `@{\extracolsep{\fill}}M EEEE EEEE@{}` / Table 8 `@{\extracolsep{\fill}}A EEEE EEEE@{}` | PASS |
+| Table 7 列类型序列为 `M EEEE EEEE` | `@{\extracolsep{\fill}}M EEEE EEEE@{}` | PASS |
+| Table 8 列类型序列为 `A EEEE EEEE` | `@{\extracolsep{\fill}}A EEEE EEEE@{}` | PASS |
+| Table 7 用 \extracolsep{\fill} 均分列间余量 | `@{\extracolsep{\fill}}M EEEE EEEE@{}` | PASS |
+| Table 8 用 \extracolsep{\fill} 均分列间余量 | `@{\extracolsep{\fill}}A EEEE EEEE@{}` | PASS |
 | 两表同用 \TABstyleDL（整表紧凑列距） |  | PASS |
 | 两表的 tabular* 总宽参数一致（等宽并排） | dl-cmp=`\linewidth` / dl-abl=`\linewidth` | PASS |
 
@@ -257,8 +257,8 @@
 |---|---|---|
 | 正文『at or below 1.515 dB on the rectangular line』 | 矩形四频 ['0.469', '0.696', '0.579', '1.515'] → 最大 `1.515` | PASS |
 | 正文『0.666 dB on the wedge line』 | 楔形四频 ['0.195', '0.144', '0.576', '0.666'] → 最大 `0.666` | PASS |
-| 正文声明的深度线 y=56.1 m 与脚本 force_y 一致 | tex 行 905 | PASS |
-| 正文声明的深度线 y=30.4 m 与脚本 force_y 一致 | tex 行 905 | PASS |
+| 正文声明的深度线 y=56.1 m 与脚本 force_y 一致 | tex 行 884 | PASS |
+| 正文声明的深度线 y=30.4 m 与脚本 force_y 一致 | tex 行 884 | PASS |
 | 正文『DeepONet exceeds 5 dB』成立（阈值断言，不指某格） | DeepONet 最大 `7.038` > 5 | PASS |
 | 正文 `$5$\,dB` 不作字面比对 | 该数是阈值表述（exceeds 5 dB），非某单元格的印刷值 | 豁免 |
 

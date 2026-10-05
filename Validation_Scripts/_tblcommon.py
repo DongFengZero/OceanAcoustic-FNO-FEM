@@ -8,8 +8,8 @@
 
 用法
 ----
-    python table04_05_ideal.py            # 打印 Table 4 与 Table 5
-    python table04_05_ideal.py --tex      # 顺便打印 tex 行，便于逐字符对照
+    python table04_S1_ideal.py            # 打印 Table 4 与 Table S1
+    python table04_S1_ideal.py --tex      # 顺便打印 tex 行，便于逐字符对照
 
 需要先设好环境变量（与 verify.py 相同）：
     CH4_RAWROOT   Raw_Experimental_Data 的父目录
@@ -35,7 +35,7 @@ FREQS = M.FREQS
 
 
 def checker_module(slug):
-    """导入核验脚本模块（如 "T14_runtime"），复用它的 loader。
+    """导入核验脚本模块（如 "T13_runtime"），复用它的 loader。
 
     这样打印脚本与 verify.py 走的是同一个取数函数，两边不会各写一套解析而
     慢慢漂移——这是这些脚本可信的前提。

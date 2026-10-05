@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""table06_07_forward.py — 打印 Table 6/7（4.3 节，含障碍物的前向精度）
+"""table05_06_forward.py — 打印 Table 5/6（4.3 节，含障碍物的前向精度）
 
-  Table 6  tab:res-rect-mf  Cases 3-5 / 9-11：多频，矩形 R1-R3 与楔形 W1-W3
-  Table 7  tab:sq100        100 Hz 方形域，单张 tabular 左右两个列组：
+  Table 5  tab:res-rect-mf  Cases 3-5 / 9-11：多频，矩形 R1-R3 与楔形 W1-W3
+  Table 6  tab:sq100        100 Hz 方形域，单张 tabular 左右两个列组：
               左列组 Cases 6-8 矩形 R4-R6，右列组 Cases 12-14 楔形 W4-W6
               （域尺度均为 128 / 256 / 512 m）
 
@@ -13,7 +13,7 @@
 其 --check 模式已验证 4.2-4.7 共 420 项（42 案例 × 5 组 × 2 量）逐值一致，
 故这条链最终仍落到源数据（full_run_*.log）。
 
-    python table06_07_forward.py [--tex]
+    python table05_06_forward.py [--tex]
 """
 import _acctable as A
 

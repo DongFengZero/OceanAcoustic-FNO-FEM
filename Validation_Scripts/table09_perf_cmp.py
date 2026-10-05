@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""table10_perf_cmp.py — 打印 Table 10（4.4 节，五方法场精度对比）
+"""table09_perf_cmp.py — 打印 Table 9（4.4 节，五方法场精度对比）
 
-  Table 10  tab:perf-cmp   单张 tabular，左右两个列组：
+  Table 9  tab:perf-cmp   单张 tabular，左右两个列组：
               左列组 Cases 15-19 矩形（R1），右列组 Cases 20-24 楔形（W1）
               方法均为 Proposed / DeepONet / FNO / KNO / CNO
 
@@ -11,7 +11,7 @@
 取数层：归档汇总 xlsx，可用 build_accuracy_xlsx.py 从训练日志重建（--check
 已验证逐值一致），故最终仍可追到源数据。
 
-    python table10_perf_cmp.py [--tex]
+    python table09_perf_cmp.py [--tex]
 """
 import _acctable as A
 

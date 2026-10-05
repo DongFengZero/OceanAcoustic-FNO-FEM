@@ -12,7 +12,8 @@ figures (so their type size, colour scales, interpolation and masking match).
   S4  Case11  W3  wedge        512 x 128 m   (orig. Fig. 7b)
   S5  Cases 25-28  R1 ablation variants     (orig. Fig. 16)
   S6  Cases 29-32  W1 ablation variants     (orig. Fig. 17)
-  S7  Cases 41-42  W9 / W10 extrapolation    (orig. Fig. 22)
+  S7  Cases 40-41  R10 / W9 extrapolation    (orig. Figs. 21 and 22; the other two
+                                              panels, R9 / W10, are main-text Fig. 12)
 
 Numbering follows first citation in the manuscript (Secs. 4.3, 4.5, 4.7).
 
@@ -160,8 +161,8 @@ def main():
                                           "Case31_W1_no_graph", "Case32_W1_no_prior_loss"])]:
         W, H, w = ablation_grid(cases, os.path.join(OUT, name + ".pdf"))
         print(f"[S] {name:22s} {W:.1f} x {H:.1f} pt, panel {w:.1f} pt")
-    # S7：与正文 Fig. 12 的 R9/R10 同一版式，两幅并排
-    for name, prefix in [("figS7a_gen_extrap_w9", "Case41"), ("figS7b_gen_extrap_w10", "Case42")]:
+    # S7：与正文 Fig. 12（R9/W10）同一版式，两幅并排——余下的 R10/W9
+    for name, prefix in [("figS7a_gen_extrap_r10", "Case40"), ("figS7b_gen_extrap_w9", "Case41")]:
         W, H = FF.make_panel(FF.rows_multi(prefix, tags=True), FF.W_TALL,
                              os.path.join(OUT, name + ".pdf"))
         print(f"[S] {name:22s} {W:.1f} x {H:.1f} pt")

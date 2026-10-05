@@ -1,9 +1,9 @@
-# Table 10 — 五方法逐频精度，矩形与楔形分块同表
+# Table 9 — 五方法逐频精度，矩形与楔形分块同表
 
-- 对象：`tab:perf-cmp`（Table 10）
+- 对象：`tab:perf-cmp`（Table 9）
 - 结论：**PASS** — 408 通过 / 0 失败 / 0 警告，共 408 项
-- 脚本：`ch4_validation/scripts/T10_perf_cmp.py`
-- 生成：2026-10-05 10:16:32
+- 脚本：`ch4_validation/scripts/T09_perf_cmp.py`
+- 生成：2026-10-05 21:27:52
 
 ## 1. 源清单
 
@@ -489,7 +489,7 @@
 |---|---|---|
 | caption 声明 best epoch | 数据源确为该口径 | PASS |
 | caption 未误写 last epoch | 口径唯一 | PASS |
-| 表号为 10 | aux `10` | PASS |
+| 表号为 9 | aux `9` | PASS |
 
 ## 11. caption 其余声明（按几何加粗 / 四频均值 / 案例号 / 图引用）
 

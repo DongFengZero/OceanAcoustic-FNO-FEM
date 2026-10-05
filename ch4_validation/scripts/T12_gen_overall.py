@@ -25,7 +25,7 @@ import _boot  # noqa: F401
 from common import metrics as M
 from common import paths, registry, report, texparse as T
 
-SLUG = "T13_gen_overall"
+SLUG = "T12_gen_overall"
 REC = registry.by_slug(SLUG)
 LABEL = REC["label"]
 

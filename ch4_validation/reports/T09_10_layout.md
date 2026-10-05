@@ -1,9 +1,9 @@
-#  — Tables 10-11 等宽版式一致性
+#  — Tables 9-10 等宽版式一致性
 
 - 对象：``（）
 - 结论：**PASS** — 16 通过 / 0 失败 / 0 警告，共 16 项
-- 脚本：`ch4_validation/scripts/T10_11_layout.py`
-- 生成：2026-10-05 10:16:32
+- 脚本：`ch4_validation/scripts/T09_10_layout.py`
+- 生成：2026-10-05 21:27:52
 
 ## 1. 源清单
 
@@ -17,10 +17,10 @@
 |---|---|---|
 | `tab:perf-cmp` 表体可定位 | 长度 1804 | PASS |
 | `tab:perf-cmp` 用 tabular*（等宽所需） | tabular* 的宽度参数即总宽 | PASS |
-| `tab:perf-cmp` 编号 = 10 | aux `10` | PASS |
+| `tab:perf-cmp` 编号 = 9 | aux `9` | PASS |
 | `tab:abl` 表体可定位 | 长度 1736 | PASS |
 | `tab:abl` 用 tabular*（等宽所需） | tabular* 的宽度参数即总宽 | PASS |
-| `tab:abl` 编号 = 11 | aux `11` | PASS |
+| `tab:abl` 编号 = 10 | aux `10` | PASS |
 
 ## 2. 列数与列定义
 

@@ -1,9 +1,9 @@
-# Table 11 — 消融逐频结果，矩形与楔形分块同表
+# Table 10 — 消融逐频结果，矩形与楔形分块同表
 
-- 对象：`tab:abl`（Table 11）
+- 对象：`tab:abl`（Table 10）
 - 结论：**PASS** — 343 通过 / 0 失败 / 1 警告，共 344 项
-- 脚本：`ch4_validation/scripts/T11_abl.py`
-- 生成：2026-10-05 10:16:33
+- 脚本：`ch4_validation/scripts/T10_abl.py`
+- 生成：2026-10-05 21:27:53
 
 ## 1. 源清单
 
@@ -430,7 +430,7 @@
 |---|---|---|
 | caption 声明 best epoch | 数据源确为该口径 | PASS |
 | caption 未误写 last epoch | 口径唯一 | PASS |
-| 表号为 11 | aux `11` | PASS |
+| 表号为 10 | aux `10` | PASS |
 
 ## 12. caption 其余声明（按几何加粗 / 四频均值 / 案例号）
 

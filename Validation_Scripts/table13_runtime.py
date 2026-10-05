@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""table14_runtime.py — 打印 Table 14（tab:runtime）
+"""table13_runtime.py — 打印 Table 13（tab:runtime）
 
 R1 把原来的两张运行时表并进**同一个 table* 浮动体**，一个 \\label 下挂两个
 tabular：
@@ -14,10 +14,10 @@ tabular：
   · (b) 只呈现**单样本时延**，取自训练结束(200 轮)最后一个"推理时间统计摘要"
     块；其吞吐（=1000/单样本ms，逐样本串行速率）只记在 xlsx，不进论文
 
-取数一律复用核验脚本 ch4_validation/scripts/T14_runtime.py 的 load_base() /
+取数一律复用核验脚本 ch4_validation/scripts/T13_runtime.py 的 load_base() /
 load_scale()，与 verify.py 走同一次调用，两边不会各写一套解析而漂移。
 
-    python table14_runtime.py [--tex]
+    python table13_runtime.py [--tex]
 """
 import _tblcommon as K
 
@@ -26,8 +26,8 @@ def table14_a():
     K.head("tab:runtime", "Cases 43-44 · 单轮计时与相对 COMSOL 加速比")
     xl = K.paths.xlsx_path("4.8")
     K.note(f"xlsx: {K.paths.rel(xl)}  (sheet 1)")
-    K.note("取数复用 ch4_validation/scripts/T14_runtime.py 的 load_base()")
-    xd = K.checker_module("T14_runtime").load_base()
+    K.note("取数复用 ch4_validation/scripts/T13_runtime.py 的 load_base()")
+    xd = K.checker_module("T13_runtime").load_base()
     w = [10, 9, 11, 12, 11]
     K.row(["Case", "Method", "Time(ms)", "Thr.(samp/s)", "Speed-up"], w)
     K.rule(w)
@@ -50,8 +50,8 @@ def table14_b():
     xl = K.paths.xlsx_path("4.8")
     K.note(f"xlsx: {K.paths.rel(xl)}  (sheet 2)")
     K.note("Time 取自各案例最后一个推理时间统计摘要块（训练结束，200 轮）")
-    K.note("取数复用 T14_runtime.py 的 load_scale()；吞吐另读 H 列")
-    xd = K.checker_module("T14_runtime").load_scale()
+    K.note("取数复用 T13_runtime.py 的 load_scale()；吞吐另读 H 列")
+    xd = K.checker_module("T13_runtime").load_scale()
     thr = _thr_col(xl)
     w = [6, 8, 7, 11, 11, 13]
     K.row(["Case", "Dataset", "Lx(m)", "N(nodes)", "Time(ms)",

@@ -96,7 +96,7 @@ tex = io.open(TEX, encoding="utf8").read()
 total = bad = 0
 FREQS = [25, 50, 75, 100]
 
-# ── Tables 8 / 9 ───────────────────────────────────────────────
+# ── Tables 7 / 8 ───────────────────────────────────────────────
 for label, rect_cases, wedge_cases in (("tab:dl-cmp", range(15, 20), range(20, 25)),
                                        ("tab:dl-abl", range(25, 29), range(29, 33))):
     i = tex.index(B + "label{" + label + "}")
@@ -122,11 +122,13 @@ for label, rect_cases, wedge_cases in (("tab:dl-cmp", range(15, 20), range(20, 2
     print(f"{label}: checked, running total {total} cells, {bad} mismatches "
           f"(depth lines y = {ys[0]}, {ys[1]} m)")
 
-# ── Table 5 ────────────────────────────────────────────────────
-i = tex.index(B + "label{tab:ideal-depthline}")
-cap = tex[tex.rindex(B + "captionof{table}", 0, i):i]
-y = float(re.search(r"along \$y=([0-9.]+)\$", cap).group(1))
-body = tex[i:tex.index(B + "bottomrule", i)]
+# ── Table S1 (Supplementary Material; main-text Table 5 before the final R1 pass) ──
+SUPP = os.path.join(os.path.dirname(TEX), "OE_supplementary.tex")
+supp = io.open(SUPP, encoding="utf8").read()
+i = supp.index(B + "label{tab:S1}")
+cap = supp[supp.rindex(B + "caption{", 0, i):i]
+y = float(re.search(r"along\s+\$y=([0-9.]+)\$", cap).group(1))
+body = supp[i:supp.index(B + "bottomrule", i)]
 for row in [r for r in body.split(B + "midrule")[1].split(B + B) if "&" in r]:
     cells = [c.strip() for c in row.split("&")]
     no = int(cells[0])
@@ -139,6 +141,6 @@ for row in [r for r in body.split(B + "midrule")[1].split(B + B) if "&" in r]:
         total += 1
         if f"{v:.3f}" != want:
             bad += 1
-            print(f"  MISMATCH Table 5 Case {no} {f} Hz: indep {v:.6f} / printed {want}")
-print(f"tab:ideal-depthline: checked (y = {y} m)")
+            print(f"  MISMATCH Table S1 Case {no} {f} Hz: indep {v:.6f} / printed {want}")
+print(f"tab:S1 (Supplementary): checked (y = {y} m)")
 print(f"\nINDEPENDENT RECOMPUTE: {total} printed depth-line cells, {bad} mismatches")

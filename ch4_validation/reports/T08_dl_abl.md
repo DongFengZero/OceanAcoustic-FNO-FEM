@@ -1,9 +1,9 @@
-# Table 9 — 消融深度线 TL（矩形 y=71.9m 与楔形 y=33.4m 并排）
+# Table 8 — 消融深度线 TL（矩形 y=71.9m 与楔形 y=33.4m 并排）
 
-- 对象：`tab:dl-abl`（Table 9）
+- 对象：`tab:dl-abl`（Table 8）
 - 结论：**PASS** — 156 通过 / 0 失败 / 0 警告 / 1 豁免，共 157 项
-- 脚本：`ch4_validation/scripts/T09_dl_abl.py`
-- 生成：2026-10-05 10:16:32
+- 脚本：`ch4_validation/scripts/T08_dl_abl.py`
+- 生成：2026-10-05 21:27:52
 
 ## 1. 源清单
 
@@ -66,7 +66,7 @@
 | caption 声明 rect 的 Cases~25--28 |  | PASS |
 | caption 声明 wedge 深度 y=33.4 m（与重算一致） | caption 含该值 | PASS |
 | caption 声明 wedge 的 Cases~29--32 |  | PASS |
-| caption 以 Table 8 交代 header/emphasis/epoch 约定（含 epoch） | 故本表不再重复 last epoch 字样 | PASS |
+| caption 以 Table 7 交代 header/emphasis/epoch 约定（含 epoch） | 故本表不再重复 last epoch 字样 | PASS |
 
 ## 5. json 与全精度重算一致
 
@@ -179,7 +179,7 @@
 | wedge 75Hz 源坐标 | tex `(56.7, 33.8)` / 样本 4 实际 (56.67198, 33.82414) → `(56.7, 33.8)` | PASS |
 | wedge 100Hz 源坐标 | tex `(45.5, 29.5)` / 样本 7 实际 (45.49694, 29.46439) → `(45.5, 29.5)` | PASS |
 
-## 9. 表与图同源（Table 9 ↔ Fig. 的两块）
+## 9. 表与图同源（Table 8 ↔ Fig. 的两块）
 
 > MAE 表和深度线图是同一次选线/选样本的两个产物。比对论文图件与成图脚本 out/ 下同名 PDF：内容逐字节相同（仅嵌入时间戳不同，比对前抹掉），则『表里的数』与『图里的线』必定来自同一次计算。
 
@@ -195,7 +195,7 @@
 
 ## 10. 加粗正确性（Best in bold，两块各自取列最小）
 
-> caption 声明『emphasis as in Table 8』，即每列最优加粗；并排后每列分属不同几何，最小值必须在各自块内取。**本表矩形 25 Hz 的最小值落在 w/o prior supervision（0.540）而非 Full model**，加粗须跟着数走。
+> caption 声明『emphasis as in Table 7』，即每列最优加粗；并排后每列分属不同几何，最小值必须在各自块内取。**本表矩形 25 Hz 的最小值落在 w/o prior supervision（0.540）而非 Full model**，加粗须跟着数走。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
@@ -214,17 +214,17 @@
 |---|---|---|
 | 全部 32 个数值单元格均为 3 位小数 | 全部合规 | PASS |
 
-## 12. 与 Table 8 的版式一致性
+## 12. 与 Table 7 的版式一致性
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| Table 8 表体可定位 | 长度 1155 | PASS |
-| Table 8 亦为 tabular* | is_star=True | PASS |
-| 两表列定义可解析 | Table 9 `@{\extracolsep{\fill}}A EEEE EEEE@{}` / Table 8 `@{\extracolsep{\fill}}M EEEE EEEE@{}` | PASS |
-| Table 9 列类型序列为 `A EEEE EEEE` | `@{\extracolsep{\fill}}A EEEE EEEE@{}` | PASS |
-| Table 8 列类型序列为 `M EEEE EEEE`（首列标签列类型名不同，宽度同） | `@{\extracolsep{\fill}}M EEEE EEEE@{}` | PASS |
-| Table 9 用 \extracolsep{\fill} 均分列间余量 | `@{\extracolsep{\fill}}A EEEE EEEE@{}` | PASS |
-| Table 8 用 \extracolsep{\fill} 均分列间余量 | `@{\extracolsep{\fill}}M EEEE EEEE@{}` | PASS |
+| Table 7 表体可定位 | 长度 1155 | PASS |
+| Table 7 亦为 tabular* | is_star=True | PASS |
+| 两表列定义可解析 | Table 8 `@{\extracolsep{\fill}}A EEEE EEEE@{}` / Table 7 `@{\extracolsep{\fill}}M EEEE EEEE@{}` | PASS |
+| Table 8 列类型序列为 `A EEEE EEEE` | `@{\extracolsep{\fill}}A EEEE EEEE@{}` | PASS |
+| Table 7 列类型序列为 `M EEEE EEEE`（首列标签列类型名不同，宽度同） | `@{\extracolsep{\fill}}M EEEE EEEE@{}` | PASS |
+| Table 8 用 \extracolsep{\fill} 均分列间余量 | `@{\extracolsep{\fill}}A EEEE EEEE@{}` | PASS |
+| Table 7 用 \extracolsep{\fill} 均分列间余量 | `@{\extracolsep{\fill}}M EEEE EEEE@{}` | PASS |
 | 两表同用 \TABstyleDL（整表紧凑列距） |  | PASS |
 | 两表的 tabular* 总宽参数一致（等宽并排） | dl-abl=`\linewidth` / dl-cmp=`\linewidth` | PASS |
 
@@ -244,8 +244,8 @@
 |---|---|---|
 | 正文 1.356 dB @75Hz 由表中印刷值复现（正文口径） | `2.903 − 1.547 = 1.356` | PASS |
 | 正文 1.834 dB @100Hz 由表中印刷值复现（正文口径） | `5.008 − 3.174 = 1.834` | PASS |
-| 深度线深度 y=71.9 m 在文中声明且与脚本 force_y 一致 | tex 行 946 | PASS |
-| 深度线深度 y=33.4 m 在文中声明且与脚本 force_y 一致 | tex 行 946 | PASS |
+| 深度线深度 y=71.9 m 在文中声明且与脚本 force_y 一致 | tex 行 925 | PASS |
+| 深度线深度 y=33.4 m 在文中声明且与脚本 force_y 一致 | tex 行 925 | PASS |
 | 正文『raises the depth-line TL to tens of decibels』成立 | w/o prior 最小 `8.733` dB（全部频率、两几何） | PASS |
 
 ## 14. 消融方向性（去掉模块应变差）

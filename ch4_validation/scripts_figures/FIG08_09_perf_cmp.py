@@ -11,7 +11,7 @@ Fig 8 / Fig 9（fig:perf-cmp-r / fig:perf-cmp-w）核验 — R1
   · 列结构 = COMSOL(Reference) + 五个方法 x (Pred., |Err|)
   · 每个 |Err| 面板上方标该样本的**区域平均误差**（`x.xx dB`，取整前 2 位）
 故数值锚点取：行标题的频率与坐标、|Err| 上方的平均误差、逐方法场误差的**排序**
-须与兄弟表 Table 10（tab:perf-cmp）的 Avg TL 排序同向——图误差是每频率前 2 个
+须与兄弟表 Table 9（tab:perf-cmp）的 Avg TL 排序同向——图误差是每频率前 2 个
 展示样本的场均值，表 TL 是全测试集均值，数值不同但**排序必须同向**。
 
 数据源：Raw_Experimental_Data 下各 case 的 ep200 npz。
@@ -25,9 +25,9 @@ Fig 8 / Fig 9（fig:perf-cmp-r / fig:perf-cmp-w）核验 — R1
   B. epoch 双侧    图上 ep200(last) 与兄弟表 best epoch 是两个口径，两侧都核
   C. 图内结构      8 个行标题的频率/坐标与取样序一致；列标题齐全
   D. 平均误差标注  图上 x.xx dB 与 npz 全精度重算逐一吻合（★ 图内唯一的数值）
-  E. 排序同向      图误差排序 == Table 10 的 Avg TL 排序（图表同源的可核关系）
+  E. 排序同向      图误差排序 == Table 9 的 Avg TL 排序（图表同源的可核关系）
   F. caption       取样措辞（the first two）、案例区间、last epoch
-  G. 正文引用      图号 8/9；正文并列引用；兄弟表 Table 10 在正文被引
+  G. 正文引用      图号 8/9；正文并列引用；兄弟表 Table 9 在正文被引
 """
 import hashlib
 import importlib.util
@@ -56,8 +56,8 @@ FIGS = [
          cases=(20, 21, 22, 23, 24), cases_str="Cases~20--24",
          pdf="perf_grid_W1.pdf"),
 ]
-SIB = "tab:perf-cmp"        # 兄弟表：Table 10（逐频精度，排序同向判据用它）
-SRC_TAB = "tab:dl-cmp"      # caption 实际引用的表：Table 8（深度线声源）
+SIB = "tab:perf-cmp"        # 兄弟表：Table 9（逐频精度，排序同向判据用它）
+SRC_TAB = "tab:dl-cmp"      # caption 实际引用的表：Table 7（深度线声源）
 
 
 def md5(p):
@@ -154,7 +154,7 @@ def run():
 
     # ── B ────────────────────────────────────────────────────────
     c.section("3. epoch 双侧判据与 caption 声明")
-    c.note("图取 ep200(last)，兄弟表 Table 10 取 best epoch，本是两套口径。"
+    c.note("图取 ep200(last)，兄弟表 Table 9 取 best epoch，本是两套口径。"
            "故除『caption 含 last』外，还须断言『caption 未误写 best』，"
            "并列出各 case 的 best 与 200 的差异佐证。")
     for f in FIGS:
@@ -242,10 +242,10 @@ def run():
                     for k, (a, b) in enumerate(zip(got, want)) if a != b)[:200])
 
     # ── E ────────────────────────────────────────────────────────
-    c.section("6. 图误差排序 vs 兄弟表 Table 10 的 Avg TL 排序")
+    c.section("6. 图误差排序 vs 兄弟表 Table 9 的 Avg TL 排序")
     c.note("图上展示样本的逐方法场误差均值，与表的全测试集 Avg TL 数值不同"
            "（样本集不同），但**排序必须同向**——若图里某方法看着最准而表里它"
-           "最差，就是图表不同源的信号。表侧取 Table 10 各自几何块的行。")
+           "最差，就是图表不同源的信号。表侧取 Table 9 各自几何块的行。")
     for f in FIGS:
         cfg = m.GROUPS[f["group"]]
         datas = [np.load(m.find_npz(sub), allow_pickle=True)
@@ -263,7 +263,7 @@ def run():
                                            no)["Overall"]["tl"]))
         o_fig = [lb for lb, _ in sorted(fig_err, key=lambda t: t[1])]
         o_tab = [lb for lb, _ in sorted(tab_tl, key=lambda t: t[1])]
-        c.check(o_fig == o_tab, f"Fig {f['num']} 图误差排序 == Table 10 TL 排序",
+        c.check(o_fig == o_tab, f"Fig {f['num']} 图误差排序 == Table 9 TL 排序",
                 f"图 {o_fig} / 表 {o_tab}")
         c.check(o_fig[0] == "Proposed", f"Fig {f['num']} 图上本文法误差最小",
                 " < ".join(f"{lb}:{e:.3f}" for lb, e in sorted(
@@ -291,16 +291,16 @@ def run():
         c.check(chr(92) + "ref{" + SRC_TAB + "}" in cap,
                 f"Fig {f['num']} caption 以 Table~\\ref{{{SRC_TAB}}} 交代与表的对应",
                 "含 `these include the sources of Table~\\ref{tab:dl-cmp}`；"
-                "★ 被引的是 Table 8（深度线表）而非兄弟表 Table 10——"
-                "本组图的 40 个展示样本里，每频率恰有一个就是 Table 8 的"
+                "★ 被引的是 Table 7（深度线表）而非兄弟表 Table 9——"
+                "本组图的 40 个展示样本里，每频率恰有一个就是 Table 7 的"
                 "深度线声源，caption 指的是这个事实")
     # ★ caption 的实质声明要真的成立：本组图每频率展示前 2 个样本，其中
-    #   前一个恰是 Table 8 表头所选的那条深度线声源（两图共用同一批 8 个
-    #   深度线样本）。故逐图核『图内行坐标与 Table 8 表头 \\srcxy 有交集』，
+    #   前一个恰是 Table 7 表头所选的那条深度线声源（两图共用同一批 8 个
+    #   深度线样本）。故逐图核『图内行坐标与 Table 7 表头 \\srcxy 有交集』，
     #   不能只核 caption 里出现了 \\ref —— 引用对了而事实不成立照样是错。
     tbl_src = set(re.findall(
         r"\\srcxy\{([\d.]+)\}\{([\d.]+)\}", T.table_body_of(SRC_TAB)[0] or ""))
-    c.check(len(tbl_src) == 8, "Table 8 表头解析到 8 个深度线声源",
+    c.check(len(tbl_src) == 8, "Table 7 表头解析到 8 个深度线声源",
             str(sorted(tbl_src)))
     for f in FIGS:
         cfg = m.GROUPS[f["group"]]
@@ -309,7 +309,7 @@ def run():
                 for _, i in cfg["rows"]}
         inter = rows & tbl_src
         c.check(len(inter) == 4,
-                f"Fig {f['num']} 每个频率各有一个展示样本是 Table 8 的深度线声源",
+                f"Fig {f['num']} 每个频率各有一个展示样本是 Table 7 的深度线声源",
                 f"交集 {sorted(inter)}（每频率 1 个 = 4 个，与 caption 的 "
                 "`these include the sources of Table~\\ref{tab:dl-cmp}` 相符；"
                 "该判决由坐标事实而非 \\ref 字符串给出）")
@@ -327,7 +327,7 @@ def run():
     c.check(pair in txt_all, "正文并列引用 Fig 8 与 Fig 9",
             "含 `Figs.~\\ref{fig:perf-cmp-r} and~\\ref{fig:perf-cmp-w}`")
     hits = T.sentences_with(re.escape(SIB), txt_all)
-    c.check(bool(hits), "兄弟表 Table 10 在正文被引",
+    c.check(bool(hits), "兄弟表 Table 9 在正文被引",
             f"tex 行 {T.line_of(hits[0][0], txt_all)}" if hits else "未找到")
 
     return c

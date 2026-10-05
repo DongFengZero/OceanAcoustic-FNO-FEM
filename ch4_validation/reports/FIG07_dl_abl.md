@@ -3,7 +3,7 @@
 - 对象：`fig:dl-abl`（Fig. 7）
 - 结论：**PASS** — 74 通过 / 0 失败 / 0 警告 / 5 豁免，共 79 项
 - 脚本：`ch4_validation/scripts/FIG07_dl_abl.py`
-- 生成：2026-10-05 10:18:00
+- 生成：2026-10-05 21:29:20
 
 ## 1. 源清单
 
@@ -42,7 +42,7 @@
 
 ## 3. epoch 自证与 caption 声明
 
-> R1 的 Fig 7 caption 以『layout and conventions as in Fig.~\ref{fig:dl-cmp}』继承 Fig 6 的 epoch 约定，与 Table 9 继承 Table 8 同一写法；故判据改为核继承声明，并回核被继承方确有 last epoch。
+> R1 的 Fig 7 caption 以『layout and conventions as in Fig.~\ref{fig:dl-cmp}』继承 Fig 6 的 epoch 约定，与 Table 8 继承 Table 7 同一写法；故判据改为核继承声明，并回核被继承方确有 last epoch。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
@@ -112,7 +112,7 @@ Obstacle
 Beyond axis range` | PASS |
 | 图例含 Obstacle 灰带说明 |  | PASS |
 
-## 5. 图与表同源（Fig. 7 <-> Table 9）
+## 5. 图与表同源（Fig. 7 <-> Table 8）
 
 > MAE 表与深度线图是同一次 build_group 的两个产物。比对论文图件与脚本out/ 下同名 PDF：抹掉嵌入时间戳后 md5 相同，即证明表里的数与图里的线出自同一次运行。★ raw md5 永远不等：matplotlib 每次写 CreationDate。
 
@@ -129,11 +129,11 @@ Beyond axis range` | PASS |
 
 ## 6. 表头源坐标与所选样本一致（两块各 4 个）
 
-> Table 9 表头每频率标 $(x,y)$（\srcxy）。★ 本表表头分两行：第一行是 `\multicolumn` 的几何块名，第二行才是频率与 \srcxy，故不能只用 header_row()（它止于第一个 \midrule），须在表体内取全部 \srcxy。
+> Table 8 表头每频率标 $(x,y)$（\srcxy）。★ 本表表头分两行：第一行是 `\multicolumn` 的几何块名，第二行才是频率与 \srcxy，故不能只用 header_row()（它止于第一个 \midrule），须在表体内取全部 \srcxy。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| Table 9 表体可定位 | 长度 1133 | PASS |
+| Table 8 表体可定位 | 长度 1133 | PASS |
 | 表头块名声明两个几何（R1 / W1） | 第一行 `& \multicolumn{4}{c}{\textit{Rectangular (R1), $y=71.9$\,m}} & \multic` | PASS |
 | 表头解析到 8 组源坐标（4 矩形 + 4 楔形） | [(44.5, 21.9), (25.9, 49.5), (51.5, 5.7), (62.8, 85.3), (92.7, 58.9), (117.6, 43.4), (56.7, 33.8), (45.5, 29.5)] | PASS |
 | fig:dl-abl-r 选中行深度舍入到 1 位 = 71.9 m | 实际 `71.919732`（subfloat 题注写 1 位小数） | PASS |
@@ -149,17 +149,17 @@ Beyond axis range` | PASS |
 | Wedge 75Hz 源坐标 | tex `(56.7, 33.8)` / 样本 4 实际 (56.67198, 33.82414) -> `(56.7, 33.8)` | PASS |
 | Wedge 100Hz 源坐标 | tex `(45.5, 29.5)` / 样本 7 实际 (45.49694, 29.46439) -> `(45.5, 29.5)` | PASS |
 
-## 7. 与 Table 9 的一致性
+## 7. 与 Table 8 的一致性
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| Table 9 caption 声明 Cases~25--28 | 与 subfloat 题注的几何对应 | PASS |
-| Table 9 caption 声明 Rectangular 深度 y=71.9 m |  | PASS |
-| fig:dl-abl-r 题注深度与 Table 9 同值 |  | PASS |
-| Table 9 caption 声明 Cases~29--32 | 与 subfloat 题注的几何对应 | PASS |
-| Table 9 caption 声明 Wedge 深度 y=33.4 m |  | PASS |
-| fig:dl-abl-w 题注深度与 Table 9 同值 |  | PASS |
-| Table 9 caption 以 Table 8 交代 header/emphasis/epoch 约定 |  | PASS |
+| Table 8 caption 声明 Cases~25--28 | 与 subfloat 题注的几何对应 | PASS |
+| Table 8 caption 声明 Rectangular 深度 y=71.9 m |  | PASS |
+| fig:dl-abl-r 题注深度与 Table 8 同值 |  | PASS |
+| Table 8 caption 声明 Cases~29--32 | 与 subfloat 题注的几何对应 | PASS |
+| Table 8 caption 声明 Wedge 深度 y=33.4 m |  | PASS |
+| fig:dl-abl-w 题注深度与 Table 8 同值 |  | PASS |
+| Table 8 caption 以 Table 7 交代 header/emphasis/epoch 约定 |  | PASS |
 
 ## 8. 正文引用、编号与方向性
 
@@ -169,10 +169,10 @@ Beyond axis range` | PASS |
 |---|---|---|
 | fig:dl-abl 编号为 7 | aux `7` | PASS |
 | 正文多处引用 Fig. 7（4.4 引入段 + 4.5 消融段各一次） | `\ref{fig:dl-abl}` 出现 2 处 | PASS |
-| 子图 `fig:dl-abl-r` 已在 aux 注册 | aux `10a` | PASS |
-| 子图 `fig:dl-abl-w` 已在 aux 注册 | aux `10b` | PASS |
+| 子图 `fig:dl-abl-r` 已在 aux 注册 | aux `9a` | PASS |
+| 子图 `fig:dl-abl-w` 已在 aux 注册 | aux `9b` | PASS |
 | 正文以区间引用覆盖两张图 | R1 合并后正文改为单点引用（Fig.~\ref{fig:dl-abl}），全章已无 \ref{A}--\ref{B} 形式 | 豁免 |
-| 子图编号为全章全局递增的 10a/10b（排版事实） | subfig 计数器跨图累加，正文不引用面板 label | PASS |
+| 子图编号为全章全局递增的 9a/9b（排版事实） | subfig 计数器跨图累加，正文不引用面板 label | PASS |
 | fig:dl-abl-r w/o prior 四频 TL 均达数十 dB 量级 | 25Hz:26.3 / 50Hz:30.3 / 75Hz:34.1 / 100Hz:35.1 | PASS |
 | fig:dl-abl-w w/o prior 四频 TL 均达数十 dB 量级 | 25Hz:8.7 / 50Hz:32.9 / 75Hz:40.6 / 100Hz:34.3 | PASS |
 | 正文『tens of decibels』表述由图 7 的 w/o prior 列值印证 |  | PASS |

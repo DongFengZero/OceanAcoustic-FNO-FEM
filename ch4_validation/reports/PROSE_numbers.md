@@ -3,7 +3,7 @@
 - 对象：`prose (abstract + Sec. 4-5)`（Table —）
 - 结论：**PASS** — 108 通过 / 0 失败 / 0 警告 / 1 豁免，共 109 项
 - 脚本：`ch4_validation/scripts/PROSE_numbers.py`
-- 生成：2026-10-05 10:15:40
+- 生成：2026-10-05 21:27:21
 
 ## 1. 源清单
 
@@ -51,10 +51,10 @@
 | `0.610` @ sec:forward | 印刷于本节所引 ['tab:sq100'] | PASS |
 | `0.930` @ sec:forward | 印刷于本节所引 ['tab:sq100'] | PASS |
 | `3.407` @ sec:forward | 印刷于本节所引 ['tab:sq100'] | PASS |
-| `2.268` @ sec:forward | R3/R1 多频 TL 倍数 = Table 6 印刷值相除 2.157/0.951 | PASS |
+| `2.268` @ sec:forward | R3/R1 多频 TL 倍数 = Table 5 印刷值相除 2.157/0.951 | PASS |
 | `0.951` @ sec:forward | 印刷于本节所引 ['tab:res-rect-mf'] | PASS |
 | `2.157` @ sec:forward | 印刷于本节所引 ['tab:res-rect-mf'] | PASS |
-| `8.676` @ sec:forward | R6/R4 单频 TL 倍数 = Table 7 印刷值相除 3.852/0.444 | PASS |
+| `8.676` @ sec:forward | R6/R4 单频 TL 倍数 = Table 6 印刷值相除 3.852/0.444 | PASS |
 | `0.444` @ sec:forward | 印刷于本节所引 ['tab:sq100'] | PASS |
 | `3.852` @ sec:forward | 印刷于本节所引 ['tab:sq100'] | PASS |
 | `0.516` @ sec:forward | 印刷于本节所引 ['tab:res-rect-mf'] | PASS |
@@ -67,7 +67,7 @@
 | `0.951` @ sec:performance | 印刷于本节所引 ['tab:perf-cmp'] | PASS |
 | `3.730` @ sec:performance | 印刷于本节所引 ['tab:perf-cmp'] | PASS |
 | `1.305` @ sec:performance | 印刷于本节所引 ['tab:perf-cmp'] | PASS |
-| `2.6` @ sec:performance | 门槛：Table 10 中 DeepONet/KNO/CNO 矩形 Avg. TL 均 > 2.6 dB  | PASS |
+| `2.6` @ sec:performance | 门槛：Table 9 中 DeepONet/KNO/CNO 矩形 Avg. TL 均 > 2.6 dB  | PASS |
 | `2.121` @ sec:performance | 印刷于本节所引 ['tab:perf-cmp'] | PASS |
 | `0.899` @ sec:performance | 印刷于本节所引 ['tab:perf-cmp'] | PASS |
 | `3.179` @ sec:performance | 印刷于本节所引 ['tab:perf-cmp'] | PASS |
@@ -86,14 +86,14 @@
 | `38.800` @ sec:ablation | 印刷于本节所引 ['tab:abl'] | PASS |
 | `1.936` @ sec:ablation | 印刷于本节所引 ['tab:abl'] | PASS |
 | `48.797` @ sec:ablation | 印刷于本节所引 ['tab:abl'] | PASS |
-| `1.356` @ sec:ablation | Table 9：w/o graph − Full @75 Hz（印刷值相减）  | PASS |
-| `1.834` @ sec:ablation | Table 9：w/o graph − Full @100 Hz（印刷值相减）  | PASS |
-| `1.00` @ sec:mesh | 网格分辨率 Δ ∈ Table 12 Δ 列  | PASS |
-| `0.50` @ sec:mesh | 网格分辨率 Δ ∈ Table 12 Δ 列  | PASS |
-| `0.25` @ sec:mesh | 网格分辨率 Δ ∈ Table 12 Δ 列  | PASS |
-| `1.00` @ sec:mesh | 网格分辨率 Δ ∈ Table 12 Δ 列  | PASS |
-| `0.25` @ sec:mesh | 网格分辨率 Δ ∈ Table 12 Δ 列  | PASS |
-| `0.65` @ sec:mesh | 门槛：Table 12 全部 TL < 0.65 dB max TL = 0.61 | PASS |
+| `1.356` @ sec:ablation | Table 8：w/o graph − Full @75 Hz（印刷值相减）  | PASS |
+| `1.834` @ sec:ablation | Table 8：w/o graph − Full @100 Hz（印刷值相减）  | PASS |
+| `1.00` @ sec:mesh | 网格分辨率 Δ ∈ Table 11 Δ 列  | PASS |
+| `0.50` @ sec:mesh | 网格分辨率 Δ ∈ Table 11 Δ 列  | PASS |
+| `0.25` @ sec:mesh | 网格分辨率 Δ ∈ Table 11 Δ 列  | PASS |
+| `1.00` @ sec:mesh | 网格分辨率 Δ ∈ Table 11 Δ 列  | PASS |
+| `0.25` @ sec:mesh | 网格分辨率 Δ ∈ Table 11 Δ 列  | PASS |
+| `0.65` @ sec:mesh | 门槛：Table 11 全部 TL < 0.65 dB max TL = 0.61 | PASS |
 | `0.058` @ sec:mesh | 印刷于本节所引 ['tab:mesh'] | PASS |
 | `0.287` @ sec:mesh | 印刷于本节所引 ['tab:mesh'] | PASS |
 | `0.100` @ sec:mesh | 印刷于本节所引 ['tab:mesh'] | PASS |

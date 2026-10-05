@@ -1,22 +1,26 @@
 """
-T05_ideal_depthline.py — Table 5（tab:ideal-depthline）核验
-============================================================
+TS1_ideal_depthline.py — Supplementary Table S1（tab:S1）核验
+=============================================================
 对象：解析解深度线 TL-MAE @ y=44.7 m，R0 (Case 1) / W0 (Case 2)，逐频 TL + Src。
+      本表原为正文 Table 5；因 Fig. 3 已显示同一批样本，R1 定稿把它移入补充材料
+      OE_supplementary.tex，正文 4.2 节与 Fig. 3 图题以 `Table~S1` 指向它。
 
 ★ 与 Table 4 的关键差别：本表**不来自 xlsx**。
   xlsx 第 2 工作表『深度线误差』只记了 100Hz 一个代表样本（R0 源位 122.33/91.5），
   与本表 100Hz 的 (23,54) 不是同一样本——那是另一套取样，不能当第二渠道。
-  本表的源是成图脚本 `regen_ideal_panels.py` 从 ep200 npz 的提取：
+  本表的源是成图脚本 `fig03_ideal/_ideal_core.py` 从 ep200 npz 的提取：
   每频率取 y=Y_LINE 行 MAE 最小的样本，故 caption 标注 last epoch。
 
 核验链
-  A. 源可追溯    npz 存在；成图脚本读的 D:\\Data\\Case1-2 与 Raw_ 下 npz 同源（md5）
+  A. 源可追溯    npz 存在；成图脚本读的数组与 Raw_ 下 npz 逐元素相同
   B. 口径防漂移   从成图脚本源码解析 GRID/METHOD/Y_LINE，须与本脚本复刻值一致
   C. 值复现      独立复刻 pick_sample，重算 MAE 与源位，与印刷值比对
   D. 位数一致     TL 全 3 位；Src 全 1 位小数（与图/场图统一口径）
-  E. caption 自洽 caption 写的 y=44.7 与脚本常量一致
-  F. 文段引用     4.2 正文关于深度线的趋势断言（楔形 75/100Hz 误差最大）
+  E. caption 自洽 caption 写的 y=44.7 与脚本常量一致；指向正文 Fig. 3 的编号正确
+  F. 跨文件引用   正文 4.2 节与 Fig. 3 图题指向 `Table~S1`；正文不再有 tab:ideal-depthline
+  G. 文段引用     4.2 正文关于深度线的趋势断言（楔形 75/100Hz 误差最大）
 """
+import io
 import os
 import re
 
@@ -25,13 +29,14 @@ import numpy as np
 import _boot  # noqa: F401
 from common import paths, registry, report, texparse as T
 
-SLUG = "T05_ideal_depthline"
+SLUG = "TS1_ideal_depthline"
 REC = registry.by_slug(SLUG)
-LABEL = REC["label"]
+LABEL = REC["label"]                                  # tab:S1
+SUPP = os.path.join(os.path.dirname(paths.TEX), "OE_supplementary.tex")
 CASES = {1: ("R0 (rect.)", "Case01_R0"), 2: ("W0 (wedge)", "Case02_W0")}
 FREQS = [25, 50, 75, 100]
 
-# ── 复刻 regen_ideal_panels.py 的提取口径（B 段会核对是否与脚本源码一致）──
+# ── 复刻成图脚本的提取口径（B 段会核对是否与脚本源码一致）──
 GRID = 220
 METHOD = "cubic"
 Y_LINE = 44.7
@@ -80,20 +85,24 @@ def pick_sample(data, freq):
 
 
 def run():
-    c = report.Checker(SLUG, REC["desc"], "table", LABEL, T.number_of(LABEL))
+    c = report.Checker(SLUG, REC["desc"], "table", LABEL, "S1")
 
     ps = paths.plot_script(REC["plot"])
-    # 常量现由同目录的 core 模块持有（成图脚本只 import 它），
-    # 故口径断言读 core；找不到时退回成图脚本本身，以免路径再变就误报。
     core = os.path.join(os.path.dirname(ps), "_ideal_core.py")
     ps_const = core if os.path.exists(core) else ps
-    c.source("印刷面 tex", paths.TEX, f"`\\label{{{LABEL}}}` 所在 minipage")
+    c.source("补充材料 tex", SUPP, f"`\\label{{{LABEL}}}` 所在 table 环境（Supplementary Material）")
+    c.source("正文 tex", paths.TEX, "4.2 节与 Fig. 3 图题对 Table~S1 的指向；趋势断言")
     c.source("提取口径 脚本", ps, "每频率取 y=44.7m 行 MAE 最小样本；成图与表值同一算法")
     for no, (_, cd) in CASES.items():
         c.source(f"数据源 npz (Case {no})", paths.npz_path(no), "ep200 TL 原始数据（last epoch）")
 
+    supp = io.open(SUPP, encoding="utf8").read()
+    main = T.tex_text()
+    aux = T.labels()
+
     # ── A. 源可追溯 ──────────────────────────────────────────────
     c.section("2. 源可追溯性")
+    c.check(os.path.exists(SUPP), "补充材料 tex 存在", paths.rel(SUPP))
     c.check(os.path.exists(ps), "成图脚本存在", paths.rel(ps))
     npz = {}
     for no, (_, cd) in CASES.items():
@@ -104,9 +113,8 @@ def run():
     c.note("成图脚本默认读公开数据 `Raw_Experimental_Data/4.2_Validation/`，与注册表同一份；"
            "此处断言它实际加载的数组与注册 npz 逐元素相同，确保图与表的数据基础一致。")
     import importlib.util
-    import numpy as np
     os.environ.setdefault("CH4_RAWROOT", paths._RAWROOT)
-    _sp = importlib.util.spec_from_file_location("ideal_core_t05", os.path.join(os.path.dirname(ps), "_ideal_core.py"))
+    _sp = importlib.util.spec_from_file_location("ideal_core_ts1", os.path.join(os.path.dirname(ps), "_ideal_core.py"))
     _core = importlib.util.module_from_spec(_sp)
     _sp.loader.exec_module(_core)
     for no, (_, cd) in CASES.items():
@@ -116,11 +124,14 @@ def run():
         c.check(same and _core.CASE_ROOT is None, f"Case {no} 成图脚本读取的即公开 npz",
                 "逐元素相同" + ("" if _core.CASE_ROOT is None else f"；CH4_IDEAL_ROOT={_core.CASE_ROOT}"))
 
-    env = T.table_env(LABEL)
-    rows = T.data_rows(env, ncol=10)
+    env = T.table_env(LABEL, supp)
+    c.check(env is not None, "补充材料含 `\\label{tab:S1}` 的 table 环境", "")
+    rows = T.data_rows(env or "", ncol=10)
     c.check(len(rows) == 2, "tex 数据行数 = 2", f"实得 {len(rows)}")
     printed = {int(r[0]): r for r in rows}
     c.check(set(printed) == set(CASES), "tex 行 No. 覆盖 Case 1-2", str(sorted(printed)))
+    c.check(supp.count("\\label{tab:S1}") == 1 and "\\label{tab:ideal-depthline}" not in main,
+            "Table S1 只在补充材料出现一次，正文不再含 tab:ideal-depthline", "")
 
     # ── B. 口径防漂移 ────────────────────────────────────────────
     c.section("3. 提取口径与成图脚本一致（防漂移）")
@@ -140,11 +151,10 @@ def run():
     c.section("4. 从 npz 独立复现（MAE 与源位 vs 印刷值）")
     c.note("列序：No., Dataset, 25Hz(TL,Src), 50Hz, 75Hz, 100Hz。"
            "Src 印刷为 1 位小数对，与图面板标题及场图同口径，故按 1 位比对。")
-    c.note("采用 1 位而非整数：整数口径下 `39.50081`→40 与 `49.49999679`→49 "
-           "进位方向相反、且把 39.5 与 40.0 混为一谈，无法回溯到具体样本；"
-           "1 位小数保留了半整数网格信息（39.5/49.5/87.5 等）。")
     mae_tab = {}
     for no, (dsname, _) in CASES.items():
+        if no not in printed:
+            continue
         data = np.load(npz[no], allow_pickle=True)
         c.check(printed[no][1].strip() == dsname, f"Case {no} Dataset 名",
                 f"tex `{printed[no][1].strip()}`")
@@ -159,8 +169,6 @@ def run():
             cell_tl = printed[no][2 + k * 2]
             cell_src = printed[no][3 + k * 2]
             c.eq(f"Case {no} {f}Hz TL-MAE", mae, cell_tl)
-            # Src 按 1 位小数比对：全章坐标统一口径（深度线与场图一致）。
-            # 整数口径会把 39.5 与 40.0 印成同一个数，无法回溯到具体样本。
             m = re.search(r"\(\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*\)", cell_src)
             if m:
                 px, py = float(m.group(1)), float(m.group(2))
@@ -175,10 +183,8 @@ def run():
 
     # ── D. 位数一致 ──────────────────────────────────────────────
     c.section("5. 同表小数位一致性")
-    c.note("要求：TL 列一律 3 位小数；Src 两个分量一律 1 位小数"
-           "（与图面板标题及场图统一口径，不允许整数或 2 位混排）。")
     bad = []
-    for no in CASES:
+    for no in printed:
         for k in range(4):
             v = printed[no][2 + k * 2]
             if not re.fullmatch(r"\d+\.\d{3}", v):
@@ -191,17 +197,33 @@ def run():
 
     # ── E. caption 自洽 ──────────────────────────────────────────
     c.section("6. caption 与口径自洽")
-    cap = T.caption_of(LABEL) or ""
+    cap = re.sub(r"\s+", " ", T.caption_of(LABEL, supp) or "")
     c.check(f"y={Y_LINE}" in cap.replace("$", "").replace("\\,m", ""),
-            "caption 标注的深度线位置 = 脚本 Y_LINE",
-            f"caption 含 `y={Y_LINE}`：{'是' if str(Y_LINE) in cap else '否'}")
-    c.check("last epoch" in cap, "caption 声明 last epoch",
-            "本表源自 ep200 npz，非 best epoch")
-    c.check("best-matching" in cap or "best" in cap, "caption 说明取样规则",
-            "应交代“每频率取最匹配样本”")
+            "caption 标注的深度线位置 = 脚本 Y_LINE", f"caption 含 `y={Y_LINE}`")
+    c.check("last epoch" in cap, "caption 声明 last epoch", "本表源自 ep200 npz，非 best epoch")
+    c.check("best-matching" in cap, "caption 说明取样规则", "每频率取最匹配样本")
+    n_fig = aux.get("fig:ideal", {}).get("num")
+    n_sec = aux.get("sec:ideal", {}).get("num")
+    c.check(n_fig is not None and f"Fig.~{n_fig} of the main text" in cap,
+            f"caption 指向正文 Fig.~{n_fig}（fig:ideal 的实际编号）", f"aux `{n_fig}`")
+    c.check(n_sec is not None and f"Sec.~{n_sec} of the main text" in cap,
+            f"caption 指向正文 Sec.~{n_sec}（sec:ideal 的实际编号）", f"aux `{n_sec}`")
 
-    # ── F. 文段引用 ──────────────────────────────────────────────
-    c.section("7. 正文断言与表值一致（4.2 节）")
+    # ── F. 跨文件引用 ────────────────────────────────────────────
+    c.section("7. 正文对 Table S1 的指向")
+    c.note("正文不再排这张表，但 4.2 节与 Fig. 3 图题都要把读者指到补充材料；"
+           "两处都写 `Table~S1 of the Supplementary Material`。")
+    n_ref = main.count("Table~S1 of the Supplementary Material")
+    c.check(n_ref >= 2, "正文至少两处写 `Table~S1 of the Supplementary Material`", f"实得 {n_ref}")
+    fcap = T.caption_of("fig:ideal") or ""
+    c.check("Table~S1" in fcap, "Fig. 3 图题指向 Table~S1", "")
+    sec_txt = main[main.find("\\label{sec:ideal}"):main.find("\\label{sec:forward}")]
+    c.check("Table~S1" in sec_txt, "4.2 节正文指向 Table~S1", "")
+    c.check("Table~S1" in main[main.find("\\section*{Supplementary Material}"):],
+            "正文『Supplementary Material』一节列出 Table~S1", "")
+
+    # ── G. 文段引用 ──────────────────────────────────────────────
+    c.section("8. 正文断言与表值一致（4.2 节）")
     c.note("4.2 正文未直接引用本表数字，只作趋势断言："
            "“The error is largest at 75 and 100 Hz on the wedge”。"
            "趋势断言同样须由表值支持，否则是无据之言。")
@@ -210,7 +232,7 @@ def run():
         c.check(set(order[:2]) == {75, 100},
                 "楔形 W0 误差最大的两个频率 = 75/100Hz",
                 "降序 " + " > ".join(f"{f}Hz({mae_tab[2][f]:.3f})" for f in order))
-    hits = T.sentences_with(r"largest at \$75\$ and \$100\$", T.tex_text())
+    hits = T.sentences_with(r"largest at \$75\$ and \$100\$", main)
     c.check(bool(hits), "正文该断言可定位",
             f"tex 行 {T.line_of(hits[0][0])}" if hits else "未找到")
 

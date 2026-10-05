@@ -1,29 +1,27 @@
 """
-T09_dl_abl.py — Table 9（tab:dl-abl）核验
+T07_dl_cmp.py — Table 7（tab:dl-cmp）核验
 =========================================
-对象：R1 矩形域（Cases 25-28，y=71.9 m）与 W1 楔形域（Cases 29-32，y=33.4 m）
-      深度线上四种消融变体的逐频 TL-MAE (dB)。R1 把原来分开的两张表（旧
-      tab:dl-abl-rect / tab:dl-abl-wedge）并成一张：9 列
-      `Variant | 25 50 75 100 (rect) | 25 50 75 100 (wedge)`，
-      No. 列取消，行以**变体名**为键，矩形块在前（列 1-4）、楔形块在后（5-8）。
+对象：R1 矩形域（Cases 15-19，y=56.1 m）与 W1 楔形域（Cases 20-24，y=30.4 m）
+      深度线上五种方法的逐频 TL-MAE (dB)。R1 把原来分开的两张表（旧
+      tab:dl-cmp-rect / tab:dl-cmp-wedge）并成一张：9 列
+      `Method | 25 50 75 100 (rect) | 25 50 75 100 (wedge)`，
+      No. 列取消，行以**方法名**为键，矩形块在前（列 1-4）、楔形块在后（5-8）。
 
 这张表**不在 xlsx 里**，源是成图脚本 `fig06_07_dl.py` 从 ep200 npz 的现场提取
-（组 `ablation_R1_module_advantage` 与 `ablation_W1_module_advantage`），
-故 caption 标 last epoch（承 Table 8 的 epoch convention）。核验链：
+（组 `comparison_R1_model_advantage` 与 `comparison_W1_model_advantage`），
+故 caption 标 last epoch。核验链与 Table 4/5/6/9-13 完全不同：
 
-  A. 脚本同源      权威副本与 repo 副本比对
+  A. 脚本同源      权威副本与 repo 副本 md5 比对
   B. 口径防漂移    从脚本对象读 GRID/METHOD/FREQS/force_y，断言未被改动（两组分别）
   C. 全精度重算    复用脚本自身函数重算，**不复制算法**（★核心）
   D. json 一致     脚本导出的 _mae_tables.json 与重算值一致
-  E. 补 0 判别     `1.440`/`2.210` 之类的末位 0 必须由全精度裁定（★）
-  F. 印刷值        32 格逐字符比对（两几何分别对块）
+  E. 补 0 判别     json 只存 round(er,3)，`1.210` 真伪必须靠全精度裁定（★）
+  F. 印刷值        40 格逐字符比对（两几何分别对块）
   G. 表头源坐标    8 个 (x,y) 与两组各自所选样本的 source_pos 一致（★）
-  H. 图表同源      论文图件与成图脚本 out/ 产物同源（★）
-  I. 加粗正确性    每列最小加粗，**两块各自取最小**；本表矩形 25 Hz 的最小值
-                   落在 w/o prior supervision 上（不是 Full），加粗须跟着数走
-  J. 跨表版式      与 Table 8 同用 \\TABstyleDL、同一 tabular* 总宽
-  K. 正文引用      1.356 dB @75Hz / 1.834 dB @100Hz（矩形块），y=71.9 / y=33.4
-  L. 消融方向性    去掉物理先验后误差显著变差；Full 在楔形四频全胜、矩形 3/4
+  H. 图表同源      论文 Fig. 的 PDF 与 MAE 表出自同一次运行（★）
+  I. 加粗正确性    Best in bold 须真的落在每列最小值上，**两块各自取最小**
+  J. 跨表版式      与 Table 8 用同一 \\TABstyleDL 与同一 tabular* 总宽
+  K. 正文引用      1.515 / 0.666 / y=56.1 / y=30.4 / DeepONet exceeds 5 dB
 """
 import hashlib
 import os
@@ -33,42 +31,53 @@ import _boot  # noqa: F401
 from common import depthline as DL
 from common import paths, registry, report, texparse as T
 
-SLUG = "T09_dl_abl"
+SLUG = "T07_dl_cmp"
 REC = registry.by_slug(SLUG)
 LABEL = REC["label"]
-SIB = "tab:dl-cmp"
+SIB = "tab:dl-abl"
 
+# 两个几何块：每个块自带脚本组、图件与列偏移
+#   key / 脚本组名 / 论文图件 / 数据列起点（0 起）
 BLOCKS = [
-    dict(key="rect", title="矩形 R1", group="ablation_R1_module_advantage",
-         fig="ablation_R1_module_advantage.pdf", y=71.9, domain="Rectangle",
-         grpdir="Case25-32", col0=1, cases="Cases~25--28"),
-    dict(key="wedge", title="楔形 W1", group="ablation_W1_module_advantage",
-         fig="ablation_W1_module_advantage.pdf", y=33.4, domain="Wedge",
-         grpdir="Case25-32", col0=5, cases="Cases~29--32"),
+    dict(key="rect", title="矩形 R1", group="comparison_R1_model_advantage",
+         fig="comparison_R1_model_advantage.pdf", y=56.1, domain="Rectangle",
+         grpdir="Case15-24", col0=1),
+    dict(key="wedge", title="楔形 W1", group="comparison_W1_model_advantage",
+         fig="comparison_W1_model_advantage.pdf", y=30.4, domain="Wedge",
+         grpdir="Case15-24", col0=5),
 ]
 
-# tex 行序 → (No., Variant 印刷名, 脚本内变体标签)，两块共用同一组变体
+# tex 行序 → (No., Method 印刷名, 脚本内方法标签)，两块共用同一组方法
 ROWS = [
-    (25, "Full model", "Full (Ours)"),
-    (26, "w/o physics prior", "w/o prior"),
-    (27, "w/o graph correction", "w/o graph"),
-    (28, "w/o prior supervision", "w/o prior-sup."),
+    (15, "Proposed", "Proposed (Ours)"),
+    (16, "DeepONet", "DeepONet"),
+    (17, "FNO", "FNO"),
+    (18, "KNO", "KNO"),
+    (19, "CNO", "CNO"),
 ]
-NO_WEDGE = [29, 30, 31, 32]
+# 楔形块的 No. 只是核验用的定位符（印刷面已无 No. 列），与 tex memo 对齐
+NO_WEDGE = [20, 21, 22, 23, 24]
 FREQS = (25, 50, 75, 100)
 NCOL = 9
 
-# 见 T08 同名说明：DL.figure_pdf() 指向 core 的 cache/（旧版大画布图），
-# R1 论文用的纸面尺寸图由成图脚本写到它同级的 out/。
+# DL.FIG_DIR / DL.figure_pdf() 指向 fig06_07_dl/cache/，那儿放的是 core 自己
+# 的旧版大画布图（15.5x12.5 in）；R1 论文用的纸面尺寸图由**成图脚本
+# fig06_07_dl.py** 写到它同级的 out/。核验以 out/ 为准（已实测与论文图件
+# 除嵌入时间戳外逐字节相同）。
 FIG_OUT = os.path.join(os.path.dirname(DL.AUTH), "out")
 
 
 def fig_pdf(group):
+    """成图脚本 out/ 下的纸面尺寸 PDF（论文图件的来源）。"""
     return os.path.join(FIG_OUT, f"{group}.pdf")
 
 
 def pdf_md5_no_ts(p):
-    """PDF 的 md5，先抹掉嵌入式创建/修改时间戳（matplotlib 每次运行都写）。"""
+    """PDF 的 md5，但先抹掉嵌入式创建/修改时间戳。
+
+    matplotlib 每次都写入 CreationDate，逐字节比对必然不等；抹掉时间戳后
+    若仍相同，则两文件的页面内容、字体、流对象完全一致，可判定同源。
+    """
     if not p or not os.path.exists(p):
         return None
     b = open(p, "rb").read()
@@ -77,11 +86,18 @@ def pdf_md5_no_ts(p):
 
 
 def main_table(label):
-    """该 label 自己的 tabular 源码（同浮动体内有多张表，须认 label 就近的）。"""
-    return T.table_body_of(label)
+    """该 label 自己的 tabular 源码。
+
+    R1 把多张表绑进同一个 figure* 浮动体，T.table_env() 会解析到同浮动体内的
+    邻居（实测 tab:dl-abl 取回了 tab:dl-cmp 的 tabular），故这里一律走
+    T.table_body_of()，并且 caption 也从 label 往前就地取，不用 caption_of()。
+    """
+    src, star = T.table_body_of(label)
+    return src, star
 
 
-def caption_before(label):
+def caption_before(env_src, label):
+    """label 紧邻其上的 captionof 文本（tab:dl-cmp 排法为 caption→label→tabular）。"""
     li = T.tex_text().find(f"\\label{{{label}}}")
     if li < 0:
         return ""
@@ -94,18 +110,13 @@ def caption_before(label):
     return T.tex_text()[m.end():close]
 
 
-def style_span(lb):
-    li = T.tex_text().find(f"\\label{{{lb}}}")
-    return T.tex_text()[li:li + 200] if li >= 0 else ""
-
-
 def run():
     c = report.Checker(SLUG, REC["desc"], "table", LABEL, T.number_of(LABEL))
 
     c.source("印刷面 tex", paths.TEX, f"`\\label{{{LABEL}}}` 所在 tabular*")
     c.source("成图/取数脚本（权威）", DL.AUTH,
-             "组 `ablation_R1_module_advantage` / `ablation_W1_module_advantage`")
-    c.source("同一脚本 repo 副本", DL.COPY, "口径与权威副本同源")
+             "组 `comparison_R1_model_advantage` / `comparison_W1_model_advantage`")
+    c.source("同一脚本 repo 副本", DL.COPY, "md5 应与权威副本相同")
     c.source("脚本导出 MAE 表", DL.MAE_JSON, "round 到 3 位，供正文取用")
     for b in BLOCKS:
         c.source(f"论文图件（{b['title']}）", os.path.join(paths.FIGDIR, b["fig"]),
@@ -123,11 +134,14 @@ def run():
 
     m = DL.script()
     for b in BLOCKS:
-        for case, p in DL.recompute(b["group"])["npz"].items():
+        R = DL.recompute(b["group"])
+        for case, p in R["npz"].items():
             c.check(os.path.exists(p), f"{case} 的 ep200 npz 存在", paths.rel(p))
 
     # ── B ────────────────────────────────────────────────────────
     c.section("3. 提取口径防漂移")
+    c.note("口径直接从脚本对象读出再断言，脚本改了这里立刻失败，"
+           "不会出现『核验脚本按旧口径算、论文按新口径印』的错位。")
     for name, got, want in (("插值网格 GRID", m.GRID, 300),
                             ("插值方式 METHOD", m.METHOD, "cubic"),
                             ("频率集 FREQS", tuple(m.FREQS), FREQS)):
@@ -139,7 +153,7 @@ def run():
                                 ("域类型", cfg["domain"], b["domain"])):
             c.check(got == want, f"[{b['key']}] {name} = {want!r}", f"脚本内 `{got!r}`")
         c.check([lb for _, lb in cfg["members"]] == [r[2] for r in ROWS],
-                f"[{b['key']}] 脚本变体顺序与 tex 行序一致",
+                f"[{b['key']}] 脚本方法顺序与 tex 行序一致",
                 " / ".join(lb for _, lb in cfg["members"]))
 
     # ── C ────────────────────────────────────────────────────────
@@ -158,16 +172,16 @@ def run():
     env, star = main_table(LABEL)
     c.check(env is not None, "tex 表体可定位", f"长度 {len(env or '')}")
     c.check(star, "表体为 tabular*（固定总宽）", f"is_star={star}")
-    cap = caption_before(LABEL) or ""
+    cap = caption_before(env, LABEL) or ""
     flat = cap.replace("$", "").replace("\\,", "").replace(" ", "")
     for b in BLOCKS:
         c.check(f"y={b['y']}" in flat,
                 f"caption 声明 {b['key']} 深度 y={b['y']} m（与重算一致）",
                 "caption 含该值")
-        c.check(b["cases"] in flat, f"caption 声明 {b['key']} 的 {b['cases']}", "")
-    c.check("\\ref{tab:dl-cmp}" in cap,
-            "caption 以 Table 8 交代 header/emphasis/epoch 约定（含 epoch）",
-            "故本表不再重复 last epoch 字样")
+    c.check("last epoch" in cap, "caption 声明 last epoch",
+            "深度线由 ep200 npz 现场提取，非 best epoch 汇总")
+    c.check("Cases~15--19" in flat and "Cases~20--24" in flat,
+            "caption 声明两组 Case 区间 15-19 / 20-24", "")
 
     # ── D / E ────────────────────────────────────────────────────
     c.section("5. json 与全精度重算一致")
@@ -186,40 +200,42 @@ def run():
 
     # ── F ────────────────────────────────────────────────────────
     c.section("6. 印刷值比对（全精度舍入到 3 位 vs tex）")
-    c.note("判定用全精度值，不用 json —— json 已是 round(...,3)。本表含大量"
-           "两位整数级 MAE（去先验后 26-40 dB），末位 0 的格子尤须回溯全精度"
-           "确认第 3 位真的是 0。行以变体名为键，矩形块占列 1-4、楔形块占列 5-8。")
+    c.note("判定用全精度值，不用 json —— json 已是 round(...,3)，"
+           "拿它比对等于自证，无法识别补 0（如 KNO@25Hz 印 `1.210`，"
+           "全精度 1.210xxx 才是真值来源）。行以方法名为键，矩形块占列 1-4、"
+           "楔形块占列 5-8。")
     rows = T.data_rows(env, ncol=NCOL)
-    c.check(len(rows) == 4, "tex 数据行数 = 4", f"实得 {len(rows)}")
+    c.check(len(rows) == 5, "tex 数据行数 = 5", f"实得 {len(rows)}")
     printed = {r[0].strip(): r for r in rows}
-    c.check(list(printed) == [r[1] for r in ROWS], "行以变体名为键且顺序一致",
+    c.check(list(printed) == [r[1] for r in ROWS], "行以方法名为键且顺序一致",
             " / ".join(printed))
-    for k, (no, var, lab) in enumerate(ROWS):
-        c.check(var in printed, f"行 `{var}` 存在", "")
+    for k, (no, meth, lab) in enumerate(ROWS):
+        c.check(meth in printed, f"行 `{meth}` 存在", "")
         for b in BLOCKS:
             for j, f in enumerate(FREQS):
-                c.eq(f"{var} {b['key']} {f}Hz", RR[b["key"]]["er"][f][k],
-                     printed[var][b["col0"] + j])
+                c.eq(f"{meth} {b['key']} {f}Hz", RR[b["key"]]["er"][f][k],
+                     printed[meth][b["col0"] + j])
 
+    # 补 0 判别：报告里显式列出末位为 0 的格子及其全精度来源
     zeros = []
-    for k, (no, var, _) in enumerate(ROWS):
+    for k, (no, meth, _) in enumerate(ROWS):
         for b in BLOCKS:
             for j, f in enumerate(FREQS):
-                cell = printed[var][b["col0"] + j]
+                cell = printed[meth][b["col0"] + j]
                 if cell.endswith("0"):
-                    zeros.append((var, b["key"], f, cell, RR[b["key"]]["er"][f][k]))
+                    zeros.append((meth, b["key"], f, cell, RR[b["key"]]["er"][f][k]))
     c.section("7. 末位为 0 的单元格：真值还是补 0")
     c.note("凡印刷值末位为 0 的格，单看数字无法排除『2 位补 1 个 0』，"
            "逐个回溯全精度源值确认第 3 位确实是 0 或由进位得到。")
-    for var, key, f, cell, full in zeros:
-        c.check(f"{full:.3f}" == cell, f"{var} {key} {f}Hz 末位 0 可由全精度复现",
+    for meth, key, f, cell, full in zeros:
+        c.check(f"{full:.3f}" == cell, f"{meth} {key} {f}Hz 末位 0 可由全精度复现",
                 f"全精度 {full:.9f} → `{cell}`")
     c.check(True, f"末位为 0 的格子共 {len(zeros)} 个，全部回溯完毕", "")
 
     # ── G ────────────────────────────────────────────────────────
     c.section("8. 表头源坐标与所选样本一致（两块各 4 个）")
     c.note("表头每频率标 $(x,y)$（`\\srcxy`），须等于该频率**实际选中样本**的 "
-           "source_pos；八个坐标互不相同，写错不会报编译错。")
+           "source_pos；选线算法逐频独立挑样本，八个坐标互不相同，写错不会报编译错。")
     hdr = T.header_row(env) or ""
     got = [tuple(float(v) for v in mm)
            for mm in re.findall(r"\\srcxy\{([\d.]+)\}\{([\d.]+)\}", hdr)]
@@ -236,10 +252,10 @@ def run():
                     f"({sx:.5f}, {sy:.5f}) → `{want}`")
 
     # ── H ────────────────────────────────────────────────────────
-    c.section("9. 表与图同源（Table 9 ↔ Fig. 的两块）")
+    c.section("9. 表与图同源（Table 7 ↔ Fig. 的两块）")
     c.note("MAE 表和深度线图是同一次选线/选样本的两个产物。比对论文图件与成图"
            "脚本 out/ 下同名 PDF：内容逐字节相同（仅嵌入时间戳不同，比对前抹掉），"
-           "则『表里的数』与『图里的线』必定来自同一次计算。")
+           "则『表里的数』与『图里的线』必定来自同一次计算，不可能各自漂移。")
     for b in BLOCKS:
         src_pdf = fig_pdf(b["group"])
         dst_pdf = os.path.join(paths.FIGDIR, b["fig"])
@@ -257,9 +273,8 @@ def run():
 
     # ── I ────────────────────────────────────────────────────────
     c.section("10. 加粗正确性（Best in bold，两块各自取列最小）")
-    c.note("caption 声明『emphasis as in Table 8』，即每列最优加粗；并排后每列"
-           "分属不同几何，最小值必须在各自块内取。**本表矩形 25 Hz 的最小值落在 "
-           "w/o prior supervision（0.540）而非 Full model**，加粗须跟着数走。")
+    c.note("caption 只声明『每列最优加粗』；两张表并排后每列分属不同几何，"
+           "故最小值必须在各自块内取，不能用跨块的全局最小。")
     mask = T.bold_mask(env, ncol=NCOL)
     bm = {rows[i][0].strip(): mask[i] for i in range(len(rows))}
     for b in BLOCKS:
@@ -273,10 +288,10 @@ def run():
 
     # ── H2 ───────────────────────────────────────────────────────
     c.section("11. 同表小数位一致性")
-    bad = [f"{var} {b['key']} {f}Hz `{printed[var][b['col0'] + j]}`"
-           for _, var, _ in ROWS for b in BLOCKS for j, f in enumerate(FREQS)
-           if not re.fullmatch(r"\d+\.\d{3}", printed[var][b["col0"] + j])]
-    c.check(not bad, "全部 32 个数值单元格均为 3 位小数",
+    bad = [f"{meth} {b['key']} {f}Hz `{printed[meth][b['col0'] + j]}`"
+           for _, meth, _ in ROWS for b in BLOCKS for j, f in enumerate(FREQS)
+           if not re.fullmatch(r"\d+\.\d{3}", printed[meth][b["col0"] + j])]
+    c.check(not bad, "全部 40 个数值单元格均为 3 位小数",
             "全部合规" if not bad else "；".join(bad))
 
     # ── J ────────────────────────────────────────────────────────
@@ -284,20 +299,30 @@ def run():
     sib, sib_star = main_table(SIB)
     c.check(sib is not None, "Table 8 表体可定位", f"长度 {len(sib or '')}")
     c.check(sib_star, "Table 8 亦为 tabular*", f"is_star={sib_star}")
-    p9, p8 = T.tabular_preamble(env), T.tabular_preamble(sib)
-    c.check(p9 is not None and p8 is not None, "两表列定义可解析",
-            f"Table 9 `{p9}` / Table 8 `{p8}`")
-    c.check(p9 is not None and p9.endswith("EEEE EEEE@{}"),
-            "Table 9 列类型序列为 `A EEEE EEEE`", f"`{p9}`")
+    # 两表首列列类型名不同（M=方法标签 / A=变体标签），但都是
+    # >{\srcvar\raggedright\arraybackslash}l，八个数据列同为 c；
+    # 故断言的"一致"是排版宽度一致，而不是列类型字面相同。
+    p8, p9 = T.tabular_preamble(env), T.tabular_preamble(sib)
+    c.check(p8 is not None and p9 is not None, "两表列定义可解析",
+            f"Table 7 `{p8}` / Table 8 `{p9}`")
     c.check(p8 is not None and p8.endswith("EEEE EEEE@{}"),
-            "Table 8 列类型序列为 `M EEEE EEEE`（首列标签列类型名不同，宽度同）",
-            f"`{p8}`")
-    for p, nm in ((p9, "Table 9"), (p8, "Table 8")):
+            "Table 7 列类型序列为 `M EEEE EEEE`", f"`{p8}`")
+    c.check(p9 is not None and p9.endswith("EEEE EEEE@{}"),
+            "Table 8 列类型序列为 `A EEEE EEEE`", f"`{p9}`")
+    for p, nm in ((p8, "Table 7"), (p9, "Table 8")):
         c.check(p is not None and "extracolsep" in p,
                 f"{nm} 用 \\extracolsep{{\\fill}} 均分列间余量", f"`{p}`")
+    # 断言 \TABstyleDL 而非 \TABstyle：后者是前者的子串，用 in 判断会假通过。
+    # 样式宏排在 \label 与 \begin{tabular*} 之间，不在 table_body_of() 的
+    # tabular 区间内，故按"label 之后的一小段"取。
+    def style_span(lb):
+        li = T.tex_text().find(f"\\label{{{lb}}}")
+        return T.tex_text()[li:li + 200] if li >= 0 else ""
     c.check("\\TABstyleDL" in style_span(LABEL) and "\\TABstyleDL" in style_span(SIB),
             "两表同用 \\TABstyleDL（整表紧凑列距）", "")
 
+    # 总宽须相同：两表并排，宽度不一致时边缘对不齐。tabular* 的宽度参数
+    # 就是总宽，R1 两处都写作 \linewidth（浮动体已由 \CapFitWidth 统一）。
     widths = {}
     for lb in (LABEL, SIB):
         e, _ = main_table(lb)
@@ -308,63 +333,36 @@ def run():
             " / ".join(f"{k.split(':')[1]}=`{v}`" for k, v in widths.items()))
 
     # ── K ────────────────────────────────────────────────────────
-    c.section("13. 正文引用精确性（4.5 节）")
-    c.note("正文：`the graph correction provides particularly strong improvements "
-           "at the higher frequencies, reducing the TL by $1.356$\\,dB at $75$\\,Hz "
-           "and $1.834$\\,dB at $100$\\,Hz`（矩形块）。这两数是 w/o graph 与 "
-           "Full model 之差。★ 须注意正文是按**表中印出的 3 位值**相减，"
-           "与全精度相减在第 3 位可能差 1；两者分别核验，不混为一谈。")
-    k_full, k_ng = 0, 2                       # Full model / w/o graph correction
-    c.note("口径：正文的派生量按**表中印出的 3 位值**计算，与 4.3 节的 8.676 "
-           "同源（3.852/0.444 用印刷值，全精度会得 8.670）。故此处以印刷值"
-           "口径为准；全精度差值一并列出，若有第 3 位差异，读者能在报告里看到"
-           "它来自口径而非数据。")
-    for f, want in ((75, "1.356"), (100, "1.834")):
-        e = RR["rect"]["er"][f]
-        full = e[k_ng] - e[k_full]                      # 全精度相减
-        iprt = round(e[k_ng], 3) - round(e[k_full], 3)  # 印刷值相减（正文口径）
-        c.check(f"{iprt:.3f}" == want,
-                f"正文 {want} dB @{f}Hz 由表中印刷值复现（正文口径）",
-                f"`{round(e[k_ng], 3):.3f} − {round(e[k_full], 3):.3f} = {iprt:.3f}`")
-        c.note(f"{f}Hz：全精度相减得 `{full:.9f}` → `{full:.3f}`；"
-               + ("与正文同" if f"{full:.3f}" == want
-                  else f"与正文的 {want} 差在末位，源于印刷值四舍五入，非数据出入"))
-
+    c.section("13. 正文引用精确性（4.4 节）")
+    c.note("正文 `$1.515$\\,dB on the rectangular line and $0.666$\\,dB on the "
+           "wedge line` 是**分几何**的本文法最大值，不是跨块全局最大。")
+    prop_rect = max(RR["rect"]["er"][f][0] for f in FREQS)
+    prop_wedge = max(RR["wedge"]["er"][f][0] for f in FREQS)
+    four_r = [f"{RR['rect']['er'][f][0]:.3f}" for f in FREQS]
+    four_w = [f"{RR['wedge']['er'][f][0]:.3f}" for f in FREQS]
+    c.check(f"{prop_rect:.3f}" == "1.515",
+            "正文『at or below 1.515 dB on the rectangular line』",
+            f"矩形四频 {four_r} → 最大 `{prop_rect:.3f}`")
+    c.check(f"{prop_wedge:.3f}" == "0.666",
+            "正文『0.666 dB on the wedge line』",
+            f"楔形四频 {four_w} → 最大 `{prop_wedge:.3f}`")
     txt = T.tex_text()
-    for y in (71.9, 33.4):
+    for y in (56.1, 30.4):
         hits = T.sentences_with(re.escape(f"y={y}"), txt)
-        c.check(bool(hits), f"深度线深度 y={y} m 在文中声明且与脚本 force_y 一致",
+        c.check(bool(hits), f"正文声明的深度线 y={y} m 与脚本 force_y 一致",
                 f"tex 行 {T.line_of(hits[0][0])}" if hits else "未找到")
-    c.note("4.5 节正文未以低位数复述本表单点深度线数值，故不设正文数值比对；"
-           "正文的 `tens of decibels` 已由『去先验后 26-41 dB』的列值印证。")
-    tens = [RR[b["key"]]["er"][f][1] for b in BLOCKS for f in FREQS]
-    c.check(min(tens) >= 5.0, "正文『raises the depth-line TL to tens of decibels』成立",
-            f"w/o prior 最小 `{min(tens):.3f}` dB（全部频率、两几何）")
+    dn = max(max(RR[b["key"]]["er"][f][1] for f in FREQS) for b in BLOCKS)
+    c.check(dn > 5.0, "正文『DeepONet exceeds 5 dB』成立（阈值断言，不指某格）",
+            f"DeepONet 最大 `{dn:.3f}` > 5")
+    c.exempt("正文 `$5$\\,dB` 不作字面比对",
+             "该数是阈值表述（exceeds 5 dB），非某单元格的印刷值")
 
-    # ── L ────────────────────────────────────────────────────────
-    c.section("14. 消融方向性（去掉模块应变差）")
-    c.note("物理先验是主导项：去掉后误差应显著变差。楔形块 Full 四频全胜，"
-           "矩形块 50-100 Hz Full 领先、25 Hz 由 w/o prior supervision 略胜——"
-           "两处方向都必须由表内值直接印证，不套用结论。")
-    for f in FREQS:
-        a, bb = RR["rect"]["er"][f][1], RR["rect"]["er"][f][0]
-        c.check(a > bb * 5, f"rect {f}Hz 去掉物理先验后误差 >5× Full",
-                f"w/o prior `{a:.3f}` vs Full `{bb:.3f}` ({a / bb:.1f}×)")
-    for f in FREQS:
-        a, bb = RR["wedge"]["er"][f][1], RR["wedge"]["er"][f][0]
-        c.check(a > bb * 5, f"wedge {f}Hz 去掉物理先验后误差 >5× Full",
-                f"w/o prior `{a:.3f}` vs Full `{bb:.3f}` ({a / bb:.1f}×)")
-    w_wedge = sum(1 for f in FREQS if RR["wedge"]["er"][f][0] == min(RR["wedge"]["er"][f]))
-    c.check(w_wedge == 4, "楔形块 Full 在 4 个频率中全部占优",
-            f"占优频率数 {w_wedge}")
-    w_rect = sum(1 for f in FREQS if RR["rect"]["er"][f][0] == min(RR["rect"]["er"][f]))
-    c.check(w_rect == 3, "矩形块 Full 在 4 个频率中占优 3 个（25 Hz 除外）",
-            f"占优频率数 {w_rect}")
-    # 正文对矩形块的表述须与上面 3/4 的事实一致
-    c.check("the full model leading from $50$ to $100$\\,Hz" in
-            T.tex_text().replace("\n", " "),
-            "正文『the full model leading from 50 to 100 Hz』与矩形块 3/4 一致",
-            "25 Hz 另由 w/o prior supervision 略胜")
+    c.section("14. 本文法逐频占优（两块分别）")
+    for b in BLOCKS:
+        for f in FREQS:
+            col = RR[b["key"]]["er"][f]
+            c.check(col[0] == min(col), f"{b['key']} {f}Hz Proposed 为最小",
+                    f"Proposed `{col[0]:.3f}` vs 次优 `{min(col[1:]):.3f}`")
 
     return c
 

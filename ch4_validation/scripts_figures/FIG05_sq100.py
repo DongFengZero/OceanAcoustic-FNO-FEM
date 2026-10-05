@@ -13,7 +13,7 @@ R1 修订把原来的矩形 Fig 8 与楔形 Fig 9 合并为本图（单一 label
 ★ Fig 5 的归属：本脚本负责。同渲染器的 FIG04_res_128.py 只核 Fig 4，
 不再重复核 Fig 5（两脚本此前判据重叠且对 Fig 5 的 label 口径互相冲突）。
 
-与 Fig 4 的差别：单频 npz 只含 2 个样本（多频 8 个）；对应 Table 7 取
+与 Fig 4 的差别：单频 npz 只含 2 个样本（多频 8 个）；对应 Table 6 取
 best epoch 而图取 ep200(last)，Case 14 的 best=129 与 last=200 差 71 轮。
 
 数据源一律取 Raw_Experimental_Data 下的 *__TL原始数据_ep200.npz。
@@ -74,7 +74,7 @@ def pdf_srcs(pdf_path):
 
 
 def table7_rows():
-    """Table 7（tab:sq100）数据行 -> {Case: (row, TL 列索引)}。
+    """Table 6（tab:sq100）数据行 -> {Case: (row, TL 列索引)}。
 
     该表两几何并列：0=Lx×Ly, 1=No.R, 2=Dataset, 3=Sol, 4=TL,
     5=No.W, 6=Dataset, 7=Sol, 8=TL。故矩形案例号在第 1 列、TL 在第 4 列，
@@ -172,7 +172,7 @@ def run():
 
     # ★ 双侧判据：Case 14 的 best=129 与 last=200 相差 71 轮，是全章最大错位，
     #   最能说明"图注写 last、表注写 best"不是措辞随意，而是两套评估口径。
-    c.note("图取 ep200(last)，兄弟表 Table 7 取 best epoch。二者本是不同轮。")
+    c.note("图取 ep200(last)，兄弟表 Table 6 取 best epoch。二者本是不同轮。")
     from common import metrics as M
     for cno in CASES:
         be = M.xlsx_case(paths.xlsx_path("4.3"), cno)["best_epoch"]
@@ -195,7 +195,7 @@ def run():
 
     # ── E ────────────────────────────────────────────────────────
     c.section("6. Src 坐标：npz 重算 vs 图上标注")
-    c.note("坐标 1 位小数，与深度线图及 Tables 6/7 同口径。")
+    c.note("坐标 1 位小数，与深度线图及 Tables 5/6 同口径。")
     for cno in CASES:
         got = pdf_srcs(os.path.join(paths.FIGDIR, PDF[cno]))
         want = [(f"{s['src'][0]:.1f}", f"{s['src'][1]:.1f}")
@@ -242,7 +242,7 @@ def run():
 
     # ── G ────────────────────────────────────────────────────────
     c.section("8. 图表趋势同向（图逐样本 vs 表全测试集）")
-    c.note("图上 Avg 是单样本场误差，Table 7 的 TL 是全测试集平均，"
+    c.note("图上 Avg 是单样本场误差，Table 6 的 TL 是全测试集平均，"
            "二者不可互相反算，只核趋势：域尺度越大误差越大。")
     for name, nos in (("矩形 R4-R6", [6, 7, 8]), ("楔形 W4-W6", [12, 13, 14])):
         avgs = [max(s["avg_err"] for s in rec[n]["samples"]) for n in nos]
@@ -257,13 +257,13 @@ def run():
     # ── H ────────────────────────────────────────────────────────
     c.section("9. 正文引用：单张被引 + 表 caption 交代子图对应")
     c.note("R1 已取消旧稿的区间引用（`Figs.~\\ref{fig:res-128}--...`），"
-           "Fig. 5 由正文三处单张 \\ref 引用，并被 Table 7 的 caption 交叉引用。"
-           "256/512 m 两档的场图已删除，精度数据保留在 Table 6。")
+           "Fig. 5 由正文三处单张 \\ref 引用，并被 Table 6 的 caption 交叉引用。"
+           "256/512 m 两档的场图已删除，精度数据保留在 Table 5。")
     txt = T.tex_text()
     BS = chr(92)
     hits = re.findall(re.escape(BS) + r"ref\{" + re.escape(LABEL) + r"\}", txt)
     c.check(len(hits) >= 3, f"正文/表注引用 `{LABEL}` 至少 3 处",
-            f"实得 {len(hits)} 处（4.3 节引入段、趋势段、结论段 + Table 7 注）")
+            f"实得 {len(hits)} 处（4.3 节引入段、趋势段、结论段 + Table 6 注）")
     c.check(len(re.findall(re.escape(BS) + r"ref\{[^}]*\}--" + re.escape(BS)
                            + r"ref\{fig:", txt)) == 0,
             "正文不含图区间引用（R1 已改逐张引用）",
@@ -275,10 +275,10 @@ def run():
     # 表 caption 必须把行与子图对应关系写明，否则读者对不上
     tcap = T.caption_of(TABLE) or ""
     c.check("(a)--(c)" in tcap and "(d)--(f)" in tcap,
-            "Table 7 caption 写明行对应子图 (a)-(c)/(d)-(f)",
+            "Table 6 caption 写明行对应子图 (a)-(c)/(d)-(f)",
             "caption 含 `panels (a)--(c) and (d)--(f)`")
     c.check(f"fig:{LABEL.split(':')[1]}" in tcap,
-            "Table 7 caption 交叉引用 Fig. 5", "")
+            "Table 6 caption 交叉引用 Fig. 5", "")
 
     # 正文的定量断言：两几何的 TL 三档值
     c.note("正文 4.3 节给出单频方形域两几何的 TL 三档（0.444/1.217/3.852 与 "

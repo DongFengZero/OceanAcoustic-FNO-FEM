@@ -15,9 +15,9 @@ PROSE_derived.py — 正文中不属于任何表/图的数值（跨对象核验�
 
 本脚本把这几处、连同三维段落里的其余推导量（5.9×10^5、9.4×10^6、96 倍），以及 4.1 节的 FNO 超参数，逐一回到**源头**核对：
   · 超参数 → 训练代码（Experiment_Code）里的默认值
-  · 节点数 → 4.8 节运行时 xlsx（与 Table 14 同源）
+  · 节点数 → 4.8 节运行时 xlsx（与 Table 13 同源）
   · 样本数 → Table 3 印刷值（Table 3 自身已由 T03 回到 Dataset 核过）
-  · 基线 TL → 4.4 节精度 xlsx（与 Table 10 同源）
+  · 基线 TL → 4.4 节精度 xlsx（与 Table 9 同源）
   · 推导量 → 用上述源值现场重算，按正文位数比对
 """
 import os
@@ -54,8 +54,8 @@ def run():
     c.source("印刷面 tex", paths.TEX, "4.1 / 4.4 节与第 5 章正文")
     c.source("训练代码", TRAINER, "学习率调度、通道宽度")
     c.source("模型代码", MODELS, "FNO 网格/模态/层数")
-    c.source("运行时 xlsx", paths.xlsx_path("4.8"), "网格节点数（Table 14 同源）")
-    c.source("精度 xlsx", paths.xlsx_path("4.4"), "基线 TL（Table 10 同源）")
+    c.source("运行时 xlsx", paths.xlsx_path("4.8"), "网格节点数（Table 13 同源）")
+    c.source("精度 xlsx", paths.xlsx_path("4.4"), "基线 TL（Table 9 同源）")
 
     # ── 1. 4.1 节 FNO 超参数 vs 代码 ───────────────────────────────
     c.section("1. 4.1 节超参数 ↔ 训练代码默认值")
@@ -75,7 +75,7 @@ def run():
 
     # ── 2. 第 5 章三维代价段的推导量 ────────────────────────────────
     c.section("2. 第 5 章三维代价段：推导量现场重算（节点数取自 4.8 节 xlsx）")
-    import T14_runtime as R
+    import T13_runtime as R
     scale = R.load_scale()
     n_max = max(d["n"] for d in scale.values())
     lx_max = max(d["lx"] for d in scale.values())

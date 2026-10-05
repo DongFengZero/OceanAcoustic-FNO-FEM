@@ -91,8 +91,8 @@ def table_env(label, txt=None):
     故优先取 minipage 边界，落空再退到 table/figure*。
 
     ★ 必须校验"环境真的包住了 label"，不能只取最近的 begin + 最近的 end：
-      Table 6 是裸 \\begin{table*}，其前方是 Table 4/5 所在浮动体的 minipage。
-      不加校验时 rfind 会命中那个 minipage 的 begin，再配上 Table 7 的
+      Table 5 是裸 \\begin{table*}，其前方是 Table 4 所在浮动体的 minipage。
+      不加校验时 rfind 会命中那个 minipage 的 begin，再配上 Table 6 的
       \\end{minipage}，跨出一个横穿三张表的错误区间。
       判据：begin 与 label 之间不得再出现同类型的 end。
 

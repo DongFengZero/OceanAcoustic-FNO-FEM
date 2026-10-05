@@ -35,21 +35,20 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # (脚本, 说明, 期望打印的表数)
 TABLES = [
     ("table03_datasets.py", "Table 3      数据集总表", 1),
-    ("table04_05_ideal.py", "Table 4-5    理想波导 + 深度线", 2),
-    ("table06_07_forward.py", "Table 6-7    前向精度", 3),
-    ("table08_09_depthline.py", "Table 8-9    深度线 MAE", 4),
-    ("table10_perf_cmp.py", "Table 10     五方法对比", 2),
-    ("table11_13_abl_mesh_gen.py", "Table 11-13  消融/网格/泛化", 5),
-    ("table14_runtime.py", "Table 14     运行时", 2),
+    ("table04_S1_ideal.py", "Table 4 + S1 理想波导 + 深度线（S1 在补充材料）", 2),
+    ("table05_06_forward.py", "Table 5-6    前向精度", 3),
+    ("table07_08_depthline.py", "Table 7-8    深度线 MAE", 4),
+    ("table09_perf_cmp.py", "Table 9     五方法对比", 2),
+    ("table10_12_abl_mesh_gen.py", "Table 10-12  消融/网格/泛化", 5),
+    ("table13_runtime.py", "Table 13     运行时", 2),
 ]
 
 FIGURES = [
     ("fig03_ideal/fig03_ideal.py", "Fig 3"),
-    ("fig04_05_10_fields/fig04_05_10_fields.py", "Fig 4, 5, 10, 12(R9/R10)"),
+    ("fig04_05_10_fields/fig04_05_10_fields.py", "Fig 4, 5, 10, 12(R9/W10)"),
     ("fig06_07_dl/fig06_07_dl.py", "Fig 6-7"),
     ("fig08_09_perf_grid/fig08_09_perf_grid.py", "Fig 8-9"),
     ("fig11_gen_split/fig11_gen_split.py", "Fig 11"),
-    ("fig12_gen_extrap/fig12_gen_extrap.py", "Fig 12"),
     ("fig13_perf/fig13_perf.py", "Fig 13"),
     ("figS1_S7_supplementary/figS1_S7_supplementary.py", "Fig S1-S7"),
 ]
@@ -76,7 +75,7 @@ def run(script, *extra):
 
 
 def n_tables(stdout):
-    """数 stdout 里打印了几张表（表头形如 `Table 7  [tab:...]`）。"""
+    """数 stdout 里打印了几张表（表头形如 `Table 6  [tab:...]`）。"""
     return len(re.findall(r"^Table\s+\S+\s+\[", stdout, re.M))
 
 
@@ -150,7 +149,7 @@ def main():
 
 
     print("-" * 76)
-    print("表：Table 3-14 共打印 %d/%d 个表块%s" % (ntab, want,
+    print("表：Table 3-13 共打印 %d/%d 个表块%s" % (ntab, want,
           "  (缺 %d)" % (want - ntab) if ntab < want else ""))
     if do_fig:
         nf = len(FIGURES)

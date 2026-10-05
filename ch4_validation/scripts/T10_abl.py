@@ -1,5 +1,5 @@
 """
-T11_abl.py — Table 11（tab:abl）核验
+T10_abl.py — Table 10（tab:abl）核验
 ====================================
 对象：消融变体逐频前向精度，**矩形 R1（Cases 25-28）与楔形 W1（Cases 29-32）
       分块排在同一张表**，12 列：
@@ -36,10 +36,10 @@ import _acctable as A
 from common import metrics as M
 from common import paths, registry, report, texparse as T
 
-SLUG = "T11_abl"
+SLUG = "T10_abl"
 REC = registry.by_slug(SLUG)
 LABEL = REC["label"]
-NUMBER = 11
+NUMBER = 10
 
 # 行标签 -> Variant 名。矩形块 25-28，楔形块 29-32。
 RECT = {25: "Full model", 26: "w/o physics prior",

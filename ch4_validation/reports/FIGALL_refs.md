@@ -3,7 +3,7 @@
 - 对象：`fig:* (Ch.4)`（Fig. 3-13）
 - 结论：**PASS** — 36 通过 / 0 失败 / 0 警告，共 36 项
 - 脚本：`ch4_validation/scripts/FIGALL_refs.py`
-- 生成：2026-10-05 10:19:09
+- 生成：2026-10-05 21:30:22
 
 ## 1. 源清单
 
@@ -19,7 +19,7 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 区间引用统计（R1 已改为逐图引用） | 共 0 处；每张图的引用见第 1 节 | PASS |
-| Fig 3 (`fig:ideal`) 已被引用 | 正文 1 处；caption 内 2 处 | PASS |
+| Fig 3 (`fig:ideal`) 已被引用 | 正文 1 处；caption 内 1 处 | PASS |
 | Fig 4 (`fig:res-128`) 已被引用 | 正文 4 处 | PASS |
 | Fig 5 (`fig:sq100`) 已被引用 | 正文 4 处；caption 内 1 处 | PASS |
 | Fig 6 (`fig:dl-cmp`) 已被引用 | 正文 1 处；caption 内 1 处 | PASS |
@@ -28,7 +28,7 @@
 | Fig 9 (`fig:perf-cmp-w`) 已被引用 | 正文 2 处；caption 内 1 处 | PASS |
 | Fig 10 (`fig:mesh`) 已被引用 | 正文 1 处；caption 内 1 处 | PASS |
 | Fig 11 (`fig:gen-split`) 已被引用 | 正文 1 处 | PASS |
-| Fig 12 (`fig:gen-grid`) 已被引用 | 正文 2 处 | PASS |
+| Fig 12 (`fig:gen-grid`) 已被引用 | 正文 1 处 | PASS |
 | Fig 13 (`fig:perf`) 已被引用 | 正文 3 处 | PASS |
 
 ## 2. 无悬空引用：每个 \ref{fig:...} 都指向真实 label
@@ -54,7 +54,7 @@
 | Fig 9 (`fig:perf-cmp-w`) 有独立正文引用 | figure 环境外 2 处 | PASS |
 | Fig 10 (`fig:mesh`) 有独立正文引用 | figure 环境外 1 处 | PASS |
 | Fig 11 (`fig:gen-split`) 有独立正文引用 | figure 环境外 1 处 | PASS |
-| Fig 12 (`fig:gen-grid`) 有独立正文引用 | figure 环境外 2 处 | PASS |
+| Fig 12 (`fig:gen-grid`) 有独立正文引用 | figure 环境外 1 处 | PASS |
 | Fig 13 (`fig:perf`) 有独立正文引用 | figure 环境外 3 处 | PASS |
 | 全部 11 张图均有独立正文引用 | 全部合规 | PASS |
 

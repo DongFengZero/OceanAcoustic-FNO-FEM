@@ -8,10 +8,10 @@ Fig 7（fig:dl-abl）核验 — R1
         (b) fig:dl-abl-w = Fig. 7b，ablation_W1_module_advantage.pdf，y=33.4 m，Cases 29-32
 
 R1 把原来分开的两张图（旧 fig:dl-abl-rect / fig:dl-abl-wedge）并为一张，编号 7；
-两张表（旧 tab:dl-abl-rect / -wedge）也并为 Table 9（tab:dl-abl）。判据与合并前
+两张表（旧 tab:dl-abl-rect / -wedge）也并为 Table 8（tab:dl-abl）。判据与合并前
 逐条相同，只是版式与编号变了。
 
-与 Table 9 同源：深度线图给曲线，表给 MAE，两者出自同一次 build_group。
+与 Table 8 同源：深度线图给曲线，表给 MAE，两者出自同一次 build_group。
 
 ★ 成图脚本写纸面尺寸 PDF（240x142 pt）到 fig06_07_dl/out/；depthline 的
   figure_pdf() 指向 cache/（旧版大画布），不是论文图件来源。
@@ -22,7 +22,7 @@ R1 把原来分开的两张图（旧 fig:dl-abl-rect / fig:dl-abl-wedge）并为
   C. 图上 Src      4 组源坐标逐频吻合（PDF 文本层 vs npz 重算）
   D. 图表同源      论文图件 == 脚本 out/ 产物（抹掉嵌入时间戳后 md5 相同）
   E. 表头源坐标    8 个 (x,y) 与两组各自所选样本一致（★）
-  F. 子图题注      subfloat 题注的 y 深度与重算、与 Table 9 一致
+  F. 子图题注      subfloat 题注的 y 深度与重算、与 Table 8 一致
   G. 正文引用      图号 7；正文单点引用；正文陈述的方向性由列值印证
 """
 import hashlib
@@ -38,7 +38,7 @@ from common import depthline as DL, paths, report, texparse as T  # noqa: E402
 SLUG = "FIG07_dl_abl"
 LABEL = "fig:dl-abl"
 NUMBER = 7
-SIB = "tab:dl-abl"          # 本图的兄弟表：Table 9（消融深度线 MAE）
+SIB = "tab:dl-abl"          # 本图的兄弟表：Table 8（消融深度线 MAE）
 FREQS = (25, 50, 75, 100)
 
 BLOCKS = [
@@ -158,10 +158,10 @@ def run():
     c.check("best epoch" not in cap, "{LABEL} caption 未误写 best epoch".format(
         LABEL=LABEL), "深度线族一律源自 ep200 npz")
     # R1 的 Fig 7 caption 不自行重复 last epoch，而是以 `layout and conventions
-    # as in Fig.~\ref{fig:dl-cmp}` 继承 Fig 6 的约定（与 Table 9 继承 Table 8
+    # as in Fig.~\ref{fig:dl-cmp}` 继承 Fig 6 的约定（与 Table 8 继承 Table 7
     # 的 epoch 约定同一写法）。故判据是"继承声明存在"，而非"含 last epoch"。
     c.note("R1 的 Fig 7 caption 以『layout and conventions as in Fig.~\\ref{"
-           "fig:dl-cmp}』继承 Fig 6 的 epoch 约定，与 Table 9 继承 Table 8 同一"
+           "fig:dl-cmp}』继承 Fig 6 的 epoch 约定，与 Table 8 继承 Table 7 同一"
            "写法；故判据改为核继承声明，并回核被继承方确有 last epoch。")
     c.check(chr(92) + "ref{fig:dl-cmp}" in (T.caption_of(LABEL) or ""),
             "caption 以 Fig.~\\ref{fig:dl-cmp} 继承布局、约定与 epoch 口径",
@@ -199,7 +199,7 @@ def run():
     c.check("Obstacle" in leg, "图例含 Obstacle 灰带说明", "")
 
     # ── D ────────────────────────────────────────────────────────
-    c.section("5. 图与表同源（Fig. 7 <-> Table 9）")
+    c.section("5. 图与表同源（Fig. 7 <-> Table 8）")
     c.note("MAE 表与深度线图是同一次 build_group 的两个产物。比对论文图件与脚本"
            "out/ 下同名 PDF：抹掉嵌入时间戳后 md5 相同，即证明表里的数与图里的"
            "线出自同一次运行。★ raw md5 永远不等：matplotlib 每次写 CreationDate。")
@@ -224,11 +224,11 @@ def run():
 
     # ── E ────────────────────────────────────────────────────────
     c.section("6. 表头源坐标与所选样本一致（两块各 4 个）")
-    c.note("Table 9 表头每频率标 $(x,y)$（\\srcxy）。★ 本表表头分两行：第一行是 "
+    c.note("Table 8 表头每频率标 $(x,y)$（\\srcxy）。★ 本表表头分两行：第一行是 "
            "`\\multicolumn` 的几何块名，第二行才是频率与 \\srcxy，故不能只用 "
            "header_row()（它止于第一个 \\midrule），须在表体内取全部 \\srcxy。")
     env, star = T.table_body_of(SIB)
-    c.check(env is not None, "Table 9 表体可定位", f"长度 {len(env or '')}")
+    c.check(env is not None, "Table 8 表体可定位", f"长度 {len(env or '')}")
     hdr = T.header_row(env) or ""
     c.check("Rectangular" in hdr and "Wedge" in hdr,
             "表头块名声明两个几何（R1 / W1）", f"第一行 `{hdr[:70]}`")
@@ -254,17 +254,17 @@ def run():
                     f"样本 {R['sample'][f]} 实际 ({sx:.5f}, {sy:.5f}) -> `{want}`")
 
     # ── F ────────────────────────────────────────────────────────
-    c.section("7. 与 Table 9 的一致性")
+    c.section("7. 与 Table 8 的一致性")
     cap_t = flat(T.caption_of("tab:dl-abl"))
     for b in BLOCKS:
-        c.check(b["cases"] in cap_t, f"Table 9 caption 声明 {b['cases']}",
+        c.check(b["cases"] in cap_t, f"Table 8 caption 声明 {b['cases']}",
                 "与 subfloat 题注的几何对应")
         c.check(f"y={b['y']}" in cap_t,
-                f"Table 9 caption 声明 {b['geo']} 深度 y={b['y']} m", "")
+                f"Table 8 caption 声明 {b['geo']} 深度 y={b['y']} m", "")
         c.check(f"y={b['y']}" in flat(subfloat_title(b["lb"])),
-                f"{b['lb']} 题注深度与 Table 9 同值", "")
+                f"{b['lb']} 题注深度与 Table 8 同值", "")
     c.check("tab:dl-cmp" in (T.caption_of("tab:dl-abl") or ""),
-            "Table 9 caption 以 Table 8 交代 header/emphasis/epoch 约定", "")
+            "Table 8 caption 以 Table 7 交代 header/emphasis/epoch 约定", "")
 
     # ── G ────────────────────────────────────────────────────────
     c.section("8. 正文引用、编号与方向性")
@@ -284,8 +284,8 @@ def run():
     c.exempt("正文以区间引用覆盖两张图",
              "R1 合并后正文改为单点引用（Fig.~\\ref{fig:dl-abl}），"
              "全章已无 \\ref{A}--\\ref{B} 形式")
-    c.check(aux.get("fig:dl-abl-r", {}).get("num") == "10a",
-            "子图编号为全章全局递增的 10a/10b（排版事实）",
+    c.check(aux.get("fig:dl-abl-r", {}).get("num") == "9a",
+            "子图编号为全章全局递增的 9a/9b（排版事实）",
             "subfig 计数器跨图累加，正文不引用面板 label")
 
     c.note("正文 4.5 节称去掉物理先验后『raises the depth-line TL to tens of "

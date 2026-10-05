@@ -9,7 +9,7 @@ Fig 13（fig:perf）核验 — R1
 
 本组特点
   · 无 epoch 概念（推理耗时与训练轮次无关），caption 不含 epoch 声明是正确的。
-  · 数据源是 Table 14 的同一批运行时统计，不是 npz 场数据。
+  · 数据源是 Table 13 的同一批运行时统计，不是 npz 场数据。
   · 成图脚本自 R1 起入库（Validation_Scripts/fig13_perf/fig13_perf.py），
     但把数值**硬编码**在源码里而非从 xlsx 读取，故核验重点是"脚本常量与
     xlsx 表值是否脱钩"，用 ast 解析源码常量与表值逐值比对。
@@ -18,10 +18,10 @@ Fig 13（fig:perf）核验 — R1
 
 核验链
   A. 图件与脚本入库
-  B. 子图(a)(b) 标注 vs Table 14(a)
-  C. 子图(c) 标注 vs Table 14(b)
+  B. 子图(a)(b) 标注 vs Table 13(a)
+  C. 子图(c) 标注 vs Table 13(b)
   C2. 成图脚本硬编码常量 vs xlsx
-  D. caption 与正文引用（编号 13；兄弟表 tab:runtime = Table 14）
+  D. caption 与正文引用（编号 13；兄弟表 tab:runtime = Table 13）
 """
 import os
 import re
@@ -60,7 +60,7 @@ def run():
     c = report.Checker(SLUG, "推理性能图 Fig 13", "figure", LABEL, str(NUMBER))
     c.source("印刷面 tex", paths.TEX, "单个 figure* 环境")
     c.source("运行时 xlsx", paths.xlsx_path("4.8"),
-             "两个 sheet，即 Table 14(a)/(b) 的来源")
+             "两个 sheet，即 Table 13(a)/(b) 的来源")
 
     # ── A ────────────────────────────────────────────────────────
     c.section("1. 图件与已知缺口")
@@ -80,12 +80,12 @@ def run():
     c.check(len(txt) > 50, "PDF 文本层可读", f"{len(txt)} 字符")
 
     # ── B ────────────────────────────────────────────────────────
-    c.section("2. 子图(a)(b) 标注 vs Table 14(a)")
+    c.section("2. 子图(a)(b) 标注 vs Table 13(a)")
     c.note("图上标注取整，表值保留小数。逐点核『图标注 == round(表值)』。")
     df1 = pd.read_excel(paths.xlsx_path("4.8"), sheet_name=0, header=2)
     rows = [r for _, r in df1.iloc[1:].iterrows()
             if "GPU" in str(r.iloc[4])]
-    c.check(len(rows) == 6, "Table 14(a) 含 6 行 GPU 数据（R1/W1 各 1/2/4 卡）",
+    c.check(len(rows) == 6, "Table 13(a) 含 6 行 GPU 数据（R1/W1 各 1/2/4 卡）",
             f"实得 {len(rows)}")
 
     for k, r in enumerate(rows):
@@ -101,12 +101,12 @@ def run():
         c.check(FIG_SPD[k] in txt, f"图(b) 标注 `{FIG_SPD[k]}` 见于 PDF", "")
 
     # ── C ────────────────────────────────────────────────────────
-    c.section("3. 子图(c) 标注 vs Table 14(b)")
+    c.section("3. 子图(c) 标注 vs Table 13(b)")
     c.note("子图(c) 只在数据点旁标域边长，不标数值；核标注齐全且与 Table 21 "
            "的 Lx 列一致（三种尺度各出现于矩形与楔形两条曲线）。")
     df2 = pd.read_excel(paths.xlsx_path("4.8"), sheet_name=1, header=2)
     lx_tab = sorted({int(r.iloc[3]) for _, r in df2.iloc[1:].iterrows()})
-    c.check(lx_tab == [128, 256, 512], "Table 14(b) 的 Lx 取值 = 128/256/512",
+    c.check(lx_tab == [128, 256, 512], "Table 13(b) 的 Lx 取值 = 128/256/512",
             str(lx_tab))
     for lbl in FIG_SCALE_LBL:
         c.check(txt.count(lbl) >= 2,
@@ -130,7 +130,7 @@ def run():
                 except Exception:
                     pass
 
-    # Table 14(a)：吞吐与加速比（跳过 COMSOL 行）
+    # Table 13(a)：吞吐与加速比（跳过 COMSOL 行）
     gpu_rows = [r for _, r in df1.iloc[1:].iterrows()
                 if "GPU" in str(r.iloc[4])]
     want_thr = {"R1": [], "W1": []}
@@ -141,13 +141,13 @@ def run():
         want_spd[key].append(round(float(r.iloc[8]), 1))
     for key in ("R1", "W1"):
         got = [round(float(v), 2) for v in consts.get("thr", {}).get(key, [])]
-        c.check(got == want_thr[key], f"脚本 thr[{key}] 与 Table 14(a) 一致",
+        c.check(got == want_thr[key], f"脚本 thr[{key}] 与 Table 13(a) 一致",
                 f"脚本 {got} / xlsx {want_thr[key]}")
         got = [round(float(v), 1) for v in consts.get("spd", {}).get(key, [])]
-        c.check(got == want_spd[key], f"脚本 spd[{key}] 与 Table 14(a) 一致",
+        c.check(got == want_spd[key], f"脚本 spd[{key}] 与 Table 13(a) 一致",
                 f"脚本 {got} / xlsx {want_spd[key]}")
 
-    # Table 14(b)：节点数与推理时间
+    # Table 13(b)：节点数与推理时间
     for pre, geo in (("R", "Rect."), ("W", "Wedge")):
         rows = [r for _, r in df2.iloc[1:].iterrows()
                 if str(r.iloc[1]).startswith(pre)]
@@ -155,9 +155,9 @@ def run():
         wt = [round(float(r.iloc[6]), 2) for r in rows]
         gn = [int(v) for v in consts.get(f"nodes_{pre}", [])]
         gt = [round(float(v), 2) for v in consts.get(f"time_{pre}", [])]
-        c.check(gn == wn, f"脚本 nodes_{pre} 与 Table 14(b) 一致",
+        c.check(gn == wn, f"脚本 nodes_{pre} 与 Table 13(b) 一致",
                 f"脚本 {gn} / xlsx {wn}")
-        c.check(gt == wt, f"脚本 time_{pre} 与 Table 14(b) 一致",
+        c.check(gt == wt, f"脚本 time_{pre} 与 Table 13(b) 一致",
                 f"脚本 {gt} / xlsx {wt}")
     c.check([int(v) for v in consts.get("edge", [])] == [128, 256, 512],
             "脚本 edge 标注 = 128/256/512",
@@ -185,13 +185,13 @@ def run():
             "正文以 `Fig.~\\ref{fig:perf}(a,b)` 引用多 GPU 部分", "")
     c.check(chr(92) + "ref{fig:perf}(c)" in txt_all,
             "正文以 `Fig.~\\ref{fig:perf}(c)` 引用域缩放部分", "")
-    # R1 把 (a) 多 GPU 基准与 (b) 跨域尺度缩放并进同一张 Table 14（tab:runtime），
+    # R1 把 (a) 多 GPU 基准与 (b) 跨域尺度缩放并进同一张 Table 13（tab:runtime），
     # 旧的 tab:runtime-scale 已不存在，故只核这一个兄弟表。
     hits = T.sentences_with(re.escape("tab:runtime"), txt_all)
     c.check(bool(hits), "兄弟表 `tab:runtime` 在正文被引",
             f"tex 行 {T.line_of(hits[0][0], txt_all)}" if hits else "未找到")
-    c.check(T.number_of("tab:runtime") == "14",
-            "兄弟表 tab:runtime 编号为 14",
+    c.check(T.number_of("tab:runtime") == "13",
+            "兄弟表 tab:runtime 编号为 13",
             f"aux `{T.number_of('tab:runtime')}`")
 
     return c

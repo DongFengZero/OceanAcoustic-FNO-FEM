@@ -3,14 +3,14 @@
 """
 advantage_depth_line.py
 =======================
-生成论文图（第四章）——本脚本是这 4 张图的成图入口，同时提供 Table 9-12 的表值：
+生成论文图（第四章）——本脚本是这 4 张图的成图入口，同时提供 Table 7-8 的表值：
     Fig. 10  fig:dl-cmp-rect    Cases 15-19  (R1, 五方法)    4.4 节 · Table 9
     Fig. 11  fig:dl-cmp-wedge   Cases 20-24  (W1, 五方法)    4.4 节 · Table 10
     Fig. 12  fig:dl-abl-rect    Cases 25-28  (R1, 四消融组)  4.5 节 · Table 11
     Fig. 13  fig:dl-abl-wedge   Cases 29-32  (W1, 四消融组)  4.5 节 · Table 12
 
 图与表出自同一次运行（核验做 PDF md5 比对），表值可用
-Validation_Scripts/table08_09_depthline.py 打印。
+Validation_Scripts/table07_08_depthline.py 打印。
 
 为对比案例(Case13-22)和消融案例(Case23-30)绘制"能证明本文模型/模块优势"的
 深度线折线图。

@@ -3,7 +3,7 @@
 - 对象：`fig:dl-cmp`（Fig. 6）
 - 结论：**PASS** — 69 通过 / 0 失败 / 0 警告 / 5 豁免，共 74 项
 - 脚本：`ch4_validation/scripts/FIG06_dl_cmp.py`
-- 生成：2026-10-05 10:17:47
+- 生成：2026-10-05 21:29:08
 
 ## 1. 源清单
 
@@ -80,7 +80,7 @@
 | 图例（dl_legend_cmp.pdf）含 CNO | `COMSOL (reference) Proposed DeepONet FNO KNO CNO Obstacle Beyond axis range` | PASS |
 | 图例含 COMSOL 参考解 |  | PASS |
 
-## 5. 图与表同源（Fig. 6 <-> Table 8）
+## 5. 图与表同源（Fig. 6 <-> Table 7）
 
 > MAE 表与深度线图是同一次 build_group 的两个产物。比对论文图件与成图脚本 out/ 下同名 PDF：抹掉嵌入时间戳后 md5 相同，即证明表里的数与图里的线出自同一次运行，不可能各自漂移。★ 不能比 raw md5：matplotlib 每次都写 CreationDate。
 
@@ -97,11 +97,11 @@
 
 ## 6. 表头源坐标与所选样本一致（两块各 4 个）
 
-> Table 8 表头每频率标 $(x,y)$（\srcxy），须等于该频率**实际选中样本**的 source_pos；八个坐标互不相同，写错不会报编译错。★ 图的 subfloat 题注深度也在此一并核：题注写 1 位小数，重算给全精度。
+> Table 7 表头每频率标 $(x,y)$（\srcxy），须等于该频率**实际选中样本**的 source_pos；八个坐标互不相同，写错不会报编译错。★ 图的 subfloat 题注深度也在此一并核：题注写 1 位小数，重算给全精度。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| Table 8 表体可定位 | 长度 1155 | PASS |
+| Table 7 表体可定位 | 长度 1155 | PASS |
 | 表头解析到 8 组源坐标（4 矩形 + 4 楔形） | [(44.5, 21.9), (25.9, 49.5), (120.7, 89.5), (77.5, 103.0), (80.7, 72.7), (117.6, 43.4), (113.4, 64.0), (88.0, 78.9)] | PASS |
 | fig:dl-cmp-r 选中行深度舍入到 1 位 = 56.1 m | 实际 `56.080268`（subfloat 题注写 1 位小数） | PASS |
 | fig:dl-cmp-r subfloat 题注标明 y=56.1 m（与重算一致） | 题注 `Rectangular (R1), y=56.1m` | PASS |
@@ -116,18 +116,18 @@
 | Wedge 75Hz 源坐标 | tex `(113.4, 64.0)` / 样本 5 实际 (113.42506, 63.99967) -> `(113.4, 64.0)` | PASS |
 | Wedge 100Hz 源坐标 | tex `(88.0, 78.9)` / 样本 6 实际 (88.02824, 78.86678) -> `(88.0, 78.9)` | PASS |
 
-## 7. 与 Table 8 的一致性（数与数同源）
+## 7. 与 Table 7 的一致性（数与数同源）
 
 > 图的 subfloat 题注声明的深度、案例区间必须与表 caption 同值；两者排在同一浮动体内并列同页，读者左右对读。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| Table 8 caption 声明 Cases~15--19 | 与 subfloat 题注的几何对应 | PASS |
-| Table 8 caption 声明 Rectangular 深度 y=56.1 m |  | PASS |
-| fig:dl-cmp-r 题注深度与 Table 8 同值 |  | PASS |
-| Table 8 caption 声明 Cases~20--24 | 与 subfloat 题注的几何对应 | PASS |
-| Table 8 caption 声明 Wedge 深度 y=30.4 m |  | PASS |
-| fig:dl-cmp-w 题注深度与 Table 8 同值 |  | PASS |
+| Table 7 caption 声明 Cases~15--19 | 与 subfloat 题注的几何对应 | PASS |
+| Table 7 caption 声明 Rectangular 深度 y=56.1 m |  | PASS |
+| fig:dl-cmp-r 题注深度与 Table 7 同值 |  | PASS |
+| Table 7 caption 声明 Cases~20--24 | 与 subfloat 题注的几何对应 | PASS |
+| Table 7 caption 声明 Wedge 深度 y=30.4 m |  | PASS |
+| fig:dl-cmp-w 题注深度与 Table 7 同值 |  | PASS |
 
 ## 8. 正文引用与编号
 
@@ -135,8 +135,8 @@
 |---|---|---|
 | fig:dl-cmp 编号为 6 | aux `6` | PASS |
 | 正文多处引用 Fig. 6（4.4 引入段 + 4.5 消融段各一次） | `\ref{fig:dl-cmp}` 出现 2 处 | PASS |
-| 子图 `fig:dl-cmp-r` 已在 aux 注册 | aux `9a` | PASS |
-| 子图 `fig:dl-cmp-w` 已在 aux 注册 | aux `9b` | PASS |
+| 子图 `fig:dl-cmp-r` 已在 aux 注册 | aux `8a` | PASS |
+| 子图 `fig:dl-cmp-w` 已在 aux 注册 | aux `8b` | PASS |
 | 正文以区间引用覆盖两张图 | R1 合并后正文改为单点引用（Fig.~\ref{fig:dl-cmp}），全章已无 \ref{A}--\ref{B} 形式（实测 0 处） | 豁免 |
-| 子图编号为全章全局递增的 9a/9b（排版事实） | aux 9a/9b：subfig 计数器跨图累加，正文不引用面板 label | PASS |
+| 子图编号为全章全局递增的 8a/8b（排版事实） | aux 8a/8b：subfig 计数器跨图累加，正文不引用面板 label | PASS |
 

@@ -15,7 +15,8 @@
 只按 1 判定会把区间内部的表误判为漏引。
 
 Tables 1/2 属方法章（method-comparison / method-symbols），一并核引用，
-但不计入第 4 章数值链。R1 修订后第 4 章共 12 张表（No. 3-14）。
+但不计入第 4 章数值链。R1 修订后第 4 章共 11 张表（No. 3-13）；原 Table 5
+（理想深度线）已移入补充材料为 Table S1。
 """
 import re
 import sys
@@ -30,14 +31,17 @@ SLUG = "TABALL_refs"
 ALL_TABS = [
     ("tab:method-comparison", "1"), ("tab:method-symbols", "2"),
     ("tab:datasets", "3"),
-    ("tab:ideal-overall", "4"), ("tab:ideal-depthline", "5"),
-    ("tab:res-rect-mf", "6"), ("tab:sq100", "7"),
-    ("tab:dl-cmp", "8"), ("tab:dl-abl", "9"),
-    ("tab:perf-cmp", "10"), ("tab:abl", "11"),
-    ("tab:mesh", "12"),
-    ("tab:gen-overall", "13"),
-    ("tab:runtime", "14"),
+    ("tab:ideal-overall", "4"),
+    ("tab:res-rect-mf", "5"), ("tab:sq100", "6"),
+    ("tab:dl-cmp", "7"), ("tab:dl-abl", "8"),
+    ("tab:perf-cmp", "9"), ("tab:abl", "10"),
+    ("tab:mesh", "11"),
+    ("tab:gen-overall", "12"),
+    ("tab:runtime", "13"),
 ]
+# 原 Table 5（tab:ideal-depthline）已移入补充材料为 Table S1，由 TS1_ideal_depthline 核；
+# 正文不得再出现它的 label 或 \ref。
+RETIRED = ["tab:ideal-depthline"]
 CH4 = [t for t in ALL_TABS if int(t[1]) >= 3]
 
 
@@ -67,7 +71,7 @@ def strip_comments(txt):
 def env_spans(txt):
     """table/table*/figure/figure* 环境区间。
 
-    表可以排在 figure* 里（本章 Tables 4/5、9-12、13-16、17/18 都是
+    表可以排在 figure* 里（本章 Table 4 以及 Tables 7-10 等都是
     captionof{table} 嵌在 figure* 内的并列版式），故两类环境都要算，
     否则那些表的 caption 内交叉引用会被误判成正文引用。
     """
@@ -84,7 +88,7 @@ def env_spans(txt):
 
 def run():
     c = report.Checker(SLUG, "全章表格引用完整性", "table",
-                       "tab:* (all)", "1-14")
+                       "tab:* (all)", "1-13")
     c.source("印刷面 tex", paths.TEX, "全文")
     c.source("编号来源 aux", str(Path(paths.TEX).with_suffix(".aux")),
              "\\newlabel 解析")
@@ -135,6 +139,10 @@ def run():
             bad.append(lb)
     c.check(not bad, "全部 \\ref{tab:...} 的 label 均已注册",
             "全部合规" if not bad else "悬空: " + ", ".join(sorted(set(bad))))
+    for lb in RETIRED:
+        gone = ("\\label{" + lb + "}") not in txt and ("\\ref{" + lb + "}") not in txt
+        c.check(gone, f"已移入补充材料的 `{lb}` 在正文中无 label 也无 \\ref",
+                "正文以 Table~S1 指向补充材料")
 
     # ── C ────────────────────────────────────────────────────────
     c.section("3. 每表均有独立正文引用（不靠区间/环境内兜底）")

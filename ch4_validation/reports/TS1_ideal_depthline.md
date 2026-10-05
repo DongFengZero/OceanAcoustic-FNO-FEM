@@ -1,15 +1,16 @@
-# Table 5 — 解析解深度线 MAE @y=44.7m
+# Table S1 — 补充材料 Table S1：解析解深度线 MAE @y=44.7m（原正文 Table 5；Fig. 3 所示样本）
 
-- 对象：`tab:ideal-depthline`（Table 5）
-- 结论：**PASS** — 42 通过 / 0 失败 / 0 警告，共 42 项
-- 脚本：`ch4_validation/scripts/T05_ideal_depthline.py`
-- 生成：2026-10-05 10:15:49
+- 对象：`tab:S1`（Table S1）
+- 结论：**PASS** — 51 通过 / 0 失败 / 0 警告，共 51 项
+- 脚本：`ch4_validation/scripts/TS1_ideal_depthline.py`
+- 生成：2026-10-05 21:28:00
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{tab:ideal-depthline}` 所在 minipage |
+| 补充材料 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_supplementary.tex` | `\label{tab:S1}` 所在 table 环境（Supplementary Material） |
+| 正文 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | 4.2 节与 Fig. 3 图题对 Table~S1 的指向；趋势断言 |
 | 提取口径 脚本 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig03_ideal/fig03_ideal.py` | 每频率取 y=44.7m 行 MAE 最小样本；成图与表值同一算法 |
 | 数据源 npz (Case 1) | `Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No01_R0/Case01_R0__TL原始数据_ep200.npz` | ep200 TL 原始数据（last epoch） |
 | 数据源 npz (Case 2) | `Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No02_W0/Case02_W0__TL原始数据_ep200.npz` | ep200 TL 原始数据（last epoch） |
@@ -20,13 +21,16 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
+| 补充材料 tex 存在 | ../JASA/OE/OE_Revision_R1_Submission/OE_supplementary.tex | PASS |
 | 成图脚本存在 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig03_ideal/fig03_ideal.py | PASS |
 | Case 1 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No01_R0/Case01_R0__TL原始数据_ep200.npz | PASS |
 | Case 2 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.2_Validation/No02_W0/Case02_W0__TL原始数据_ep200.npz | PASS |
 | Case 1 成图脚本读取的即公开 npz | 逐元素相同 | PASS |
 | Case 2 成图脚本读取的即公开 npz | 逐元素相同 | PASS |
+| 补充材料含 `\label{tab:S1}` 的 table 环境 |  | PASS |
 | tex 数据行数 = 2 | 实得 2 | PASS |
 | tex 行 No. 覆盖 Case 1-2 | [1, 2] | PASS |
+| Table S1 只在补充材料出现一次，正文不再含 tab:ideal-depthline |  | PASS |
 
 ## 3. 提取口径与成图脚本一致（防漂移）
 
@@ -41,8 +45,6 @@
 ## 4. 从 npz 独立复现（MAE 与源位 vs 印刷值）
 
 > 列序：No., Dataset, 25Hz(TL,Src), 50Hz, 75Hz, 100Hz。Src 印刷为 1 位小数对，与图面板标题及场图同口径，故按 1 位比对。
-
-> 采用 1 位而非整数：整数口径下 `39.50081`→40 与 `49.49999679`→49 进位方向相反、且把 39.5 与 40.0 混为一谈，无法回溯到具体样本；1 位小数保留了半整数网格信息（39.5/49.5/87.5 等）。
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
@@ -75,8 +77,6 @@
 
 ## 5. 同表小数位一致性
 
-> 要求：TL 列一律 3 位小数；Src 两个分量一律 1 位小数（与图面板标题及场图统一口径，不允许整数或 2 位混排）。
-
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 8 个 TL 单元格均 3 位小数、8 个 Src 均 1 位小数对 | 全部合规 | PASS |
@@ -85,11 +85,24 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| caption 标注的深度线位置 = 脚本 Y_LINE | caption 含 `y=44.7`：是 | PASS |
+| caption 标注的深度线位置 = 脚本 Y_LINE | caption 含 `y=44.7` | PASS |
 | caption 声明 last epoch | 本表源自 ep200 npz，非 best epoch | PASS |
-| caption 说明取样规则 | 应交代“每频率取最匹配样本” | PASS |
+| caption 说明取样规则 | 每频率取最匹配样本 | PASS |
+| caption 指向正文 Fig.~3（fig:ideal 的实际编号） | aux `3` | PASS |
+| caption 指向正文 Sec.~4.2（sec:ideal 的实际编号） | aux `4.2` | PASS |
 
-## 7. 正文断言与表值一致（4.2 节）
+## 7. 正文对 Table S1 的指向
+
+> 正文不再排这张表，但 4.2 节与 Fig. 3 图题都要把读者指到补充材料；两处都写 `Table~S1 of the Supplementary Material`。
+
+| 检查项 | 源值 / 印刷值 | 结论 |
+|---|---|---|
+| 正文至少两处写 `Table~S1 of the Supplementary Material` | 实得 2 | PASS |
+| Fig. 3 图题指向 Table~S1 |  | PASS |
+| 4.2 节正文指向 Table~S1 |  | PASS |
+| 正文『Supplementary Material』一节列出 Table~S1 |  | PASS |
+
+## 8. 正文断言与表值一致（4.2 节）
 
 > 4.2 正文未直接引用本表数字，只作趋势断言：“The error is largest at 75 and 100 Hz on the wedge”。趋势断言同样须由表值支持，否则是无据之言。
 

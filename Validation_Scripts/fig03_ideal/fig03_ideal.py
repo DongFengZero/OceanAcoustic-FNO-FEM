@@ -7,7 +7,7 @@ fig03_ideal.py
 R1 审稿意见 3.4：原图坐标轴文字过小。本脚本在纸面尺寸(pt)画布上 1:1 出图，
 字号即印刷字号（刻度 6 pt / 标签 6.5 pt）。数据、插值、选样本与
 _ideal_core.py 完全相同（griddata cubic 220x220，每频率按 y=44.7 m 深度线
-MAE 升序取两个样本），左样本的深度线 MAE 与 Table 5 逐位核对后才出图。
+MAE 升序取两个样本），左样本的深度线 MAE 与 Table S1 逐位核对后才出图。
 
 输出：out/case01_r0_grid2.pdf, out/case02_w0_grid2.pdf
 """

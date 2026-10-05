@@ -1,5 +1,5 @@
 """
-T12_mesh.py — Table 12（tab:mesh）核验
+T11_mesh.py — Table 11（tab:mesh）核验
 ======================================
 对象：网格无关性，$f=100$ Hz，矩形 R4/R7/R8（$\Delta=1.00/0.50/0.25$ m，Cases 33-35）
       与楔形 W4/W7/W8（Cases 36-38）**并排**在同一张表里，9 列：
@@ -28,10 +28,10 @@ import _acctable as A
 from common import metrics as M
 from common import paths, registry, report, texparse as T
 
-SLUG = "T12_mesh"
+SLUG = "T11_mesh"
 REC = registry.by_slug(SLUG)
 LABEL = REC["label"]
-NUMBER = 12
+NUMBER = 11
 
 # 行标签 -> (几何, 案例, Dataset, Δ)
 RECT = [(33, "R4", "1.00"), (34, "R7", "0.50"), (35, "R8", "0.25")]

@@ -198,7 +198,7 @@ def make_panel(rows, w, out_pdf, head=True, xlabel=True, cbar=True,
 
 
 def rows_multi(prefix, tags=False):
-    """图4 / 图11: 每频率前 2 个样本 (与原图同一选样)。"""
+    """图4 / 图12: 每频率前 2 个样本 (与原图同一选样)。"""
     data = np.load(find_npz(prefix), allow_pickle=True)
     freqs = [int(round(f)) for f in data["freq"]]
     rows = []
@@ -224,11 +224,11 @@ def rows_single(prefix):
 
 
 # 子图边长 (pt)，由版面预算确定 (textwidth 494.5pt, textheight 689.4pt)
-W_TALL = 61.0     # 图4 / 图11: 8 行 x 2 面板并排，整页
+W_TALL = 61.0     # 图4 / 图12: 8 行 x 2 面板并排，整页
 W_STACK = 55.0    # 图5 / 图9: 3 面板竖排 x 2 列，与表格同页
 
 FIG4 = [("Case03", "case03_r1_tl"), ("Case09", "case09_w1_tl")]
-FIG11 = [("Case39", "gen_extrap_r9"), ("Case40", "gen_extrap_r10")]
+FIG12 = [("Case39", "gen_extrap_r9"), ("Case42", "gen_extrap_w10")]
 FIG5 = [["Case06", "Case07", "Case08"], ["Case12", "Case13", "Case14"]]
 FIG9 = [["Case33", "Case34", "Case35"], ["Case36", "Case37", "Case38"]]
 NAMES = {"Case06": "case06_r4_tl", "Case07": "case07_r5_tl",
@@ -242,7 +242,7 @@ NAMES = {"Case06": "case06_r4_tl", "Case07": "case07_r5_tl",
 def main():
     os.makedirs(OUT, exist_ok=True)
     only = set(sys.argv[1:])
-    for tag, spec, tags in [("fig4", FIG4, False), ("fig11", FIG11, True)]:
+    for tag, spec, tags in [("fig4", FIG4, False), ("fig12", FIG12, True)]:
         if only and tag not in only:
             continue
         for prefix, name in spec:

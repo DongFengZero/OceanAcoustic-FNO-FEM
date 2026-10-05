@@ -1,12 +1,12 @@
 """
-T07_sq100.py — Table 7（tab:sq100）核验
+T06_sq100.py — Table 6（tab:sq100）核验
 =======================================
 对象：$f=100$ Hz 方形域精度，矩形 R4-R6（Cases 6-8）与楔形 W4-W6（Cases 12-14）
       **并排**排在同一张表里，9 列：
 
         Lx×Ly | No. R | Dataset | Sol | TL || No. W | Dataset | Sol | TL
 
-R1 修订把原来的 Table 7（矩形）与 Table 8（楔形）合并为本表，故本脚本
+R1 修订把原来的 Table 6（矩形）与 Table 7（楔形）合并为本表，故本脚本
 覆盖两个几何；每半的判据与合并前逐条相同，只是列偏移不同。
 
 核验链
@@ -28,10 +28,10 @@ import _acctable as A
 from common import metrics as M
 from common import paths, registry, report, texparse as T
 
-SLUG = "T07_sq100"
+SLUG = "T06_sq100"
 REC = registry.by_slug(SLUG)
 LABEL = REC["label"]
-NUMBER = 7
+NUMBER = 6
 
 # 行标签 -> (几何, 案例, Dataset, Lx=Ly)
 RECT = [(6, "R4", 128), (7, "R5", 256), (8, "R6", 512)]

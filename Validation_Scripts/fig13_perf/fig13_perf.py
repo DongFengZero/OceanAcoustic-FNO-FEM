@@ -4,11 +4,11 @@ fig13_perf.py
 ==============
 生成论文 Fig. 13 (fig:perf, Cases 43-50) —— 推理性能三联图。
 
-(a) 多 GPU 吞吐          Cases 43, 44   (cf. Table 14a)
-(b) 相对 COMSOL 的加速比   Cases 43, 44   (cf. Table 14a)
-(c) 单 DCU 逐样本时延      Cases 45-50   (cf. Table 14b)
+(a) 多 GPU 吞吐          Cases 43, 44   (cf. Table 13a)
+(b) 相对 COMSOL 的加速比   Cases 43, 44   (cf. Table 13a)
+(c) 单 DCU 逐样本时延      Cases 45-50   (cf. Table 13b)
 
-本图绘制硬编码常量，须与 Table 14 同步；ch4_validation/scripts_figures/FIG23_perf.py
+本图绘制硬编码常量，须与 Table 13 同步；ch4_validation/scripts_figures/FIG23_perf.py
 用 ast 解析这些常量并与 xlsx 比对，防止表更新而图未跟上。
 build_perf.py 是另一个脚本 —— 它写运行时 xlsx，不画图。
 Annotations are kept inside the axes frame.

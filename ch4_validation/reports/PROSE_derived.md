@@ -3,7 +3,7 @@
 - 对象：`prose`（Table —）
 - 结论：**PASS** — 20 通过 / 0 失败 / 0 警告，共 20 项
 - 脚本：`ch4_validation/scripts/PROSE_derived.py`
-- 生成：2026-10-05 10:15:39
+- 生成：2026-10-05 21:27:21
 
 ## 1. 源清单
 
@@ -12,8 +12,8 @@
 | 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | 4.1 / 4.4 节与第 5 章正文 |
 | 训练代码 | `OceanAcoustic-FNO-FEM_github/Experiment_Code/Main_Code/ocean_trainer_forward_b.py` | 学习率调度、通道宽度 |
 | 模型代码 | `OceanAcoustic-FNO-FEM_github/Experiment_Code/Main_Code/deq_modules/models.py` | FNO 网格/模态/层数 |
-| 运行时 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.8_Performance/Case43-50_推理时间性能分析.xlsx` | 网格节点数（Table 14 同源） |
-| 精度 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.4_Comparison/Case15-24_数据汇总.xlsx` | 基线 TL（Table 10 同源） |
+| 运行时 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.8_Performance/Case43-50_推理时间性能分析.xlsx` | 网格节点数（Table 13 同源） |
+| 精度 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.4_Comparison/Case15-24_数据汇总.xlsx` | 基线 TL（Table 9 同源） |
 
 ## 1. 4.1 节超参数 ↔ 训练代码默认值
 
