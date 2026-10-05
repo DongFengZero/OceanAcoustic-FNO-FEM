@@ -102,7 +102,7 @@ def run():
 
     # ── C ────────────────────────────────────────────────────────
     c.section("3. 子图(c) 标注 vs Table 13(b)")
-    c.note("子图(c) 只在数据点旁标域边长，不标数值；核标注齐全且与 Table 21 "
+    c.note("子图(c) 只在数据点旁标域边长，不标数值；核标注齐全且与 Table 13(b) "
            "的 Lx 列一致（三种尺度各出现于矩形与楔形两条曲线）。")
     df2 = pd.read_excel(paths.xlsx_path("4.8"), sheet_name=1, header=2)
     lx_tab = sorted({int(r.iloc[3]) for _, r in df2.iloc[1:].iterrows()})
