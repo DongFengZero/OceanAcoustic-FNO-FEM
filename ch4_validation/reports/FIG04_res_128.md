@@ -3,13 +3,13 @@
 - 对象：`fig:res-128`（Fig. 4）
 - 结论：**PASS** — 51 通过 / 0 失败 / 0 警告，共 51 项
 - 脚本：`ch4_validation/scripts/FIG04_res_128.py`
-- 生成：2026-10-06 00:26:41
+- 生成：2026-11-19 23:51:16
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | figure* 环境，两个 subfloat |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | figure* 环境，两个 subfloat |
 | 成图脚本 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig04_05_10_fields/fig04_05_10_fields.py` | fig04_05_10_fields.py，按 INDEX.md 对应 Fig 4/5/10 |
 | 数据源 npz (Case 3) | `Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No03_R1/Case03_R1__TL原始数据_ep200.npz` | Raw_Experimental_Data，ep200（last epoch） |
 | 数据源 npz (Case 9) | `Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No09_W1/Case09_W1__TL原始数据_ep200.npz` | Raw_Experimental_Data，ep200（last epoch） |

@@ -6,14 +6,15 @@ PROSE_derived.py — 正文中不属于任何表/图的数值（跨对象核验�
 81 个已由各表/图脚本断言；余下 4 个只出现在正文里，不挂靠任何表格：
 
   γ = 0.995           学习率衰减系数（4.1 节）
-  1.96×10^8           三维节点数估计（第 5 章结论三维代价段）
+  2.0×10^8            三维节点数估计（第 5 章结论三维代价段；R2 取 2 位有效数字）
   > 2.6 dB            "其余基线 TL 均超过 2.6 dB"（4.4 节）
   8000 / 2000         "每个多频算例 8000 个有限元解，每频 2000"（第 5 章）
 
 其中 8000 那句曾写成"每个算例 8000 个解"，与 Table 3 中 20 个单频算例
 （2000 个解）矛盾——正因为没有任何脚本断言它，才一直没被发现。
 
-本脚本把这几处、连同三维段落里的其余推导量（5.9×10^5、9.4×10^6、96 倍），以及 4.1 节的 FNO 超参数，逐一回到**源头**核对：
+本脚本把这几处连同 4.1 节的 FNO 超参数逐一回到**源头**核对（R1 结论里的另外三个
+推导量 5.9×10^5、9.4×10^6、96 倍在 R2 已删，只保留 O(G²logG)→O(G³logG) 的量级陈述）：
   · 超参数 → 训练代码（Experiment_Code）里的默认值
   · 节点数 → 4.8 节运行时 xlsx（与 Table 13 同源）
   · 样本数 → Table 3 印刷值（Table 3 自身已由 T03 回到 Dataset 核过）
@@ -82,16 +83,13 @@ def run():
     c.check(f"$N={n_max:,}$".replace(",", "{,}") in txt,
             f"最大网格节点数 N = {n_max:,}（xlsx）出现在正文", f"Lx = {lx_max} m")
     n3 = n_max ** 1.5
-    c.check(sci(n3, 2) in txt, "三维节点数 N^{3/2}",
-            f"`{n_max}^1.5 = {n3:.4e}` → `{sci(n3, 2)}`")
-    wts = width ** 2 * modes ** 2
-    c.check(sci(wts, 1) in txt, "每层截断模态张量 W²m1m2",
-            f"`{width}²×{modes}² = {wts:,}` → `{sci(wts, 1)}`")
-    c.check(sci(wts * modes, 1) in txt, "三维每层权重（×m3=16）",
-            f"`{wts * modes:,}` → `{sci(wts * modes, 1)}`")
-    ratio = (grid ** 3 * 3) / (grid ** 2 * 2)          # G^3 log G^3 / G^2 log G^2
-    c.check(f"about {ratio:.0f} times more work at $G={grid}$" in txt,
-            "FFT 代价增长倍数 (G³logG³)/(G²logG²) = 1.5G", f"`1.5×{grid} = {ratio:g}`")
+    c.check(sci(n3, 1) in txt, "三维节点数 N^{3/2}（R2 正文取 2 位有效数字）",
+            f"`{n_max}^1.5 = {n3:.4e}` → `{sci(n3, 1)}`")
+    c.note("R2 结论删去了 R1 的三个具体推导量（每层模态张量 5.9×10^5、三维每层权重 "
+           "9.4×10^6、FFT 代价 96 倍），只保留 O(G²logG)→O(G³logG) 的量级陈述；"
+           "故不再断言那三个数，改核量级陈述本身在正文中。")
+    c.check(BS + "mathcal{O}(G^{2}" + BS + "log G)" in txt and BS + "mathcal{O}(G^{3}" + BS + "log G)" in txt,
+            "FFT 代价陈述 O(G²logG) → O(G³logG) 在正文中", "")
 
     # ── 3. 第 5 章"每个多频算例 8000 个解，每频 2000" ↔ Table 3 ────
     c.section("3. 参考解数量 ↔ Table 3")
@@ -105,9 +103,10 @@ def run():
             f"全部 {len(rows)} 个算例每频 2000", "")
     c.check(all(r[8].replace(" ", "").startswith("2000") for r in single),
             f"{len(single)} 个单频算例 N = 2000（故不能写成『每个算例 8000』）", "")
-    c.check("each multi-frequency case here rests on $8000$" in txt
-            and "$2000$ per frequency" in txt,
-            "正文限定为『每个多频算例 8000、每频 2000』", "")
+    c.check("each multi-frequency case already rests on $8000$ finite element solutions" in txt,
+            "结论限定为『每个多频算例 8000 个有限元解』（不写成每个算例）", "")
+    c.check("The $2000$ source positions per frequency" in txt,
+            "4.1 节写明每频 2000 个声源位置", "")
     c.check("Each case reported here rests on $8000$" not in txt,
             "正文不再有『每个算例 8000』的旧说法", "")
 

@@ -3,13 +3,13 @@
 - 对象：`tab:abl`（Table 10）
 - 结论：**PASS** — 343 通过 / 0 失败 / 1 警告，共 344 项
 - 脚本：`ch4_validation/scripts/T10_abl.py`
-- 生成：2026-10-06 00:26:10
+- 生成：2026-11-19 23:50:43
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{tab:abl}` 所在环境 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | `\label{tab:abl}` 所在环境 |
 | 渠道1 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/Case25-32_数据汇总.xlsx` | 工作表1，best epoch 全测试集 |
 | 渠道2 log (Case 25) | `Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No25_R1_Full/training_run/logs/full_run_20260712_150041.log` | 训练日志同轮『评估』块 |
 | 渠道2 log (Case 26) | `Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No26_R1_no_prior/training_run/logs/full_run_20260713_025215.log` | 训练日志同轮『评估』块 |
@@ -33,7 +33,7 @@
 | Case 30 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No30_W1_no_prior/training_run/logs/full_run_20260715_023311.log | PASS |
 | Case 31 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No31_W1_no_graph/training_run/logs/full_run_20260715_082131.log | PASS |
 | Case 32 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.5_Ablation/No32_W1_no_prior_loss/training_run/logs/full_run_20260715_023318.log | PASS |
-| tex 表格环境可定位且确实包住 label | 长度 2296 | PASS |
+| tex 表格环境可定位且确实包住 label | 长度 2288 | PASS |
 
 ## 1. 本表 tabular 的定位
 
@@ -41,7 +41,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| label 之后可定位到本表 tabular | tabular*=True，长度 1736 | PASS |
+| label 之后可定位到本表 tabular | tabular*=True，长度 1728 | PASS |
 | 数据行数 = 8（两几何各 4 行） | 实得 8 | PASS |
 | 加粗掩码与数据行同形 | 8 / 8 | PASS |
 | 两个 \multicolumn{12} 块头行（矩形 / 楔形） | 实得 2 | PASS |
@@ -52,11 +52,11 @@
 |---|---|---|
 | tex 行 No. 覆盖 25-28 与 29-32 | [25, 26, 27, 28, 29, 30, 31, 32] | PASS |
 | Case 25 落在矩形块且 Variant 名相符 | tex `Full model` / 期望 `Full model` | PASS |
-| Case 26 落在矩形块且 Variant 名相符 | tex `w/o physics prior` / 期望 `w/o physics prior` | PASS |
+| Case 26 落在矩形块且 Variant 名相符 | tex `w/o FNO prior` / 期望 `w/o FNO prior` | PASS |
 | Case 27 落在矩形块且 Variant 名相符 | tex `w/o graph correction` / 期望 `w/o graph correction` | PASS |
 | Case 28 落在矩形块且 Variant 名相符 | tex `w/o prior supervision` / 期望 `w/o prior supervision` | PASS |
 | Case 29 落在楔形块且 Variant 名相符 | tex `Full model` / 期望 `Full model` | PASS |
-| Case 30 落在楔形块且 Variant 名相符 | tex `w/o physics prior` / 期望 `w/o physics prior` | PASS |
+| Case 30 落在楔形块且 Variant 名相符 | tex `w/o FNO prior` / 期望 `w/o FNO prior` | PASS |
 | Case 31 落在楔形块且 Variant 名相符 | tex `w/o graph correction` / 期望 `w/o graph correction` | PASS |
 | Case 32 落在楔形块且 Variant 名相符 | tex `w/o prior supervision` / 期望 `w/o prior supervision` | PASS |
 | 行序为矩形块 25-28 后接楔形块 29-32 | [25, 26, 27, 28, 29, 30, 31, 32] | PASS |
@@ -377,7 +377,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| 4.5 节正文窗口可定位 | 起句 `The physics prior is by far the most imp…` | PASS |
+| 4.5 节正文窗口可定位 | 起句 `The prior is by far the most important c…` | PASS |
 | 正文 Case 25 频均 Sol | 正文 `11.483` / 表格 `11.483` | PASS |
 | 正文 Case 25 频均 Sol <- xlsx 源 | 源 11.48282000795007 → `11.483` / 印刷 `11.483` | PASS |
 | 正文 Case 25 频均 Sol 可定位 | 窗口内行 2 | PASS |
@@ -398,10 +398,10 @@
 | 正文 Case 30 频均 Sol 可定位 | 窗口内行 3 | PASS |
 | 正文 Case 29 频均 TL | 正文 `1.936` / 表格 `1.936` | PASS |
 | 正文 Case 29 频均 TL <- xlsx 源 | 源 1.936008 → `1.936` / 印刷 `1.936` | PASS |
-| 正文 Case 29 频均 TL 可定位 | 窗口内行 7 | PASS |
+| 正文 Case 29 频均 TL 可定位 | 窗口内行 6 | PASS |
 | 正文 Case 30 频均 TL | 正文 `48.797` / 表格 `48.797` | PASS |
 | 正文 Case 30 频均 TL <- xlsx 源 | 源 48.79683 → `48.797` / 印刷 `48.797` | PASS |
-| 正文 Case 30 频均 TL 可定位 | 窗口内行 7 | PASS |
+| 正文 Case 30 频均 TL 可定位 | 窗口内行 6 | PASS |
 
 ## 10. 正文变体排序断言（印刷值口径）
 

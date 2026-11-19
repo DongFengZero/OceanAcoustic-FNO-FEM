@@ -12,7 +12,7 @@ import h5py
 SLUG = "T03_datasets"
 r = registry.by_slug(SLUG)
 LABEL, SEC = r["label"], r["sec"]
-DATASET_DIR = "D:/Data/Data_and_Code_Availability/Dataset"
+DATASET_DIR = paths.DATASET          # $CH4_RAWROOT/Data_and_Code_Availability/Dataset
 
 # 从注册表和 tex 已知的 Dataset ID 映射
 EXPECTED_DATASETS = {

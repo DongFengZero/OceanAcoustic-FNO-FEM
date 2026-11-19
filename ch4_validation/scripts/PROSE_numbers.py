@@ -12,6 +12,8 @@ PROSE_numbers.py — 正文每一个小数都必须有出处（跨对象核验�
      把一个数改成不存在的数、或改成本节所引表之外的数，都会落空。
   2. 推导量 / 门槛：用表格印刷值当场重算，或验证门槛论断本身成立。
   3. 配置参数：对照训练代码默认值；无法由数据核实的（软件版本号）单列豁免。
+  4. 日志量（R2 新增 4.8 节成本段）：COMSOL 生成日志 / 训练 JSON 的时间统计，
+     经 common/costlog.py 读取；逐句比对在 PROSE_cost.py，此处只认出处。
 
 已知局限（如实登记）：若把一个数改成**同一张所引表里的另一个印刷值**，本检查
 无法察觉——那需要逐句标注"此数指哪个单元格"，属于各表脚本 PROSE 列表的职责。
@@ -21,7 +23,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from common import paths, report, texparse as T  # noqa: E402
+from common import costlog, paths, report, texparse as T  # noqa: E402
 
 SLUG = "PROSE_numbers"
 B = chr(92)
@@ -74,6 +76,9 @@ def run():
         if len(vals) == 5:
             mesh_tl += [float(vals[2]), float(vals[4])]
 
+    gen = costlog.comsol_stats("R1") or {}
+    trn = costlog.train_stats(15)
+    g = lambda k, nd: None if gen.get(k) is None else f"{gen[k]:.{nd}f}"
     tl6 = lambda no: float(cell("tab:res-rect-mf", no, 9))      # Avg. TL
     dl = lambda row, k: float(cell("tab:dl-abl", row, k))
     derived = {
@@ -101,6 +106,21 @@ def run():
         "1.00": ("网格分辨率 Δ ∈ Table 11 Δ 列", "1.00" in tab_cells["tab:mesh"], ""),
         "0.50": ("网格分辨率 Δ ∈ Table 11 Δ 列", "0.50" in tab_cells["tab:mesh"], ""),
         "0.25": ("网格分辨率 Δ ∈ Table 11 Δ 列", "0.25" in tab_cells["tab:mesh"], ""),
+        # 4.8 节成本段（R2 新增）：源是归档日志，不在任何表里；逐句核对见 PROSE_cost.py
+        "1.94": ("数据生成 1.94 h = COMSOL 生成日志求解总计/3600",
+                 gen.get("total_s") is not None and f"{gen['total_s'] / 3600:.2f}" == "1.94",
+                 f"total_s={gen.get('total_s')}"),
+        "873.1": ("COMSOL 单次求解均值 ↔ 生成日志", g("mean_ms", 1) == "873.1", f"log={g('mean_ms', 1)}"),
+        "871.4": ("COMSOL 单次求解中位数 ↔ 生成日志", g("median_ms", 1) == "871.4", f"log={g('median_ms', 1)}"),
+        "973.2": ("COMSOL 单次求解 P95 ↔ 生成日志", g("p95_ms", 1) == "973.2", f"log={g('p95_ms', 1)}"),
+        "6.21": ("训练 6.21 h = Case 15 JSON total_s/3600",
+                 trn["total_s"] is not None and f"{trn['total_s'] / 3600:.2f}" == "6.21",
+                 f"total_s={trn['total_s']}"),
+        "49.7": ("卡时 49.7 = 6.21 h × 8 卡（日志卡数）",
+                 trn["total_s"] is not None and trn["n_gpu"] == 8
+                 and f"{trn['total_s'] / 3600 * trn['n_gpu']:.1f}" == "49.7", f"n_gpu={trn['n_gpu']}"),
+        "0.856": ("每次查询节省 = (873.1 − 17.08)/1000，Table 13 印刷值",
+                  {"873.10", "17.08"} <= tab_cells["tab:runtime"] and f"{(873.10 - 17.08) / 1000:.3f}" == "0.856", ""),
     }
     EXEMPT = {"6.4": "COMSOL 软件版本号（作者确认），非数据，无法由归档数据核实"}
 

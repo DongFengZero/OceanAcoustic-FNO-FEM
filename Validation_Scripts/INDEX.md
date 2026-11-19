@@ -8,7 +8,7 @@ Set these first (same as the verification suite):
 
 ```bash
 export CH4_RAWROOT=/path/to/parent-of-Data_and_Code_Availability
-export CH4_TEXDIR=/path/to/OE_Revision_R1_Submission   # needs OE_submission.aux
+export CH4_TEXDIR=/path/to/paper-tex-dir   # needs OE_submission.aux
 ```
 
 `_figpaths.py` resolves every figure-script path from those two variables, so

@@ -3,14 +3,14 @@
 - 对象：`fig:* (Ch.4)`（Fig. 3-13）
 - 结论：**PASS** — 36 通过 / 0 失败 / 0 警告，共 36 项
 - 脚本：`ch4_validation/scripts/FIGALL_refs.py`
-- 生成：2026-10-06 00:29:12
+- 生成：2026-11-19 23:53:22
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | 全文 |
-| 编号来源 aux | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.aux` | \newlabel 解析 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | 全文 |
+| 编号来源 aux | `../JASA/OE期刊/paper_R2/OE_submission.aux` | \newlabel 解析 |
 
 ## 1. 无孤图：每个图 label 至少被引用一次
 
@@ -29,7 +29,7 @@
 | Fig 10 (`fig:mesh`) 已被引用 | 正文 1 处；caption 内 1 处 | PASS |
 | Fig 11 (`fig:gen-split`) 已被引用 | 正文 1 处 | PASS |
 | Fig 12 (`fig:gen-grid`) 已被引用 | 正文 1 处 | PASS |
-| Fig 13 (`fig:perf`) 已被引用 | 正文 3 处 | PASS |
+| Fig 13 (`fig:perf`) 已被引用 | 正文 2 处 | PASS |
 
 ## 2. 无悬空引用：每个 \ref{fig:...} 都指向真实 label
 
@@ -55,7 +55,7 @@
 | Fig 10 (`fig:mesh`) 有独立正文引用 | figure 环境外 1 处 | PASS |
 | Fig 11 (`fig:gen-split`) 有独立正文引用 | figure 环境外 1 处 | PASS |
 | Fig 12 (`fig:gen-grid`) 有独立正文引用 | figure 环境外 1 处 | PASS |
-| Fig 13 (`fig:perf`) 有独立正文引用 | figure 环境外 3 处 | PASS |
+| Fig 13 (`fig:perf`) 有独立正文引用 | figure 环境外 2 处 | PASS |
 | 全部 11 张图均有独立正文引用 | 全部合规 | PASS |
 
 ## 4. 编号与预期一致

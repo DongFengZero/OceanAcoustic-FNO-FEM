@@ -197,6 +197,8 @@ def run():
         c.check(name in leg, f"图例（dl_legend_abl.pdf）含 {name}",
                 f"`{leg.strip()}`")
     c.check("Obstacle" in leg, "图例含 Obstacle 灰带说明", "")
+    c.check("w/o FNO prior" in leg, "图例变体名与 Table 8/10 的『w/o FNO prior』一致",
+            "图例仍印 R1 的『w/o physics prior』（表格 R2 已改名，图例文件未重绘）", warn_only=True)
 
     # ── D ────────────────────────────────────────────────────────
     c.section("5. 图与表同源（Fig. 7 <-> Table 8）")

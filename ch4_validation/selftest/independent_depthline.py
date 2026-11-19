@@ -25,7 +25,7 @@ import glob, io, os, re, sys
 import numpy as np
 from scipy.interpolate import CloughTocher2DInterpolator
 
-TEX = os.path.join(os.environ.get("CH4_TEXDIR", r"D:\JASA\OE\OE_Revision_R1_Submission"), "OE_submission.tex")
+TEX = os.path.join(os.environ.get("CH4_TEXDIR", r"D:\JASA\OE期刊\paper_R2"), "OE_submission.tex")
 RAW = os.path.join(os.environ.get("CH4_RAWROOT", r"D:\Data"), "Data_and_Code_Availability", "Raw_Experimental_Data")
 GEN = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "Validation_Scripts")
 B = chr(92)

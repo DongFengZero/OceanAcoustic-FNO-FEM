@@ -17,9 +17,9 @@
 """
 import _acctable as A
 
-ABL_R = {25: "Full model", 26: "w/o physics prior",
+ABL_R = {25: "Full model", 26: "w/o FNO prior",
          27: "w/o graph correction", 28: "w/o prior supervision"}
-ABL_W = {29: "Full model", 30: "w/o physics prior",
+ABL_W = {29: "Full model", 30: "w/o FNO prior",
          31: "w/o graph correction", 32: "w/o prior supervision"}
 
 

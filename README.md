@@ -2,9 +2,9 @@
 
 Code and reproducibility resources for the paper *"Coupling Fourier Neural
 Operators with Finite-Element Guided Graph Refinement for Ocean Acoustic Field
-Prediction"* (Ocean Engineering, under review).
+Prediction"* (Ocean Engineering, accepted; in proof).
 
-The solver couples a Fourier Neural Operator (FNO) physics prior with a
+The solver couples a Fourier Neural Operator (FNO) prior with a
 finite-element-guided graph correction to predict two-dimensional ocean acoustic
 transmission-loss fields.
 
@@ -65,7 +65,8 @@ verifies against the dataset folders directly.
 └── README.md
 ```
 
-Script names follow the R1 numbering of tables and figures (Figs. S1--S7 for the
+Script names follow the manuscript numbering of tables and figures, unchanged from
+revision R1 through the accepted version (Figs. S1--S7 for the
 Supplementary Material); `Validation_Scripts/INDEX.md` maps every object to its
 script in paper order.
 
@@ -74,7 +75,7 @@ script in paper order.
 ### Verification suite (automated, no GPU)
 
 `ch4_validation/` recomputes every printed value in the 12 tables and 11 figures
-that Section 4 of the R1 manuscript carries (Tables 3--13, Figures 3--13) from
+that Section 4 of the manuscript carries (Tables 3--13, Figures 3--13) from
 the archived raw data, then compares it against the typeset value. Tables 1--2
 (`tab:applicability`, `tab:symbols`) and Figures 1--2 are descriptive objects — a
 table of acronyms, a table of symbols, a geometry sketch and a block diagram — so
@@ -100,13 +101,25 @@ Two comparison layers with deliberately different tolerances are used:
 # 1. Download Raw_Experimental_Data from Baidu (link above), 20.9 GB
 # 2. Point the suite at the data and the compiled paper
 export CH4_RAWROOT=/path/to/parent-of-Data_and_Code_Availability
-export CH4_TEXDIR=/path/to/OE_Revision_R1_Submission   # needs OE_submission.aux
+export CH4_TEXDIR=/path/to/paper-tex-dir   # OE_submission.tex/.aux/.bbl, OE_supplementary.tex, Figures/
 # 3. Run
 cd ch4_validation && python verify.py
 ```
 
-Expected output: **23/23 objects, 3348 checks passed, 0 failed, 19 exempt**
-(about 3 minutes).
+Expected output: **22/22 objects, 3356 checks passed, 0 failed, 16 exempt**
+(about 4 minutes). Four WARN rows are expected: the depth-line legend and the
+two supplementary ablation grids still print the R1 variant name *w/o physics
+prior* where the R2 tables say *w/o FNO prior* (same cases, same numbers), and
+one Table 10 cell sits on a 3-decimal rounding boundary between the two source
+channels (xlsx vs. training log; both round to the printed value to within
+3e-7).
+
+Compared with the R1 suite, the R2 update adds `scripts/PROSE_cost.py`, which
+checks the offline-cost and break-even paragraph that Sec. 4.8 gained in R2
+(COMSOL generation log, Case 15 training wall-clock, Case 43 single-GPU
+inference) against the archived logs via `common/costlog.py`, and retargets
+the ablation-variant label and the Conclusion's 3-D cost estimate to the R2
+wording.
 
 Beyond the numbers themselves, the suite also checks the things that never
 trigger a compile error — whether each table and figure is actually cited in the
@@ -150,7 +163,7 @@ Set the two path variables before running any of them:
 
 ```bash
 export CH4_RAWROOT=/path/to/parent-of-Data_and_Code_Availability
-export CH4_TEXDIR=/path/to/OE_Revision_R1_Submission
+export CH4_TEXDIR=/path/to/paper-tex-dir
 ```
 
 Redrawing rewrites the PDFs' embedded timestamps, so their byte `md5` will differ

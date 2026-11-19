@@ -50,7 +50,7 @@ BLOCKS = [
 # tex 行序 → (No., Variant 印刷名, 脚本内变体标签)，两块共用同一组变体
 ROWS = [
     (25, "Full model", "Full (Ours)"),
-    (26, "w/o physics prior", "w/o prior"),
+    (26, "w/o FNO prior", "w/o prior"),          # R2 改名：physics prior -> FNO prior
     (27, "w/o graph correction", "w/o graph"),
     (28, "w/o prior supervision", "w/o prior-sup."),
 ]

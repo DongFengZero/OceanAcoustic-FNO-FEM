@@ -3,13 +3,13 @@
 - 对象：`tab:mesh`（Table 11）
 - 结论：**PASS** — 113 通过 / 0 失败 / 0 警告，共 113 项
 - 脚本：`ch4_validation/scripts/T11_mesh.py`
-- 生成：2026-10-06 00:26:11
+- 生成：2026-11-19 23:50:44
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{tab:mesh}` 所在环境 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | `\label{tab:mesh}` 所在环境 |
 | 渠道1 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/Case33-38_数据汇总.xlsx` | 工作表1，best epoch 全测试集 |
 | 渠道2 log (Case 33) | `Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No33_R4/training_run/logs/full_run_20260710_224527.log` | 训练日志同轮『评估』块 |
 | 渠道2 log (Case 34) | `Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No34_R7/training_run/logs/full_run_20260710_220203.log` | 训练日志同轮『评估』块 |
@@ -30,7 +30,7 @@
 | Case 36 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No36_W4/training_run/logs/full_run_20260710_150948.log | PASS |
 | Case 37 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No37_W7/training_run/logs/full_run_20260710_123333.log | PASS |
 | Case 38 日志存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No38_W8/training_run/logs/full_run_20260710_030023.log | PASS |
-| tex 表格环境可定位且确实包住 label | 长度 2334 | PASS |
+| tex 表格环境可定位且确实包住 label | 长度 2238 | PASS |
 
 ## 2. 源可追溯性
 

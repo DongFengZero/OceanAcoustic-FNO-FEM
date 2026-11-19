@@ -3,14 +3,14 @@
 - 对象：`tab:* (all)`（Table 1-13）
 - 结论：**PASS** — 42 通过 / 0 失败 / 0 警告，共 42 项
 - 脚本：`ch4_validation/scripts/TABALL_refs.py`
-- 生成：2026-10-06 00:26:12
+- 生成：2026-11-19 23:50:46
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | 全文 |
-| 编号来源 aux | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.aux` | \newlabel 解析 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | 全文 |
+| 编号来源 aux | `../JASA/OE期刊/paper_R2/OE_submission.aux` | \newlabel 解析 |
 
 ## 1. 无孤表：每个 label 至少被引用一次
 
@@ -24,8 +24,8 @@
 | Table 4 (`tab:ideal-overall`) 已被引用 | 正文 1 处 | PASS |
 | Table 5 (`tab:res-rect-mf`) 已被引用 | 正文 2 处 | PASS |
 | Table 6 (`tab:sq100`) 已被引用 | 正文 1 处 | PASS |
-| Table 7 (`tab:dl-cmp`) 已被引用 | 正文 1 处；环境内 3 处 | PASS |
-| Table 8 (`tab:dl-abl`) 已被引用 | 正文 4 处 | PASS |
+| Table 7 (`tab:dl-cmp`) 已被引用 | 正文 2 处；环境内 3 处 | PASS |
+| Table 8 (`tab:dl-abl`) 已被引用 | 正文 5 处 | PASS |
 | Table 9 (`tab:perf-cmp`) 已被引用 | 正文 1 处 | PASS |
 | Table 10 (`tab:abl`) 已被引用 | 正文 1 处 | PASS |
 | Table 11 (`tab:mesh`) 已被引用 | 正文 1 处 | PASS |
@@ -51,8 +51,8 @@
 | Table 4 (`tab:ideal-overall`) 有独立正文引用 | 环境外 1 处 | PASS |
 | Table 5 (`tab:res-rect-mf`) 有独立正文引用 | 环境外 2 处 | PASS |
 | Table 6 (`tab:sq100`) 有独立正文引用 | 环境外 1 处 | PASS |
-| Table 7 (`tab:dl-cmp`) 有独立正文引用 | 环境外 1 处 | PASS |
-| Table 8 (`tab:dl-abl`) 有独立正文引用 | 环境外 4 处 | PASS |
+| Table 7 (`tab:dl-cmp`) 有独立正文引用 | 环境外 2 处 | PASS |
+| Table 8 (`tab:dl-abl`) 有独立正文引用 | 环境外 5 处 | PASS |
 | Table 9 (`tab:perf-cmp`) 有独立正文引用 | 环境外 1 处 | PASS |
 | Table 10 (`tab:abl`) 有独立正文引用 | 环境外 1 处 | PASS |
 | Table 11 (`tab:mesh`) 有独立正文引用 | 环境外 1 处 | PASS |

@@ -83,6 +83,8 @@ CROSS_CHECKS = [
      "从正文出发：每个小数须为本节所引表的印刷值（括注 Case 则须在该行）、推导量或配置"),
     ("PROSE_derived", "scripts", "PROSE_derived",
      "正文中不挂靠表/图的数值：超参数↔代码、三维推导量、样本数、基线门槛"),
+    ("PROSE_cost", "scripts", "PROSE_cost",
+     "4.8 节离线成本与盈亏点（R2 新增）：COMSOL 生成日志 / 训练 JSON / 单卡推理日志 ↔ 正文"),
 ]
 
 

@@ -42,9 +42,11 @@ LABEL = REC["label"]
 NUMBER = 10
 
 # 行标签 -> Variant 名。矩形块 25-28，楔形块 29-32。
-RECT = {25: "Full model", 26: "w/o physics prior",
+# R2 把 "w/o physics prior" 改名为 "w/o FNO prior"（消融去掉的是 FNO 先验这一
+# 具体模块，不是"物理"）；算例号与数值不变。
+RECT = {25: "Full model", 26: "w/o FNO prior",
         27: "w/o graph correction", 28: "w/o prior supervision"}
-WEDGE = {29: "Full model", 30: "w/o physics prior",
+WEDGE = {29: "Full model", 30: "w/o FNO prior",
          31: "w/o graph correction", 32: "w/o prior supervision"}
 CASES = sorted(RECT) + sorted(WEDGE)
 
@@ -74,7 +76,8 @@ PROSE = [
 ]
 
 # 4.5 节正文的唯一起句，用来界定"本表正文"的窗口
-PROSE_ANCHOR = "The physics prior is by far the most important component"
+# R2 起句由 "The physics prior is …" 改为 "The prior is …"（同上改名）。
+PROSE_ANCHOR = "The prior is by far the most important component"
 
 
 def cell_index(g, q):

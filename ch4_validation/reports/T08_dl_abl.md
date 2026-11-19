@@ -3,18 +3,18 @@
 - 对象：`tab:dl-abl`（Table 8）
 - 结论：**PASS** — 156 通过 / 0 失败 / 0 警告 / 1 豁免，共 157 项
 - 脚本：`ch4_validation/scripts/T08_dl_abl.py`
-- 生成：2026-10-06 00:26:09
+- 生成：2026-11-19 23:50:42
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{tab:dl-abl}` 所在 tabular* |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | `\label{tab:dl-abl}` 所在 tabular* |
 | 成图/取数脚本（权威） | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/_depthline_core.py` | 组 `ablation_R1_module_advantage` / `ablation_W1_module_advantage` |
 | 同一脚本 repo 副本 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/legacy/advantage_depth_line.py` | 口径与权威副本同源 |
 | 脚本导出 MAE 表 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/cache/_mae_tables.json` | round 到 3 位，供正文取用 |
-| 论文图件（矩形 R1） | `../JASA/OE/OE_Revision_R1_Submission/Figures/results/ablation_R1_module_advantage.pdf` | 成图脚本 out/ 下的纸面尺寸 PDF |
-| 论文图件（楔形 W1） | `../JASA/OE/OE_Revision_R1_Submission/Figures/results/ablation_W1_module_advantage.pdf` | 成图脚本 out/ 下的纸面尺寸 PDF |
+| 论文图件（矩形 R1） | `../JASA/OE期刊/paper_R2/Figures/results/ablation_R1_module_advantage.pdf` | 成图脚本 out/ 下的纸面尺寸 PDF |
+| 论文图件（楔形 W1） | `../JASA/OE期刊/paper_R2/Figures/results/ablation_W1_module_advantage.pdf` | 成图脚本 out/ 下的纸面尺寸 PDF |
 
 ## 2. 源可追溯性与脚本同源
 
@@ -60,7 +60,7 @@
 |---|---|---|
 | [rect] 选中行深度舍入到 1 位 = 71.9 m | 实际 `71.919732` | PASS |
 | [wedge] 选中行深度舍入到 1 位 = 33.4 m | 实际 `33.391304` | PASS |
-| tex 表体可定位 | 长度 1133 | PASS |
+| tex 表体可定位 | 长度 1128 | PASS |
 | 表体为 tabular*（固定总宽） | is_star=True | PASS |
 | caption 声明 rect 深度 y=71.9 m（与重算一致） | caption 含该值 | PASS |
 | caption 声明 rect 的 Cases~25--28 |  | PASS |
@@ -114,7 +114,7 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | tex 数据行数 = 4 | 实得 4 | PASS |
-| 行以变体名为键且顺序一致 | Full model / w/o physics prior / w/o graph correction / w/o prior supervision | PASS |
+| 行以变体名为键且顺序一致 | Full model / w/o FNO prior / w/o graph correction / w/o prior supervision | PASS |
 | 行 `Full model` 存在 |  | PASS |
 | Full model rect 25Hz | 源 1.092168346691922 → `1.092` / 印刷 `1.092` | PASS |
 | Full model rect 50Hz | 源 0.5329559900137699 → `0.533` / 印刷 `0.533` | PASS |
@@ -124,15 +124,15 @@
 | Full model wedge 50Hz | 源 0.205193784828277 → `0.205` / 印刷 `0.205` | PASS |
 | Full model wedge 75Hz | 源 1.417487228217092 → `1.417` / 印刷 `1.417` | PASS |
 | Full model wedge 100Hz | 源 4.093890782681291 → `4.094` / 印刷 `4.094` | PASS |
-| 行 `w/o physics prior` 存在 |  | PASS |
-| w/o physics prior rect 25Hz | 源 26.343610194470056 → `26.344` / 印刷 `26.344` | PASS |
-| w/o physics prior rect 50Hz | 源 30.27431320444456 → `30.274` / 印刷 `30.274` | PASS |
-| w/o physics prior rect 75Hz | 源 34.121951553211204 → `34.122` / 印刷 `34.122` | PASS |
-| w/o physics prior rect 100Hz | 源 35.06296210235836 → `35.063` / 印刷 `35.063` | PASS |
-| w/o physics prior wedge 25Hz | 源 8.732524553217452 → `8.733` / 印刷 `8.733` | PASS |
-| w/o physics prior wedge 50Hz | 源 32.90862910998996 → `32.909` / 印刷 `32.909` | PASS |
-| w/o physics prior wedge 75Hz | 源 40.58197125552458 → `40.582` / 印刷 `40.582` | PASS |
-| w/o physics prior wedge 100Hz | 源 34.32903421065514 → `34.329` / 印刷 `34.329` | PASS |
+| 行 `w/o FNO prior` 存在 |  | PASS |
+| w/o FNO prior rect 25Hz | 源 26.343610194470056 → `26.344` / 印刷 `26.344` | PASS |
+| w/o FNO prior rect 50Hz | 源 30.27431320444456 → `30.274` / 印刷 `30.274` | PASS |
+| w/o FNO prior rect 75Hz | 源 34.121951553211204 → `34.122` / 印刷 `34.122` | PASS |
+| w/o FNO prior rect 100Hz | 源 35.06296210235836 → `35.063` / 印刷 `35.063` | PASS |
+| w/o FNO prior wedge 25Hz | 源 8.732524553217452 → `8.733` / 印刷 `8.733` | PASS |
+| w/o FNO prior wedge 50Hz | 源 32.90862910998996 → `32.909` / 印刷 `32.909` | PASS |
+| w/o FNO prior wedge 75Hz | 源 40.58197125552458 → `40.582` / 印刷 `40.582` | PASS |
+| w/o FNO prior wedge 100Hz | 源 34.32903421065514 → `34.329` / 印刷 `34.329` | PASS |
 | 行 `w/o graph correction` 存在 |  | PASS |
 | w/o graph correction rect 25Hz | 源 0.9680067037698834 → `0.968` / 印刷 `0.968` | PASS |
 | w/o graph correction rect 50Hz | 源 0.5469913147202249 → `0.547` / 印刷 `0.547` | PASS |
@@ -186,10 +186,10 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | [rect] 脚本产出 PDF 存在 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/out/ablation_R1_module_advantage.pdf | PASS |
-| [rect] 论文图件存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/ablation_R1_module_advantage.pdf | PASS |
+| [rect] 论文图件存在 | ../JASA/OE期刊/paper_R2/Figures/results/ablation_R1_module_advantage.pdf | PASS |
 | [rect] 论文图件与脚本产物同源（抹时间戳后同 md5） | md5(no-ts) `42f638c60615d8900e98aadba3fa585d` | PASS |
 | [wedge] 脚本产出 PDF 存在 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/out/ablation_W1_module_advantage.pdf | PASS |
-| [wedge] 论文图件存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/ablation_W1_module_advantage.pdf | PASS |
+| [wedge] 论文图件存在 | ../JASA/OE期刊/paper_R2/Figures/results/ablation_W1_module_advantage.pdf | PASS |
 | [wedge] 论文图件与脚本产物同源（抹时间戳后同 md5） | md5(no-ts) `abcd13e24b0b4f3aa06a69f1a891c073` | PASS |
 | PDF 逐字节 md5 相同 | matplotlib 每次运行写入 CreationDate（本机实测 D:2026…），逐字节比对必然不等；已改为抹掉时间戳后比对，同源判定不受影响。 | 豁免 |
 
@@ -244,8 +244,8 @@
 |---|---|---|
 | 正文 1.356 dB @75Hz 由表中印刷值复现（正文口径） | `2.903 − 1.547 = 1.356` | PASS |
 | 正文 1.834 dB @100Hz 由表中印刷值复现（正文口径） | `5.008 − 3.174 = 1.834` | PASS |
-| 深度线深度 y=71.9 m 在文中声明且与脚本 force_y 一致 | tex 行 925 | PASS |
-| 深度线深度 y=33.4 m 在文中声明且与脚本 force_y 一致 | tex 行 925 | PASS |
+| 深度线深度 y=71.9 m 在文中声明且与脚本 force_y 一致 | tex 行 934 | PASS |
+| 深度线深度 y=33.4 m 在文中声明且与脚本 force_y 一致 | tex 行 934 | PASS |
 | 正文『raises the depth-line TL to tens of decibels』成立 | w/o prior 最小 `8.733` dB（全部频率、两几何） | PASS |
 
 ## 14. 消融方向性（去掉模块应变差）

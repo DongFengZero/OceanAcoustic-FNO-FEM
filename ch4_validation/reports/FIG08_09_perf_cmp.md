@@ -3,16 +3,16 @@
 - 对象：`fig:perf-cmp-r / fig:perf-cmp-w`（Fig. 8/9）
 - 结论：**PASS** — 89 通过 / 0 失败 / 0 警告 / 2 豁免，共 91 项
 - 脚本：`ch4_validation/scripts/FIG08_09_perf_cmp.py`
-- 生成：2026-10-06 00:28:32
+- 生成：2026-11-19 23:52:43
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | 两个独立 figure* 环境，各含一张整页图 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | 两个独立 figure* 环境，各含一张整页图 |
 | 成图脚本（权威） | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig08_09_perf_grid/fig08_09_perf_grid.py` | fig08_09_perf_grid.py（R1 起入库；旧 regen_method_grid.py 已废弃） |
-| 论文图件（Fig 8） | `../JASA/OE/OE_Revision_R1_Submission/Figures/results/perf_grid_R1.pdf` | 成图脚本 out/ 下的整页 PDF |
-| 论文图件（Fig 9） | `../JASA/OE/OE_Revision_R1_Submission/Figures/results/perf_grid_W1.pdf` | 成图脚本 out/ 下的整页 PDF |
+| 论文图件（Fig 8） | `../JASA/OE期刊/paper_R2/Figures/results/perf_grid_R1.pdf` | 成图脚本 out/ 下的整页 PDF |
+| 论文图件（Fig 9） | `../JASA/OE期刊/paper_R2/Figures/results/perf_grid_W1.pdf` | 成图脚本 out/ 下的整页 PDF |
 
 ## 2. 源可追溯与口径防漂移
 
@@ -152,5 +152,5 @@
 | fig:perf-cmp-r 编号为 8 | aux `8` | PASS |
 | fig:perf-cmp-w 编号为 9 | aux `9` | PASS |
 | 正文并列引用 Fig 8 与 Fig 9 | 含 `Figs.~\ref{fig:perf-cmp-r} and~\ref{fig:perf-cmp-w}` | PASS |
-| 兄弟表 Table 9 在正文被引 | tex 行 876 | PASS |
+| 兄弟表 Table 9 在正文被引 | tex 行 885 | PASS |
 

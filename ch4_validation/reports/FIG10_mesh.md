@@ -3,13 +3,13 @@
 - 对象：`fig:mesh`（Fig. 10）
 - 结论：**PASS** — 113 通过 / 0 失败 / 0 警告，共 113 项
 - 脚本：`ch4_validation/scripts/FIG10_mesh.py`
-- 生成：2026-10-06 00:29:00
+- 生成：2026-11-19 23:53:11
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | 两个并列 minipage，各 3 个 subfloat |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | 两个并列 minipage，各 3 个 subfloat |
 | 成图脚本 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig04_05_10_fields/fig04_05_10_fields.py` | fig04_05_10_fields.py，按 INDEX.md 对应 Fig 4/5/10 |
 | 复用比对 npz (Case 6 / 12) | `Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No06_R4/Case06_R4__TL原始数据_ep200.npz` | 4.3 节单频案例，用于确认 Case 33≡6、36≡12 |
 | 数据源 npz (Case 33) | `Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No33_R4/Case33_R4__TL原始数据_ep200.npz` | Raw_Experimental_Data，ep200（last epoch） |
@@ -30,12 +30,12 @@
 | Case 36 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No36_W4/Case36_W4__TL原始数据_ep200.npz | PASS |
 | Case 37 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No37_W7/Case37_W7__TL原始数据_ep200.npz | PASS |
 | Case 38 npz 存在 | Data_and_Code_Availability/Raw_Experimental_Data/4.6_Mesh/No38_W8/Case38_W8__TL原始数据_ep200.npz | PASS |
-| 图件 Case33_R4_TL.pdf 存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/Case33_R4_TL.pdf | PASS |
-| 图件 Case34_R7_TL.pdf 存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/Case34_R7_TL.pdf | PASS |
-| 图件 Case35_R8_TL.pdf 存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/Case35_R8_TL.pdf | PASS |
-| 图件 Case36_W4_TL.pdf 存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/Case36_W4_TL.pdf | PASS |
-| 图件 Case37_W7_TL.pdf 存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/Case37_W7_TL.pdf | PASS |
-| 图件 Case38_W8_TL.pdf 存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/Case38_W8_TL.pdf | PASS |
+| 图件 Case33_R4_TL.pdf 存在 | ../JASA/OE期刊/paper_R2/Figures/results/Case33_R4_TL.pdf | PASS |
+| 图件 Case34_R7_TL.pdf 存在 | ../JASA/OE期刊/paper_R2/Figures/results/Case34_R7_TL.pdf | PASS |
+| 图件 Case35_R8_TL.pdf 存在 | ../JASA/OE期刊/paper_R2/Figures/results/Case35_R8_TL.pdf | PASS |
+| 图件 Case36_W4_TL.pdf 存在 | ../JASA/OE期刊/paper_R2/Figures/results/Case36_W4_TL.pdf | PASS |
+| 图件 Case37_W7_TL.pdf 存在 | ../JASA/OE期刊/paper_R2/Figures/results/Case37_W7_TL.pdf | PASS |
+| 图件 Case38_W8_TL.pdf 存在 | ../JASA/OE期刊/paper_R2/Figures/results/Case38_W8_TL.pdf | PASS |
 
 ## 2. 成图脚本确实产出本图
 

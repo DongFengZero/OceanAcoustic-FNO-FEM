@@ -3,15 +3,15 @@
 - 对象：`fig:gen-grid`（Fig. 12）
 - 结论：**PASS** — 58 通过 / 0 失败 / 0 警告，共 58 项
 - 脚本：`ch4_validation/scripts/FIG12_gen_extrap.py`
-- 生成：2026-10-06 00:29:11
+- 生成：2026-11-19 23:53:20
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{fig:gen-grid}` 所在 figure*，含 2 个 subfloat（R9 | W10） |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | `\label{fig:gen-grid}` 所在 figure*，含 2 个 subfloat（R9 | W10） |
 | 成图脚本 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig04_05_10_fields/fig04_05_10_fields.py` | fig04_05_10_fields.py 的 FIG12 列表生成 gen_extrap_r9/w10 |
-| 兄弟表 | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{tab:gen-overall}` = Table 12（best epoch） |
+| 兄弟表 | `../JASA/OE期刊/paper_R2/OE_submission.tex` | `\label{tab:gen-overall}` = Table 12（best epoch） |
 | 数据源 npz (Case 39 R9) | `Data_and_Code_Availability/Raw_Experimental_Data/4.7_Generalization/No39_R9/Case39_R9__TL原始数据_ep200.npz` | Raw_Experimental_Data/4.7，ep200 |
 | 数据源 npz (Case 42 W10) | `Data_and_Code_Availability/Raw_Experimental_Data/4.7_Generalization/No42_W10/Case42_W10__TL原始数据_ep200.npz` | Raw_Experimental_Data/4.7，ep200 |
 
@@ -110,8 +110,8 @@
 | `fig:gen-r10` 不在正文（aux 无登记） | R10/W9 两幅在补充材料 Fig. S7 | PASS |
 | `fig:gen-w9` 不在正文（aux 无登记） | R10/W9 两幅在补充材料 Fig. S7 | PASS |
 | 旧楔形浮动体的注释残留已清除 |  | PASS |
-| 补充材料图件 figS7a_gen_extrap_r10.pdf（Case 40 R10）存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/supplementary/figS7a_gen_extrap_r10.pdf | PASS |
-| 补充材料图件 figS7b_gen_extrap_w9.pdf（Case 41 W9）存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/supplementary/figS7b_gen_extrap_w9.pdf | PASS |
+| 补充材料图件 figS7a_gen_extrap_r10.pdf（Case 40 R10）存在 | ../JASA/OE期刊/paper_R2/Figures/supplementary/figS7a_gen_extrap_r10.pdf | PASS |
+| 补充材料图件 figS7b_gen_extrap_w9.pdf（Case 41 W9）存在 | ../JASA/OE期刊/paper_R2/Figures/supplementary/figS7b_gen_extrap_w9.pdf | PASS |
 
 ## 9. 正文引用
 
@@ -119,5 +119,5 @@
 |---|---|---|
 | 正文引用 Fig. 12 |  | PASS |
 | 正文 4.7 节把 Fig. 12（R9/W10）与 Fig. S7（R10/W9）并列引用 |  | PASS |
-| 正文描述该组图的内容 | tex 行 1105 | PASS |
+| 正文描述该组图的内容 | tex 行 1114 | PASS |
 

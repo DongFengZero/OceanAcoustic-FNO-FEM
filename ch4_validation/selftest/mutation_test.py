@@ -15,7 +15,7 @@ the end to restore them.
 """
 import os, re, shutil, subprocess, sys
 
-SRC = os.environ.get("CH4_TEXDIR", r"D:\JASA\OE\OE_Revision_R1_Submission")
+SRC = os.environ.get("CH4_TEXDIR", r"D:\JASA\OE期刊\paper_R2")
 WORK = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_mutwork")
 PAPER = os.path.join(WORK, "paper")
 SUITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -74,7 +74,7 @@ if os.path.isdir(WORK):
     shutil.rmtree(WORK)
 os.makedirs(PAPER)
 for f in ("OE_submission.tex", "OE_submission.aux", "OE_submission.bbl",
-          "OE_supplementary.tex", "Response_to_Reviewers.tex"):
+          "OE_supplementary.tex"):
     shutil.copy2(os.path.join(SRC, f), PAPER)
 shutil.copytree(os.path.join(SRC, "Figures"), os.path.join(PAPER, "Figures"))
 pristine = open(os.path.join(PAPER, TEX), encoding="utf8").read()

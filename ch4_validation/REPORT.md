@@ -1,9 +1,9 @@
 # 第 4 章表格与图件核验主报告
 
-- 结论：**PASS** — 3309 项通过 / 0 项失败 / 16 项豁免
+- 结论：**PASS** — 3356 项通过 / 0 项失败 / 16 项豁免
 - 覆盖：22/22 个对象（全覆盖）
-- 核验脚本：27 个，全部通过
-- 生成：2026-10-06 00:29:59
+- 核验脚本：28 个，全部通过
+- 生成：2026-11-19 23:54:10
 - 复现：`python verify.py`
 
 每个对象的逐项明细在 `reports/<脚本名>.md`，本报告只汇总。
@@ -73,7 +73,7 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | `F04_res_128` | fig:res-128 | figure | 4.3 | 51 | PASS | [FIG04_res_128](reports/FIG04_res_128.md) |
 | `F05_sq100` | fig:sq100 | figure | 4.3 | 113 | PASS | [FIG05_sq100](reports/FIG05_sq100.md) |
 | `F06_dl_cmp` | fig:dl-cmp | figure | 4.4 | 74 | PASS | [FIG06_dl_cmp](reports/FIG06_dl_cmp.md) |
-| `F07_dl_abl` | fig:dl-abl | figure | 4.5 | 79 | PASS | [FIG07_dl_abl](reports/FIG07_dl_abl.md) |
+| `F07_dl_abl` | fig:dl-abl | figure | 4.5 | 80 | PASS | [FIG07_dl_abl](reports/FIG07_dl_abl.md) |
 | `F08_perf_cmp_r` | fig:perf-cmp-r | figure | 4.4 | 91 | PASS | [FIG08_09_perf_cmp](reports/FIG08_09_perf_cmp.md) |
 | `F09_perf_cmp_w` | fig:perf-cmp-w | figure | 4.4 | 91 | PASS | [FIG08_09_perf_cmp](reports/FIG08_09_perf_cmp.md) |
 | `F10_mesh` | fig:mesh | figure | 4.6 | 113 | PASS | [FIG10_mesh](reports/FIG10_mesh.md) |
@@ -90,9 +90,10 @@ ep200(last)，二者**本是不同轮次**（Case 14 的 best=129 与 last=200 �
 | Tables 9-10 等宽版式一致性 | 16 | PASS | [T09_10_layout](reports/T09_10_layout.md) |
 | 全章表格引用完整性（无孤表/无悬空/独立正文引用） | 42 | PASS | [TABALL_refs](reports/TABALL_refs.md) |
 | 全章图件引用完整性（无孤图/无悬空/独立正文引用） | 36 | PASS | [FIGALL_refs](reports/FIGALL_refs.md) |
-| 补充材料 Figs. S1-S7：图上数值↔npz、印刷字号、正文/回复信交叉引用 | 63 | PASS | [FIGS1_S7_supplementary](reports/FIGS1_S7_supplementary.md) |
-| 从正文出发：每个小数须为本节所引表的印刷值（括注 Case 则须在该行）、推导量或配置 | 109 | PASS | [PROSE_numbers](reports/PROSE_numbers.md) |
-| 正文中不挂靠表/图的数值：超参数↔代码、三维推导量、样本数、基线门槛 | 20 | PASS | [PROSE_derived](reports/PROSE_derived.md) |
+| 补充材料 Figs. S1-S7：图上数值↔npz、印刷字号、正文/回复信交叉引用 | 83 | PASS | [FIGS1_S7_supplementary](reports/FIGS1_S7_supplementary.md) |
+| 从正文出发：每个小数须为本节所引表的印刷值（括注 Case 则须在该行）、推导量或配置 | 116 | PASS | [PROSE_numbers](reports/PROSE_numbers.md) |
+| 正文中不挂靠表/图的数值：超参数↔代码、三维推导量、样本数、基线门槛 | 19 | PASS | [PROSE_derived](reports/PROSE_derived.md) |
+| 4.8 节离线成本与盈亏点（R2 新增）：COMSOL 生成日志 / 训练 JSON / 单卡推理日志 ↔ 正文 | 23 | PASS | [PROSE_cost](reports/PROSE_cost.md) |
 
 ## 已知缺口
 

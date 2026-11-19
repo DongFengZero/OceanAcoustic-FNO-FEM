@@ -1,15 +1,15 @@
 # Table — — 正文推导与独立数值（不挂靠表/图）
 
 - 对象：`prose`（Table —）
-- 结论：**PASS** — 20 通过 / 0 失败 / 0 警告，共 20 项
+- 结论：**PASS** — 19 通过 / 0 失败 / 0 警告，共 19 项
 - 脚本：`ch4_validation/scripts/PROSE_derived.py`
-- 生成：2026-10-06 00:25:37
+- 生成：2026-11-19 23:50:11
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | 4.1 / 4.4 节与第 5 章正文 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | 4.1 / 4.4 节与第 5 章正文 |
 | 训练代码 | `OceanAcoustic-FNO-FEM_github/Experiment_Code/Main_Code/ocean_trainer_forward_b.py` | 学习率调度、通道宽度 |
 | 模型代码 | `OceanAcoustic-FNO-FEM_github/Experiment_Code/Main_Code/deq_modules/models.py` | FNO 网格/模态/层数 |
 | 运行时 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.8_Performance/Case43-50_推理时间性能分析.xlsx` | 网格节点数（Table 13 同源） |
@@ -27,13 +27,13 @@
 
 ## 2. 第 5 章三维代价段：推导量现场重算（节点数取自 4.8 节 xlsx）
 
+> R2 结论删去了 R1 的三个具体推导量（每层模态张量 5.9×10^5、三维每层权重 9.4×10^6、FFT 代价 96 倍），只保留 O(G²logG)→O(G³logG) 的量级陈述；故不再断言那三个数，改核量级陈述本身在正文中。
+
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 最大网格节点数 N = 337,351（xlsx）出现在正文 | Lx = 512 m | PASS |
-| 三维节点数 N^{3/2} | `337351^1.5 = 1.9594e+08` → `1.96\times10^{8}` | PASS |
-| 每层截断模态张量 W²m1m2 | `48²×16² = 589,824` → `5.9\times10^{5}` | PASS |
-| 三维每层权重（×m3=16） | `9,437,184` → `9.4\times10^{6}` | PASS |
-| FFT 代价增长倍数 (G³logG³)/(G²logG²) = 1.5G | `1.5×64 = 96` | PASS |
+| 三维节点数 N^{3/2}（R2 正文取 2 位有效数字） | `337351^1.5 = 1.9594e+08` → `2.0\times10^{8}` | PASS |
+| FFT 代价陈述 O(G²logG) → O(G³logG) 在正文中 |  | PASS |
 
 ## 3. 参考解数量 ↔ Table 3
 
@@ -42,7 +42,8 @@
 | 全部 32 个多频算例 N = 8000 |  | PASS |
 | 全部 50 个算例每频 2000 |  | PASS |
 | 18 个单频算例 N = 2000（故不能写成『每个算例 8000』） |  | PASS |
-| 正文限定为『每个多频算例 8000、每频 2000』 |  | PASS |
+| 结论限定为『每个多频算例 8000 个有限元解』（不写成每个算例） |  | PASS |
+| 4.1 节写明每频 2000 个声源位置 |  | PASS |
 | 正文不再有『每个算例 8000』的旧说法 |  | PASS |
 
 ## 4. 4.4 节基线 TL 门槛 ↔ 精度 xlsx

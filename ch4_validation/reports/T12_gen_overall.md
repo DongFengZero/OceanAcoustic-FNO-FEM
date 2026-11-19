@@ -3,13 +3,13 @@
 - 对象：`tab:gen-overall`（Table 12）
 - 结论：**PASS** — 118 通过 / 0 失败 / 0 警告，共 118 项
 - 脚本：`ch4_validation/scripts/T12_gen_overall.py`
-- 生成：2026-10-06 00:26:11
+- 生成：2026-11-19 23:50:44
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{tab:gen-overall}` 所在 table* 环境 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | `\label{tab:gen-overall}` 所在 table* 环境 |
 | 渠道1 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.7_Generalization/Case39-42_数据汇总.xlsx` | 工作表1，best epoch 全测试集 |
 | 渠道2 log (Case 39) | `Data_and_Code_Availability/Raw_Experimental_Data/4.7_Generalization/No39_R9/training_run/logs/full_run_20260720_153827.log` | 训练日志同轮『评估』块 |
 | 渠道2 log (Case 40) | `Data_and_Code_Availability/Raw_Experimental_Data/4.7_Generalization/No40_R10/training_run/logs/full_run_20260720_103428.log` | 训练日志同轮『评估』块 |

@@ -24,7 +24,7 @@ ROOT = os.path.dirname(REPO)                              # D:/Data
 # 环境变量覆盖，便于他人克隆后无需改动源码：
 #   CH4_TEXDIR  论文 tex 所在目录（含 OE_submission.tex / .aux / Figures/results）
 #   CH4_RAWROOT Raw_Experimental_Data 的父目录（含 Data_and_Code_Availability）
-_TEXDIR = os.environ.get("CH4_TEXDIR", r"D:\JASA\OE\OE_Revision_R1_Submission")
+_TEXDIR = os.environ.get("CH4_TEXDIR", r"D:\JASA\OE期刊\paper_R2")
 _RAWROOT = os.environ.get("CH4_RAWROOT", ROOT)
 
 TEX = os.path.join(_TEXDIR, "OE_submission.tex")
@@ -34,6 +34,9 @@ PLOTDIR = os.path.join(REPO, "Validation_Scripts")   # 同 repo 内的兄弟目�
 
 RAW = os.path.join(_RAWROOT, "Data_and_Code_Availability",
                    "Raw_Experimental_Data")
+# COMSOL 批量生成的数据集目录（Table 3 的配置、4.8 节的数据生成日志都在这里）
+DATASET = os.environ.get(
+    "CH4_DATASET", os.path.join(_RAWROOT, "Data_and_Code_Availability", "Dataset"))
 
 # 节号 -> Raw_Experimental_Data 下的目录名
 SEC_DIR = {
@@ -101,6 +104,12 @@ def log_path(no):
 def npz_path(no):
     """Case No. -> ep200 TL 原始数据 npz（图片值的唯一来源）。"""
     hits = sorted(glob.glob(os.path.join(case_dir(no), "*TL原始数据_ep*.npz")))
+    return hits[-1] if hits else None
+
+
+def gen_log(dataset_id):
+    """数据集 ID（R1/W1/…）-> COMSOL 批量生成日志 Dataset/<ID>/<cfg>/run_*.log。"""
+    hits = sorted(glob.glob(os.path.join(DATASET, dataset_id, "*", "run_*.log")))
     return hits[-1] if hits else None
 
 

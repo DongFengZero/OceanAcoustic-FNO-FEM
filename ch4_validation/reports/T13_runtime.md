@@ -3,13 +3,13 @@
 - 对象：`tab:runtime`（Table 13）
 - 结论：**PASS** — 92 通过 / 0 失败 / 0 警告，共 92 项
 - 脚本：`ch4_validation/scripts/T13_runtime.py`
-- 生成：2026-10-06 00:26:12
+- 生成：2026-11-19 23:50:46
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{tab:runtime}` 所在 table* 浮动体 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | `\label{tab:runtime}` 所在 table* 浮动体 |
 | 渠道1 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.8_Performance/Case43-50_推理时间性能分析.xlsx` | 工作表0（多 GPU 基准）+ 工作表1（域尺度缩放） |
 
 ## 说明
@@ -160,6 +160,6 @@
 |---|---|---|
 | caption 分述 (a)/(b) 两个面板 |  | PASS |
 | caption 标明两个面板各自的硬件平台（跨平台不可直接比） |  | PASS |
-| 正文引用 Fig.\ref{fig:perf} | 实得 3 处 | PASS |
+| 正文引用 Fig.\ref{fig:perf} | 实得 2 处 | PASS |
 | 表号为 13 | aux `13` | PASS |
 

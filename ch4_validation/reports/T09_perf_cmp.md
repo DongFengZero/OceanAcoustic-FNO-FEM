@@ -3,13 +3,13 @@
 - 对象：`tab:perf-cmp`（Table 9）
 - 结论：**PASS** — 408 通过 / 0 失败 / 0 警告，共 408 项
 - 脚本：`ch4_validation/scripts/T09_perf_cmp.py`
-- 生成：2026-10-06 00:26:10
+- 生成：2026-11-19 23:50:43
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{tab:perf-cmp}` 所在环境 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | `\label{tab:perf-cmp}` 所在环境 |
 | 渠道1 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.4_Comparison/Case15-24_数据汇总.xlsx` | 工作表1，best epoch 全测试集 |
 | 渠道2 log (Case 15) | `Data_and_Code_Availability/Raw_Experimental_Data/4.4_Comparison/No15_R1_Proposed/training_run/logs/full_run_20260710_221657.log` | 训练日志同轮『评估』块 |
 | 渠道2 log (Case 16) | `Data_and_Code_Availability/Raw_Experimental_Data/4.4_Comparison/No16_R1_DeepONet/training_run/logs/full_run_20260711_003124.log` | 训练日志同轮『评估』块 |
@@ -466,22 +466,22 @@
 | 正文 Case 17 频均 TL 可定位 | 窗口内行 10 | PASS |
 | 正文 Case 20 频均 Sol | 正文 `2.121` / 表格 `2.121` | PASS |
 | 正文 Case 20 频均 Sol <- xlsx 源 | 源 2.1209166909102346 → `2.121` / 印刷 `2.121` | PASS |
-| 正文 Case 20 频均 Sol 可定位 | 窗口内行 16 | PASS |
+| 正文 Case 20 频均 Sol 可定位 | 窗口内行 14 | PASS |
 | 正文 Case 20 频均 TL | 正文 `0.899` / 表格 `0.899` | PASS |
 | 正文 Case 20 频均 TL <- xlsx 源 | 源 0.899286 → `0.899` / 印刷 `0.899` | PASS |
-| 正文 Case 20 频均 TL 可定位 | 窗口内行 17 | PASS |
+| 正文 Case 20 频均 TL 可定位 | 窗口内行 14 | PASS |
 | 正文 Case 22 频均 Sol | 正文 `3.179` / 表格 `3.179` | PASS |
 | 正文 Case 22 频均 Sol <- xlsx 源 | 源 3.179383306996897 → `3.179` / 印刷 `3.179` | PASS |
-| 正文 Case 22 频均 Sol 可定位 | 窗口内行 17 | PASS |
+| 正文 Case 22 频均 Sol 可定位 | 窗口内行 14 | PASS |
 | 正文 Case 22 频均 TL | 正文 `1.090` / 表格 `1.090` | PASS |
 | 正文 Case 22 频均 TL <- xlsx 源 | 源 1.090027 → `1.090` / 印刷 `1.090` | PASS |
-| 正文 Case 22 频均 TL 可定位 | 窗口内行 18 | PASS |
+| 正文 Case 22 频均 TL 可定位 | 窗口内行 15 | PASS |
 | 正文 Case 20 @100Hz TL | 正文 `1.265` / 表格 `1.265` | PASS |
 | 正文 Case 20 @100Hz TL <- xlsx 源 | 源 1.265287 → `1.265` / 印刷 `1.265` | PASS |
-| 正文 Case 20 @100Hz TL 可定位 | 窗口内行 26 | PASS |
+| 正文 Case 20 @100Hz TL 可定位 | 窗口内行 21 | PASS |
 | 正文 Case 21 @100Hz TL | 正文 `5.512` / 表格 `5.512` | PASS |
 | 正文 Case 21 @100Hz TL <- xlsx 源 | 源 5.511891 → `5.512` / 印刷 `5.512` | PASS |
-| 正文 Case 21 @100Hz TL 可定位 | 窗口内行 26 | PASS |
+| 正文 Case 21 @100Hz TL 可定位 | 窗口内行 23 | PASS |
 
 ## 10. caption 声明核验
 

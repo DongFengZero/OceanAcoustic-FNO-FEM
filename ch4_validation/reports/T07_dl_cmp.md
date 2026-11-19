@@ -3,18 +3,18 @@
 - 对象：`tab:dl-cmp`（Table 7）
 - 结论：**PASS** — 172 通过 / 0 失败 / 0 警告 / 2 豁免，共 174 项
 - 脚本：`ch4_validation/scripts/T07_dl_cmp.py`
-- 生成：2026-10-06 00:25:56
+- 生成：2026-11-19 23:50:29
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{tab:dl-cmp}` 所在 tabular* |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | `\label{tab:dl-cmp}` 所在 tabular* |
 | 成图/取数脚本（权威） | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/_depthline_core.py` | 组 `comparison_R1_model_advantage` / `comparison_W1_model_advantage` |
 | 同一脚本 repo 副本 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/legacy/advantage_depth_line.py` | md5 应与权威副本相同 |
 | 脚本导出 MAE 表 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/cache/_mae_tables.json` | round 到 3 位，供正文取用 |
-| 论文图件（矩形 R1） | `../JASA/OE/OE_Revision_R1_Submission/Figures/results/comparison_R1_model_advantage.pdf` | 成图脚本 out/ 下的纸面尺寸 PDF |
-| 论文图件（楔形 W1） | `../JASA/OE/OE_Revision_R1_Submission/Figures/results/comparison_W1_model_advantage.pdf` | 成图脚本 out/ 下的纸面尺寸 PDF |
+| 论文图件（矩形 R1） | `../JASA/OE期刊/paper_R2/Figures/results/comparison_R1_model_advantage.pdf` | 成图脚本 out/ 下的纸面尺寸 PDF |
+| 论文图件（楔形 W1） | `../JASA/OE期刊/paper_R2/Figures/results/comparison_W1_model_advantage.pdf` | 成图脚本 out/ 下的纸面尺寸 PDF |
 
 ## 2. 源可追溯性与脚本同源
 
@@ -207,10 +207,10 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | [rect] 脚本产出 PDF 存在 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/out/comparison_R1_model_advantage.pdf | PASS |
-| [rect] 论文图件存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/comparison_R1_model_advantage.pdf | PASS |
+| [rect] 论文图件存在 | ../JASA/OE期刊/paper_R2/Figures/results/comparison_R1_model_advantage.pdf | PASS |
 | [rect] 论文图件与脚本产物同源（抹时间戳后同 md5） | md5(no-ts) `1e9e55abb341f31ba8347037c81d04d6` | PASS |
 | [wedge] 脚本产出 PDF 存在 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/out/comparison_W1_model_advantage.pdf | PASS |
-| [wedge] 论文图件存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/comparison_W1_model_advantage.pdf | PASS |
+| [wedge] 论文图件存在 | ../JASA/OE期刊/paper_R2/Figures/results/comparison_W1_model_advantage.pdf | PASS |
 | [wedge] 论文图件与脚本产物同源（抹时间戳后同 md5） | md5(no-ts) `10fc09d7ac4d7de742726c0f3857ffbb` | PASS |
 | PDF 逐字节 md5 相同 | matplotlib 每次运行写入 CreationDate（本机实测 D:2026…），逐字节比对必然不等；已改为抹掉时间戳后比对，同源判定不受影响。 | 豁免 |
 
@@ -239,7 +239,7 @@
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| Table 8 表体可定位 | 长度 1133 | PASS |
+| Table 8 表体可定位 | 长度 1128 | PASS |
 | Table 8 亦为 tabular* | is_star=True | PASS |
 | 两表列定义可解析 | Table 7 `@{\extracolsep{\fill}}M EEEE EEEE@{}` / Table 8 `@{\extracolsep{\fill}}A EEEE EEEE@{}` | PASS |
 | Table 7 列类型序列为 `M EEEE EEEE` | `@{\extracolsep{\fill}}M EEEE EEEE@{}` | PASS |
@@ -257,8 +257,8 @@
 |---|---|---|
 | 正文『at or below 1.515 dB on the rectangular line』 | 矩形四频 ['0.469', '0.696', '0.579', '1.515'] → 最大 `1.515` | PASS |
 | 正文『0.666 dB on the wedge line』 | 楔形四频 ['0.195', '0.144', '0.576', '0.666'] → 最大 `0.666` | PASS |
-| 正文声明的深度线 y=56.1 m 与脚本 force_y 一致 | tex 行 884 | PASS |
-| 正文声明的深度线 y=30.4 m 与脚本 force_y 一致 | tex 行 884 | PASS |
+| 正文声明的深度线 y=56.1 m 与脚本 force_y 一致 | tex 行 893 | PASS |
+| 正文声明的深度线 y=30.4 m 与脚本 force_y 一致 | tex 行 893 | PASS |
 | 正文『DeepONet exceeds 5 dB』成立（阈值断言，不指某格） | DeepONet 最大 `7.038` > 5 | PASS |
 | 正文 `$5$\,dB` 不作字面比对 | 该数是阈值表述（exceeds 5 dB），非某单元格的印刷值 | 豁免 |
 

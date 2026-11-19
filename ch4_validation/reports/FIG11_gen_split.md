@@ -3,13 +3,13 @@
 - 对象：`fig:gen-split`（Fig. 20）
 - 结论：**PASS** — 52 通过 / 0 失败 / 0 警告，共 52 项
 - 脚本：`ch4_validation/scripts/FIG11_gen_split.py`
-- 生成：2026-10-06 00:29:03
+- 生成：2026-11-19 23:53:15
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | 单栏 figure* 环境 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | 单栏 figure* 环境 |
 | 成图脚本 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig11_gen_split/_gen_split_core.py` | plot_generalization_split.py |
 
 ## 1. 源与口径
@@ -93,5 +93,5 @@
 |---|---|---|
 | 编号为 11 | aux `11` | PASS |
 | 正文引用本图 | `\ref{fig:gen-split}` 出现 1 处 | PASS |
-| 正文 4.7 节以散文引用并描述图内容 | tex 行 1096 | PASS |
+| 正文 4.7 节以散文引用并描述图内容 | tex 行 1105 | PASS |
 

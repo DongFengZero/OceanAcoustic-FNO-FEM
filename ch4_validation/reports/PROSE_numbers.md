@@ -1,22 +1,22 @@
 # Table — — 正文每个小数的出处（表格印刷值 / 推导量 / 配置）
 
 - 对象：`prose (abstract + Sec. 4-5)`（Table —）
-- 结论：**PASS** — 108 通过 / 0 失败 / 0 警告 / 1 豁免，共 109 项
+- 结论：**PASS** — 115 通过 / 0 失败 / 0 警告 / 1 豁免，共 116 项
 - 脚本：`ch4_validation/scripts/PROSE_numbers.py`
-- 生成：2026-10-06 00:25:37
+- 生成：2026-11-19 23:50:11
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | 摘要与第 4-5 章正文、全部表格 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | 摘要与第 4-5 章正文、全部表格 |
 | 训练代码 | `OceanAcoustic-FNO-FEM_github/Experiment_Code/Main_Code/ocean_trainer_forward_b.py` | 配置参数默认值 |
 
 ## 1. 正文每个小数的出处
 
 > 表格印刷值须出自本小节正文 \ref 到的表（逐字符）；推导量用印刷值当场重算；门槛验证论断本身；配置对照代码。任一数不属上述三类即 FAIL。
 
-> 共核 109 个正文小数。
+> 共核 116 个正文小数。
 
 | 数值 @ 节 | 依据 | 结论 |
 |---|---|---|
@@ -126,7 +126,14 @@
 | `251.39` @ sec:runtime | 印刷于本节所引 ['tab:runtime'] | PASS |
 | `40.57` @ sec:runtime | 印刷于本节所引 ['tab:runtime'] | PASS |
 | `133.09` @ sec:runtime | 印刷于本节所引 ['tab:runtime'] | PASS |
+| `1.94` @ sec:runtime | 数据生成 1.94 h = COMSOL 生成日志求解总计/3600 total_s=6984.4 | PASS |
+| `873.1` @ sec:runtime | COMSOL 单次求解均值 ↔ 生成日志 log=873.1 | PASS |
+| `871.4` @ sec:runtime | COMSOL 单次求解中位数 ↔ 生成日志 log=871.4 | PASS |
+| `973.2` @ sec:runtime | COMSOL 单次求解 P95 ↔ 生成日志 log=973.2 | PASS |
+| `6.21` @ sec:runtime | 训练 6.21 h = Case 15 JSON total_s/3600 total_s=22351.81516236067 | PASS |
+| `49.7` @ sec:runtime | 卡时 49.7 = 6.21 h × 8 卡（日志卡数） n_gpu=8 | PASS |
+| `0.856` @ sec:runtime | 每次查询节省 = (873.1 − 17.08)/1000，Table 13 印刷值  | PASS |
+| `17.08` @ sec:runtime | 印刷于本节所引 ['tab:runtime'] | PASS |
+| `873.1` @ sec:runtime | COMSOL 单次求解均值 ↔ 生成日志 log=873.1 | PASS |
 | `337{,}351` @ sec:cons | 印刷于本节所引 ['tab:runtime'] | PASS |
-| `5.9` @ sec:cons | 48²×16²（PROSE_derived 回源核）  | PASS |
-| `9.4` @ sec:cons | 48²×16³（PROSE_derived 回源核）  | PASS |
 

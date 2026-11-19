@@ -3,19 +3,19 @@
 - 对象：`fig:dl-cmp`（Fig. 6）
 - 结论：**PASS** — 69 通过 / 0 失败 / 0 警告 / 5 豁免，共 74 项
 - 脚本：`ch4_validation/scripts/FIG06_dl_cmp.py`
-- 生成：2026-10-06 00:27:26
+- 生成：2026-11-19 23:52:00
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{fig:dl-cmp}` 所在 figure* 浮动体（表+图同体） |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | `\label{fig:dl-cmp}` 所在 figure* 浮动体（表+图同体） |
 | 成图/取数脚本（权威） | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/_depthline_core.py` | 组 comparison_R1_model_advantage / comparison_W1_model_advantage |
 | 同一脚本 repo 副本 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/legacy/advantage_depth_line.py` | legacy 副本，口径函数逐字符相同 |
 | 成图脚本（纸面尺寸成图） | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/fig06_07_dl.py` | Fig 6 的 240x142 pt 纸面尺寸版由它写到 out/ |
-| 论文图件（Rectangular） | `../JASA/OE/OE_Revision_R1_Submission/Figures/results/comparison_r1_model_advantage.pdf` | 来源：成图脚本 out/ 下的纸面尺寸 PDF |
-| 论文图件（Wedge） | `../JASA/OE/OE_Revision_R1_Submission/Figures/results/comparison_w1_model_advantage.pdf` | 来源：成图脚本 out/ 下的纸面尺寸 PDF |
-| 共用图例图 | `../JASA/OE/OE_Revision_R1_Submission/Figures/results/dl_legend_cmp.pdf` | 本组五条曲线的方法名在此图中 |
+| 论文图件（Rectangular） | `../JASA/OE期刊/paper_R2/Figures/results/comparison_r1_model_advantage.pdf` | 来源：成图脚本 out/ 下的纸面尺寸 PDF |
+| 论文图件（Wedge） | `../JASA/OE期刊/paper_R2/Figures/results/comparison_w1_model_advantage.pdf` | 来源：成图脚本 out/ 下的纸面尺寸 PDF |
+| 共用图例图 | `../JASA/OE期刊/paper_R2/Figures/results/dl_legend_cmp.pdf` | 本组五条曲线的方法名在此图中 |
 
 ## 2. 源可追溯与口径防漂移
 
@@ -87,10 +87,10 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | fig:dl-cmp-r 脚本产出 PDF 存在 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/out/comparison_R1_model_advantage.pdf | PASS |
-| fig:dl-cmp-r 论文图件存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/comparison_r1_model_advantage.pdf | PASS |
+| fig:dl-cmp-r 论文图件存在 | ../JASA/OE期刊/paper_R2/Figures/results/comparison_r1_model_advantage.pdf | PASS |
 | fig:dl-cmp-r 论文图件与脚本产物同源（抹时间戳后同 md5） | md5(no-ts) `1e9e55abb341` | PASS |
 | fig:dl-cmp-w 脚本产出 PDF 存在 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/out/comparison_W1_model_advantage.pdf | PASS |
-| fig:dl-cmp-w 论文图件存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/comparison_w1_model_advantage.pdf | PASS |
+| fig:dl-cmp-w 论文图件存在 | ../JASA/OE期刊/paper_R2/Figures/results/comparison_w1_model_advantage.pdf | PASS |
 | fig:dl-cmp-w 论文图件与脚本产物同源（抹时间戳后同 md5） | md5(no-ts) `10fc09d7ac4d` | PASS |
 | PDF 逐字节 md5 相同 | matplotlib 每次运行写入 CreationDate（本机实测 D:2026…），逐字节比对必然不等；已改为抹掉时间戳后比对，同源判定不受影响。 | 豁免 |
 | 图件来源为 common/depthline.py:figure_pdf() 所指目录 | 该函数指向 fig06_07_dl/cache/，那里是 core 的旧版大画布渲染（MediaBox 1181.8x855.1 pt）；论文用的是成图脚本 out/ 下的纸面尺寸版（240x142 pt）。本脚本改读 out/。 | 豁免 |

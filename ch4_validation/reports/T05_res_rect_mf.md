@@ -3,13 +3,13 @@
 - 对象：`tab:res-rect-mf`（Table 5）
 - 结论：**PASS** — 263 通过 / 0 失败 / 0 警告，共 263 项
 - 脚本：`ch4_validation/scripts/T05_res_rect_mf.py`
-- 生成：2026-10-06 00:25:39
+- 生成：2026-11-19 23:50:13
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{tab:res-rect-mf}` 所在 table* 环境 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | `\label{tab:res-rect-mf}` 所在 table* 环境 |
 | 渠道1 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/Case3-14_数据汇总.xlsx` | 工作表1，best epoch 全测试集 |
 | 渠道2 log (Case 3) | `Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No03_R1/training_run/logs/full_run_20260710_221657.log` | 训练日志同轮『评估』块 |
 | 渠道2 log (Case 4) | `Data_and_Code_Availability/Raw_Experimental_Data/4.3_Forward/No04_R2/training_run/logs/full_run_20260710_214148.log` | 训练日志同轮『评估』块 |
@@ -339,7 +339,7 @@
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | 矩形多频 512m/128m TL 倍数 = 2.268 | `2.157`/`0.951` = `2.268139` → `2.268` | PASS |
-| 正文该倍数可定位 | tex 行 795 | PASS |
+| 正文该倍数可定位 | tex 行 804 | PASS |
 
 ## 12. 正文趋势断言
 

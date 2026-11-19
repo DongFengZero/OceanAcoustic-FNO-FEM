@@ -3,13 +3,13 @@
 - 对象：``（）
 - 结论：**PASS** — 16 通过 / 0 失败 / 0 警告，共 16 项
 - 脚本：`ch4_validation/scripts/T09_10_layout.py`
-- 生成：2026-10-06 00:26:09
+- 生成：2026-11-19 23:50:42
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | 两张表所在 table* 环境 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | 两张表所在 table* 环境 |
 
 ## 1. 两张表可定位
 
@@ -18,7 +18,7 @@
 | `tab:perf-cmp` 表体可定位 | 长度 1804 | PASS |
 | `tab:perf-cmp` 用 tabular*（等宽所需） | tabular* 的宽度参数即总宽 | PASS |
 | `tab:perf-cmp` 编号 = 9 | aux `9` | PASS |
-| `tab:abl` 表体可定位 | 长度 1736 | PASS |
+| `tab:abl` 表体可定位 | 长度 1728 | PASS |
 | `tab:abl` 用 tabular*（等宽所需） | tabular* 的宽度参数即总宽 | PASS |
 | `tab:abl` 编号 = 10 | aux `10` | PASS |
 

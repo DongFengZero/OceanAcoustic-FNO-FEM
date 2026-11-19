@@ -14,7 +14,9 @@ S7 = R10（矩形远区）+ W9（楔形深区）；正文 Fig. 12 保留 R9 + W1
   C. 正文 ↔ 补充材料：正文引用的 S 编号全部存在、每张 S 图都被引用，且出现在
      对应小节（S1-S4 在 4.3、S5-S6 在 4.5、S7 在 4.7）；补充材料里写出的正文
      图/表/节编号与正文 aux 一致。
-  D. 回复信：附录 B 的 原图 → S 编号 映射与补充材料一览表一致。
+  D. 一览表：补充材料首页的 Figure / Content / Cases / Main-text reference 一览表与
+     各图题、SFIG 登记的算例、正文 aux 的节号与表号一致（R2 回复信不再含附录 B，
+     原图号 → S 编号的映射不再外部登记）。
 """
 import io
 import os
@@ -27,7 +29,6 @@ from common import paths, report, texparse as T
 SLUG = "FIGS1_S7_supplementary"
 TEXDIR = os.path.dirname(paths.TEX)
 SUPP = os.path.join(TEXDIR, "OE_supplementary.tex")
-RTR = os.path.join(TEXDIR, "Response_to_Reviewers.tex")
 FIGDIR = os.path.join(TEXDIR, "Figures", "supplementary")
 GEN = os.path.join(paths.REPO, "Validation_Scripts", "figS1_S7_supplementary")
 sys.path.insert(0, GEN)
@@ -73,7 +74,6 @@ def run():
                        "Figs. S1-S7", "S1-S7")
     c.source("补充材料 tex", SUPP, "图题与正文编号")
     c.source("正文 tex", paths.TEX, "S 引用")
-    c.source("回复信 tex", RTR, "附录 B 映射")
     c.source("成图脚本", os.path.join(GEN, "figS1_S7_supplementary.py"), "渲染器复用正文 Fig. 4/8/12")
 
     supp = io.open(SUPP, encoding="utf8").read()
@@ -166,28 +166,46 @@ def run():
         c.check(f"Sec.~{num}" in supp, f"补充材料一览表含 `Sec.~{num}`（{lab}）", "")
 
     # ── D ──────────────────────────────────────────────────────
-    c.section("3. 补充材料为独立文件 / 回复信附录 B ↔ 补充材料")
+    c.section("3. 补充材料为独立文件 / 一览表 ↔ 图题、登记算例、正文编号")
     c.note("补充材料只用修订后的编号体系，不出现修订前图号或修订过程措辞；"
-           "原图号 → S 编号的对应只记在回复信附录 B，并按内容与补充材料图题核对。")
+           "首页一览表的每一行按内容关键词、算例号、节号与表号逐项核对。")
     body = "\n".join(l for l in supp.split("\n") if not l.lstrip().startswith("%"))
     stale = re.findall(r"[Oo]riginal|orig\.|moved out|[Rr]evision|revised manuscript", body)
     c.check(not stale, "补充材料正文不含修订前图号或修订过程措辞", f"{stale or '无'}")
     c.check(not re.search(r"Original figure", supp), "一览表不含『Original figure』列", "")
-    rtr = io.open(RTR, encoding="utf8").read()
-    caps = {k: re.findall(r"\\caption\{(.*?)\}\s*\\label\{fig:S%d\}" % k, supp, re.S) for k in SFIG}
-    # 附录 B 的一行：S 编号 & 原图号 & 内容；内容关键词须在对应 S 图题中出现
-    for snums, orig, keys in (("S1--S4", "6 + 7", ("256", "512")),
-                              ("S5--S6", "16 + 17", ("ablation",)),
-                              ("S7", "21 + 22", ("extrapolation", "rectangular", "wedge"))):
-        row = re.search(re.escape(snums) + r"\s*&\s*" + re.escape(orig) + r"\s*&([^&]*)&", rtr)
-        c.check(row is not None, f"附录 B 有行：原图 {orig} → {snums}", "")
-        text = " ".join(" ".join(caps[k]) for k in expand(snums))
-        for kw in keys:
-            c.check(row is not None and kw in row.group(1) and kw.lower() in text.lower(),
-                    f"附录 B 行『{snums}』与补充材料图题同含 `{kw}`",
-                    (row.group(1).strip()[:60] if row else "无此行"))
-    c.check("Supplementary" not in rtr or "Figs.~S1--S7" in rtr,
-            "回复信以 `Figs.~S1--S7` 指称补充材料", "")
+    # 一览表：`S1 & 内容 & 算例 & Sec.~x, Table~y \\\\`
+    BS = chr(92)
+    rows = {int(m.group(1)): [x.strip() for x in m.group(2).split("&")]
+            for m in re.finditer(r"^S(\d)\s*&(.*?)" + BS * 4, body, re.M)}
+    c.check(sorted(rows) == sorted(SFIG), "一览表恰列出 S1-S7", f"{sorted(rows)}")
+    for k, (files, kind, cases, _orig, sec, tab) in SFIG.items():
+        row = rows.get(k)
+        if not row or len(row) < 3:
+            c.check(False, f"一览表 S{k} 行可解析", f"{row}")
+            continue
+        content, case_col, ref = row[0], row[1], row[2]
+        cap = (T.caption_of(f"fig:S{k}", supp) or "")
+        # "As Fig.~S5, for the wedge …" 这类图题承接另一张图的说明：关键词向被引图题找
+        m_as = re.match(r"\s*As Fig\.~S(\d)", cap)
+        if m_as:
+            cap += " " + (T.caption_of(f"fig:S{m_as.group(1)}", supp) or "")
+        cap = cap.lower()
+        kws = [w for w in ("256", "512", "rectangular", "wedge", "ablation", "extrapolation")
+               if w in content.lower()]
+        for kw in kws:
+            c.check(kw in cap, f"一览表 S{k}『{kw}』出现在 S{k} 图题中", content[:48])
+        nos = [int(x) for x in re.findall(r"\d+", case_col.split("(")[0])]
+        if "--" in case_col and len(nos) == 2:
+            nos = list(range(nos[0], nos[1] + 1))
+        want = sorted({int(re.search(r"Case(\d+)", cs).group(1)) for cs in cases})
+        c.check(sorted(nos) == want, f"一览表 S{k} 算例 `{case_col}` ↔ 登记 {want}", "")
+        secnum, tabnum = aux.get(sec, {}).get("num"), aux.get(tab, {}).get("num")
+        c.check(f"Sec.~{secnum}" in ref and f"Table~{tabnum}" in ref,
+                f"一览表 S{k} 引用 `{ref}` ↔ aux {sec}={secnum}, {tab}={tabnum}", "")
+    for k in (5, 6):
+        t = pdf_text(os.path.join(FIGDIR, SFIG[k][0]))[0]
+        c.check("w/o FNO prior" in t, f"S{k} 图上变体名与 Table 10 的『w/o FNO prior』一致",
+                "图上仍印 R1 的『w/o physics prior』（表格 R2 已改名，图件未重绘）", warn_only=True)
     return c
 
 

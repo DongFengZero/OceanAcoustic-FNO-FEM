@@ -1,21 +1,21 @@
 # Fig. 7 — 四变体消融深度线 Fig 7（矩形+楔形合并）
 
 - 对象：`fig:dl-abl`（Fig. 7）
-- 结论：**PASS** — 74 通过 / 0 失败 / 0 警告 / 5 豁免，共 79 项
+- 结论：**PASS** — 74 通过 / 0 失败 / 1 警告 / 5 豁免，共 80 项
 - 脚本：`ch4_validation/scripts/FIG07_dl_abl.py`
-- 生成：2026-10-06 00:27:39
+- 生成：2026-11-19 23:52:13
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | `\label{fig:dl-abl}` 所在 figure* 浮动体（表+图同体） |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | `\label{fig:dl-abl}` 所在 figure* 浮动体（表+图同体） |
 | 成图/取数脚本（权威） | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/_depthline_core.py` | 组 ablation_R1_module_advantage / ablation_W1_module_advantage |
 | 同一脚本 repo 副本 | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/legacy/advantage_depth_line.py` | legacy 副本，口径函数逐字符相同 |
 | 成图脚本（纸面尺寸成图） | `OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/fig06_07_dl.py` | Fig 7 的 240x142 pt 纸面尺寸版由它写到 out/ |
-| 共用图例图 | `../JASA/OE/OE_Revision_R1_Submission/Figures/results/dl_legend_abl.pdf` | 本组四条曲线的方法名在此图中 |
-| 论文图件（Rectangular） | `../JASA/OE/OE_Revision_R1_Submission/Figures/results/ablation_r1_module_advantage.pdf` | 来源：成图脚本 out/ 下的纸面尺寸 PDF |
-| 论文图件（Wedge） | `../JASA/OE/OE_Revision_R1_Submission/Figures/results/ablation_w1_module_advantage.pdf` | 来源：成图脚本 out/ 下的纸面尺寸 PDF |
+| 共用图例图 | `../JASA/OE期刊/paper_R2/Figures/results/dl_legend_abl.pdf` | 本组四条曲线的方法名在此图中 |
+| 论文图件（Rectangular） | `../JASA/OE期刊/paper_R2/Figures/results/ablation_r1_module_advantage.pdf` | 来源：成图脚本 out/ 下的纸面尺寸 PDF |
+| 论文图件（Wedge） | `../JASA/OE期刊/paper_R2/Figures/results/ablation_w1_module_advantage.pdf` | 来源：成图脚本 out/ 下的纸面尺寸 PDF |
 
 ## 2. 源可追溯与口径防漂移
 
@@ -111,6 +111,7 @@ w/o prior supervision
 Obstacle
 Beyond axis range` | PASS |
 | 图例含 Obstacle 灰带说明 |  | PASS |
+| 图例变体名与 Table 8/10 的『w/o FNO prior』一致 | 图例仍印 R1 的『w/o physics prior』（表格 R2 已改名，图例文件未重绘） | WARN |
 
 ## 5. 图与表同源（Fig. 7 <-> Table 8）
 
@@ -119,10 +120,10 @@ Beyond axis range` | PASS |
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
 | fig:dl-abl-r 脚本产出 PDF 存在 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/out/ablation_R1_module_advantage.pdf | PASS |
-| fig:dl-abl-r 论文图件存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/ablation_r1_module_advantage.pdf | PASS |
+| fig:dl-abl-r 论文图件存在 | ../JASA/OE期刊/paper_R2/Figures/results/ablation_r1_module_advantage.pdf | PASS |
 | fig:dl-abl-r 论文图件与脚本产物同源（抹时间戳后同 md5） | md5(no-ts) `42f638c60615` | PASS |
 | fig:dl-abl-w 脚本产出 PDF 存在 | OceanAcoustic-FNO-FEM_github/Validation_Scripts/fig06_07_dl/out/ablation_W1_module_advantage.pdf | PASS |
-| fig:dl-abl-w 论文图件存在 | ../JASA/OE/OE_Revision_R1_Submission/Figures/results/ablation_w1_module_advantage.pdf | PASS |
+| fig:dl-abl-w 论文图件存在 | ../JASA/OE期刊/paper_R2/Figures/results/ablation_w1_module_advantage.pdf | PASS |
 | fig:dl-abl-w 论文图件与脚本产物同源（抹时间戳后同 md5） | md5(no-ts) `abcd13e24b0b` | PASS |
 | PDF 逐字节 md5 相同 | matplotlib 每次运行写入 CreationDate（本机实测 D:2026…），逐字节比对必然不等；已改为抹掉时间戳后比对，同源判定不受影响。 | 豁免 |
 | 图件来源为 common/depthline.py:figure_pdf() 所指目录 | 该函数指向 fig06_07_dl/cache/（core 的旧版大画布渲染，MediaBox 1181.8x855.1 pt）；论文用的是成图脚本 out/ 下的纸面尺寸版（240x142 pt）。本脚本改读 out/。 | 豁免 |
@@ -133,7 +134,7 @@ Beyond axis range` | PASS |
 
 | 检查项 | 源值 / 印刷值 | 结论 |
 |---|---|---|
-| Table 8 表体可定位 | 长度 1133 | PASS |
+| Table 8 表体可定位 | 长度 1128 | PASS |
 | 表头块名声明两个几何（R1 / W1） | 第一行 `& \multicolumn{4}{c}{\textit{Rectangular (R1), $y=71.9$\,m}} & \multic` | PASS |
 | 表头解析到 8 组源坐标（4 矩形 + 4 楔形） | [(44.5, 21.9), (25.9, 49.5), (51.5, 5.7), (62.8, 85.3), (92.7, 58.9), (117.6, 43.4), (56.7, 33.8), (45.5, 29.5)] | PASS |
 | fig:dl-abl-r 选中行深度舍入到 1 位 = 71.9 m | 实际 `71.919732`（subfloat 题注写 1 位小数） | PASS |

@@ -1,6 +1,6 @@
 # ch4_validation — 论文表格与图件的可复现核验
 
-对 R1 论文第 4 章的 **12 张表** 与 **11 张图**（Tables 3--13、Figures 3--13）
+对论文（R2 定稿，编号自 R1 起未变）第 4 章的 **12 张表** 与 **11 张图**（Tables 3--13、Figures 3--13）
 做逐值核验：把每一个印刷出来的数字，回到 `Raw_Experimental_Data` 下的原始数据
 现场重算一遍，再与 tex 里排出来的值逐字符比对。
 
@@ -130,7 +130,7 @@ Python 3.9+，需要 `numpy` / `pandas` / `openpyxl` / `scipy` / `h5py` /
 从仓库位置推断，故给了默认值并支持环境变量覆盖：
 
 ```bash
-export CH4_TEXDIR=/path/to/OE_Revision_R1_Submission   # 含 OE_submission.tex/.aux 与 Figures/results
+export CH4_TEXDIR=/path/to/paper-tex-dir   # 含 OE_submission.tex/.aux/.bbl、OE_supplementary.tex 与 Figures/{results,supplementary}
 export CH4_RAWROOT=/path/to/parent-of-Data_and_Code_Availability
 python verify.py
 ```

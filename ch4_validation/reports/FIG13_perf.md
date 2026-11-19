@@ -3,13 +3,13 @@
 - 对象：`fig:perf`（Fig. 13）
 - 结论：**PASS** — 54 通过 / 0 失败 / 0 警告，共 54 项
 - 脚本：`ch4_validation/scripts/FIG13_perf.py`
-- 生成：2026-10-06 00:29:12
+- 生成：2026-11-19 23:53:21
 
 ## 1. 源清单
 
 | 角色 | 路径 | 说明 |
 |---|---|---|
-| 印刷面 tex | `../JASA/OE/OE_Revision_R1_Submission/OE_submission.tex` | 单个 figure* 环境 |
+| 印刷面 tex | `../JASA/OE期刊/paper_R2/OE_submission.tex` | 单个 figure* 环境 |
 | 运行时 xlsx | `Data_and_Code_Availability/Raw_Experimental_Data/4.8_Performance/Case43-50_推理时间性能分析.xlsx` | 两个 sheet，即 Table 13(a)/(b) 的来源 |
 
 ## 1. 图件与已知缺口
@@ -96,6 +96,6 @@
 | 编号为 13 | aux `13` | PASS |
 | 正文以 `Fig.~\ref{fig:perf}(a,b)` 引用多 GPU 部分 |  | PASS |
 | 正文以 `Fig.~\ref{fig:perf}(c)` 引用域缩放部分 |  | PASS |
-| 兄弟表 `tab:runtime` 在正文被引 | tex 行 1141 | PASS |
+| 兄弟表 `tab:runtime` 在正文被引 | tex 行 1150 | PASS |
 | 兄弟表 tab:runtime 编号为 13 | aux `13` | PASS |
 
